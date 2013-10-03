@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Type</key>
+		<string>Compare and Contrast</string>
+		<key>EssayTopic</key>
+		<string>Analyze the similarities and differences between the role of the state in Japan&apos;s economic development and the role of the state in the economic development of China during late 19th and early 20th centuries.</string>
+		<key>FirstTopic</key>
+		<string>Japan</string>
+		<key>SecondTopic</key>
+		<string>China</string>
+		<key>ThesisStatement</key>
+		<string>Both China and Japan faced encroachment of western imperial powers in the late 19th and early 20th century. However, their responses differed as Japan mobilized into a formidable industrial power while China responded with a half-hearted self-strengthening movement. Ultimately, Japan&apos;s ability to adapt allowed them to become an industrial imperial power. </string>
+		<key>FirstTopicAttr1</key>
+		<string>Govt sponsored industrialization</string>
+		<key>FirstTopicAttr2</key>
+		<string>Commodore Perry</string>
+		<key>FirstTopicAttr3</key>
+		<string>Natural resources</string>
+		<key>SecondTopicAttr1</key>
+		<string>Did not industrialize</string>
+		<key>SecondTopicAttr2</key>
+		<string>Powerful bureaucracy</string>
+		<key>SecondTopicAttr3</key>
+		<string>Weak leadership</string>
+		<key>BothTopicAttr1</key>
+		<string>Asian powers</string>
+		<key>BothTopicAttr2</key>
+		<string>Isolated</string>
+		<key>BothTopicAttr3</key>
+		<string>Anti-industrialization</string>
+		<key>New item - 2</key>
+		<string></string>
+		<key>Thesis1</key>
+		<string>Both</string>
+		<key>Thesis2</key>
+		<string>China</string>
+		<key>Thesis3</key>
+		<string>Japan</string>
+		<key>Thesis4</key>
+		<string>faced encroachment of western imperial powers</string>
+		<key>Thesis5</key>
+		<string>However</string>
+		<key>Thesis6</key>
+		<string>Japan</string>
+		<key>Thesis7</key>
+		<string>responded by mobilizing the country to industrialize</string>
+		<key>Thesis8</key>
+		<string>while</string>
+		<key>Thesis9</key>
+		<string>China</string>
+		<key>Thesis10</key>
+		<string>responded with a self-strengthening movement that was disjointed and ultimately failed</string>
+		<key>Thesis11</key>
+		<string>Ultimately</string>
+		<key>Thesis12</key>
+		<string>Japan became an industrial and imperial power.</string>
+		<key>BodyFirstOne</key>
+		<string>As the industrial revolution kicked into high gear, the western powers came to dominate the world and with their insatiable need for raw materials they began an aggressive effort of imperialistic expansion.</string>
+		<key>BodyFirstTwo</key>
+		<string></string>
+		<key>BodyFirstThree</key>
+		<string></string>
+		<key>BodyFirstFour</key>
+		<string></string>
+		<key>BodySecondOne</key>
+		<string></string>
+		<key>BodySecondTwo</key>
+		<string></string>
+		<key>BodySecondThree</key>
+		<string></string>
+		<key>BodySecondFour</key>
+		<string></string>
+		<key>BodyThirdOne</key>
+		<string></string>
+		<key>BodyThirdTwo</key>
+		<string></string>
+		<key>BodyThirdThree</key>
+		<string></string>
+		<key>BodyThirdFour</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string>Compare and Contrast</string>
+		<key>EssayTopic</key>
+		<string>Analyze the similarities and differences between the methods of rule of the Roman Empire and Han China</string>
+		<key>FirstTopic</key>
+		<string>Roman Empire</string>
+		<key>SecondTopic</key>
+		<string>Han China</string>
+		<key>ThesisStatement</key>
+		<string>Both the Roman Empire and Han China were large empires that were dominated by an elite class. However, Han China was centrally organized while Roman Empire was decentralized. </string>
+		<key>Thesis1</key>
+		<string>Both</string>
+		<key>Thesis2</key>
+		<string>Roman Empire</string>
+		<key>Thesis3</key>
+		<string>Han China</string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string>Change and Continuity</string>
+		<key>EssayTopic</key>
+		<string>Analyze the changes and continuities of the Indian Ocean trade routes from 600 CE to 1450 CE.</string>
+		<key>FirstTopic</key>
+		<string>Indian Ocean</string>
+		<key>SecondTopic</key>
+		<string>Islam</string>
+		<key>ThesisStatement</key>
+		<string>During 600 to 1450, the Indian Ocean trade routes continued to be dominant method of trade. However, there were numerous changes during this period as Islam was spread and the Europeans came to dominate the trade routes. </string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string>Compare and Contrast</string>
+		<key>EssayTopic</key>
+		<string>Analyze the similarities and differences in the responses of the Ottoman Empire and the Mughal Empire to the encroachment of western powers. </string>
+		<key>FirstTopic</key>
+		<string>India</string>
+		<key>SecondTopic</key>
+		<string>Ottoman</string>
+		<key>Thesis</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string>Compare and Contrast</string>
+		<key>EssayTopic</key>
+		<string></string>
+		<key>FirstTopic</key>
+		<string></string>
+		<key>SecondTopic</key>
+		<string></string>
+		<key>Thesis</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string></string>
+		<key>EssayTopic</key>
+		<string></string>
+		<key>FirstTopic</key>
+		<string></string>
+		<key>SecondTopic</key>
+		<string></string>
+		<key>Thesis</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string></string>
+		<key>EssayTopic</key>
+		<string></string>
+		<key>FirstTopic</key>
+		<string></string>
+		<key>SecondTopic</key>
+		<string></string>
+		<key>Thesis</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string>Compare and Contrast</string>
+		<key>EssayTopic</key>
+		<string></string>
+		<key>FirstTopic</key>
+		<string></string>
+		<key>SecondTopic</key>
+		<string></string>
+		<key>Thesis</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string></string>
+		<key>EssayTopic</key>
+		<string></string>
+		<key>FirstTopic</key>
+		<string></string>
+		<key>SecondTopic</key>
+		<string></string>
+		<key>Thesis</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string></string>
+		<key>EssayTopic</key>
+		<string></string>
+		<key>FirstTopic</key>
+		<string></string>
+		<key>SecondTopic</key>
+		<string></string>
+		<key>Thesis</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string></string>
+		<key>EssayTopic</key>
+		<string></string>
+		<key>FirstTopic</key>
+		<string></string>
+		<key>SecondTopic</key>
+		<string></string>
+		<key>Thesis</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string></string>
+		<key>EssayTopic</key>
+		<string></string>
+		<key>FirstTopic</key>
+		<string></string>
+		<key>SecondTopic</key>
+		<string></string>
+		<key>Thesis</key>
+		<string></string>
+	</dict>
+</array>
+</plist>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>theTerm</key>
+		<string>Industrial Revolution</string>
+		<key>startDate</key>
+		<string>1789</string>
+		<key>endDate</key>
+		<string>1900</string>
+		<key>causes1</key>
+		<string>Agricultural Revolution</string>
+		<key>causes2</key>
+		<string>Steam Power</string>
+		<key>causes3</key>
+		<string>Coal</string>
+		<key>effects1</key>
+		<string>Urban migration</string>
+		<key>effects2</key>
+		<string>Rise of west</string>
+		<key>effects3</key>
+		<string>Colonialism</string>
+	</dict>
+</array>
+</plist>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Nationalism - India</key>
+		<string>Topic</string>
+		<key>Colonial</key>
+		<string>Section1-1</string>
+		<key>Initially East India Company then Britain</key>
+		<string>Section1-2</string>
+		<key>Ghandi</key>
+		<string>Section2-1</string>
+		<key>Civil disobedience</key>
+		<string>Section2-2</string>
+		<key>Cloth industry</key>
+		<string>Section3-1</string>
+		<key>Severe decline during colonization</key>
+		<string>Section3-2</string>
+		<key>Land reforms by British</key>
+		<string>Section4-1</string>
+		<key>Zamindars - landlords, greater impoverishment</key>
+		<string>Section4-2</string>
+		<key>Divide and Rule</key>
+		<string>Section5-1</string>
+		<key>Pit Muslims against Hindus</key>
+		<string>Section5-2</string>
+		<key>Indian National Congress</key>
+		<string>Section6-1</string>
+		<key>Attract peasants after 1915</key>
+		<string>Section6-2</string>
+	</dict>
+	<dict>
+		<key>Topic Tables</key>
+		<string>Topic</string>
+		<key>Purpose</key>
+		<string>Section1-1</string>
+		<key>Quick summary on key topics</key>
+		<string>Section1-2</string>
+		<key>How</key>
+		<string>Section2-1</string>
+		<key>Just swipe left or right to see topics</key>
+		<string>Section2-2</string>
+		<key>Like what?</key>
+		<string>Section3-1</string>
+		<key>Religions, Empires, Trading Systems</key>
+		<string>Section3-2</string>
+		<key>Oh...</key>
+		<string>Section4-1</string>
+		<key>And any other cool stuff u need to know</key>
+		<string>Section4-2</string>
+		<key>BTW</key>
+		<string>Section5-1</string>
+		<key>Better than flashcards</key>
+		<string>Section5-2</string>
+	</dict>
+	<dict>
+		<key>Rise of Islam</key>
+		<string>Topic</string>
+		<key>Prophet</key>
+		<string>Section1-1</string>
+		<key>Muhammad</key>
+		<string>Section1-2</string>
+		<key>Five Pillars</key>
+		<string>Section2-1</string>
+		<key>Monotheistic, Prayer, Fast, Hajj, Ramadan</key>
+		<string>Section2-2</string>
+		<key>Holy Scripture</key>
+		<string>Section3-1</string>
+		<key>Qur&apos;an, Sunnah, and Hadith</key>
+		<string>Section3-2</string>
+		<key>Diffusion</key>
+		<string>Section4-1</string>
+		<key>Merchants, Indian Ocean Trade Routes</key>
+		<string>Section4-2</string>
+		<key>Began</key>
+		<string>Section5-1</string>
+		<key>Mecca in 622 CE</key>
+		<string>Section5-2</string>
+		<key>Great Empires</key>
+		<string>Section6-1</string>
+		<key>Abbassid, Saffavid, Ottoman,  Mughal </key>
+		<string>Section6-2</string>
+	</dict>
+	<dict>
+		<key>Christianity</key>
+		<string>Topic</string>
+		<key>Prophet</key>
+		<string>Section1-1</string>
+		<key>Jesus Christ, born Jewish parents</key>
+		<string>Section1-2</string>
+		<key>Started</key>
+		<string>Section2-1</string>
+		<key>Judea (Israel) in Roman Empire</key>
+		<string>Section2-2</string>
+		<key>Message</key>
+		<string>Section3-1</string>
+		<key>Eternal life in heaven with God</key>
+		<string>Section3-2</string>
+		<key>New Testament</key>
+		<string>Section4-1</string>
+		<key>Writings after Jesus death</key>
+		<string>Section4-2</string>
+		<key>Spread</key>
+		<string>Section5-1</string>
+		<key>Paul to non-Jews over Roman roads</key>
+		<string>Section5-2</string>
+		<key>Roman persecution</key>
+		<string>Section6-1</string>
+		<key>Refuse state cults or emperor as God</key>
+		<string>Section6-2</string>
+		<key>Edict of Milan</key>
+		<string>Section7-1</string>
+		<key>Constantine declares Christianity official religion</key>
+		<string>Section7-2</string>
+	</dict>
+	<dict>
+		<key>Bhuddism</key>
+		<string>Topic</string>
+		<key>Began</key>
+		<string>Section1-1</string>
+		<key>India by Siddhartha Gautama</key>
+		<string>Section1-2</string>
+		<key>4 Noble Truths</key>
+		<string>Section2-1</string>
+		<key>Suffering, Desire, No escape, 8 fold Path</key>
+		<string>Section2-2</string>
+		<key>8 Fold Path</key>
+		<string>Section3-1</string>
+		<key>Understanding, purpose, conduct, concentration, speech</key>
+		<string>Section3-2</string>
+		<key>livelihood, effort, awareness</key>
+		<string>Section4-2</string>
+		<key>Goal</key>
+		<string>Section5-1</string>
+		<key>Nirvana, break cycles reincarnation</key>
+		<string>Section5-2</string>
+		<key>Hindu influence</key>
+		<string>Section6-1</string>
+		<key>dharma, karma, samara</key>
+		<string>Section6-2</string>
+		<key>Spread</key>
+		<string>Section7-1</string>
+		<key>Missionaries, appealed to low caste Hindu</key>
+		<string>Section7-2</string>
+	</dict>
+	<dict>
+		<key>Indian Ocean Trade</key>
+		<string>Topic</string>
+		<key>Muslim Empires</key>
+		<string>Section1-1</string>
+		<key>Favorabl midpoint btwn east / west</key>
+		<string>Section1-2</string>
+		<key>Environment</key>
+		<string>Section2-1</string>
+		<key>Rely on Monsoon winds</key>
+		<string>Section2-2</string>
+		<key>Religion</key>
+		<string>Section3-1</string>
+		<key>Islam diffused to Africa and SE Asia</key>
+		<string>Section3-2</string>
+		<key>Technology</key>
+		<string>Section4-1</string>
+		<key>Magnetic compass, Lateen sail</key>
+		<string>Section4-2</string>
+		<key>Cities</key>
+		<string>Section5-1</string>
+		<key>City to city rather than nation to nation</key>
+		<string>Section5-2</string>
+		<key>Great Cities</key>
+		<string>Section6-1</string>
+		<key>Kilwa, Sofala, Mombasa</key>
+		<string>Section6-2</string>
+		<key>Cultural Fusion</key>
+		<string>Section7-1</string>
+		<key>Interracial marriage, Swahili language</key>
+		<string>Section7-2</string>
+	</dict>
+	<dict>
+		<key>Silk Roads</key>
+		<string>Topic</string>
+		<key>Peak Periods</key>
+		<string>Section1-1</string>
+		<key>Han, Mongol, Roman </key>
+		<string>Section1-2</string>
+		<key>Religion</key>
+		<string>Section2-1</string>
+		<key>Bhuddism diffused - e.g. Samarkand</key>
+		<string>Section2-2</string>
+		<key>Disease</key>
+		<string>Section3-1</string>
+		<key>Bubonic plague - cause economic decline</key>
+		<string>Section3-2</string>
+		<key>Mongol Rule</key>
+		<string>Section4-1</string>
+		<key>Pax Mongolica - made roads safe, properous</key>
+		<string>Section4-2</string>
+		<key>Goods </key>
+		<string>Section5-1</string>
+		<key>Luxury from China to Rome</key>
+		<string>Section5-2</string>
+	</dict>
+	<dict>
+		<key>World War I</key>
+		<string>Topic</string>
+		<key>Causes</key>
+		<string>Section1-1</string>
+		<key>Nationalism, Balance Power, Arms Race</key>
+		<string>Section1-2</string>
+		<key>Trigger</key>
+		<string>Section2-1</string>
+		<key>Archduke Austria assassinated </key>
+		<string>Section2-2</string>
+		<key>Modern War</key>
+		<string>Section3-1</string>
+		<key>First industrial war</key>
+		<string>Section3-2</string>
+		<key>Weapons</key>
+		<string>Section4-1</string>
+		<key>Machine gun, devastating losses</key>
+		<string>Section4-2</string>
+		<key>Western Front</key>
+		<string>Section5-1</string>
+		<key>Trench warfare, stalemate, many deaths</key>
+		<string>Section5-2</string>
+		<key>Global</key>
+		<string>Section6-1</string>
+		<key>Opposing parties fought in colonies</key>
+		<string>Section6-2</string>
+		<key>Lost Generation</key>
+		<string>Section7-1</string>
+		<key>9 million died</key>
+		<string>Section7-2</string>
+	</dict>
+	<dict>
+		<key>Ottoman Empire</key>
+		<string>Topic</string>
+		<key>Origins</key>
+		<string>Section1-1</string>
+		<key>Military might, rose as Mongols declined</key>
+		<string>Section1-2</string>
+		<key>Fall of Constantinople</key>
+		<string>Section2-1</string>
+		<key>Mark end of Byzantine rule</key>
+		<string>Section2-2</string>
+		<key>Trade</key>
+		<string>Section3-1</string>
+		<key>Europeans seek new trade routes</key>
+		<string>Section3-2</string>
+		<key>Method of Rule</key>
+		<string>Section4-1</string>
+		<key>Highly organized bureaucracy, Janissaries</key>
+		<string>Section4-2</string>
+		<key>Religion</key>
+		<string>Section5-1</string>
+		<key>Islam, but tolerant of other religions</key>
+		<string>Section5-2</string>
+		<key>Military</key>
+		<string>Section6-1</string>
+		<key>Gunpowder Empire, land based</key>
+		<string>Section6-2</string>
+		<key>Large merchant class</key>
+		<string>Section7-1</string>
+		<key>Closely regulated</key>
+		<string>Section7-2</string>
+	</dict>
+	<dict>
+		<key>Spanish Empire: 1700 to 1900</key>
+		<string>Topic</string>
+		<key>Americas</key>
+		<string>Section1-1</string>
+		<key>Columbus in 1490s</key>
+		<string>Section1-2</string>
+		<key>Santo Domingo</key>
+		<string>Section2-1</string>
+		<key>First safe settlement</key>
+		<string>Section2-2</string>
+		<key>Montezuma II</key>
+		<string>Section3-1</string>
+		<key>Hernando Cortes - horses, guns, disease</key>
+		<string>Section3-2</string>
+		<key>Tlaxcala</key>
+		<string>Section4-1</string>
+		<key>Enemy of Aztec, ally of Spain</key>
+		<string>Section4-2</string>
+		<key>Inca - Atahualpa</key>
+		<string>Section5-1</string>
+		<key>Modern day Peru - gold, silver</key>
+		<string>Section5-2</string>
+	</dict>
+	<dict>
+		<key>Industrial Revolution</key>
+		<string>Topic</string>
+		<key>Major causes</key>
+		<string>Section1-1</string>
+		<key>Steam, Agricultural Revolution, Enlightenment</key>
+		<string>Section1-2</string>
+		<key>Social effects</key>
+		<string>Section2-1</string>
+		<key>Urban migration, women, children</key>
+		<string>Section2-2</string>
+		<key>Economic effects</key>
+		<string>Section3-1</string>
+		<key>Middle class, seeking political rights</key>
+		<string>Section3-2</string>
+		<key>International effects</key>
+		<string>Section4-1</string>
+		<key>Led to Imperialism</key>
+		<string>Section4-2</string>
+		<key>Mercantilism</key>
+		<string>Section5-1</string>
+		<key>Colonies provide raw materials, buy goods</key>
+		<string>Section5-2</string>
+		<key>Justification</key>
+		<string>Section6-1</string>
+		<key>Social Darwinism</key>
+		<string>Section6-2</string>
+	</dict>
+	<dict>
+		<key>Nationalism Kenya</key>
+		<string>Topic</string>
+		<key>Obstacles</key>
+		<string>Section1-1</string>
+		<key>Too many diverse groups, no common language</key>
+		<string>Section1-2</string>
+		<key>Leaders</key>
+		<string>Section2-1</string>
+		<key>Jomo Kenyatta</key>
+		<string>Section2-2</string>
+		<key>Colonial Power</key>
+		<string>Section3-1</string>
+		<key>Great Britain</key>
+		<string>Section3-2</string>
+		<key>Alienation</key>
+		<string>Section4-1</string>
+		<key>British system to acquire land for railroad</key>
+		<string>Section4-2</string>
+		<key>White settlers</key>
+		<string>Section5-1</string>
+		<key>Forced natives off land, instituted taxes</key>
+		<string>Section5-2</string>
+	</dict>
+	<dict>
+		<key>The End</key>
+		<string>Last table</string>
+	</dict>
+</array>
+</plist>

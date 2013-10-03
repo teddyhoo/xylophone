@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Tokugawa Shogunate</key>
+		<string>Topic</string>
+		<key>Strict class hierarchy</key>
+		<string>LTE</string>
+		<key>Foreign trade</key>
+		<string>LTE</string>
+		<key>Ban Christian missions</key>
+		<string>LTE</string>
+		<key>Sengoku</key>
+		<string>LTC</string>
+		<key>Warring Period</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>Enclosure Movement</key>
+		<string>Topic</string>
+		<key>Eliminate communal rights</key>
+		<string>LTC</string>
+		<key>Landless poor</key>
+		<string>LTE</string>
+		<key>Migration to city</key>
+		<string>LTE</string>
+		<key>Open field system </key>
+		<string>LTC</string>
+		<key>Improved agricultural tech</key>
+		<string>LTC</string>
+		<key>Increase agricultural prod</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>New item - 4</key>
+		<string></string>
+		<key>New item - 3</key>
+		<string></string>
+		<key>New item - 2</key>
+		<string></string>
+		<key>New item</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Safavid Empire</key>
+		<string>Topic</string>
+		<key>Theocracy</key>
+		<string>LTE</string>
+		<key>Shi&apos;a Islam</key>
+		<string>LTE</string>
+		<key>Suppress religions</key>
+		<string>LTE</string>
+		<key>Sufi</key>
+		<string>LTC</string>
+		<key>Shi&apos;a outlawed by Ottomans</key>
+		<string>LTC</string>
+		<key>Shi&apos;a soldiers - Ottomans</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>Ottoman Rise</key>
+		<string>Topic</string>
+		<key>Gunpowder</key>
+		<string>LTC</string>
+		<key>Fall of Abbasids</key>
+		<string>LTC</string>
+		<key>Janissaries</key>
+		<string>LTE</string>
+		<key>Decline Byzantine</key>
+		<string>LTC</string>
+		<key>Balkans</key>
+		<string>LTE</string>
+		<key>Millets</key>
+		<string>LTE</string>
+		<key>devshirme</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Spanish Empire</key>
+		<string>Topic</string>
+		<key>Reconquista</key>
+		<string>LTC</string>
+		<key>Ferdinand &amp; Isabella</key>
+		<string>LTC</string>
+		<key>Columbus</key>
+		<string>LTC</string>
+		<key>Encomienda</key>
+		<string>LTE</string>
+		<key>Spread Christianity</key>
+		<string>LTE</string>
+		<key>Silver wealth</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Mughal Empire</key>
+		<string>Topic</string>
+		<key>Gunpowder</key>
+		<string>LTC</string>
+		<key>Mongol lineage</key>
+		<string>LTC</string>
+		<key>European alliances</key>
+		<string>LTE</string>
+		<key>Babur</key>
+		<string>LTC</string>
+		<key>Islam</key>
+		<string>LTC</string>
+		<key>Akbar</key>
+		<string>LTE</string>
+		<key>Religious freedom</key>
+		<string>LTE</string>
+		<key>Taj Mahal</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Ming Dynasty</key>
+		<string>Topic</string>
+		<key>Civil Service Exams</key>
+		<string>LTE</string>
+		<key>Neo-Confucianism</key>
+		<string>LTE</string>
+		<key>Manchu</key>
+		<string>LTC</string>
+		<key>Famine</key>
+		<string>LTC</string>
+		<key>Fall Mongols</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>River Valley Civilizations</key>
+		<string>Topic</string>
+		<key>Plow</key>
+		<string>LTC</string>
+		<key>Bronze</key>
+		<string>LTC</string>
+		<key>Writing</key>
+		<string>LTC</string>
+		<key>Legal Codes</key>
+		<string>LTE</string>
+		<key>Irrigation</key>
+		<string>LTE</string>
+		<key>Social stratification</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>European Exploration</key>
+		<string>Topic</string>
+		<key>Henry the Navigator</key>
+		<string>LTC</string>
+		<key>Ferdinand &amp; Isabella</key>
+		<string>LTC</string>
+		<key>Treaty of Tordesailles</key>
+		<string>LTE</string>
+		<key>Aztec Decline</key>
+		<string>LTE</string>
+		<key>Inca Decline</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Fall of Rome</key>
+		<string>Topic</string>
+		<key>Decline trade</key>
+		<string>LTC</string>
+		<key>Nomadic invasions</key>
+		<string>LTC</string>
+		<key>Disease</key>
+		<string>LTC</string>
+		<key>Silk road decline</key>
+		<string>LTE</string>
+		<key>Byzantine Empire</key>
+		<string>LTE</string>
+		<key>Power of Church</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Fall of Han Dynasty</key>
+		<string>Topic</string>
+		<key>Difficulty collect tax</key>
+		<string>LTC</string>
+		<key>Corruption</key>
+		<string>LTC</string>
+		<key>Nomadic invasions</key>
+		<string>LTC</string>
+		<key>Nomadic migrations</key>
+		<string>LTE</string>
+		<key>Fall of Roman Empire</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Tang Dynasty</key>
+		<string>Topic</string>
+		<key>Fall of Su </key>
+		<string>LTC</string>
+		<key>Tibet</key>
+		<string>LTE</string>
+		<key>Korea</key>
+		<string>LTE</string>
+		<key>Grand Canal</key>
+		<string>LTE</string>
+		<key>Buddhism</key>
+		<string>LTC</string>
+		<key>Empress Wu</key>
+		<string>LTC</string>
+		<key>NeoConfucianism</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Song Dynasty</key>
+		<string>Topic</string>
+		<key>Civil service exam</key>
+		<string>LTC</string>
+		<key>Upward mobility</key>
+		<string>LTE</string>
+		<key>Military limited</key>
+		<string>LTC</string>
+		<key>Tribute system</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Chinese Dynasties</key>
+		<string>DocTopic</string>
+		<key>Tang</key>
+		<string>1Doc</string>
+		<key>Song</key>
+		<string>2Doc</string>
+		<key>Succeeded Sui</key>
+		<string>1-1Doc</string>
+		<key>Institutionalized civil service exam</key>
+		<string>2-1Doc</string>
+		<key>Pax Sinica</key>
+		<string>1-1Doc</string>
+		<key>Empress Wu</key>
+		<string>1-1Doc</string>
+		<key>Movable Type</key>
+		<string>2-1Doc</string>
+		<key>Compass</key>
+		<string>2-1Doc</string>
+		<key>Gunpowder</key>
+		<string>1-1Doc</string>
+		<key>NeoConfucianism</key>
+		<string>1-1Doc</string>
+		<key>Economic Revolution</key>
+		<string>2-1Doc</string>
+	</dict>
+	<dict>
+		<key>Origins of Africa</key>
+		<string>Topic</string>
+		<key>Bantu Migrations</key>
+		<string>LTC</string>
+		<key>Iron tools</key>
+		<string>LTC</string>
+		<key>Bananas</key>
+		<string>LTC</string>
+		<key>Increase population</key>
+		<string>LTE</string>
+		<key>500 African languages</key>
+		<string>LTE</string>
+		<key>Swahili</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>World War II</key>
+		<string>Topic</string>
+		<key>Inflation</key>
+		<string>LTC</string>
+		<key>Depression</key>
+		<string>LTC</string>
+		<key>Reparations</key>
+		<string>LTC</string>
+		<key>Appeasement</key>
+		<string>LTC</string>
+		<key>Rhineland</key>
+		<string>LTC</string>
+		<key>Sudetenland</key>
+		<string>LTC</string>
+		<key>Weak League of Nations</key>
+		<string>LTC</string>
+		<key>Cold War</key>
+		<string>LTE</string>
+		<key>German occupation zones</key>
+		<string>LTE</string>
+		<key>Nuclear weapons</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>World War I</key>
+		<string>Topic</string>
+		<key>Nationalism</key>
+		<string>LTC</string>
+		<key>Militarism</key>
+		<string>LTC</string>
+		<key>Alliances</key>
+		<string>LTC</string>
+		<key>Franz Ferdinand</key>
+		<string>LTC</string>
+		<key>Arms Race</key>
+		<string>LTC</string>
+		<key>Arab Nationalism</key>
+		<string>LTE</string>
+		<key>Disillusionment</key>
+		<string>LTE</string>
+		<key>Colonial Nationalism</key>
+		<string>LTE</string>
+		<key>Technology innovation</key>
+		<string>LTE</string>
+		<key>Article 231</key>
+		<string>LTE</string>
+		<key>Reparations</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Nationalism</key>
+		<string>Topic</string>
+		<key>Fourteen Points</key>
+		<string>LTC</string>
+		<key>Western writers</key>
+		<string>LTC</string>
+		<key>Violence</key>
+		<string>LTE</string>
+		<key>Educated elite</key>
+		<string>LTC</string>
+		<key>World War II </key>
+		<string>LTC</string>
+		<key>Marxism</key>
+		<string>LTC</string>
+		<key>Third World</key>
+		<string>LTE</string>
+		<key>New item</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Industrial Revolution</key>
+		<string>Topic</string>
+		<key>Steam Engine</key>
+		<string>LTC</string>
+		<key>Scientific Revolution</key>
+		<string>LTC</string>
+		<key>Enlightenment</key>
+		<string>LTC</string>
+		<key>Migrations</key>
+		<string>LTE</string>
+		<key>Rigid work conditions</key>
+		<string>LTE</string>
+		<key>Decline Cottage Industry</key>
+		<string>LTE</string>
+		<key>Power shifts to west</key>
+		<string>LTE</string>
+		<key>Imperialism</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Silk Roads</key>
+		<string>Topic</string>
+		<key>Han China</key>
+		<string>LTC</string>
+		<key>Mongol China</key>
+		<string>LTC</string>
+		<key>Imperial Rome</key>
+		<string>LTC</string>
+		<key>Buddhism</key>
+		<string>LTE</string>
+		<key>Christianity</key>
+		<string>LTE</string>
+		<key>Disease</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Trading Systems</key>
+		<string>DocTopic</string>
+		<key>Indian Ocean</key>
+		<string>2Doc</string>
+		<key>Transatlantic</key>
+		<string>1Doc</string>
+		<key>Muslims</key>
+		<string>2-1Doc</string>
+		<key>Spanish</key>
+		<string>1-1Doc</string>
+		<key>Swahili</key>
+		<string>2-1Doc</string>
+		<key>Monsoon Winds</key>
+		<string>2-1Doc</string>
+		<key>Treaty of Tordesailles</key>
+		<string>1-1Doc</string>
+		<key>Columbian Exchange</key>
+		<string>1-1Doc</string>
+		<key>God, Glory, Gold</key>
+		<string>1-1Doc</string>
+		<key>Malaysia</key>
+		<string>2-1Doc</string>
+	</dict>
+	<dict>
+		<key>Imperialism</key>
+		<string>Topic</string>
+		<key>Industrial Revolution</key>
+		<string>LTC</string>
+		<key>Mercantilism</key>
+		<string>LTE</string>
+		<key>Social Darwinism</key>
+		<string>LTC</string>
+		<key>Destroy Manufacturing</key>
+		<string>LTE</string>
+		<key>Raw Materials</key>
+		<string>LTC</string>
+		<key>Third World</key>
+		<string>LTE</string>
+		<key>Finished Goods</key>
+		<string>LTE</string>
+		<key>Agricultural Revolution</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>Raj India (1858-1947)</key>
+		<string>Topic</string>
+		<key>East India Company</key>
+		<string>LTC</string>
+		<key>Ghandi</key>
+		<string>LTE</string>
+		<key>Decline textile industry</key>
+		<string>LTE</string>
+		<key>Fall of Mughal</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>Meiji Restoration</key>
+		<string>Topic</string>
+		<key>Adm. Perry</key>
+		<string>LTC</string>
+		<key>Tokugawa </key>
+		<string>LTC</string>
+		<key>Industrialization</key>
+		<string>LTE</string>
+		<key>Imperial Power</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Qing China Decline</key>
+		<string>Topic</string>
+		<key>Opium Wars</key>
+		<string>LTC</string>
+		<key>Self-Strengthening</key>
+		<string>LTE</string>
+		<key>Treaty of Nanking</key>
+		<string>LTE</string>
+		<key>Communism</key>
+		<string>LTE</string>
+		<key>Failure to Industrialize</key>
+		<string>LTC</string>
+	</dict>
+</array>
+</plist>
