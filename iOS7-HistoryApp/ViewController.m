@@ -55,11 +55,11 @@ MainMenu *theMainMenu;
     
     [super viewWillLayoutSubviews];
     spriteView = (SKView *)self.view;
-    introScreen = [IntroScreen sceneWithSize:spriteView.bounds.size];
     
     if(!spriteView.scene) {
         SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
-        introScreen.scaleMode = SKSceneScaleModeAspectFill;
+        introScreen = [IntroScreen sceneWithSize:spriteView.bounds.size];
+        //introScreen.scaleMode = SKSceneScaleModeAspectFill;
         [spriteView presentScene:introScreen transition:reveal];
     }
     

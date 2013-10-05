@@ -18,6 +18,7 @@ static MontessoriData *sharedMyManager = nil;
 
 @synthesize letterA, letterB, letterC, letterD, letterE, letterF, letterG, letterH, letterI, letterJ, letterK, letterL, letterM, letterN, letterO, letterP, letterQ, letterR, letterS, letterT, letterU, letterV, letterW, letterX, letterY, letterZ;
 
+CGPoint startPoint;
 
 +(id)sharedManager {
     
@@ -46,6 +47,9 @@ static MontessoriData *sharedMyManager = nil;
 }
 
 -(LowerCaseLetter *) createLetterA {
+    
+    startPoint = CGPointMake(900, 650);
+    
     CGPoint letterAvalue1 = CGPointMake(400, 500);
     CGPoint letterAvalue2 = CGPointMake(385, 505);
     CGPoint letterAvalue3 = CGPointMake(370, 510);
@@ -133,7 +137,7 @@ static MontessoriData *sharedMyManager = nil;
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue40]];
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue41]];
     
-    letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"a_600x600.png"];
+    letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"a_blue_600x600.png"];
     NSURL *letterAurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
     letterA.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterAurl error:nil];
     letterA.name = @"A";
@@ -146,8 +150,15 @@ static MontessoriData *sharedMyManager = nil;
     
 }
 
--(void) createLetterB {
+-(LowerCaseLetter *) createLetterB {
     
+    letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600.png"];
+    NSURL *letterBurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
+    letterB.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterBurl error:nil];
+    letterB.name = @"B";
+
+    
+    return letterB;
 }
 
 -(void) createLetterC {

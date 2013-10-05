@@ -12,6 +12,9 @@
 
 @synthesize baseSound, wordSample1, wordSample2, wordSample3, wordSample4;
 
+-(void)turnOffGestures {
+    
+}
 
 -(void)playTheSound {
     
@@ -24,4 +27,6 @@
     controlPoints = [[NSMutableArray alloc]initWithArray:controlPointsForLetter copyItems:YES];
     
 }
+
+
 @end

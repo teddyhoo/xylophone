@@ -55,13 +55,13 @@ CGFloat height;
         
         int onLetter = 0;
         
-        for (SKSpriteNode *letter in header) {
+        /*for (SKSpriteNode *letter in header) {
             
             NSString *nameOfSpriteFile = [header objectAtIndex:onLetter];
             
             SKSpriteNode *letterSprite = [SKSpriteNode spriteNodeWithImageNamed:nameOfSpriteFile];
             
-            letterSprite.position = CGPointMake(2400 + onLetter*55, height/2);
+            letterSprite.position = CGPointMake(2400 + onLetter*55, height/1.8);
             SKAction *moveAction = [SKAction moveByX:-2300 y:0 duration:1.0];
             [letterSprite runAction:moveAction];
             [self addChild:letterSprite];
@@ -73,18 +73,18 @@ CGFloat height;
             [letterSprite runAction:spinLetter2];
 
             onLetter++;
-        }
+        }*/
         
         
         SKSpriteNode *cloud1 = [SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud.png"];
-        cloud1.position = CGPointMake(height/1.8, width/1.8);
+        cloud1.position = CGPointMake(width/1.3, height/1.3);
         [self addChild:cloud1];
         
-        SKSpriteNode *cloud2 = [SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud2.png"];
-        cloud2.position = CGPointMake(200, 300);
+        SKSpriteNode *cloud2 = [SKSpriteNode spriteNodeWithImageNamed:@"sign.png"];
+        cloud2.position = CGPointMake(600, 200);
         [self addChild:cloud2];
         
-        SKLabelNode *credit1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        /*SKLabelNode *credit1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         credit1.text = @"ms. mary frances stage";
         credit1.fontSize = 20;
         credit1.fontColor = [UIColor orangeColor];
@@ -98,13 +98,13 @@ CGFloat height;
         credit2.position = CGPointMake(-1200, 900);
         [self addChild:credit2];
         
-        SKAction *moveTitle = [SKAction moveTo:CGPointMake(width / 1.5, height / 1.5) duration:1.0];
+        SKAction *moveTitle = [SKAction moveTo:CGPointMake(width / 1.5, height / 2.2) duration:1.0];
         [introductionLabel runAction:moveTitle];
         
-        SKAction *moveCredit = [SKAction moveTo:CGPointMake(width / 2.5, height / 1.5) duration:1.2];
+        SKAction *moveCredit = [SKAction moveTo:CGPointMake(width / 2.5, height / 2.7) duration:1.2];
         [credit1 runAction:moveCredit];
         
-        SKAction *moveCredit2 = [SKAction moveTo:CGPointMake(width / 3.0, height / 1.6) duration:0.7];
+        SKAction *moveCredit2 = [SKAction moveTo:CGPointMake(width / 3.0, height / 2.9) duration:0.7];
         [credit2 runAction:moveCredit2];
         
         NSMutableArray *wormTextures = [[NSMutableArray alloc]init];
@@ -123,7 +123,7 @@ CGFloat height;
         [worm runAction:moveCrawl];
         
         [self addChild:worm];
-        
+        */
         NSString *openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"MyParticle" ofType:@"sks"];
         SKEmitterNode *openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
         openEffect.position = CGPointMake(700, 600);
@@ -137,6 +137,7 @@ CGFloat height;
         //[avSound play];
         
         dragNDrop = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        dragNDrop.fontSize = 16;
         dragNDrop.text = @"Pictures and Letters";
         dragNDrop.fontColor = [UIColor orangeColor];
         dragNDrop.position = CGPointMake(200, 200);
@@ -144,6 +145,7 @@ CGFloat height;
         [self addChild:dragNDrop];
         
         waveExercises = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        waveExercises.fontSize = 8;
         waveExercises.text = @"Wave Exercises";
         waveExercises.fontColor = [UIColor orangeColor];
         waveExercises.position = CGPointMake(200, 150);
@@ -151,6 +153,7 @@ CGFloat height;
         [self addChild:waveExercises];
         
         handwritingScene = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        handwritingScene.fontSize = 8;
         handwritingScene.text = @"Handwriting";
         handwritingScene.fontColor = [UIColor orangeColor];
         handwritingScene.position = CGPointMake(200, 100);
@@ -164,7 +167,7 @@ CGFloat height;
         optionsMenu.fontColor = [UIColor greenColor];
         optionsMenu.position = CGPointMake(500,20);
         optionsMenu.name = @"menu";
-        [self addChild:optionsMenu];
+        //[self addChild:optionsMenu];
         
         NSMutableArray *frogHopTextures = [[NSMutableArray alloc]init];
         SKTextureAtlas *frogHopAtlas = [SKTextureAtlas atlasNamed:@"frog2.atlas"];

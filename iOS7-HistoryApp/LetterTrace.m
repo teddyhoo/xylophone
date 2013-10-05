@@ -23,7 +23,6 @@ NSMutableArray *controlPointSprites;
 NSMutableArray *pointsForSprite;
 NSMutableArray *spriteFromPoint;
 
-
 LowerCaseLetter *letterA;
 LowerCaseLetter *letterB;
 LowerCaseLetter *letterC;
@@ -57,6 +56,7 @@ SKSpriteNode *picForQuestion;
 NSMutableArray *allPicsForQuestions;
 NSMutableArray *allLettersSprites;
 NSMutableArray *spriteFromPoint;
+NSMutableArray *starsForPoints;
 NSMutableArray *group1Letters;
 NSMutableArray *group2Letters;
 NSMutableArray *group3Letters;
@@ -101,6 +101,9 @@ NSMutableArray *groupFourLetters;
 NSMutableArray *groupFiveLetters;
 
 
+@synthesize background, selectedNode;
+
+
 -(id)initWithSize:(CGSize)size {
     
     self = [super initWithSize:size];
@@ -130,23 +133,17 @@ NSMutableArray *groupFiveLetters;
         backToMainMenuArrow.position = CGPointMake(50, 50);
         [self addChild:backToMainMenuArrow];
         
-        SKSpriteNode *gridPaper = [SKSpriteNode spriteNodeWithImageNamed:@"letter-writing-lines.png"];
-        gridPaper.position = CGPointMake(500, 500);
+        SKSpriteNode *gridPaper = [SKSpriteNode spriteNodeWithImageNamed:@"writing_bckgnd_test_1.jpg"];
+        gridPaper.position = CGPointMake(size.width/2, size.height/2);
+        gridPaper.scale = 0.5;
         [self addChild:gridPaper];
         
-        letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"a_600x600.png"];
-        NSLog(@"created letter A");
         letterA = [sharedData createLetterA];
-        NSLog(@"config letter A");
+        letterA.userInteractionEnabled = NO;
         
-        /*letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"a_600x600.png"];
-        NSURL *letterAurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
-        letterA.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterAurl error:nil];
-        letterA.name = @"A";
-        */
+        letterB = [sharedData createLetterB];
         
-        
-        letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-b.png"];
+        letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600.png"];
         
         NSURL *letterBurl = [[NSBundle mainBundle]URLForResource:@"letter-B-sound" withExtension:@"mp3"];
         letterB.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterBurl error:nil];
@@ -332,11 +329,11 @@ NSMutableArray *groupFiveLetters;
         [allLettersSprites addObject:letterZ];
         
         
-        firstPencil = [SKSpriteNode spriteNodeWithImageNamed:@"yellow-pencil.png"];
-        secondPencil = [SKSpriteNode spriteNodeWithImageNamed:@"green-pencil.png"];
-        thirdPencil = [SKSpriteNode spriteNodeWithImageNamed:@"orange-pencil.png"];
-        fourthPencil = [SKSpriteNode spriteNodeWithImageNamed:@"yellow-pencil.png"];
-        fifthPencil = [SKSpriteNode spriteNodeWithImageNamed:@"yellow-pencil.png"];
+        firstPencil = [SKSpriteNode spriteNodeWithImageNamed:@"popsicle-chocolate.png"];
+        secondPencil = [SKSpriteNode spriteNodeWithImageNamed:@"popsicle-green.png"];
+        thirdPencil = [SKSpriteNode spriteNodeWithImageNamed:@"popsicle-orange.png"];
+        fourthPencil = [SKSpriteNode spriteNodeWithImageNamed:@"popsicle-raspberry.png"];
+        fifthPencil = [SKSpriteNode spriteNodeWithImageNamed:@"popsicle-raspberry.png"];
         
         firstPencil.name = @"group1";
         secondPencil.name = @"group2";
@@ -344,9 +341,27 @@ NSMutableArray *groupFiveLetters;
         fourthPencil.name = @"group4";
         fifthPencil.name = @"group5";
         
-        [self addChild:firstPencil];
-        firstPencil.position = CGPointMake(600,900);
+        firstPencil.scale = 0.1;
+        secondPencil.scale = 0.1;
+        thirdPencil.scale = 0.1;
+        fourthPencil.scale = 0.1;
+        fifthPencil.scale = 0.1;
         
+        
+        [self addChild:firstPencil];
+        firstPencil.position = CGPointMake(100,650);
+        
+        [self addChild:secondPencil];
+        secondPencil.position = CGPointMake(900, 100);
+        
+        [self addChild:thirdPencil];
+        thirdPencil.position = CGPointMake(930, 100);
+        
+        [self addChild:fourthPencil];
+        fourthPencil.position = CGPointMake(960, 100);
+        
+        [self addChild:fifthPencil];
+        fifthPencil.position = CGPointMake(990, 100);
         
         int i = 1;
         for (SKSpriteNode *letterSprite in groupOneLetters) {
@@ -357,23 +372,23 @@ NSMutableArray *groupFiveLetters;
         }
         
         for (SKSpriteNode *letterSprite in groupTwoLetters) {
-            letterSprite.scale = 0.3;
+            letterSprite.scale = 0.1;
             
         }
         
         for (SKSpriteNode *letterSprite in groupThreeLetters) {
-            letterSprite.scale = 0.3;
+            letterSprite.scale = 0.1;
             
         }
         
         for (SKSpriteNode *letterSprite in groupFourLetters) {
-            letterSprite.scale = 0.3;
+            letterSprite.scale = 0.1;
             
         }
         
         for (SKSpriteNode *letterSprite in groupFiveLetters) {
             
-            letterSprite.scale = 0.3;
+            letterSprite.scale = 0.1;
         
         }
         
@@ -392,24 +407,57 @@ NSMutableArray *groupFiveLetters;
     
 }
 
+-(void)selectedNodeForTouch:(CGPoint)touchLocation {
+    
+    SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
+    if(![selectedNode isEqual:touchedNode]) {
+        [selectedNode removeAllActions];
+        [selectedNode runAction:[SKAction rotateToAngle:0.0f duration:0.1]];
+        selectedNode = touchedNode;
+        if([[touchedNode name] isEqualToString:@"A"]) {
+            
+            SKAction *sequence = [SKAction sequence:@[[SKAction rotateByAngle:degToRad(-4.0f)  duration:0.1],
+                                                      [SKAction rotateByAngle:0.0 duration:0.1],
+                                                      [SKAction rotateByAngle:degToRad(4.0) duration:0]]];
+                                  
+                                  
+        }
+    }
+    
+    
+}
+
+
 -(void) nextQuestion {
     
     NSLog(@"next question: %i", onWhichQuestion);
     
     pointsForSprite = [[NSMutableArray alloc]init];
     spriteFromPoint = [[NSMutableArray alloc]init];
-    
+    starsForPoints = [[NSMutableArray alloc]init];
+    float startPointX;
+    float startPointY;
     
     if (onWhichQuestion == 0) {
-        
+
         [self createLetterA];
-        
-        
+        letterA.position = CGPointMake(500, 500);
+        startPointX = 150;
+        startPointY = 80;
     
     }
     else if (onWhichQuestion == 1) {
     
         [self createLetterB];
+
+        SKAction *moveLetterA = [SKAction moveTo:CGPointMake(100, 700) duration:1.0];
+        SKAction *scaleLetterA = [SKAction scaleTo:0.2 duration:1.0];
+        [letterA runAction:moveLetterA];
+        [letterA runAction:scaleLetterA];
+        
+        SKAction *moveLetterB = [SKAction moveTo:CGPointMake(500, 500) duration:1.0];
+        [letterB runAction:moveLetterB];
+        
     
     }
     else if (onWhichQuestion == 2) {
@@ -430,14 +478,15 @@ NSMutableArray *groupFiveLetters;
          
         SKSpriteNode *spritePoint = [SKSpriteNode spriteNodeWithImageNamed:@"pinwheel_100x100.png"];
         CGPoint finalLocation = [pointValue CGPointValue];
-        spritePoint.position = CGPointMake(finalLocation.x+200, finalLocation.y+300);
+
+        spritePoint.position = CGPointMake(finalLocation.x+300, finalLocation.y+400);
         spritePoint.scale = 0.1;
         [self addChild:spritePoint];
         
         float moveTime = 0.1 * (float)spritePointCount;
         
-        SKAction *movePointsX = [SKAction moveToX:finalLocation.x duration:moveTime];
-        SKAction *movePointsY = [SKAction moveToY:finalLocation.y duration:moveTime];
+        SKAction *movePointsX = [SKAction moveToX:finalLocation.x+startPointX duration:moveTime];
+        SKAction *movePointsY = [SKAction moveToY:finalLocation.y+startPointY duration:moveTime];
         
         [spritePoint runAction:movePointsX];
         [spritePoint runAction:movePointsY];
@@ -448,24 +497,7 @@ NSMutableArray *groupFiveLetters;
         [spriteFromPoint addObject:spritePoint];
         spritePointCount++;
     }
-    
-    int countScale = 0;
-    
-    for (SKSpriteNode *spritePoint in spriteFromPoint) {
-        
-        SKAction *scaleUp = [SKAction scaleTo:3.0 duration:1 + countScale];
-        
-        
-        SKAction *scaleDown = [SKAction scaleTo:0.5 duration:1 + countScale];
-        SKAction *alphaLow = [SKAction fadeAlphaTo:0.1 duration:5.0];
-        SKAction *alphaHigh = [SKAction fadeAlphaTo:1.0 duration:4.0];
-        
-        SKAction *upmotion = [SKAction sequence:@[scaleUp, scaleDown]];
-        SKAction *downmotion = [SKAction sequence:@[alphaLow, alphaHigh]];
-        //[spritePoint runAction:upmotion];
-        //[spritePoint runAction:downmotion];
-        countScale++;
-    }
+
     
 }
 
@@ -476,18 +508,12 @@ NSMutableArray *groupFiveLetters;
     UITouch *touch = [touches anyObject];
     CGPoint theTouch = [touch locationInNode:self];
     
+    [self selectedNodeForTouch:theTouch];
+    
     NSValue *pointForFirstSpriteNSV = [pointsForSprite objectAtIndex:0];
     CGPoint spritePoint = [pointForFirstSpriteNSV CGPointValue];
     CGRect spritePointRect = CGRectMake(spritePoint.x-10, spritePoint.y-10, 20, 20);
     
-    for (LowerCaseLetter *soundOnSprite in allLettersSprites) {
-        if (CGRectContainsPoint(soundOnSprite.frame, theTouch)) {
-            NSLog(@"touched sprite %@", soundOnSprite.name);
-            
-            [soundOnSprite playTheSound];
-            return;
-        }
-    }
     if (CGRectContainsPoint (spritePointRect, theTouch)) {
         
         NSLog(@"hit first point");
@@ -506,26 +532,37 @@ NSMutableArray *groupFiveLetters;
 }
 
 
+
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
     CGPoint theTouch = [touch locationInNode:self];
-    NSLog(@"touches moved:%f, %f",theTouch.x, theTouch.y);
+
+    //CGPoint previousPosition = [touch previousLocationInNode:self];
+    //CGPoint translation = CGPointMake(theTouch.x - previousPosition.x, theTouch.y - previousPosition.y);
+    
+    //[self panForTranslation:translation];
     
     for (SKSpriteNode *pointHit in spriteFromPoint) {
+
+        CGRect myControlPoint = CGRectMake(pointHit.position.x, pointHit.position.y, 30, 30);
+        CGPoint myPoint = myControlPoint.origin;
         
-        if (CGRectContainsPoint(pointHit.frame, theTouch) && firstPointTest) {
+        if (CGRectContainsPoint(myControlPoint, theTouch)) {
             
             SKSpriteNode *goldStar = [SKSpriteNode spriteNodeWithImageNamed:@"star_100x100.png"];
             goldStar.position = pointHit.position;
-            [goldStar setScale:0.1];
+            [goldStar setScale:0.3];
             [self addChild:goldStar];
+            
 
-            SKAction *growGoldStar = [SKAction scaleTo:0.8 duration:0.3];
-            SKAction *growGoldStar2 = [SKAction scaleTo:0.2 duration:0.3];
-            SKAction *growAndShrink = [SKAction sequence:@[growGoldStar,growGoldStar2]];
+            SKAction *growGoldStar = [SKAction scaleTo:0.3 duration:0.05];
+            SKAction *growGoldStarY = [SKAction scaleYTo:1.0 duration:0.05];
+            SKAction *growGoldStar2 = [SKAction scaleTo:0.2 duration:0.05];
+            SKAction *growAndShrink = [SKAction sequence:@[growGoldStar,growGoldStarY,growGoldStar2]];
             
             [goldStar runAction:growAndShrink];
+            [starsForPoints addObject:goldStar];
             
             SKAction *popup = [SKAction moveByX:20 y:40 duration:0.1];
             SKAction *drop = [SKAction moveToY:-200 duration:0.5];
@@ -549,20 +586,22 @@ NSMutableArray *groupFiveLetters;
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    [self removeSpriteFromScene];
+    //[self removeSpriteFromScene];
 
     for (SKSpriteNode *spritePoint in spriteFromPoint) {
         
-        [spritePoint removeFromParent];
-        
+        SKAction *moveTest = [SKAction moveTo:CGPointMake(0, 0) duration:0.1];
+        //[spritePoint removeFromParent];
+        [spritePoint runAction:moveTest];
     }
     
-    
-    
-    
+    for (SKSpriteNode *starWin in starsForPoints) {
+        [starWin removeFromParent];
+    }
+
     firstPointTest = FALSE;
     onWhichQuestion++;
-    //[self nextQuestion];
+    [self nextQuestion];
     
 }
 
@@ -577,6 +616,24 @@ NSMutableArray *groupFiveLetters;
     
 }
 
+- (void)panForTranslation:(CGPoint)translation {
+    CGPoint position = [selectedNode position];
+    if([[selectedNode name] isEqualToString:@"M"]) {
+        [selectedNode setPosition:CGPointMake(position.x + translation.x, position.y + translation.y)];
+    } else {
+        CGPoint newPos = CGPointMake(position.x + translation.x, position.y + translation.y);
+        [background setPosition:[self boundLayerPos:newPos]];
+    }
+}
+
+- (CGPoint)boundLayerPos:(CGPoint)newPos {
+    CGSize winSize = self.size;
+    CGPoint retval = newPos;
+    retval.x = MIN(retval.x, 0);
+    retval.x = MAX(retval.x, -[background size].width+ winSize.width);
+    retval.y = [self position].y;
+    return retval;
+}
 
 
 -(void) createLetterA {
@@ -675,9 +732,9 @@ NSMutableArray *groupFiveLetters;
 
 
 -(void) createLetterB {
-    letterB.position = CGPointMake(400,420);
-    letterB.scale = 0.5;
-    [self addChild:letterB];
+    //letterB.position = CGPointMake(500,500);
+    //letterB.scale = 0.5;
+    //[self addChild:letterB];
     float beginx = 480;
     float beginy = 600;
     
@@ -953,5 +1010,8 @@ NSMutableArray *groupFiveLetters;
     
 }
 
+float degToRad(float degree) {
+    return degree/180.0f * M_PI;
+}
 
 @end
