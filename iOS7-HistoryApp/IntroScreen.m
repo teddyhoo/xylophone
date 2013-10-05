@@ -55,7 +55,7 @@ CGFloat height;
         
         int onLetter = 0;
         
-        /*for (SKSpriteNode *letter in header) {
+        for (SKSpriteNode *letter in header) {
             
             NSString *nameOfSpriteFile = [header objectAtIndex:onLetter];
             
@@ -73,7 +73,7 @@ CGFloat height;
             [letterSprite runAction:spinLetter2];
 
             onLetter++;
-        }*/
+        }
         
         
         SKSpriteNode *cloud1 = [SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud.png"];
@@ -84,7 +84,7 @@ CGFloat height;
         cloud2.position = CGPointMake(600, 200);
         [self addChild:cloud2];
         
-        /*SKLabelNode *credit1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        SKLabelNode *credit1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         credit1.text = @"ms. mary frances stage";
         credit1.fontSize = 20;
         credit1.fontColor = [UIColor orangeColor];
@@ -123,7 +123,7 @@ CGFloat height;
         [worm runAction:moveCrawl];
         
         [self addChild:worm];
-        */
+        
         NSString *openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"MyParticle" ofType:@"sks"];
         SKEmitterNode *openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
         openEffect.position = CGPointMake(700, 600);
@@ -137,7 +137,7 @@ CGFloat height;
         //[avSound play];
         
         dragNDrop = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-        dragNDrop.fontSize = 16;
+        dragNDrop.fontSize = 30;
         dragNDrop.text = @"Pictures and Letters";
         dragNDrop.fontColor = [UIColor orangeColor];
         dragNDrop.position = CGPointMake(200, 200);

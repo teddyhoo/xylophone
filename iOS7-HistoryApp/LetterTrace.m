@@ -141,14 +141,14 @@ NSMutableArray *groupFiveLetters;
         letterA = [sharedData createLetterA];
         letterA.userInteractionEnabled = NO;
         
-        letterB = [sharedData createLetterB];
-        
+        //letterB = [sharedData createLetterB];
         letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600.png"];
         
         NSURL *letterBurl = [[NSBundle mainBundle]URLForResource:@"letter-B-sound" withExtension:@"mp3"];
         letterB.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterBurl error:nil];
         letterB.name = @"B";
         
+        //letterC = [sharedData createLetterC];
         
         letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-c.png"];
         NSURL *letterCurl = [[NSBundle mainBundle]URLForResource:@"letterCsound" withExtension:@"mp3"];
@@ -329,11 +329,11 @@ NSMutableArray *groupFiveLetters;
         [allLettersSprites addObject:letterZ];
         
         
-        firstPencil = [SKSpriteNode spriteNodeWithImageNamed:@"popsicle-chocolate.png"];
-        secondPencil = [SKSpriteNode spriteNodeWithImageNamed:@"popsicle-green.png"];
-        thirdPencil = [SKSpriteNode spriteNodeWithImageNamed:@"popsicle-orange.png"];
-        fourthPencil = [SKSpriteNode spriteNodeWithImageNamed:@"popsicle-raspberry.png"];
-        fifthPencil = [SKSpriteNode spriteNodeWithImageNamed:@"popsicle-raspberry.png"];
+        firstPencil = [SKSpriteNode spriteNodeWithImageNamed:@"orange-pencil.png"];
+        secondPencil = [SKSpriteNode spriteNodeWithImageNamed:@"yellow-pencil.png"];
+        thirdPencil = [SKSpriteNode spriteNodeWithImageNamed:@"green-pencil.png"];
+        fourthPencil = [SKSpriteNode spriteNodeWithImageNamed:@"green-pencil.png"];
+        fifthPencil = [SKSpriteNode spriteNodeWithImageNamed:@"green-pencil.png"];
         
         firstPencil.name = @"group1";
         secondPencil.name = @"group2";
@@ -341,11 +341,11 @@ NSMutableArray *groupFiveLetters;
         fourthPencil.name = @"group4";
         fifthPencil.name = @"group5";
         
-        firstPencil.scale = 0.1;
-        secondPencil.scale = 0.1;
-        thirdPencil.scale = 0.1;
-        fourthPencil.scale = 0.1;
-        fifthPencil.scale = 0.1;
+        firstPencil.scale = 0.3;
+        secondPencil.scale = 0.3;
+        thirdPencil.scale = 0.3;
+        fourthPencil.scale = 0.3;
+        fifthPencil.scale = 0.3;
         
         
         [self addChild:firstPencil];
@@ -392,7 +392,10 @@ NSMutableArray *groupFiveLetters;
         
         }
         
-        
+        self.backgroundColor = [SKColor colorWithRed:0.8 green:1.0 blue:1.0 alpha:1.0];
+        backToMainMenuArrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrow_left.png"];
+        backToMainMenuArrow.position = CGPointMake(50, 50);
+        [self addChild:backToMainMenuArrow];
         
         [self nextQuestion];
         
@@ -450,8 +453,8 @@ NSMutableArray *groupFiveLetters;
     
         [self createLetterB];
 
-        SKAction *moveLetterA = [SKAction moveTo:CGPointMake(100, 700) duration:1.0];
-        SKAction *scaleLetterA = [SKAction scaleTo:0.2 duration:1.0];
+        SKAction *moveLetterA = [SKAction moveTo:CGPointMake(100, 640) duration:1.0];
+        SKAction *scaleLetterA = [SKAction scaleTo:0.1 duration:1.0];
         [letterA runAction:moveLetterA];
         [letterA runAction:scaleLetterA];
         
@@ -460,11 +463,21 @@ NSMutableArray *groupFiveLetters;
         
     
     }
+    
     else if (onWhichQuestion == 2) {
     
         [self createLetterC];
-    
+        
+        SKAction *moveLetterB = [SKAction moveTo:CGPointMake(200, 670) duration:1.0];
+        SKAction *scaleLetterB = [SKAction scaleTo:0.1 duration:1.0];
+        
+        [letterB runAction:moveLetterB];
+        [letterB runAction:scaleLetterB];
+        
+        SKAction *moveLetterC = [SKAction moveTo:CGPointMake(500, 500) duration:1.0];
+        [letterC runAction:moveLetterC];
     }
+    
     else if (onWhichQuestion == 3) {
         
         [self createLetterD];
@@ -473,6 +486,7 @@ NSMutableArray *groupFiveLetters;
     
     
     int spritePointCount = 0;
+    NSLog(@"points for sprite %i", [pointsForSprite count]);
     
     for (NSValue *pointValue in pointsForSprite) {
          
@@ -498,6 +512,7 @@ NSMutableArray *groupFiveLetters;
         spritePointCount++;
     }
 
+    NSLog(@"points for sprite %i", [pointsForSprite count]);
     
 }
 
@@ -591,8 +606,8 @@ NSMutableArray *groupFiveLetters;
     for (SKSpriteNode *spritePoint in spriteFromPoint) {
         
         SKAction *moveTest = [SKAction moveTo:CGPointMake(0, 0) duration:0.1];
-        //[spritePoint removeFromParent];
-        [spritePoint runAction:moveTest];
+        [spritePoint removeFromParent];
+        //[spritePoint runAction:moveTest];
     }
     
     for (SKSpriteNode *starWin in starsForPoints) {
@@ -735,35 +750,35 @@ NSMutableArray *groupFiveLetters;
     //letterB.position = CGPointMake(500,500);
     //letterB.scale = 0.5;
     //[self addChild:letterB];
-    float beginx = 480;
-    float beginy = 600;
+    float beginx = 450;
+    float beginy = 780;
     
     CGPoint letterAvalue1 = CGPointMake(beginx, beginy-25);
-    CGPoint letterAvalue2 = CGPointMake(beginx, beginy-35);
-    CGPoint letterAvalue3 = CGPointMake(beginx, beginy-40);
-    CGPoint letterAvalue4 = CGPointMake(beginx, beginy-45);
-    CGPoint letterAvalue5 = CGPointMake(beginx, beginy-48);
-    CGPoint letterAvalue6 = CGPointMake(beginx, beginy-50);
-    CGPoint letterAvalue7 = CGPointMake(beginx, beginy-52);
-    CGPoint letterAvalue8 = CGPointMake(beginx, beginy-54);
-    CGPoint letterAvalue9 = CGPointMake(beginx, beginy-54);
-    CGPoint letterAvalue10 = CGPointMake(beginx, beginy-52);
-    CGPoint letterAvalue11 = CGPointMake(beginx, beginy-50);
-    CGPoint letterAvalue12 = CGPointMake(beginx-110, beginy-48);
-    CGPoint letterAvalue13 = CGPointMake(beginx-120, beginy-45);
-    CGPoint letterAvalue14 = CGPointMake(beginx-125, beginy-40);
-    CGPoint letterAvalue15 = CGPointMake(beginx-130, beginy+35);
-    CGPoint letterAvalue16 = CGPointMake(beginx-135, beginy+30);
-    CGPoint letterAvalue17 = CGPointMake(beginx-140, beginy+25);
-    CGPoint letterAvalue18 = CGPointMake(beginx-145, beginy+20);
-    CGPoint letterAvalue19 = CGPointMake(beginx-150, beginy+15);
-    CGPoint letterAvalue20 = CGPointMake(beginx-153, beginy+10);
-    CGPoint letterAvalue21 = CGPointMake(beginx-156, beginy+5);
-    CGPoint letterAvalue22 = CGPointMake(beginx-159, beginy+0);
-    CGPoint letterAvalue23 = CGPointMake(beginx-161, beginy-5);
-    CGPoint letterAvalue24 = CGPointMake(beginx-163, beginy-10);
-    CGPoint letterAvalue25 = CGPointMake(beginx-163, beginy-10);
-    CGPoint letterAvalue26 = CGPointMake(beginx-163, beginy-10);
+    CGPoint letterAvalue2 = CGPointMake(beginx, beginy-45);
+    CGPoint letterAvalue3 = CGPointMake(beginx, beginy-75);
+    CGPoint letterAvalue4 = CGPointMake(beginx, beginy-105);
+    CGPoint letterAvalue5 = CGPointMake(beginx, beginy-135);
+    CGPoint letterAvalue6 = CGPointMake(beginx, beginy-165);
+    CGPoint letterAvalue7 = CGPointMake(beginx, beginy-195);
+    CGPoint letterAvalue8 = CGPointMake(beginx, beginy-225);
+    CGPoint letterAvalue9 = CGPointMake(beginx, beginy-265);
+    CGPoint letterAvalue10 = CGPointMake(beginx, beginy-295);
+    CGPoint letterAvalue11 = CGPointMake(beginx, beginy-325);
+    CGPoint letterAvalue12 = CGPointMake(beginx+110, beginy);
+    CGPoint letterAvalue13 = CGPointMake(beginx+120, beginy);
+    CGPoint letterAvalue14 = CGPointMake(beginx+125, beginy);
+    CGPoint letterAvalue15 = CGPointMake(beginx+130, beginy);
+    CGPoint letterAvalue16 = CGPointMake(beginx+135, beginy);
+    CGPoint letterAvalue17 = CGPointMake(beginx+140, beginy);
+    CGPoint letterAvalue18 = CGPointMake(beginx+145, beginy);
+    CGPoint letterAvalue19 = CGPointMake(beginx-150, beginy);
+    CGPoint letterAvalue20 = CGPointMake(beginx-153, beginy);
+    CGPoint letterAvalue21 = CGPointMake(beginx-156, beginy);
+    CGPoint letterAvalue22 = CGPointMake(beginx-159, beginy);
+    CGPoint letterAvalue23 = CGPointMake(beginx-161, beginy);
+    CGPoint letterAvalue24 = CGPointMake(beginx-163, beginy);
+    CGPoint letterAvalue25 = CGPointMake(beginx-163, beginy);
+    CGPoint letterAvalue26 = CGPointMake(beginx-163, beginy);
     CGPoint letterAvalue27 = CGPointMake(360, 345);
     CGPoint letterAvalue28 = CGPointMake(370, 350);
     CGPoint letterAvalue29 = CGPointMake(380, 355);
@@ -827,10 +842,10 @@ NSMutableArray *groupFiveLetters;
 
 -(void) createLetterC {
     
-    letterC.position = CGPointMake(400,420);
-    [self addChild:letterC];
-    float beginx = 480;
-    float beginy = 465;
+    //letterC.position = CGPointMake(400,420);
+    //[self addChild:letterC];
+    float beginx = 500;
+    float beginy = 600;
     
     CGPoint letterAvalue1 = CGPointMake(beginx, beginy+25);
     CGPoint letterAvalue2 = CGPointMake(beginx-10, beginy+35);
