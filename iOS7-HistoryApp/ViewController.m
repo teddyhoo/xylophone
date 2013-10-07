@@ -55,6 +55,8 @@ MainMenu *theMainMenu;
     
     [super viewWillLayoutSubviews];
     spriteView = (SKView *)self.view;
+    spriteView.showsFPS = YES;
+    spriteView.showsNodeCount = YES;
     
     if(!spriteView.scene) {
         SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];

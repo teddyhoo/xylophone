@@ -243,7 +243,7 @@ CGPoint startPoint;
      [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue41]];
      */
 
-    letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600.png"];
+    letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"b_red_1000x600.png"];
     NSURL *letterBurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
     letterB.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterBurl error:nil];
     letterB.name = @"B";
@@ -258,7 +258,7 @@ CGPoint startPoint;
     
     
     
-    letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600.png"];
+    letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600@2x.png"];
     NSURL *letterCurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
     letterC.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterCurl error:nil];
     letterC.name = @"C";
@@ -268,7 +268,7 @@ CGPoint startPoint;
 }
 
 -(LowerCaseLetter *) createLetterD {
-    letterD = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600.png"];
+    letterD = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600@2x.png"];
     NSURL *letterDurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
     letterD.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterDurl error:nil];
     letterD.name = @"D";
@@ -278,7 +278,7 @@ CGPoint startPoint;
 }
 
 -(LowerCaseLetter *) createLetterE {
-    letterE = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600.png"];
+    letterE = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600@2x.png"];
     NSURL *letterEurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
     letterE.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterEurl error:nil];
     letterE.name = @"E";

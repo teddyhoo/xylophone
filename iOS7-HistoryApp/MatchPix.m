@@ -67,6 +67,8 @@ LowerCaseLetter *letterY;
 LowerCaseLetter *letterZ;
 
 SKSpriteNode *backToMainMenuArrow;
+SKSpriteNode *selectedNode;
+
 
 int questionCount;
 
@@ -77,27 +79,7 @@ int questionCount;
         
         questionCount = 0;
         
-        
-        NSURL *letterAurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
-        soundA = [[AVAudioPlayer alloc]initWithContentsOfURL:letterAurl error:nil];
-        
-        NSURL *letterBurl = [[NSBundle mainBundle]URLForResource:@"letter-B-sound" withExtension:@"mp3"];
-        soundB = [[AVAudioPlayer alloc]initWithContentsOfURL:letterBurl error:nil];
-        
-        NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"voice_girl_tween_correct" withExtension:@"wav"];
-        avSound = [[AVAudioPlayer alloc]initWithContentsOfURL:soundURL error:nil];
-        
-        NSURL *incorrectSound  = [[NSBundle mainBundle]URLForResource:@"voice_girl_tween_oops_try_again" withExtension:@"wav"];
-        whoopsMessage = [[AVAudioPlayer alloc]initWithContentsOfURL:incorrectSound error:nil];
-        
-        NSURL *hitPoint  = [[NSBundle mainBundle]URLForResource:@"voice_girl_tween_awesome" withExtension:@"wav"];
-        awesomeMessage = [[AVAudioPlayer alloc]initWithContentsOfURL:hitPoint error:nil];
-        
-        NSURL *magicalSweepURL  = [[NSBundle mainBundle]URLForResource:@"magical_sweep_01" withExtension:@"wav"];
-        magicalSweep = [[AVAudioPlayer alloc]initWithContentsOfURL:magicalSweepURL error:nil];
-        
-        NSURL *gameShowLoseURL  = [[NSBundle mainBundle]URLForResource:@"game_show_lose_04" withExtension:@"wav"];
-        gameShowLose = [[AVAudioPlayer alloc]initWithContentsOfURL:gameShowLoseURL error:nil];
+       
         
         self.userInteractionEnabled = YES;
         
@@ -107,10 +89,9 @@ int questionCount;
         testLabel.text = @"Match Pictures to Sound";
         testLabel.fontSize = 40;
         testLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                         CGRectGetMidY(self.frame)+400);
+                                         CGRectGetMidY(self.frame)+300);
         
         [self addChild:testLabel];
-        
         
         letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-a.png"];
         letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-b.png"];
@@ -177,9 +158,6 @@ int questionCount;
         [allLettersSprites addObject:letterF];
         [allLettersSprites addObject:letterG];
         
-        
-        
-        
         [self addChild:letterA];
         [self addChild:letterB];
         [self addChild:letterC];
@@ -187,14 +165,16 @@ int questionCount;
         [self addChild:letterS];
         [self addChild:letterT];
         
+        
+        [self setupSounds];
+        
         [self setupHUD];
         
         //self.backgroundColor = [SKColor colorWithRed:0.8 green:1.0 blue:1.0 alpha:1.0];
         backToMainMenuArrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrow_left.png"];
         backToMainMenuArrow.position = CGPointMake(50, 50);
         [self addChild:backToMainMenuArrow];
-        
-        
+
         [self nextQuestion];
         
     }
@@ -202,6 +182,35 @@ int questionCount;
     return self;
     
 }
+
+
+-(void) setupSounds {
+    
+    
+    NSURL *letterAurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
+    soundA = [[AVAudioPlayer alloc]initWithContentsOfURL:letterAurl error:nil];
+    
+    NSURL *letterBurl = [[NSBundle mainBundle]URLForResource:@"letter-B-sound" withExtension:@"mp3"];
+    soundB = [[AVAudioPlayer alloc]initWithContentsOfURL:letterBurl error:nil];
+    
+    NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"voice_girl_tween_correct" withExtension:@"wav"];
+    avSound = [[AVAudioPlayer alloc]initWithContentsOfURL:soundURL error:nil];
+    
+    NSURL *incorrectSound  = [[NSBundle mainBundle]URLForResource:@"voice_girl_tween_oops_try_again" withExtension:@"wav"];
+    whoopsMessage = [[AVAudioPlayer alloc]initWithContentsOfURL:incorrectSound error:nil];
+    
+    NSURL *hitPoint  = [[NSBundle mainBundle]URLForResource:@"voice_girl_tween_awesome" withExtension:@"wav"];
+    awesomeMessage = [[AVAudioPlayer alloc]initWithContentsOfURL:hitPoint error:nil];
+    
+    NSURL *magicalSweepURL  = [[NSBundle mainBundle]URLForResource:@"magical_sweep_01" withExtension:@"wav"];
+    magicalSweep = [[AVAudioPlayer alloc]initWithContentsOfURL:magicalSweepURL error:nil];
+    
+    NSURL *gameShowLoseURL  = [[NSBundle mainBundle]URLForResource:@"game_show_lose_04" withExtension:@"wav"];
+    gameShowLose = [[AVAudioPlayer alloc]initWithContentsOfURL:gameShowLoseURL error:nil];
+    
+    
+}
+
 
 -(BOOL)checkCollision:(CGPoint)begX :(CGPoint)begY {
     
@@ -236,6 +245,34 @@ int questionCount;
     
     else if (questionCount == 1) {
         
+        self.userInteractionEnabled = YES;
+        picForQuestion = [SKSpriteNode spriteNodeWithImageNamed:@"balloons.png"];
+        picForQuestion.position = CGPointMake(700, 300);
+        picForQuestion.name = @"B";
+        SKAction *moveTheImage = [SKAction moveByX:-300 y:0 duration:1.0];
+        [self addChild:picForQuestion];
+        [picForQuestion runAction:moveTheImage];
+        
+        
+            
+        
+        
+    }
+    
+    else if (questionCount == 2) {
+        self.userInteractionEnabled = YES;
+        picForQuestion = [SKSpriteNode spriteNodeWithImageNamed:@"bell.png"];
+        picForQuestion.position = CGPointMake(700, 300);
+        picForQuestion.name = @"A";
+        SKAction *moveTheImage = [SKAction moveByX:-300 y:0 duration:1.0];
+        [self addChild:picForQuestion];
+        [picForQuestion runAction:moveTheImage];
+
+    }
+    
+    else if (questionCount == 3) {
+ 
+        
         picForQuestion = [SKSpriteNode spriteNodeWithImageNamed:@"bat1.png"];
         picForQuestion.position = CGPointMake(300,300);
         picForQuestion.name = @"B";
@@ -252,31 +289,7 @@ int questionCount;
             
             batAnimation = [SKAction animateWithTextures:texturesForAnim timePerFrame:0.1];
             [picForQuestion runAction:[SKAction repeatActionForever:batAnimation]];
-            
         }
-        
-    }
-    
-    else if (questionCount == 2) {
-        self.userInteractionEnabled = YES;
-        picForQuestion = [SKSpriteNode spriteNodeWithImageNamed:@"balloons.png"];
-        picForQuestion.position = CGPointMake(700, 300);
-        picForQuestion.name = @"B";
-        SKAction *moveTheImage = [SKAction moveByX:-300 y:0 duration:1.0];
-        [self addChild:picForQuestion];
-        [picForQuestion runAction:moveTheImage];
-
-    }
-    
-    else if (questionCount == 3) {
-        self.userInteractionEnabled = YES;
-        picForQuestion = [SKSpriteNode spriteNodeWithImageNamed:@"bell.png"];
-        picForQuestion.position = CGPointMake(700, 300);
-        picForQuestion.name = @"A";
-        SKAction *moveTheImage = [SKAction moveByX:-300 y:0 duration:1.0];
-        [self addChild:picForQuestion];
-        [picForQuestion runAction:moveTheImage];
-        
     }
     
     else if (questionCount == 4) {
@@ -305,7 +318,7 @@ int questionCount;
     CGPoint theTouch = [touch locationInNode:self];
     
     if (CGRectContainsPoint(picForQuestion.frame, theTouch)) {
-        //[picForQuestion removeAllActions];
+        [picForQuestion removeAllActions];
         //NSLog(@"touched cat");
         
     } else if (CGRectContainsPoint(bat.frame, theTouch)) {
@@ -352,6 +365,7 @@ int questionCount;
         
         if (CGRectContainsPoint(letterA.frame, theTouch) && ([letterA.name isEqualToString:picForQuestion.name])) {
             
+            [picForQuestion removeAllActions];
             NSLog(@"match A");
             SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
             SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
@@ -371,7 +385,8 @@ int questionCount;
         } else if (CGRectContainsPoint(letterB.frame, theTouch) && ([letterB.name isEqualToString:picForQuestion.name])) {
             
             NSLog (@"match B");
-            
+            [picForQuestion removeAllActions];
+
             SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
             SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
             SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
@@ -402,28 +417,80 @@ int questionCount;
 }
 
 
+-(void)selectedNodeForTouch:(CGPoint)touchLocation {
+    
+    SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
+    if(![selectedNode isEqual:touchedNode]) {
+        [selectedNode removeAllActions];
+        [selectedNode runAction:[SKAction rotateToAngle:0.0f duration:0.1]];
+        selectedNode = touchedNode;
+        if([[touchedNode name] isEqualToString:@"A"]) {
+            
+            SKAction *sequence = [SKAction sequence:@[[SKAction rotateByAngle:degToRad(-4.0f)  duration:0.1],
+                                                      [SKAction rotateByAngle:0.0 duration:0.1],
+                                                      [SKAction rotateByAngle:degToRad(4.0) duration:0]]];
+            
+            
+        }
+    }
+    
+    
+}
+
+
+-(void) removeSpriteFromScene {
+    
+   /* SKSpriteNode *currentLetterFinish = [allLettersSprites objectAtIndex:onWhichQuestion];
+    [currentLetterFinish removeFromParent];
+    SKAction *moveToFinish = [SKAction moveToX:-300 duration:0.1];
+    SKAction *scaleDown = [SKAction scaleTo:0.3 duration:0.1];
+    [currentLetterFinish runAction:moveToFinish];
+    [currentLetterFinish runAction:scaleDown];*/
+    
+}
+
+- (void)panForTranslation:(CGPoint)translation {
+    CGPoint position = [selectedNode position];
+    if([[selectedNode name] isEqualToString:@"M"]) {
+        [selectedNode setPosition:CGPointMake(position.x + translation.x, position.y + translation.y)];
+    } else {
+        CGPoint newPos = CGPointMake(position.x + translation.x, position.y + translation.y);
+        [self setPosition:[self boundLayerPos:newPos]];
+    }
+}
+
+- (CGPoint)boundLayerPos:(CGPoint)newPos {
+    CGSize winSize = self.size;
+    CGPoint retval = newPos;
+    retval.x = MIN(retval.x, 0);
+    retval.x = MAX(retval.x, -[self size].width+ winSize.width);
+    retval.y = [self position].y;
+    return retval;
+}
+
+
+float degToRad(float degree) {
+    return degree/180.0f * M_PI;
+}
+
+
 -(void)update:(NSTimeInterval)currentTime {
     
+    [self checkCollisions];
     
-    
-    /*for (SKSpriteNode *theLetter in allLettersSprites) {
-        float coordForSpriteX = theLetter.position.x;
-        float coordForSpriteY = theLetter.position.y;
-        SKAction *rotateCircle;
-        
-        if (coordForSpriteX > 600) {
-            rotateCircle = [SKAction moveByX:coordForSpriteX+0.01 y:coordForSpriteY+5 duration:0.1];
-        } else {
-            rotateCircle = [SKAction moveByX:coordForSpriteX-0 y:coordForSpriteY-5 duration:0.1];
-        }
-        
-        
-        [theLetter runAction:rotateCircle];
-        
-    }*/
-
 
 }
 
+
+-(void) checkCollisions {
+    
+    /*[self enumerateChildNodesWithName:@"A" usingBlock:^(SKNode *node, BOOL *stop) {
+        SKSpriteNode *letterAlocal = (SKSpriteNode *)node;
+        if (CGRectIntersectsRect(letterAlocal.frame, picForQuestion.frame)) {
+            [picForQuestion removeFromParent];
+        }
+    }];*/
+    
+}
 
 @end

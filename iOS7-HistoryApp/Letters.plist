@@ -4,16 +4,41 @@
 <array>
 	<dict>
 		<key>letter</key>
-		<string>a</string>
-		<key>file</key>
-		<string>letterA.png</string>
-		<key>control-1-x</key>
-		<string></string>
-		<key>New item - 2</key>
-		<string></string>
-		<key>New item</key>
-		<string></string>
+		<string>b</string>
+		<key>image</key>
+		<string>balloons.png</string>
+		<key>phrase</key>
+		<string>Balloon</string>
+		<key>animation</key>
+		<string>no</string>
+		<key>resize</key>
+		<string>yes</string>
 	</dict>
+	<dict>
+		<key>letter</key>
+		<string>b</string>
+		<key>image</key>
+		<string>bell.png</string>
+		<key>phrase</key>
+		<string>Bell</string>
+		<key>animation</key>
+		<string>no</string>
+		<key>resize</key>
+		<string>yes</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>b</string>
+		<key>image</key>
+		<string>ball.png</string>
+		<key>phrase</key>
+		<string>Ball</string>
+		<key>animation</key>
+		<string>yes</string>
+		<key>resize</key>
+		<string>yes</string>
+	</dict>
+	<dict/>
 	<dict/>
 	<dict/>
 	<dict/>

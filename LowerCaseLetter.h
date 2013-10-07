@@ -24,6 +24,9 @@
     NSMutableArray *controlPointsForiPadRetina;
     NSMutableArray *controlPointsForiPadRetinaLandscape;
     
+    NSMutableDictionary *wordsForLetter;
+    
+    
 }
 
 @property (nonatomic,retain) AVAudioPlayer *baseSound;
@@ -31,7 +34,7 @@
 @property (nonatomic,retain) AVAudioPlayer *wordSample2;
 @property (nonatomic,retain) AVAudioPlayer *wordSample3;
 @property (nonatomic,retain) AVAudioPlayer *wordSample4;
-
+@property (nonatomic,retain) NSMutableDictionary *wordsForLetter;
 
 
 -(void) playTheSound;

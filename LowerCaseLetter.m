@@ -12,7 +12,8 @@
 
 @synthesize baseSound, wordSample1, wordSample2, wordSample3, wordSample4;
 
--(void)turnOffGestures {
+-(void) wordsForImages:(NSDictionary *)theWords {
+    
     
 }
 
@@ -21,6 +22,10 @@
     [baseSound play];
 }
 
+-(void) playWordSample:(NSNumber *)wordNumber {
+    
+    
+}
 
 -(void)createControlPoints:(NSMutableArray *)controlPointsForLetter {
     
@@ -28,5 +33,9 @@
     
 }
 
+-(void)createWordSamples {
+
+    
+}
 
 @end
