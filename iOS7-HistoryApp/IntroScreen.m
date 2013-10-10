@@ -176,9 +176,6 @@ CGFloat height;
             [frogHopTextures addObject:frogHopTexture];
         }
         
-        SKSpriteNode *hopFrog =[SKSpriteNode spriteNodeWithImageNamed:@"frog_frame_1.png"];
-        
-        
     }
     return self;
 }

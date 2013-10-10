@@ -11,6 +11,7 @@
 #import "IntroScreen.h"
 #import "LowerCaseLetter.h"
 #import "MontessoriData.h"
+#import "SKTUtils.h"
 
 @implementation LetterTrace
 
@@ -21,6 +22,7 @@ NSMutableArray *menuOptions;
 NSMutableArray *letterProblems;
 NSMutableArray *controlPointSprites;
 NSMutableArray *pointsForSprite;
+NSMutableArray *pointsForSprite2;
 NSMutableArray *spriteFromPoint;
 
 LowerCaseLetter *letterA;
@@ -56,6 +58,7 @@ SKSpriteNode *picForQuestion;
 NSMutableArray *allPicsForQuestions;
 NSMutableArray *allLettersSprites;
 NSMutableArray *spriteFromPoint;
+NSMutableArray *spriteFromPoint2;
 NSMutableArray *starsForPoints;
 NSMutableArray *group1Letters;
 NSMutableArray *group2Letters;
@@ -86,9 +89,14 @@ SKSpriteNode *handPointer;
 
 int onWhichQuestion;
 int onWhichGroup;
+CGPoint deltaPoint;
 
 BOOL firstPointTest;
+BOOL multiStroke;
+BOOL firstStrokeComplete;
+BOOL arrowAdded;
 
+BOOL separateStroke;
 
 
 // Group 1: a, b, c, m, s, t
@@ -121,6 +129,7 @@ NSMutableArray *groupFiveLetters;
         onWhichGroup = 0;
         
         firstPointTest = FALSE;
+        firstStrokeComplete = FALSE;
 
         pointsForSprite = [[NSMutableArray alloc]init];
         spriteFromPoint = [[NSMutableArray alloc]init];
@@ -294,12 +303,19 @@ NSMutableArray *groupFiveLetters;
 -(void) nextQuestion {
     
     pointsForSprite = [[NSMutableArray alloc]init];
+    pointsForSprite2 = [[NSMutableArray alloc]init];
     spriteFromPoint = [[NSMutableArray alloc]init];
+    spriteFromPoint2 = [[NSMutableArray alloc]init];
     starsForPoints = [[NSMutableArray alloc]init];
     
     
     float startPointX;
     float startPointY;
+    
+    multiStroke = FALSE;
+    separateStroke = FALSE;
+    firstStrokeComplete = FALSE;
+    arrowAdded = FALSE;
     
     if (onWhichQuestion == 0) {
 
@@ -308,11 +324,46 @@ NSMutableArray *groupFiveLetters;
         //letterB.position = CGPointMake(700, 750);
         
         handPointer = [SKSpriteNode spriteNodeWithImageNamed:@"hand-point-45-degrees-left.png"];
-        handPointer.position = CGPointMake(590, 440);
+        //handPointer.position = CGPointMake(550, 500);
         [self addChild:handPointer];
 
-        SKAction *moveAction = [SKAction moveToX:550 duration:0.4];
-        SKAction *moveAction2 = [SKAction moveToY:410 duration:0.4];
+        
+        
+        CGMutablePathRef cgpath = CGPathCreateMutable();
+
+        
+        //ControlPoint1
+        float cp1X = 470;
+        float cp1Y = 450;
+        
+        //ControlPoint2
+        float cp2X = 420;
+        float cp2Y = 350;
+        
+        CGPoint s = CGPointMake(990, 500);
+        CGPoint e = CGPointMake(190, 980);
+        CGPoint cp1 = CGPointMake(cp1X, cp1Y);
+        CGPoint cp2 = CGPointMake(cp2X, cp2Y);
+        CGPathMoveToPoint(cgpath,NULL, s.x, s.y);
+        CGPathAddCurveToPoint(cgpath, NULL, cp1.x, cp1.y, cp2.x, cp2.y, e.x, e.y);
+        
+         
+        SKAction *rotate = [SKAction rotateByAngle:130 duration:0.1];
+        SKAction *delayIt = [SKAction waitForDuration:1];
+
+        SKAction *showHow = [SKAction followPath:cgpath asOffset:NO orientToPath:YES duration:3];
+        SKAction *remove = [SKAction removeFromParent];
+        SKAction *sequenceDraw = [SKAction sequence:@[
+                                                      delayIt,
+                                                      showHow,
+                                                      remove]];
+    
+        
+        [handPointer runAction:sequenceDraw];
+        CGPathRelease(cgpath);
+        
+        
+        
         letterB.scale = 0.1;
         startPointX = 150;
         startPointY = 80;
@@ -420,6 +471,7 @@ NSMutableArray *groupFiveLetters;
 
         spritePoint.position = CGPointMake(finalLocation.x+300, finalLocation.y+400);
         spritePoint.scale = 0.2;
+        spritePoint.name = @"wheel";
         [self addChild:spritePoint];
         
         float moveTime = 0.1 * (float)spritePointCount;
@@ -432,6 +484,28 @@ NSMutableArray *groupFiveLetters;
         [spritePoint runAction:keepSpinning];
         [spriteFromPoint addObject:spritePoint];
         spritePointCount++;
+    }
+    
+    if (multiStroke == TRUE) {
+        NSLog(@"multi-stroke");
+        for (NSValue *pointValue in pointsForSprite2) {
+            SKSpriteNode *spritePoint2 = [SKSpriteNode spriteNodeWithImageNamed:@"sprite639.png"];
+            CGPoint finalLocation = [pointValue CGPointValue];
+            spritePoint2.position = CGPointMake(finalLocation.x+300, finalLocation.y+400);
+            spritePoint2.scale = 0.1;
+            spritePoint2.name = @"pixie";
+            [self addChild:spritePoint2];
+            float moveTime = 0.07 * (float)spritePointCount;
+            SKAction *movePointsX = [SKAction moveToX:finalLocation.x+startPointX duration:moveTime];
+            SKAction *movePointsY = [SKAction moveToY:finalLocation.y+startPointY duration:moveTime];
+            
+            
+            [spritePoint2 runAction:movePointsX];
+            [spritePoint2 runAction:movePointsY];
+            [spritePoint2 runAction:keepSpinning];
+            [spriteFromPoint2 addObject:spritePoint2];
+            spritePointCount++;
+        }
     }
 
     NSLog(@"points for sprite %i", [pointsForSprite count]);
@@ -497,17 +571,22 @@ NSMutableArray *groupFiveLetters;
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
+    
     CGPoint theTouch = [touch locationInNode:self];
-
+    CGPoint previousPoint = [touch previousLocationInNode:self];
+    
+    
+    deltaPoint = CGPointSubtract(theTouch, previousPoint);
+    
     //CGPoint previousPosition = [touch previousLocationInNode:self];
     //CGPoint translation = CGPointMake(theTouch.x - previousPosition.x, theTouch.y - previousPosition.y);
     
     //[self panForTranslation:translation];
     
+    
     for (SKSpriteNode *pointHit in spriteFromPoint) {
 
-        CGRect myControlPoint = CGRectMake(pointHit.position.x, pointHit.position.y, 30, 30);
-        CGPoint myPoint = myControlPoint.origin;
+        CGRect myControlPoint = CGRectMake(pointHit.position.x-20, pointHit.position.y-20, 35, 35);
         
         if (CGRectContainsPoint(myControlPoint, theTouch)) {
             
@@ -516,19 +595,28 @@ NSMutableArray *groupFiveLetters;
             [goldStar setScale:0.3];
             [self addChild:goldStar];
             
+            
 
             SKAction *growGoldStar = [SKAction scaleTo:0.3 duration:0.05];
             SKAction *growGoldStarY = [SKAction scaleYTo:1.0 duration:0.05];
             SKAction *growGoldStar2 = [SKAction scaleTo:0.2 duration:0.05];
             SKAction *growAndShrink = [SKAction sequence:@[growGoldStar,growGoldStarY,growGoldStar2]];
             
+            
+            SKAction *upAction = [SKAction moveByX:-40.0f y:60.0f duration:0.2];
+            upAction.timingMode = SKActionTimingEaseOut;
+            SKAction *downAction = [SKAction moveByX:-80.0f y:-300.0 duration:0.8];
+            downAction.timingMode = SKActionTimingEaseIn;
+            
             [goldStar runAction:growAndShrink];
             [starsForPoints addObject:goldStar];
             
-            SKAction *popup = [SKAction moveByX:20 y:40 duration:0.1];
-            SKAction *drop = [SKAction moveToY:-200 duration:0.5];
-            [pointHit runAction:popup];
-            [pointHit runAction:drop];
+            if ([spriteFromPoint count] <= [starsForPoints count]) {
+                firstStrokeComplete = TRUE;
+            }
+
+            SKAction *remove = [SKAction removeFromParent];
+            [pointHit runAction:[SKAction sequence:@[upAction,downAction,remove]]];
             
             NSString *openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"CirclePop" ofType:@"sks"];
             SKEmitterNode *openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
@@ -537,9 +625,52 @@ NSMutableArray *groupFiveLetters;
             
             [self addChild:openEffect];
             
-            
         }
         
+    }
+ 
+    
+    if (multiStroke && firstStrokeComplete) {
+        
+        for (SKSpriteNode *pointHit in spriteFromPoint2) {
+        
+            CGRect myControlPoint = CGRectMake(pointHit.position.x-20, pointHit.position.y-20, 35, 35);
+        
+            if (CGRectContainsPoint(myControlPoint, theTouch)) {
+            
+                SKSpriteNode *goldStar = [SKSpriteNode spriteNodeWithImageNamed:@"star_100x100.png"];
+                goldStar.position = pointHit.position;
+                [goldStar setScale:0.3];
+                [self addChild:goldStar];
+            
+            
+                SKAction *growGoldStar = [SKAction scaleTo:0.3 duration:0.05];
+                SKAction *growGoldStarY = [SKAction scaleYTo:1.0 duration:0.05];
+                SKAction *growGoldStar2 = [SKAction scaleTo:0.2 duration:0.05];
+                SKAction *growAndShrink = [SKAction sequence:@[growGoldStar,growGoldStarY,growGoldStar2]];
+            
+            
+                SKAction *upAction = [SKAction moveByX:-40.0f y:60.0f duration:0.2];
+                upAction.timingMode = SKActionTimingEaseOut;
+                SKAction *downAction = [SKAction moveByX:-80.0f y:-300.0 duration:0.8];
+                downAction.timingMode = SKActionTimingEaseIn;
+            
+                [goldStar runAction:growAndShrink];
+                [starsForPoints addObject:goldStar];
+            
+                SKAction *remove = [SKAction removeFromParent];
+                [pointHit runAction:[SKAction sequence:@[upAction,downAction,remove]]];
+            
+                NSString *openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"CirclePop" ofType:@"sks"];
+                SKEmitterNode *openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
+                openEffect.position = goldStar.position;
+                openEffect.targetNode = self.scene;
+            
+                [self addChild:openEffect];
+            
+            
+            }
+        }
     }
     
 }
@@ -568,8 +699,47 @@ NSMutableArray *groupFiveLetters;
     
 }
 
+-(void) checkCollisions {
+    
+    [self enumerateChildNodesWithName:@"wheel" usingBlock:^(SKNode *node, BOOL *stop) {
+        SKSpriteNode *wheel = (SKSpriteNode *)node;
+        
+    }];
+    
+}
 
+-(void)update:(NSTimeInterval)currentTime {
+    
+    if (multiStroke && firstStrokeComplete && arrowAdded == FALSE) {
+        SKSpriteNode *arrowPoint = [SKSpriteNode spriteNodeWithImageNamed:@"arrow-cloud.png"];
+        arrowPoint.scale = 0.1;
+        NSValue *pointValue = [pointsForSprite2 objectAtIndex:0];
+        CGPoint finalLocation = [pointValue CGPointValue];
+        finalLocation.y -= 100;
+        
+        arrowPoint.position = finalLocation;
+        
+        
+        SKAction *rotateArrow = [SKAction rotateByAngle:M_PI+30 duration:0.1];
+        SKAction *moveUp = [SKAction moveByX:0.0 y:+10 duration:0.3];
+        SKAction *moveDown = [SKAction moveByX:0.0 y:-15 duration:0.3];
+        SKAction *repeatmoveUpDown = [SKAction repeatAction:moveUp count:5];
+        SKAction *repeatmoveUpDown2  = [SKAction repeatAction:moveDown count:5];
+        
+        SKAction *scaleUp = [SKAction scaleYTo:0.2 duration:0.3];
+        
+        SKAction *sequenceArrow = [SKAction sequence:@[rotateArrow, moveUp,moveDown,moveUp,moveDown,[SKAction removeFromParent]]];
+        [arrowPoint runAction:sequenceArrow];
+        
+        
+        [self addChild:arrowPoint];
+        arrowAdded = TRUE;
 
+    }
+    
+    
+    
+}
 
 -(void) removeSpriteFromScene {
 
@@ -702,11 +872,12 @@ NSMutableArray *groupFiveLetters;
 
 
 -(void) createLetterB {
-    //letterB.position = CGPointMake(500,500);
-    //letterB.scale = 0.5;
-    //[self addChild:letterB];
+
     float beginx = 400;
     float beginy = 750;
+    
+    multiStroke = TRUE;
+    
     
     CGPoint letterAvalue1 = CGPointMake(beginx, beginy-25);
     CGPoint letterAvalue2 = CGPointMake(beginx, beginy-45);
@@ -722,33 +893,22 @@ NSMutableArray *groupFiveLetters;
     CGPoint letterAvalue12 = CGPointMake(beginx, beginy-365);
     CGPoint letterAvalue13 = CGPointMake(beginx, beginy-400);
     CGPoint letterAvalue14 = CGPointMake(beginx, beginy-450);
-    CGPoint letterAvalue15 = CGPointMake(beginx + 40, beginy-375);
-    CGPoint letterAvalue16 = CGPointMake(beginx+ 40, beginy);
-    CGPoint letterAvalue17 = CGPointMake(beginx+140, beginy);
-    CGPoint letterAvalue18 = CGPointMake(beginx+145, beginy);
-    CGPoint letterAvalue19 = CGPointMake(beginx-150, beginy);
-    CGPoint letterAvalue20 = CGPointMake(beginx-153, beginy);
-    CGPoint letterAvalue21 = CGPointMake(beginx-156, beginy);
-    CGPoint letterAvalue22 = CGPointMake(beginx-159, beginy);
-    CGPoint letterAvalue23 = CGPointMake(beginx-161, beginy);
-    CGPoint letterAvalue24 = CGPointMake(beginx-163, beginy);
-    CGPoint letterAvalue25 = CGPointMake(beginx-163, beginy);
-    CGPoint letterAvalue26 = CGPointMake(beginx-163, beginy);
-    CGPoint letterAvalue27 = CGPointMake(360, 345);
-    CGPoint letterAvalue28 = CGPointMake(370, 350);
-    CGPoint letterAvalue29 = CGPointMake(380, 355);
-    CGPoint letterAvalue30 = CGPointMake(390, 360);
-    CGPoint letterAvalue31 = CGPointMake(400, 380);
-    CGPoint letterAvalue32 = CGPointMake(402, 400);
-    CGPoint letterAvalue33 = CGPointMake(405, 420);
-    CGPoint letterAvalue34 = CGPointMake(407, 460);
-    CGPoint letterAvalue35 = CGPointMake(410, 500);
-    CGPoint letterAvalue36 = CGPointMake(410, 490);
-    CGPoint letterAvalue37 = CGPointMake(412, 460);
-    CGPoint letterAvalue38 = CGPointMake(414, 420);
-    CGPoint letterAvalue39 = CGPointMake(415, 400);
-    CGPoint letterAvalue40 = CGPointMake(425, 380);
-    CGPoint letterAvalue41 = CGPointMake(430, 360);
+    
+    // Second stroke
+    CGPoint letterAvalue15 = CGPointMake(beginx + 40, beginy - 375);
+    CGPoint letterAvalue16 = CGPointMake(beginx+ 40, beginy - 350);
+    CGPoint letterAvalue17 = CGPointMake(beginx+ 40, beginy - 325);
+    CGPoint letterAvalue18 = CGPointMake(beginx+ 40, beginy - 300);
+    CGPoint letterAvalue19 = CGPointMake(beginx+ 40, beginy - 275);
+    CGPoint letterAvalue20 = CGPointMake(beginx+ 80, beginy - 220);
+    CGPoint letterAvalue21 = CGPointMake(beginx+ 120, beginy - 220);
+    CGPoint letterAvalue22 = CGPointMake(beginx+ 160, beginy - 250);
+    CGPoint letterAvalue23 = CGPointMake(beginx+ 180, beginy - 280);
+    CGPoint letterAvalue24 = CGPointMake(beginx+ 180, beginy - 360);
+    CGPoint letterAvalue25 = CGPointMake(beginx+ 160, beginy - 430);
+    CGPoint letterAvalue26 = CGPointMake(beginx+ 120, beginy - 450);
+    CGPoint letterAvalue27 = CGPointMake(beginx+ 80, beginy - 460);
+    CGPoint letterAvalue28 = CGPointMake(beginx+ 50, beginy - 440);
     
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue1]];
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue2]];
@@ -764,34 +924,21 @@ NSMutableArray *groupFiveLetters;
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue12]];
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue13]];
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue14]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue15]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue16]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue17]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue18]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue19]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue20]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue21]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue22]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue23]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue24]];
-    /*[pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue25]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue26]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue27]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue28]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue29]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue30]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue31]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue32]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue33]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue34]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue35]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue36]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue37]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue38]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue39]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue40]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue41]];
-     */
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue15]];
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue16]];
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue17]];
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue18]];
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue19]];
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue20]];
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue21]];
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue22]];
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue23]];
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue24]];
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue25]];
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue26]];
+    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue27]];
+    //[pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue28]];
+    
 
 }
 

@@ -785,6 +785,8 @@
 		552A3E1617E9D5A70090C743 /* Montessori */ = {
 			isa = PBXGroup;
 			children = (
+				555430FB17CEA9EA0051B8EA /* MontessoriData.h */,
+				555430FC17CEA9EA0051B8EA /* MontessoriData.m */,
 				55C61B9917DF36870063CF98 /* LowerCaseLetter.h */,
 				55C61B9A17DF36870063CF98 /* LowerCaseLetter.m */,
 				558D95E4179C46C800B6F32C /* ViewController.h */,
@@ -917,22 +919,7 @@
 		558D95D2179C46C800B6F32C /* iOS7-HistoryApp */ = {
 			isa = PBXGroup;
 			children = (
-				AD1A5ABC180350D2002C13D9 /* SKTEffects.h */,
-				AD1A5ABD180350D2002C13D9 /* SKTEffects.m */,
-				AD1A5ABE180350D2002C13D9 /* SKTTimingFunctions.h */,
-				AD1A5ABF180350D2002C13D9 /* SKTTimingFunctions.m */,
-				AD8B2AB71802096A004D2FE0 /* SKAction+SKTExtras.h */,
-				AD8B2AB81802096A004D2FE0 /* SKAction+SKTExtras.m */,
-				AD8B2AB91802096A004D2FE0 /* SKEmitterNode+SKTExtras.h */,
-				AD8B2ABA1802096A004D2FE0 /* SKEmitterNode+SKTExtras.m */,
-				AD8B2ABB1802096A004D2FE0 /* SKNode+SKTExtras.h */,
-				AD8B2ABC1802096A004D2FE0 /* SKNode+SKTExtras.m */,
-				AD8B2ABD1802096A004D2FE0 /* SKTAudio.h */,
-				AD8B2ABE1802096A004D2FE0 /* SKTAudio.m */,
-				AD8B2ABF1802096A004D2FE0 /* SKTUtils.h */,
-				AD8B2AC01802096A004D2FE0 /* SKTUtils.mm */,
-				555430FB17CEA9EA0051B8EA /* MontessoriData.h */,
-				555430FC17CEA9EA0051B8EA /* MontessoriData.m */,
+				AD1A5AC41804181F002C13D9 /* SKAction Util */,
 				552A3E1617E9D5A70090C743 /* Montessori */,
 				5543B8F317DCB45E00282295 /* AP World History */,
 				55C9B45B17D88EDD00520531 /* Sound EFX */,
@@ -1163,6 +1150,27 @@
 				55D4EC8217F234910063D81A /* bat7.png */,
 			);
 			name = bat.atlas;
+			sourceTree = "<group>";
+		};
+		AD1A5AC41804181F002C13D9 /* SKAction Util */ = {
+			isa = PBXGroup;
+			children = (
+				AD1A5ABC180350D2002C13D9 /* SKTEffects.h */,
+				AD1A5ABD180350D2002C13D9 /* SKTEffects.m */,
+				AD1A5ABE180350D2002C13D9 /* SKTTimingFunctions.h */,
+				AD1A5ABF180350D2002C13D9 /* SKTTimingFunctions.m */,
+				AD8B2AB71802096A004D2FE0 /* SKAction+SKTExtras.h */,
+				AD8B2AB81802096A004D2FE0 /* SKAction+SKTExtras.m */,
+				AD8B2AB91802096A004D2FE0 /* SKEmitterNode+SKTExtras.h */,
+				AD8B2ABA1802096A004D2FE0 /* SKEmitterNode+SKTExtras.m */,
+				AD8B2ABB1802096A004D2FE0 /* SKNode+SKTExtras.h */,
+				AD8B2ABC1802096A004D2FE0 /* SKNode+SKTExtras.m */,
+				AD8B2ABD1802096A004D2FE0 /* SKTAudio.h */,
+				AD8B2ABE1802096A004D2FE0 /* SKTAudio.m */,
+				AD8B2ABF1802096A004D2FE0 /* SKTUtils.h */,
+				AD8B2AC01802096A004D2FE0 /* SKTUtils.mm */,
+			);
+			name = "SKAction Util";
 			sourceTree = "<group>";
 		};
 		ADF8DB0317FF1AD500A1B98D /* Sprites */ = {

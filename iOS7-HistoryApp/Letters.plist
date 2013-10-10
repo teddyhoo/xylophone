@@ -4,39 +4,75 @@
 <array>
 	<dict>
 		<key>letter</key>
-		<string>b</string>
+		<string>B</string>
 		<key>image</key>
-		<string>balloons.png</string>
+		<string>bottle</string>
 		<key>phrase</key>
-		<string>Balloon</string>
+		<string>Bottle</string>
 		<key>animation</key>
 		<string>no</string>
-		<key>resize</key>
-		<string>yes</string>
+		<key>scale</key>
+		<string>0.5</string>
 	</dict>
 	<dict>
 		<key>letter</key>
-		<string>b</string>
+		<string>A</string>
 		<key>image</key>
-		<string>bell.png</string>
+		<string>apple</string>
 		<key>phrase</key>
-		<string>Bell</string>
+		<string>Apple</string>
 		<key>animation</key>
 		<string>no</string>
-		<key>resize</key>
-		<string>yes</string>
+		<key>scale</key>
+		<string>0.5</string>
 	</dict>
 	<dict>
 		<key>letter</key>
-		<string>b</string>
+		<string>B</string>
 		<key>image</key>
-		<string>ball.png</string>
+		<string>balloons</string>
+		<key>phrase</key>
+		<string>Balloons</string>
+		<key>animation</key>
+		<string>no</string>
+		<key>scale</key>
+		<string>0.5</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>C</string>
+		<key>image</key>
+		<string>cactus</string>
+		<key>phrase</key>
+		<string>Cactus</string>
+		<key>animation</key>
+		<string>no</string>
+		<key>scale</key>
+		<string>0.5</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>B</string>
+		<key>image</key>
+		<string>basket</string>
+		<key>phrase</key>
+		<string>Basket</string>
+		<key>animation</key>
+		<string>no</string>
+		<key>scale</key>
+		<string>0.5</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>B</string>
+		<key>image</key>
+		<string>bear</string>
 		<key>phrase</key>
 		<string>Ball</string>
 		<key>animation</key>
 		<string>yes</string>
-		<key>resize</key>
-		<string>yes</string>
+		<key>scale</key>
+		<string>0.5</string>
 	</dict>
 	<dict/>
 	<dict/>
