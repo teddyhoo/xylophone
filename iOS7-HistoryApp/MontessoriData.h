@@ -82,25 +82,31 @@
 
 
 -(LowerCaseLetter *)createLetterA;
--(NSArray *)createLetterB;
--(NSArray *)createLetterC;
--(NSArray *)createLetterD;
--(NSArray *)createLetterE;
--(NSArray *)createLetterF;
--(NSArray *)createLetterG;
--(NSArray *)createLetterH;
--(NSArray *)createLetterI;
--(NSArray *)createLetterJ;
--(NSArray *)createLetterK;
--(NSArray *)createLetterL;
--(NSArray *)createLetterM;
--(NSArray *)createLetterN;
--(NSArray *)createLetterO;
--(NSArray *)createLetterP;
--(NSArray *)createLetterQ;
--(NSArray *)createLetterR;
--(NSArray *)createLetterS;
-
+-(LowerCaseLetter *)createLetterB;
+-(LowerCaseLetter *)createLetterC;
+-(LowerCaseLetter *)createLetterD;
+-(LowerCaseLetter *)createLetterE;
+-(LowerCaseLetter *)createLetterF;
+-(LowerCaseLetter *)createLetterG;
+-(LowerCaseLetter *)createLetterH;
+-(LowerCaseLetter *)createLetterI;
+-(LowerCaseLetter *)createLetterJ;
+-(LowerCaseLetter *)createLetterK;
+-(LowerCaseLetter *)createLetterL;
+-(LowerCaseLetter *)createLetterM;
+-(LowerCaseLetter *)createLetterN;
+-(LowerCaseLetter *)createLetterO;
+-(LowerCaseLetter *)createLetterP;
+-(LowerCaseLetter *)createLetterQ;
+-(LowerCaseLetter *)createLetterR;
+-(LowerCaseLetter *)createLetterS;
+-(LowerCaseLetter *)createLetterT;
+-(LowerCaseLetter *)createLetterU;
+-(LowerCaseLetter *)createLetterV;
+-(LowerCaseLetter *)createLetterW;
+-(LowerCaseLetter *)createLetterX;
+-(LowerCaseLetter *)createLetterY;
+-(LowerCaseLetter *)createLetterZ;
 
 
 @end

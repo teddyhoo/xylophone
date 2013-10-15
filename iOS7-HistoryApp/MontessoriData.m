@@ -39,6 +39,32 @@ CGPoint startPoint;
 	if (self = [super init]) {
         
         letterA = [self createLetterA];
+        letterB = [self createLetterB];
+        letterC = [self createLetterC];
+        letterD = [self createLetterD];
+        letterE = [self createLetterE];
+        letterF = [self createLetterF];
+        letterG = [self createLetterG];
+        letterH = [self createLetterH];
+        letterI = [self createLetterI];
+        letterJ = [self createLetterJ];
+        letterK = [self createLetterK];
+        letterL = [self createLetterL];
+        letterM = [self createLetterM];
+        letterN = [self createLetterN];
+        letterO = [self createLetterO];
+        letterP = [self createLetterP];
+        letterQ = [self createLetterQ];
+        letterR = [self createLetterR];
+        letterS = [self createLetterS];
+        letterT = [self createLetterT];
+        letterU = [self createLetterU];
+        letterV = [self createLetterV];
+        letterW = [self createLetterW];
+        letterX = [self createLetterX];
+        letterY = [self createLetterY];
+        letterZ = [self createLetterZ];
+        
         
       
         
@@ -154,101 +180,14 @@ CGPoint startPoint;
     
     float beginx = 450;
     float beginy = 780;
-    
-    CGPoint letterAvalue1 = CGPointMake(beginx, beginy-25);
-    CGPoint letterAvalue2 = CGPointMake(beginx, beginy-45);
-    CGPoint letterAvalue3 = CGPointMake(beginx, beginy-75);
-    CGPoint letterAvalue4 = CGPointMake(beginx, beginy-105);
-    CGPoint letterAvalue5 = CGPointMake(beginx, beginy-135);
-    CGPoint letterAvalue6 = CGPointMake(beginx, beginy-165);
-    CGPoint letterAvalue7 = CGPointMake(beginx, beginy-195);
-    CGPoint letterAvalue8 = CGPointMake(beginx, beginy-225);
-    CGPoint letterAvalue9 = CGPointMake(beginx, beginy-265);
-    CGPoint letterAvalue10 = CGPointMake(beginx, beginy-295);
-    CGPoint letterAvalue11 = CGPointMake(beginx, beginy-325);
-    CGPoint letterAvalue12 = CGPointMake(beginx+110, beginy);
-    CGPoint letterAvalue13 = CGPointMake(beginx+120, beginy);
-    CGPoint letterAvalue14 = CGPointMake(beginx+125, beginy);
-    CGPoint letterAvalue15 = CGPointMake(beginx+130, beginy);
-    CGPoint letterAvalue16 = CGPointMake(beginx+135, beginy);
-    CGPoint letterAvalue17 = CGPointMake(beginx+140, beginy);
-    CGPoint letterAvalue18 = CGPointMake(beginx+145, beginy);
-    CGPoint letterAvalue19 = CGPointMake(beginx-150, beginy);
-    CGPoint letterAvalue20 = CGPointMake(beginx-153, beginy);
-    CGPoint letterAvalue21 = CGPointMake(beginx-156, beginy);
-    CGPoint letterAvalue22 = CGPointMake(beginx-159, beginy);
-    CGPoint letterAvalue23 = CGPointMake(beginx-161, beginy);
-    CGPoint letterAvalue24 = CGPointMake(beginx-163, beginy);
-    CGPoint letterAvalue25 = CGPointMake(beginx-163, beginy);
-    CGPoint letterAvalue26 = CGPointMake(beginx-163, beginy);
-    CGPoint letterAvalue27 = CGPointMake(360, 345);
-    CGPoint letterAvalue28 = CGPointMake(370, 350);
-    CGPoint letterAvalue29 = CGPointMake(380, 355);
-    CGPoint letterAvalue30 = CGPointMake(390, 360);
-    CGPoint letterAvalue31 = CGPointMake(400, 380);
-    CGPoint letterAvalue32 = CGPointMake(402, 400);
-    CGPoint letterAvalue33 = CGPointMake(405, 420);
-    CGPoint letterAvalue34 = CGPointMake(407, 460);
-    CGPoint letterAvalue35 = CGPointMake(410, 500);
-    CGPoint letterAvalue36 = CGPointMake(410, 490);
-    CGPoint letterAvalue37 = CGPointMake(412, 460);
-    CGPoint letterAvalue38 = CGPointMake(414, 420);
-    CGPoint letterAvalue39 = CGPointMake(415, 400);
-    CGPoint letterAvalue40 = CGPointMake(425, 380);
-    CGPoint letterAvalue41 = CGPointMake(430, 360);
-    
-    NSMutableArray *pointsForSprite = [[NSMutableArray alloc]init];
-    
-    
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue1]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue2]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue3]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue4]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue5]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue6]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue7]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue8]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue9]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue10]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue11]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue12]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue13]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue14]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue15]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue16]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue17]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue18]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue19]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue20]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue21]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue22]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue23]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue24]];
-    /*[pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue25]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue26]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue27]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue28]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue29]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue30]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue31]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue32]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue33]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue34]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue35]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue36]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue37]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue38]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue39]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue40]];
-     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue41]];
-     */
+
 
     letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"b_red_1000x600.png"];
     NSURL *letterBurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
     letterB.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterBurl error:nil];
     letterB.name = @"B";
 
-    [letterB createControlPoints:pointsForSprite];
+    //[letterB createControlPoints:pointsForSprite];
     
     
     return letterB;
@@ -258,7 +197,7 @@ CGPoint startPoint;
     
     
     
-    letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600@2x.png"];
+    letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"c_600x600.png"];
     NSURL *letterCurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
     letterC.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterCurl error:nil];
     letterC.name = @"C";
@@ -268,7 +207,7 @@ CGPoint startPoint;
 }
 
 -(LowerCaseLetter *) createLetterD {
-    letterD = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600@2x.png"];
+    letterD = [LowerCaseLetter spriteNodeWithImageNamed:@"d_1000x600.png"];
     NSURL *letterDurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
     letterD.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterDurl error:nil];
     letterD.name = @"D";
@@ -278,97 +217,120 @@ CGPoint startPoint;
 }
 
 -(LowerCaseLetter *) createLetterE {
-    letterE = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600@2x.png"];
+    letterE = [LowerCaseLetter spriteNodeWithImageNamed:@"e_600x600.png"];
     NSURL *letterEurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
     letterE.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterEurl error:nil];
     letterE.name = @"E";
     
     
-    return letterB;
+    return letterE;
 }
 
--(void) createLetterF {
+-(LowerCaseLetter *) createLetterF {
+    letterF = [LowerCaseLetter spriteNodeWithImageNamed:@"f_850x600.png"];
+    return letterF;
     
 }
 
--(void) createLetterG {
+-(LowerCaseLetter *) createLetterG {
+    letterG = [LowerCaseLetter spriteNodeWithImageNamed:@"g_1000x600.png"];
+    return letterG;
     
 }
 
--(void) createLetterH {
-    
+-(LowerCaseLetter *) createLetterH {
+    letterH = [LowerCaseLetter spriteNodeWithImageNamed:@"h_1000x600.png"];
+    return letterH;
 }
 
--(void) createLetterI {
-    
+-(LowerCaseLetter *) createLetterI {
+    letterI = [LowerCaseLetter spriteNodeWithImageNamed:@"i_850x600.png"];
+    return letterI;
 }
 
--(void) createLetterJ {
-    
+-(LowerCaseLetter *) createLetterJ {
+    letterJ = [LowerCaseLetter spriteNodeWithImageNamed:@"j_1000x600.png"];
+    return letterJ;
 }
 
--(void) createLetterK {
-    
+-(LowerCaseLetter *) createLetterK {
+    letterK = [LowerCaseLetter spriteNodeWithImageNamed:@"k_1000x600.png"];
+    return letterK;
 }
 
--(void) createLetterL {
-    
+-(LowerCaseLetter *)createLetterL {
+    letterL = [LowerCaseLetter spriteNodeWithImageNamed:@"l_1000x600.png"];
+    return letterL;
 }
 
--(void) createLetterM {
-    
+-(LowerCaseLetter *)createLetterM {
+    letterM = [LowerCaseLetter spriteNodeWithImageNamed:@"m_600x850.png"];
+    return letterM;
 }
 
--(void) createLetterN {
-    
+-(LowerCaseLetter *)createLetterN {
+    letterN = [LowerCaseLetter spriteNodeWithImageNamed:@"n_600x600@2x.png"];
+    return letterN;
 }
 
--(void) createLetterO {
-    
+-(LowerCaseLetter *)createLetterO {
+    letterO = [LowerCaseLetter spriteNodeWithImageNamed:@"o_600x600@2x.png"];
+    return letterO;
 }
 
--(void) createLetterP {
-    
+-(LowerCaseLetter *)createLetterP {
+    letterP = [LowerCaseLetter spriteNodeWithImageNamed:@"p_1000x600.png"];
+    return letterP;
 }
 
--(void) createLetterQ {
-    
+-(LowerCaseLetter *)createLetterQ {
+    letterQ = [LowerCaseLetter spriteNodeWithImageNamed:@"q_1000x620.png"];
+    return letterQ;
 }
 
--(void) createLetterR {
-    
+-(LowerCaseLetter *)createLetterR {
+    letterR = [LowerCaseLetter spriteNodeWithImageNamed:@"r_600x620.png"];
+    return letterR;
 }
 
--(void) createLetterS {
-    
+-(LowerCaseLetter *)createLetterS {
+    letterS = [LowerCaseLetter spriteNodeWithImageNamed:@"s_600x600.png"];
+    return letterS;
 }
 
--(void) createLetterT {
-    
+-(LowerCaseLetter *)createLetterT {
+    letterT = [LowerCaseLetter spriteNodeWithImageNamed:@"t_850x600.png"];
+    return letterT;
 }
 
--(void) createLetterU {
-    
+-(LowerCaseLetter *)createLetterU {
+    letterU = [LowerCaseLetter spriteNodeWithImageNamed:@"u_600x600@2x.png"];
+    return letterU;
 }
 
--(void) createLetterV {
-    
+-(LowerCaseLetter *)createLetterV {
+    letterV = [LowerCaseLetter spriteNodeWithImageNamed:@"v_600x600.png"];
+    return letterV;
 }
 
--(void) createLetterW {
-    
+-(LowerCaseLetter *)createLetterW {
+    letterW = [LowerCaseLetter spriteNodeWithImageNamed:@"w_600x850.png"];
+    return letterW;
 }
 
--(void) createLetterX {
-    
+-(LowerCaseLetter *)createLetterX {
+    letterX = [LowerCaseLetter spriteNodeWithImageNamed:@"x_600x600.png"];
+    return letterX;
 }
 
--(void) createLetterY {
-    
+-(LowerCaseLetter *) createLetterY {
+    letterY = [LowerCaseLetter spriteNodeWithImageNamed:@"y_1000x600.png"];
+    return letterY;
 }
 
--(void) createLetterZ {
-    
+-(LowerCaseLetter *)createLetterZ {
+    letterZ = [LowerCaseLetter spriteNodeWithImageNamed:@"z_600x600@2x.png"];
+    return letterZ;
 }
 
 

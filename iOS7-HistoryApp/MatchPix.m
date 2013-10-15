@@ -12,6 +12,7 @@
 #import "MatchPix.h"
 #import "Parallax.h"
 #import "LowerCaseLetter.h"
+#import "IntroScreen.h"
 
 @implementation MatchPix
 
@@ -157,12 +158,30 @@ int questionCount;
         letterT.scale = 0.3;
         
         
-        letterA.position = CGPointMake(800, 500);
-        letterB.position = CGPointMake(650, 500);
-        letterC.position = CGPointMake(500, 500);
-        letterM.position = CGPointMake(350, 500);
-        letterS.position = CGPointMake(200, 500);
-        letterT.position = CGPointMake(50, 500);
+        letterA.position = CGPointMake(1600, 500);
+        letterB.position = CGPointMake(1450, 500);
+        letterC.position = CGPointMake(1300, 500);
+        letterM.position = CGPointMake(1150, 500);
+        letterS.position = CGPointMake(1000, 500);
+        letterT.position = CGPointMake(850, 500);
+        
+        SKAction *moveToPositionWithSound = [SKAction moveByX:-800 y:0 duration:3.0];
+        SKAction *playSound = [SKAction playSoundFileNamed:@"letterAsound.mp3" waitForCompletion:YES];
+        
+        SKAction *delayed = [SKAction waitForDuration:2.0];
+        SKAction *sequenceMove = [SKAction sequence:@[moveToPositionWithSound,playSound,delayed]];
+        
+        SKAction *transitionToBlocks = [SKAction runBlock:^{
+        
+            
+        }];
+        [letterA runAction:sequenceMove];
+        [letterB runAction:sequenceMove];
+        [letterC runAction:sequenceMove];
+        [letterM runAction:sequenceMove];
+        [letterS runAction:sequenceMove];
+        [letterT runAction:sequenceMove];
+        
         
         letterA.name = @"A";
         letterB.name = @"B";
@@ -185,25 +204,25 @@ int questionCount;
         [allLettersSprites addObject:letterF];
         [allLettersSprites addObject:letterG];
         
-        letterA.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:letterA.size];
-        letterA.physicsBody.restitution = 0.2;
+        //letterA.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:letterA.size];
+        //letterA.physicsBody.restitution = 0.2;
         
-        letterB.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:letterB.size];
-        letterB.physicsBody.restitution = 0.3;
-        
-        
-        letterC.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:letterB.size];
-        letterC.physicsBody.restitution = 0.1;
+        //letterB.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:letterB.size];
+        //letterB.physicsBody.restitution = 0.3;
         
         
-        letterM.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:letterB.size];
-        letterM.physicsBody.restitution = 0.3;
+        //letterC.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:letterB.size];
+        //letterC.physicsBody.restitution = 0.1;
         
-        letterS.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:letterB.size];
-        letterS.physicsBody.restitution = 0.4;
         
-        letterT.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:letterB.size];
-        letterT.physicsBody.restitution = 0.5;
+        //letterM.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:letterB.size];
+        //letterM.physicsBody.restitution = 0.3;
+        
+        //letterS.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:letterB.size];
+        //letterS.physicsBody.restitution = 0.4;
+        
+        //letterT.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:letterB.size];
+        //letterT.physicsBody.restitution = 0.5;
         
         SKAction *shake = [SKAction moveByX:0 y:10 duration:0.05];
         
@@ -289,8 +308,8 @@ int questionCount;
     picForQuestion.physicsBody.restitution = 0.5;
     
     
-    picForQuestion.position = CGPointMake(900, 600);
-    SKAction *moveTheImage = [SKAction moveByX:-300 y:0 duration:1.0];
+    picForQuestion.position = CGPointMake(1000, 400);
+    SKAction *moveTheImage = [SKAction moveByX:-600 y:0 duration:0.5];
     [self addChild:picForQuestion];
     [picForQuestion runAction:moveTheImage];
     
@@ -328,6 +347,15 @@ int questionCount;
     
     UITouch *touch = [touches anyObject];
     CGPoint theTouch = [touch locationInNode:self];
+    
+    if (CGRectContainsPoint(backToMainMenuArrow.frame, theTouch)) {
+        SKView *spriteView = (SKView *)self.view;
+        IntroScreen *introScreen = [IntroScreen sceneWithSize:spriteView.bounds.size];
+        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
+        introScreen.scaleMode = SKSceneScaleModeAspectFill;
+        [spriteView presentScene:introScreen transition:reveal];
+    }
+    
     
     if (CGRectContainsPoint(picForQuestion.frame, theTouch)) {
         
@@ -442,7 +470,7 @@ float degToRad(float degree) {
     
     
     
-    if (dt < 1.0) {
+    if (dt < 0.3) {
         dt = currentTime - lastUpdateTime + dt;
         
     } else {
@@ -516,29 +544,6 @@ float degToRad(float degree) {
         [self nextQuestion];
         
         
-    } else if (CGRectIntersectsRect(letterB.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"B"]) {
-        
-        self.userInteractionEnabled = NO;
-        [picForQuestion removeAllActions];
-        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
-        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
-        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
-        
-        [letterB runAction:sequenceUpDown];
-        
-        [avSound play];
-        
-        
-        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
-        tempPicForQ = picForQuestion;
-        [picForQuestion removeFromParent];
-        
-        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
-        [tempPicForQ runAction:flyBatAway];
-        
-        questionCount++;
-        
-        [self nextQuestion];
     } else if (CGRectIntersectsRect(letterC.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"C"]) {
         
         self.userInteractionEnabled = NO;
@@ -585,7 +590,30 @@ float degToRad(float degree) {
         questionCount++;
         
         [self nextQuestion];
-    }  else if (CGRectIntersectsRect(letterE.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"E"]) {
+    } else if (CGRectIntersectsRect(letterE.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"E"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    }  else if (CGRectIntersectsRect(letterF.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"F"]) {
             
         self.userInteractionEnabled = NO;
         [picForQuestion removeAllActions];
@@ -607,6 +635,466 @@ float degToRad(float degree) {
         
         questionCount++;
             
+        [self nextQuestion];
+    }  else if (CGRectIntersectsRect(letterG.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"G"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterI.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"I"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterJ.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"J"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterK.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"K"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterL.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"L"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterH.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"M"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterH.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"N"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterN.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"N"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterO.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"O"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterP.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"P"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterQ.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"Q"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterR.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"R"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterS.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"S"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterT.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"T"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterU.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"U"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterV.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"V"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterW.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"W"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterX.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"X"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterY.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"Y"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
+        [self nextQuestion];
+    } else if (CGRectIntersectsRect(letterZ.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"Z"]) {
+        
+        self.userInteractionEnabled = NO;
+        [picForQuestion removeAllActions];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
+        
+        [letterB runAction:sequenceUpDown];
+        
+        [avSound play];
+        
+        
+        SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
+        tempPicForQ = picForQuestion;
+        [picForQuestion removeFromParent];
+        
+        SKAction *flyBatAway = [SKAction moveByX:+500 y:-1000 duration:1.0];
+        [tempPicForQ runAction:flyBatAway];
+        
+        questionCount++;
+        
         [self nextQuestion];
     }
     
