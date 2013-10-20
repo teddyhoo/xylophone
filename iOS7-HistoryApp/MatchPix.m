@@ -161,15 +161,16 @@ int questionCount;
         letterA.position = CGPointMake(1600, 500);
         letterB.position = CGPointMake(1450, 500);
         letterC.position = CGPointMake(1300, 500);
-        letterM.position = CGPointMake(1150, 500);
-        letterS.position = CGPointMake(1000, 500);
-        letterT.position = CGPointMake(850, 500);
+        letterM.position = CGPointMake(1150, 200);
+        letterS.position = CGPointMake(1000, 200);
+        letterT.position = CGPointMake(850, 200);
         
-        SKAction *moveToPositionWithSound = [SKAction moveByX:-800 y:0 duration:3.0];
+        SKAction *moveToPositionWithSound = [SKAction moveByX:-600 y:0 duration:3.0];
         SKAction *playSound = [SKAction playSoundFileNamed:@"letterAsound.mp3" waitForCompletion:YES];
         
         SKAction *delayed = [SKAction waitForDuration:2.0];
         SKAction *sequenceMove = [SKAction sequence:@[moveToPositionWithSound,playSound,delayed]];
+        [letterA runAction:sequenceMove];
         
         SKAction *transitionToBlocks = [SKAction runBlock:^{
         
@@ -228,8 +229,6 @@ int questionCount;
         
         
         [self runAction:[SKAction repeatAction:[SKAction sequence:@[shake, [shake reversedAction]]]count:5]];
-        
-        
         
         [self addChild:letterA];
         [self addChild:letterB];
@@ -523,8 +522,8 @@ float degToRad(float degree) {
         
         self.userInteractionEnabled = NO;
         [picForQuestion removeAllActions];
-        SKAction *scaleTheLetter = [SKAction scaleTo:.9 duration:0.3];
-        SKAction *scaleDownTheLetter = [SKAction scaleTo:.2 duration:0.3];
+        SKAction *scaleTheLetter = [SKAction scaleTo:.5 duration:0.1];
+        SKAction *scaleDownTheLetter = [SKAction scaleTo:.1 duration:0.1];
         SKAction *sequenceUpDown = [SKAction sequence:@[scaleTheLetter, scaleDownTheLetter]];
         
         [letterB runAction:sequenceUpDown];

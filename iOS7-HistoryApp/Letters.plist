@@ -70,13 +70,68 @@
 		<key>phrase</key>
 		<string>Ball</string>
 		<key>animation</key>
-		<string>yes</string>
+		<string>no</string>
 		<key>scale</key>
 		<string>0.5</string>
 	</dict>
-	<dict/>
-	<dict/>
-	<dict/>
+	<dict>
+		<key>letter</key>
+		<string>C</string>
+		<key>image</key>
+		<string>camel</string>
+		<key>phrase</key>
+		<string>Camel</string>
+		<key>animation</key>
+		<string>no</string>
+		<key>scale</key>
+		<string>0.5</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>D</string>
+		<key>image</key>
+		<string>drum</string>
+		<key>phrase</key>
+		<string>Drum</string>
+		<key>animation</key>
+		<string>no</string>
+		<key>scale</key>
+		<string>0.5</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>M</string>
+		<key>image</key>
+		<string>sprite329</string>
+		<key>phrase</key>
+		<string>Mushroom</string>
+		<key>animation</key>
+		<string>no</string>
+		<key>scale</key>
+		<string>0.5</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>S</string>
+		<key>image</key>
+		<string>spring</string>
+		<key>phrase</key>
+		<string>Spring</string>
+		<key>animation</key>
+		<string>no</string>
+		<key>scale</key>
+		<string>0.5</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>T</string>
+		<key>image</key>
+		<string>table</string>
+		<key>phrase</key>
+		<string>Table</string>
+		<key>scale</key>
+		<string>0.5</string>
+	</dict>
 	<dict/>
 </array>
 </plist>

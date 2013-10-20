@@ -269,12 +269,12 @@ CGPoint startPoint;
 }
 
 -(LowerCaseLetter *)createLetterN {
-    letterN = [LowerCaseLetter spriteNodeWithImageNamed:@"n_600x600@2x.png"];
+    letterN = [LowerCaseLetter spriteNodeWithImageNamed:@"n_600x600.png"];
     return letterN;
 }
 
 -(LowerCaseLetter *)createLetterO {
-    letterO = [LowerCaseLetter spriteNodeWithImageNamed:@"o_600x600@2x.png"];
+    letterO = [LowerCaseLetter spriteNodeWithImageNamed:@"o_600x600.png"];
     return letterO;
 }
 
@@ -289,7 +289,7 @@ CGPoint startPoint;
 }
 
 -(LowerCaseLetter *)createLetterR {
-    letterR = [LowerCaseLetter spriteNodeWithImageNamed:@"r_600x620.png"];
+    letterR = [LowerCaseLetter spriteNodeWithImageNamed:@"r_600x600.png"];
     return letterR;
 }
 
@@ -304,7 +304,7 @@ CGPoint startPoint;
 }
 
 -(LowerCaseLetter *)createLetterU {
-    letterU = [LowerCaseLetter spriteNodeWithImageNamed:@"u_600x600@2x.png"];
+    letterU = [LowerCaseLetter spriteNodeWithImageNamed:@"u_600x600.png"];
     return letterU;
 }
 
@@ -329,7 +329,7 @@ CGPoint startPoint;
 }
 
 -(LowerCaseLetter *)createLetterZ {
-    letterZ = [LowerCaseLetter spriteNodeWithImageNamed:@"z_600x600@2x.png"];
+    letterZ = [LowerCaseLetter spriteNodeWithImageNamed:@"z_600x600.png"];
     return letterZ;
 }
 

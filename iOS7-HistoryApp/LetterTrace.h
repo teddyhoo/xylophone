@@ -8,7 +8,12 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface LetterTrace : SKScene
+@interface LetterTrace : SKScene{
+
+    int drawStep;
+    
+}
+
 
 @property (nonatomic,strong) SKSpriteNode* background;
 @property (nonatomic,strong) SKSpriteNode* selectedNode;

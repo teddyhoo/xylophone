@@ -134,7 +134,7 @@ CGFloat height;
         NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"sesame-street" withExtension:@"mp3"];
         
         avSound = [[AVAudioPlayer alloc]initWithContentsOfURL:soundURL error:nil];
-        //[avSound play];
+        [avSound play];
         
         dragNDrop = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
         dragNDrop.fontSize = 30;
