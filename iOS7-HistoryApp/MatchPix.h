@@ -10,4 +10,7 @@
 
 @interface MatchPix : SKScene
 
+-(void)attachDebugRectWithSize:(CGSize)s;
+-(void)attachDebugFrameFromPath:(CGPathRef)pathRef;
+
 @end

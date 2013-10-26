@@ -10,7 +10,18 @@
 
 @implementation LowerCaseLetter
 
-@synthesize baseSound, wordSample1, wordSample2, wordSample3, wordSample4;
+@synthesize baseSound, wordSample1, wordSample2, wordSample3, wordSample4, centerStage;
+
+
+
+-(void) atCenterStage {
+    
+    if (centerStage) {
+        centerStage = FALSE;
+    }  else {
+        centerStage = TRUE;
+    }
+}
 
 -(void) wordsForImages:(NSDictionary *)theWords {
     

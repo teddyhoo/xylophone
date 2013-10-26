@@ -13,6 +13,10 @@
 #import "Parallax.h"
 #import "LowerCaseLetter.h"
 #import "IntroScreen.h"
+#import "MontessoriData.h"
+
+static BOOL kDebugDraw = YES;
+
 
 @implementation MatchPix
 
@@ -70,6 +74,9 @@ LowerCaseLetter *letterX;
 LowerCaseLetter *letterY;
 LowerCaseLetter *letterZ;
 
+
+MontessoriData *sharedData;
+
 SKSpriteNode *backToMainMenuArrow;
 SKSpriteNode *selectedNode;
 BOOL objectSelected;
@@ -84,6 +91,9 @@ int questionCount;
         
         questionCount = 0;
         objectSelected = FALSE;
+        
+        sharedData = [MontessoriData sharedManager];
+
        
         NSString *pListData = [[NSBundle mainBundle]pathForResource:@"Letters" ofType:@"plist"];
         allPicsForQuestions = [[NSMutableArray alloc]initWithContentsOfFile:pListData];
@@ -121,9 +131,9 @@ int questionCount;
         
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
         
-        letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-a.png"];
-        letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-b.png"];
-        letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-c.png"];
+        letterA = sharedData.letterA;  //[LowerCaseLetter spriteNodeWithImageNamed:@"lower-a.png"];
+        letterB = sharedData.letterB;  //[LowerCaseLetter spriteNodeWithImageNamed:@"lower-b.png"];
+        letterC = sharedData.letterC;  //[LowerCaseLetter spriteNodeWithImageNamed:@"lower-c.png"];
         letterD = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-d.png"];
         letterE = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-e.png"];
         letterF = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-f.png"];
@@ -149,13 +159,13 @@ int questionCount;
         letterZ = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-z.png"];
        
         
-        letterA.scale = 0.3;
+        letterA.scale = 0.2;
         letterB.scale = 0.2;
-        letterC.scale = 0.3;
-        letterD.scale = 0.3;
-        letterM.scale = 0.3;
-        letterS.scale = 0.3;
-        letterT.scale = 0.3;
+        letterC.scale = 0.2;
+        letterD.scale = 0.2;
+        letterM.scale = 0.2;
+        letterS.scale = 0.2;
+        letterT.scale = 0.2;
         
         
         letterA.position = CGPointMake(1600, 500);
@@ -165,23 +175,34 @@ int questionCount;
         letterS.position = CGPointMake(1000, 200);
         letterT.position = CGPointMake(850, 200);
         
-        SKAction *moveToPositionWithSound = [SKAction moveByX:-600 y:0 duration:3.0];
-        SKAction *playSound = [SKAction playSoundFileNamed:@"letterAsound.mp3" waitForCompletion:YES];
+        SKAction *delayed = [SKAction waitForDuration:5];
         
-        SKAction *delayed = [SKAction waitForDuration:2.0];
-        SKAction *sequenceMove = [SKAction sequence:@[moveToPositionWithSound,playSound,delayed]];
-        [letterA runAction:sequenceMove];
+        SKAction *moveToPositionWithSound = [SKAction moveByX:-600 y:0 duration:1.0];
+        SKAction *playSound = [SKAction playSoundFileNamed:@"a.aiff" waitForCompletion:YES];
+        SKAction *playSoundForB = [SKAction playSoundFileNamed:@"b.aiff" waitForCompletion:YES];
+        
+        
+        SKAction *sequenceMove = [SKAction sequence:@[moveToPositionWithSound,playSound]];
+        SKAction *sequenceMoveForB = [SKAction sequence:@[moveToPositionWithSound, playSoundForB]];
+        
+        
+        //[letterA runAction:sequenceMove];
         
         SKAction *transitionToBlocks = [SKAction runBlock:^{
-        
-            
+            [letterA runAction:sequenceMove];
+            [self runAction:delayed];
+            [letterB runAction:sequenceMoveForB];
+
         }];
-        [letterA runAction:sequenceMove];
+        
+        [self runAction:transitionToBlocks];
+        
+        /*[letterA runAction:sequenceMove];
         [letterB runAction:sequenceMove];
         [letterC runAction:sequenceMove];
         [letterM runAction:sequenceMove];
         [letterS runAction:sequenceMove];
-        [letterT runAction:sequenceMove];
+        [letterT runAction:sequenceMove];*/
         
         
         letterA.name = @"A";
@@ -256,10 +277,10 @@ int questionCount;
 -(void) setupSounds {
     
     
-    NSURL *letterAurl = [[NSBundle mainBundle]URLForResource:@"letterAsound" withExtension:@"mp3"];
+    NSURL *letterAurl = [[NSBundle mainBundle]URLForResource:@"a" withExtension:@"aiff"];
     soundA = [[AVAudioPlayer alloc]initWithContentsOfURL:letterAurl error:nil];
     
-    NSURL *letterBurl = [[NSBundle mainBundle]URLForResource:@"letter-B-sound" withExtension:@"mp3"];
+    NSURL *letterBurl = [[NSBundle mainBundle]URLForResource:@"b" withExtension:@"aiff"];
     soundB = [[AVAudioPlayer alloc]initWithContentsOfURL:letterBurl error:nil];
     
     NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"voice_girl_tween_correct" withExtension:@"wav"];
@@ -292,6 +313,27 @@ int questionCount;
     
     return FALSE;
     
+}
+
+-(void)attachDebugFrameFromPath:(CGPathRef)bodyPath {
+    
+    if (kDebugDraw == NO) return;
+    
+    SKShapeNode *shape = [SKShapeNode node];
+    shape.path = bodyPath;
+    shape.strokeColor = [SKColor colorWithRed:1.0 green:0 blue:0 alpha:0.5];
+    shape.lineWidth = 1.0;
+    
+    [self addChild:shape];
+    
+}
+
+-(void)attacheDebugRectWithSize:(CGSize)s {
+    
+    CGPathRef bodyPath = CGPathCreateWithRect(CGRectMake(-s.width/2, -s.height/2, s.width, s.height), nil);
+    [self attachDebugFrameFromPath:bodyPath];
+    CGPathRelease(bodyPath);
+
 }
 
 

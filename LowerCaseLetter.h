@@ -26,7 +26,6 @@
     
     NSMutableDictionary *wordsForLetter;
     
-    
 }
 
 @property (nonatomic,retain) AVAudioPlayer *baseSound;
@@ -35,9 +34,12 @@
 @property (nonatomic,retain) AVAudioPlayer *wordSample3;
 @property (nonatomic,retain) AVAudioPlayer *wordSample4;
 @property (nonatomic,retain) NSMutableDictionary *wordsForLetter;
+@property BOOL centerStage;
 
 
 -(void) playTheSound;
 -(void) playWordSample:(NSNumber *)wordNumber;
 -(void) createControlPoints:(NSMutableArray *)controlPointsForLetter;
+-(void) atCenterStage;
+
 @end

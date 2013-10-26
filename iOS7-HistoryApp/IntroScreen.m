@@ -134,7 +134,7 @@ CGFloat height;
         NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"sesame-street" withExtension:@"mp3"];
         
         avSound = [[AVAudioPlayer alloc]initWithContentsOfURL:soundURL error:nil];
-        [avSound play];
+        //[avSound play];
         
         dragNDrop = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
         dragNDrop.fontSize = 30;
@@ -145,16 +145,16 @@ CGFloat height;
         [self addChild:dragNDrop];
         
         waveExercises = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-        waveExercises.fontSize = 8;
-        waveExercises.text = @"Wave Exercises";
+        waveExercises.fontSize = 30;
+        waveExercises.text = @"For Parents and Teachers";
         waveExercises.fontColor = [UIColor orangeColor];
         waveExercises.position = CGPointMake(200, 150);
         waveExercises.name = @"wave";
         [self addChild:waveExercises];
         
         handwritingScene = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-        handwritingScene.fontSize = 8;
-        handwritingScene.text = @"Handwriting";
+        handwritingScene.fontSize = 30;
+        handwritingScene.text = @"Credits";
         handwritingScene.fontColor = [UIColor orangeColor];
         handwritingScene.position = CGPointMake(200, 100);
         handwritingScene.name = @"handwriting";
@@ -167,7 +167,7 @@ CGFloat height;
         optionsMenu.fontColor = [UIColor greenColor];
         optionsMenu.position = CGPointMake(500,20);
         optionsMenu.name = @"menu";
-        //[self addChild:optionsMenu];
+        [self addChild:optionsMenu];
         
         NSMutableArray *frogHopTextures = [[NSMutableArray alloc]init];
         SKTextureAtlas *frogHopAtlas = [SKTextureAtlas atlasNamed:@"frog2.atlas"];

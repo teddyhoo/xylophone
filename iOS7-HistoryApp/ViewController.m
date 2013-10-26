@@ -51,6 +51,11 @@ MainMenu *theMainMenu;
 */
 
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+
 -(void) viewWillLayoutSubviews {
     
     [super viewWillLayoutSubviews];
@@ -65,6 +70,13 @@ MainMenu *theMainMenu;
         [spriteView presentScene:introScreen transition:reveal];
     }
     
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        // iOS 7
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    } else {
+        // iOS 6
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    }
 }
 
 
