@@ -7,10 +7,15 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+@import CoreImage;
 
 @interface LetterTrace : SKScene{
 
     int drawStep;
+    
+    SKEffectNode *effectNode;
+    CIFilter *filter;
+    
     
 }
 
