@@ -939,14 +939,6 @@
 		5543B8F417DCB4A100282295 /* Graphics Files */ = {
 			isa = PBXGroup;
 			children = (
-				AD24E2C8181C083A00A68266 /* left-yellow-mini-arrow.png */,
-				AD24E2C6181C071000A68266 /* arrow-purple-left.png */,
-				ADB760CE1815D72A0080EA5C /* arrow-green-up.png */,
-				ADB760CF1815D72A0080EA5C /* arrow-green-down.png */,
-				ADB760D01815D72A0080EA5C /* arrow-left-green.png */,
-				ADB760D11815D72A0080EA5C /* arrow-right-green.png */,
-				ADB760CC1815D5290080EA5C /* right-arrow-blue.png */,
-				ADB760CA1815D4B90080EA5C /* purple-arrow-right.png */,
 				AD398EAC17FE1086000327B9 /* writing_bckgnd_test_1.jpg */,
 				AD398EA717FE0CD1000327B9 /* sign.png */,
 				55493B6017E642DE00503CAC /* Incorrect.png */,
@@ -959,9 +951,6 @@
 				55C6F0BF17DDF9DF00056865 /* old-notebook-10.png */,
 				55C6F0C217DDFB7700056865 /* old-image-background.jpg */,
 				559A6A6717D3D560000489FC /* cartoon-exclamation.png */,
-				559A6A5C17D3D560000489FC /* cartoon-cloud2.png */,
-				55493B5117E51BCC00503CAC /* circle.png */,
-				559A6AA217D61206000489FC /* 2-circle-full.png */,
 				559A6A3F17D386AE000489FC /* gold-star.png */,
 				559A6A3C17D32992000489FC /* star-mark.png */,
 				55401D5817C6915E002C0633 /* Incorrect-iphone.png */,
@@ -1075,6 +1064,7 @@
 		55A07F7017C3158D003CB6F3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AD9DF48C181D7D2D00E9CA67 /* arrow.atlas */,
 				AD1A5AC218035689002C13D9 /* letters.atlas */,
 				ADF8DB0317FF1AD500A1B98D /* Sprites */,
 				55C6814917F3723800008B31 /* Block Letters */,
@@ -1329,6 +1319,23 @@
 			name = "SKAction Util";
 			sourceTree = "<group>";
 		};
+		AD9DF48C181D7D2D00E9CA67 /* arrow.atlas */ = {
+			isa = PBXGroup;
+			children = (
+				AD24E2C8181C083A00A68266 /* left-yellow-mini-arrow.png */,
+				AD24E2C6181C071000A68266 /* arrow-purple-left.png */,
+				ADB760CE1815D72A0080EA5C /* arrow-green-up.png */,
+				559A6AA217D61206000489FC /* 2-circle-full.png */,
+				ADB760CF1815D72A0080EA5C /* arrow-green-down.png */,
+				ADB760D01815D72A0080EA5C /* arrow-left-green.png */,
+				ADB760D11815D72A0080EA5C /* arrow-right-green.png */,
+				559A6A5C17D3D560000489FC /* cartoon-cloud2.png */,
+				ADB760CC1815D5290080EA5C /* right-arrow-blue.png */,
+				ADB760CA1815D4B90080EA5C /* purple-arrow-right.png */,
+			);
+			name = arrow.atlas;
+			sourceTree = "<group>";
+		};
 		ADF8DB0317FF1AD500A1B98D /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
@@ -1349,6 +1356,7 @@
 				ADF8DB0E17FF1B2C00A1B98D /* camel.png */,
 				ADF8DB0F17FF1B2C00A1B98D /* diamond.png */,
 				ADF8DB1017FF1B2C00A1B98D /* drum.png */,
+				55493B5117E51BCC00503CAC /* circle.png */,
 				ADF8DB1117FF1B2C00A1B98D /* duck.png */,
 				ADF8DB1217FF1B2C00A1B98D /* elephant.png */,
 				ADF8DB1317FF1B2C00A1B98D /* feather-red.png */,
