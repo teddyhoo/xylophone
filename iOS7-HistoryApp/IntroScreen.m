@@ -12,6 +12,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MatchPix.h"
 #import "LetterTrace.h"
+#import "Credits.h"
 
 @implementation IntroScreen
 
@@ -20,6 +21,7 @@
 @synthesize myMainMenu;
 @synthesize matchingScene;
 @synthesize traceScene;
+@synthesize credits;
 
 AVAudioPlayer *avSound;
 SKLabelNode *optionsMenu;
@@ -205,6 +207,13 @@ CGFloat height;
             spriteView = (SKView*)self.view;
             [spriteView presentScene:matchingScene transition:overDrag];
             
+        } else if (CGRectContainsPoint(handwritingScene.frame, theTouch)) {
+            
+            credits = [[Credits alloc]initWithSize:CGSizeMake(1024, 768)];
+            
+            SKTransition *creditTransition = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
+            spriteView = (SKView *)self.view;
+            [spriteView presentScene:credits transition:creditTransition];
         } else {
             //myMainMenu = [[MainMenu alloc]initWithSize:CGSizeMake(1024, 768)];
             

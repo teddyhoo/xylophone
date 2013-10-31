@@ -36,6 +36,7 @@ NSMutableArray *spriteFromPoint;
 NSMutableArray *controlPoints;
 NSMutableArray *shapeNodeObjects;
 NSMutableDictionary *arrowObjects;
+NSMutableArray *traceThePath;
 
 NSMutableDictionary *shapeNodeObjectForLetter;
 
@@ -92,12 +93,9 @@ AVAudioPlayer *soundG;
 SKSpriteNode *backToMainMenuArrow;
 
 
-SKSpriteNode *firstPencil;
-SKSpriteNode *secondPencil;
-SKSpriteNode *thirdPencil;
-SKSpriteNode *fourthPencil;
-SKSpriteNode *fifthPencil;
 SKEmitterNode *openEffect;
+SKSpriteNode *fingerTrace;
+
 SKSpriteNode *handPointer;
 
 int onWhichQuestion;
@@ -106,6 +104,7 @@ CGPoint deltaPoint;
 CGPoint previousPoint;
 CGPoint previousPoint2;
 CGPoint lastTrailPoint;
+CGMutablePathRef cgpath;
 
 BOOL firstPointTest;
 BOOL multiStroke;
@@ -157,7 +156,6 @@ CGFloat height;
     if (self) {
         
         sharedData = [MontessoriData sharedManager];
-        slv = [[SmoothLineView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
         
         
         //
@@ -194,41 +192,10 @@ CGFloat height;
         
         NSString *openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"CirclePop" ofType:@"sks"];
         openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
-        
-        NSMutableArray *header = [[NSMutableArray alloc]initWithObjects:
-                                  @"lower-s.png",
-                                  @"lower-o.png",
-                                  @"lower-u.png",
-                                  @"lower-n.png",
-                                  @"lower-d.png",
-                                  @"lower-s.png",
-                                  nil];
-        
-        int onLetter = 0;
+
         
         width = self.size.width;
         height = self.size.height;
-        
-       /* for (SKSpriteNode *letter in header) {
-            
-            NSString *nameOfSpriteFile = [header objectAtIndex:onLetter];
-            
-            SKSpriteNode *letterSprite = [SKSpriteNode spriteNodeWithImageNamed:nameOfSpriteFile];
-            letterSprite.scale = 0.24;
-            
-            letterSprite.position = CGPointMake(-2400 + onLetter*120, 710);
-            SKAction *moveAction = [SKAction moveByX:2600 y:0 duration:1.0];
-            [letterSprite runAction:moveAction];
-            [self addChild:letterSprite];
-            
-            
-            SKAction *spinLetter = [SKAction rotateByAngle:40 duration:1.2];
-            SKAction *spinLetter2 = [SKAction rotateByAngle:-40 duration:1.5];
-            [letterSprite runAction:spinLetter];
-            [letterSprite runAction:spinLetter2];
-            
-            onLetter++;
-        }*/
         
         onWhichQuestion = 0;
         onWhichGroup = 0;
@@ -257,13 +224,10 @@ CGFloat height;
         [self addChild:backToMainMenuArrow];
         
         SKSpriteNode *gridPaper = [SKSpriteNode spriteNodeWithImageNamed:@"writing_bckgnd_wood.jpg"];
-        gridPaper.position = CGPointMake(size.width/2, size.height/2-100);
+        gridPaper.position = CGPointMake(size.width/2, size.height/2);
         [self addChild:gridPaper];
         
         letterA = sharedData.letterA;
-        
-        
-        //letterA.position = CGPointMake(400, 200);
         
         letterB = sharedData.letterB;
         letterB.centerStage = FALSE;
@@ -405,7 +369,7 @@ CGFloat height;
         
         for (SKSpriteNode *letterSprite in groupOneLetters) {
             letterSprite.scale = 0.2;
-            letterSprite.position = CGPointMake(750,750 - i);
+            letterSprite.position = CGPointMake(950,750 - i);
             [self addChild:letterSprite];
             i += 80;
         }
@@ -465,7 +429,20 @@ CGFloat height;
     
 }
 
-
+-(SKAction *)createActionForCenterStage:(LowerCaseLetter *)letterToCenter
+                         offStageLetter:(LowerCaseLetter *)letterToMoveOff
+{
+    
+    CGPoint locationToMove = letterToMoveOff.position;
+    CGPoint locationToMoveOn = letterToCenter.position;
+    SKAction *moveLetterOff = [SKAction moveTo:locationToMove duration:1.0];
+    SKAction *scaleLetterDown = [SKAction scaleTo:0.1 duration:0.3];
+    SKAction *moveLetterOnstage = [SKAction moveTo:locationToMoveOn duration:1.0];
+    
+    
+    return moveLetterOff;
+    
+}
 
 -(void) nextQuestion {
     
@@ -476,6 +453,7 @@ CGFloat height;
     controlPoints = [[NSMutableArray alloc]init];
     arrowObjects = [[NSMutableDictionary alloc]init];
     hitBoxTrack = [[NSMutableArray alloc]init];
+    traceThePath = [[NSMutableArray alloc]init];
     
     
     float startPointX;
@@ -490,10 +468,12 @@ CGFloat height;
 
         [letterA playTheSound];
         [self createLetterA];
+        [self cleanUpAndRemoveShapeNode];
+        letterA.centerStage = TRUE;
         
         letterA.position = CGPointMake(500, 300);
         letterA.scale = 1.0;
-        letterA.centerStage = TRUE;
+        
         
         handPointer = [SKSpriteNode spriteNodeWithImageNamed:@"arrow-left-green.png"];
         handPointer.position = CGPointMake(660, 425);
@@ -506,16 +486,59 @@ CGFloat height;
         SKAction *moveDown = [SKAction moveByX:+10 y:0 duration:0.3];
         SKAction *repeatmoveUpDown = [SKAction repeatAction:moveUp count:3];
         SKAction *repeatmoveUpDown2  = [SKAction repeatAction:moveDown count:3];
-        
         SKAction *scaleUp = [SKAction scaleXTo:1.2 duration:0.6];
-        
         SKAction *sequenceArrow = [SKAction sequence:@[moveUp,moveDown,scaleUp,moveUp,moveDown,repeatmoveUpDown, repeatmoveUpDown2,[SKAction removeFromParent]]];
         [handPointer runAction:sequenceArrow];
 
-        //letterB.scale = 0.1;
         startPointX = 150;
         startPointY = 80;
-    
+        
+        SKSpriteNode *fingerTrace = [SKSpriteNode spriteNodeWithImageNamed:@"hand-point-45-degrees-left.png"];
+        fingerTrace.position = CGPointMake(620, 400);
+        fingerTrace.scale = 0.7;
+        fingerTrace.zPosition = 100;
+        fingerTrace.name = @"finger";
+        
+        [self addChild:fingerTrace];
+        
+        
+        SKAction *scaleHand = [SKAction scaleYTo:1.4 duration:0.3];
+        SKAction *rotateRight = [SKAction rotateByAngle:.33 duration:0.1];
+        scaleHand.timingMode = SKActionTimingEaseInEaseOut;
+        SKAction *scaleDown = [SKAction scaleYTo:0.7 duration:0.5];
+        SKAction *sequenceScaling = [SKAction sequence:@[scaleHand,scaleDown]];
+        [fingerTrace runAction:sequenceScaling];
+        [fingerTrace runAction:rotateRight];
+        //[fingerTrace runAction:scaleDown];
+        
+       
+        SKLabelNode *directions = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        directions.text = @"Watch how hand traces letter";
+        directions.fontColor = [UIColor blueColor];
+        directions.position = CGPointMake(620,480);
+        directions.fontSize = 16;
+        
+        SKLabelNode *directions2 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        directions2.text = @"Then you do the same.";
+        directions2.fontColor = [UIColor blueColor];
+        directions2.position = CGPointMake(620,450);
+        directions.fontSize = 16;
+        
+        [self addChild:directions];
+        [self addChild:directions2];
+        
+        SKAction *removeText = [SKAction removeFromParent];
+        SKAction *delayText = [SKAction waitForDuration:3.5];
+        SKAction *delayHand = [SKAction waitForDuration:2.5];
+        SKAction *tutorHandAction = [SKAction followPath:cgpath asOffset:NO orientToPath:NO duration:5.0];
+        tutorHandAction.timingMode = SKActionTimingEaseInEaseOut;
+        SKAction *removeHand = [SKAction removeFromParent];
+        SKAction *sequenceHand = [SKAction sequence:@[delayHand,tutorHandAction,removeHand,removeText]];
+        
+        [fingerTrace runAction:sequenceHand];
+        SKAction *sequenceRemove = [SKAction sequence:@[delayText,removeText]];
+        [directions runAction:sequenceRemove];
+        [directions2 runAction:sequenceRemove];
     }
     else if (onWhichQuestion == 1) {
 
@@ -523,7 +546,6 @@ CGFloat height;
         [letterB playTheSound];
         [self cleanUpAndRemoveShapeNode];
         [handPointer removeFromParent];
-        
         letterB.centerStage = YES;
         
         SKAction *moveLetterA = [SKAction moveTo:CGPointMake(100, 120) duration:1.0];
@@ -603,7 +625,9 @@ CGFloat height;
         [self createLetterM];
         [letterM playTheSound];
         [self cleanUpAndRemoveShapeNode];
-
+        [handPointer removeFromParent];
+        letterM.centerStage = TRUE;
+        
         SKAction *moveLetterC = [SKAction moveTo:CGPointMake(100, 220) duration:1.0];
         SKAction *scaleLetterC = [SKAction scaleTo:0.1 duration:1.0];
         
@@ -626,29 +650,29 @@ CGFloat height;
         [self createLetterS];
         [letterS playTheSound];
         [self cleanUpAndRemoveShapeNode];
+        [handPointer removeFromParent];
+        letterS.centerStage = TRUE;
         
+        SKAction *moveLetterM = [SKAction moveTo:CGPointMake(100, 270) duration:1.0];
+        SKAction *scaleLetterM = [SKAction scaleTo:0.1 duration:1.0];
         
-        SKAction *moveLetterS = [SKAction moveTo:CGPointMake(100, 270) duration:1.0];
-        SKAction *scaleLetterS = [SKAction scaleTo:0.1 duration:1.0];
-        
-        [letterM runAction:moveLetterS];
-        [letterM runAction:scaleLetterS];
+        [letterM runAction:moveLetterM];
+        [letterM runAction:scaleLetterM];
         
         letterS.scale = 1.0;
-        
         NSValue *theArrowPoint = [pointsForSprite objectAtIndex:0];
-        
         [self arrowPointerToDraw:@"left" location:[theArrowPoint CGPointValue]];
-
-
-        SKAction *moveLetterD = [SKAction moveTo:CGPointMake(500, 300) duration:1.0];
-        [letterS runAction:moveLetterD];
+        
+        SKAction *moveLetterS = [SKAction moveTo:CGPointMake(500, 300) duration:1.0];
+        [letterS runAction:moveLetterS];
         
     } else if (onWhichQuestion == 5) {
+        
         [self createLetterT];
         [letterT playTheSound];
         [self cleanUpAndRemoveShapeNode];
-        
+        [handPointer removeFromParent];
+        letterT.centerStage = TRUE;
     
         SKAction *moveLetterS = [SKAction moveTo:CGPointMake(100, 320) duration:1.0];
         SKAction *scaleLetterS = [SKAction scaleTo:0.1 duration:1.0];
@@ -664,32 +688,77 @@ CGFloat height;
         SKAction *moveLetterT = [SKAction moveTo:CGPointMake(500, 360) duration:1.0];
         [letterT runAction:moveLetterT];
         
+
        
     } else if (onWhichQuestion == 6) {
         
-        SKAction *moveLetterS = [SKAction moveTo:CGPointMake(100, 350) duration:1.0];
-        SKAction *scaleLetterS = [SKAction scaleTo:0.1 duration:1.0];
+        [self createLetterO];
+        [letterO playTheSound];
+        [self cleanUpAndRemoveShapeNode];
+        [handPointer removeFromParent];
+        letterO.centerStage = TRUE;
         
-        [letterT runAction:moveLetterS];
-        [letterT runAction:scaleLetterS];
+        SKAction *moveLetterOff = [SKAction moveTo:CGPointMake(100, 350) duration:1.0];
+        SKAction *scaleLetterDown = [SKAction scaleTo:0.1 duration:1.0];
         
-        int i = 0;
+        [letterT runAction:moveLetterOff];
+        [letterT runAction:scaleLetterDown];
         
-        for (SKSpriteNode *letterSprite in groupOneLetters) {
-            letterSprite.scale = 0.2;
-            letterSprite.position = CGPointMake(750,750 - i);
-            [self addChild:letterSprite];
-            i += 80;
-        }
-        //[self finishedWithGroup];
+        letterO.scale = 1.0;
+        NSValue *theArrowPoint = [pointsForSprite objectAtIndex:0];
+        [self arrowPointerToDraw:@"left" location:[theArrowPoint CGPointValue]];
+        SKAction *moveLetterOn = [SKAction moveTo:CGPointMake(500, 360) duration:1.0];
+        [letterO runAction:moveLetterOn];
+
         
     } else if (onWhichQuestion == 7) {
         
+        [self createLetterG];
+        
+        SKAction *moveLetterOff = [SKAction moveTo:CGPointMake(100, 350) duration:1.0];
+        SKAction *scaleLetterDown = [SKAction scaleTo:0.1 duration:1.0];
+        
+        [letterO runAction:moveLetterOff];
+        [letterO runAction:scaleLetterDown];
+        
+        
+        letterG.scale = 1.0;
+        NSValue *theArrowPoint = [pointsForSprite objectAtIndex:0];
+        [self arrowPointerToDraw:@"left" location:[theArrowPoint CGPointValue]];
+        SKAction *moveLetterOn = [SKAction moveTo:CGPointMake(500, 360) duration:1.0];
+        [letterG runAction:moveLetterOn];
+        
     } else if (onWhichQuestion == 8) {
+        SKAction *moveLetterOff = [SKAction moveTo:CGPointMake(100, 350) duration:1.0];
+        SKAction *scaleLetterDown = [SKAction scaleTo:0.1 duration:1.0];
+        
+        
+        [letterG runAction:moveLetterOff];
+        [letterG runAction:scaleLetterDown];
+        
+        letterR.scale = 1.0;
+        NSValue *theArrowPoint = [pointsForSprite objectAtIndex:0];
+        [self arrowPointerToDraw:@"left" location:[theArrowPoint CGPointValue]];
+        SKAction *moveLetterOn = [SKAction moveTo:CGPointMake(500, 360) duration:1.0];
+        [letterR runAction:moveLetterOn];
         
     } else if (onWhichQuestion == 9) {
+        SKAction *moveLetterOff = [SKAction moveTo:CGPointMake(100, 350) duration:1.0];
+        SKAction *scaleLetterDown = [SKAction scaleTo:0.1 duration:1.0];
+        
+        [letterR runAction:moveLetterOff];
+        [letterR runAction:scaleLetterDown];
+        
+        letterD.scale = 1.0;
+        NSValue *theArrowPoint = [pointsForSprite objectAtIndex:0];
+        [self arrowPointerToDraw:@"left" location:[theArrowPoint CGPointValue]];
+        SKAction *moveLetterOn = [SKAction moveTo:CGPointMake(500, 360) duration:1.0];
+        [letterD runAction:moveLetterOn];
         
     } else if (onWhichQuestion == 10) {
+        SKAction *moveLetterOff = [SKAction moveTo:CGPointMake(100, 350) duration:1.0];
+        SKAction *scaleLetterDown = [SKAction scaleTo:0.1 duration:1.0];
+        letterF.scale = 1.0;
         
     } else if (onWhichQuestion == 11) {
         
@@ -729,41 +798,19 @@ CGFloat height;
     for (NSValue *pointValue in pointsForSprite) {
         
         SKSpriteNode *spritePoint;
-        
-        if (onWhichQuestion == 0) {
-            spritePoint = [SKSpriteNode spriteNodeWithImageNamed:@"left-yellow-mini-arrow.png"];
-        } else if (onWhichQuestion == 1) {
-            spritePoint = [SKSpriteNode spriteNodeWithImageNamed:@"left-yellow-mini-arrow.png"];
-        } else if (onWhichQuestion == 2) {
-            spritePoint = [SKSpriteNode spriteNodeWithImageNamed:@"left-yellow-mini-arrow.png"];
-        } else if (onWhichQuestion == 3) {
-            spritePoint = [SKSpriteNode spriteNodeWithImageNamed:@"left-yellow-mini-arrow.png"];
-        } else if (onWhichQuestion == 4) {
-            spritePoint = [SKSpriteNode spriteNodeWithImageNamed:@"left-yellow-mini-arrow.png"];
-        } else if (onWhichQuestion == 5) {
-            spritePoint = [SKSpriteNode spriteNodeWithImageNamed:@"left-yellow-mini-arrow.png"];
-        } else {
-            spritePoint = [SKSpriteNode spriteNodeWithImageNamed:@"left-yellow-mini-arrow.png"];
-        }
-        
-        CGPoint finalLocation = [pointValue CGPointValue];
+        spritePoint = [SKSpriteNode spriteNodeWithImageNamed:@"left-yellow-mini-arrow.png"];
 
+        CGPoint finalLocation = [pointValue CGPointValue];
+        
         [arrowObjects enumerateKeysAndObjectsUsingBlock:^(NSNumber* key, NSNumber *value, BOOL *stop) {
             
             if (spritePointCount == [key integerValue]) {
-                NSLog(@"key: %@, val: %f, spritePointCount: %i", key, [value floatValue],spritePointCount);
                 spritePoint.zRotation = [value floatValue];
-                
-                NSLog(@"rotation = %f", spritePoint.zRotation);
-                
-                
             }
         }];
 
         spritePoint.position = CGPointMake(finalLocation.x, finalLocation.y);
-        
-        //spritePoint.position = CGPointMake(finalLocation.x+300, finalLocation.y+400);
-        spritePoint.name = @"wheel";
+        spritePoint.name = @"firstLine";
         
         if (spritePointCount == 0) {
             spritePoint.alpha = 1.0;
@@ -775,15 +822,6 @@ CGFloat height;
         }
         
         [self addChild:spritePoint];
-        
-        //float moveTime = 0.1 * (float)spritePointCount;
-        //float moveTime = 0.1;
-        
-        
-        //SKAction *movePointsX = [SKAction moveToX:finalLocation.x+startPointX duration:moveTime];
-        //SKAction *movePointsY = [SKAction moveToY:finalLocation.y+startPointY duration:moveTime];
-        //[spritePoint runAction:movePointsX];
-        //[spritePoint runAction:movePointsY];
         
         [spriteFromPoint addObject:spritePoint];
         if (spritePointCount == 0) {
@@ -808,34 +846,9 @@ CGFloat height;
         [spriteHit closePath];
         
         hitBox.path = spriteHit.CGPath;
-        
         hitBox.strokeColor= SKColorWithRGBA(255, 255, 255, 250);
-        
         //[self addChild:hitBox];
         [hitBoxTrack addObject:hitBox];
-        
-        
-        /*UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(-5.0f,-5.0f, 5.0f,5.0f)];
-         
-         SKShapeNode *shapeNode = [SKShapeNode node];
-         shapeNode.path = path.CGPath;
-         shapeNode.position = point;
-         if (firstStrokeComplete && multiStroke) {
-         shapeNode.strokeColor = SKColorWithRGBA(255, 255, 255, 250);
-         } else {
-         shapeNode.strokeColor = SKColorWithRGBA(255, 255, 255, 250);
-         }
-         shapeNode.lineWidth = 1;
-         shapeNode.antialiased = NO;
-         [self addChild:shapeNode];
-         
-         
-         
-         const NSTimeInterval Duration = 0.2;
-         SKAction *scaleAction = [SKAction scaleTo:6.0f duration:Duration];
-         scaleAction.timingMode = SKActionTimingEaseOut;
-         
-        [shapeNode runAction:scaleAction];*/
         
         spritePointCount++;
     }
@@ -847,7 +860,7 @@ CGFloat height;
             CGPoint finalLocation = [pointValue2 CGPointValue];
             spritePoint2.position = CGPointMake(finalLocation.x+300, finalLocation.y+400);
             spritePoint2.scale = 0.3;
-            spritePoint2.name = @"pixie";
+            spritePoint2.name = @"secondLine";
             spritePoint2.alpha = 0.0;
             [self addChild:spritePoint2];
             float moveTime = 0.07 * (float)spritePointCount;
@@ -873,21 +886,8 @@ CGFloat height;
             spritePointCount++;
         }
     }
-    
 }
 
--(SKAction *)createPathForLetter:(CGPoint)start e:(CGPoint)end   {
-    
-    CGMutablePathRef cgpath = CGPathCreateMutable();
-    
-    CGPoint cp1 = CGPointMake(start.x/2, start.y/2);
-    CGPoint cp2 = CGPointMake(end.x/2, end.y/2);
-    CGPathMoveToPoint(cgpath, NULL, start.x, start.y);
-    CGPathAddCurveToPoint(cgpath, NULL, cp1.x, cp1.y, cp2.x, cp2.y, end.x, end.y);
-    SKAction *thePath = [SKAction followPath:cgpath asOffset:NO orientToPath:YES duration:0.2];
-    return thePath;
-    
-}
 
 -(void) moveLetterFromCenterStage:(LowerCaseLetter *)letterOff display:(LowerCaseLetter *)letterOn {
     
@@ -992,7 +992,7 @@ CGFloat height;
     } else if ([direction isEqualToString:@"left"]) {
         handPointer = [SKSpriteNode spriteNodeWithImageNamed:@"arrow-left-green.png"];
         handPointer.scale = 0.5;
-        pointForArrow.x += 50;
+        pointForArrow.x += 100;
         moveUp = [SKAction moveByX:-10 y:0 duration:0.3];
         moveDown = [SKAction moveByX:10 y:0 duration:0.3];
         repeatmoveUpDown = [SKAction repeatAction:moveUp count:3];
@@ -1032,9 +1032,6 @@ CGFloat height;
     [self addChild:finishedLevel];
     SKAction *moveAction = [SKAction moveToX:500 duration:1.5];
     [finishedLevel runAction:moveAction];
-    [firstPencil runAction:moveAction];
-    SKAction *rotatePencil = [SKAction rotateByAngle:45 duration:1.5];
-    [firstPencil runAction:rotatePencil];
     
     SKAction *waitToTransition = [SKAction waitForDuration:0.5];
     SKAction *transitionToBlocks = [SKAction runBlock:^{
@@ -1058,18 +1055,6 @@ CGFloat height;
     
     UITouch *touch = [touches anyObject];
     CGPoint theTouch = [touch locationInNode:self];
-
-    if(pointsForSprite != NULL) {
-        NSValue *pointForFirstSpriteNSV = [pointsForSprite objectAtIndex:0];
-        CGPoint spritePoint = [pointForFirstSpriteNSV CGPointValue];
-        CGRect spritePointRect = CGRectMake(spritePoint.x-40, spritePoint.y-40, 45, 45);
-        
-        if (CGRectContainsPoint (spritePointRect, theTouch)) {
-            firstPointTest = TRUE;
-            NSLog(@"first point test");
-        }
-        
-    }
     
     for (LowerCaseLetter *tapLetter in allLettersSprites) {
         
@@ -1088,12 +1073,6 @@ CGFloat height;
             NSLog(@"question counter: %i", onWhichQuestion);
             
             [self nextQuestion];
-            
-            
-            //} else {
-
-            //}
-            
             
         }
     }
@@ -1129,14 +1108,16 @@ static inline CGFloat RandomRange(CGFloat min,
     [self letterShapeNode:theTouch];
 
     if(pointsForSprite != NULL) {
-        NSValue *pointForFirstSpriteNSV = [pointsForSprite objectAtIndex:0];
-        CGPoint spritePoint = [pointForFirstSpriteNSV CGPointValue];
-        CGRect spritePointRect = CGRectMake(spritePoint.x-40, spritePoint.y-40, 45, 45);
         
-        if (CGRectContainsPoint (spritePointRect, theTouch)) {
+        SKSpriteNode *firstPointSprite = [spriteFromPoint objectAtIndex:0];
+        
+        if (CGRectContainsPoint (firstPointSprite.frame, theTouch)) {
             firstPointTest = TRUE;
             NSLog(@"first point test");
         }
+        
+        [firstPointSprite runAction:[SKAction removeFromParent]];
+        
         
     }
 
@@ -1146,33 +1127,16 @@ static inline CGFloat RandomRange(CGFloat min,
     for (SKSpriteNode *pointHit in spriteFromPoint) {
 
         onWhichPoint++;
-
-        CGRect myControlPoint = CGRectMake(pointHit.position.x-40, pointHit.position.y-40, 45, 45);
-
-        //if (CGRectContainsPoint(myControlPoint, theTouch)) {
         
-        if (CGRectContainsPoint(pointHit.frame, theTouch)) {
-            NSLog(@"sprite Point: %i, onWhich: %i", [spriteFromPoint count], onWhichPoint);
-
-            SKAction *upAction = [SKAction moveByX:-10.90f y:20.0f duration:0.01];
-
-            SKAction *downAction = [SKAction moveByX:-400.0f y:0.0f duration:0.01];
-
-            
+        if (CGRectContainsPoint(pointHit.frame, theTouch) && !firstStrokeComplete) {
             if ([spriteFromPoint count] == onWhichPoint) {
                 
                 firstStrokeComplete = TRUE;
                 
-                //SKSpriteNode *firstFromSecondSpritePoint = [spriteFromPoint2 objectAtIndex:0];
-                //firstFromSecondSpritePoint.alpha = 1.0;
-                
-                //for (SKSpriteNode *secondPointHit in spriteFromPoint2) {
-                    //secondPointHit.alpha = 1.0;
-                //}
             }
             
             SKAction *remove = [SKAction removeFromParent];
-            [pointHit runAction:[SKAction sequence:@[upAction,downAction,remove]]];
+            [pointHit runAction:remove];
             
             if (onWhichPoint < [spriteFromPoint count]) {
                 SKSpriteNode *nextOne = [spriteFromPoint objectAtIndex:onWhichPoint];
@@ -1245,7 +1209,7 @@ static inline CGFloat RandomRange(CGFloat min,
                 [filter setValue:[NSNumber numberWithFloat:randVal] forKey:@"inputAngle"];
             }
             
-            if (onWhichPoint + 4 < [spriteFromPoint count]) {
+            /*if (onWhichPoint + 4 < [spriteFromPoint count]) {
                 SKSpriteNode *nextFive = [spriteFromPoint objectAtIndex:onWhichPoint + 4];
                 [nextFive runAction:lightUp4];
             }
@@ -1255,7 +1219,7 @@ static inline CGFloat RandomRange(CGFloat min,
                 SKSpriteNode *nextSix = [spriteFromPoint objectAtIndex:onWhichPoint + 5];
                 [nextSix runAction:lightUp4];
             }
-            
+            */
             
         }
         
@@ -1270,16 +1234,14 @@ static inline CGFloat RandomRange(CGFloat min,
         
         firstOne.alpha = 1.0;
         
-        [firstOne runAction:[SKAction scaleTo:1 duration:0.1]];
+        [firstOne runAction:[SKAction scaleXBy:.7 y:1.2 duration:0.01]];
         
         for (SKSpriteNode *pointHit in spriteFromPoint2) {
         
             secondSpritePointCount++;
             totalCountOfSprites++;
-            
-            CGRect myControlPoint = CGRectMake(pointHit.position.x-40, pointHit.position.y-20, 45, 45);
         
-            if (CGRectContainsPoint(myControlPoint, theTouch)) {
+            if (CGRectContainsPoint(pointHit.frame, theTouch)) {
                 
                 [arrowObjects enumerateKeysAndObjectsUsingBlock:^(NSNumber* key, NSNumber *value, BOOL *stop) {
                     
@@ -1288,15 +1250,8 @@ static inline CGFloat RandomRange(CGFloat min,
                     }
                 }];
 
-                SKAction *upAction = [SKAction moveByX:0.0f y:10.0f duration:0.1];
-                upAction.timingMode = SKActionTimingEaseOut;
-                SKAction *downAction = [SKAction moveByX:-10.0f y:-10.0 duration:0.1];
-                downAction.timingMode = SKActionTimingEaseOut;
-
-            
                 SKAction *remove = [SKAction removeFromParent];
-                [pointHit runAction:[SKAction sequence:@[upAction,downAction,remove]]];
-                
+                [pointHit runAction:remove];
                 
                 if (secondSpritePointCount < [spriteFromPoint2 count]) {
                     SKSpriteNode *nextOne = [spriteFromPoint2 objectAtIndex:secondSpritePointCount];
@@ -1369,7 +1324,7 @@ static inline CGFloat RandomRange(CGFloat min,
                     [filter setValue:[NSNumber numberWithFloat:randVal] forKey:@"inputAngle"];
                 }
                 
-                if (secondSpritePointCount + 4 < [spriteFromPoint2 count]) {
+                /*if (secondSpritePointCount + 4 < [spriteFromPoint2 count]) {
                     SKSpriteNode *nextFive = [spriteFromPoint2 objectAtIndex:secondSpritePointCount + 4];
                     [nextFive runAction:lightUp4];
                 }
@@ -1378,7 +1333,7 @@ static inline CGFloat RandomRange(CGFloat min,
                     
                     SKSpriteNode *nextSix = [spriteFromPoint2 objectAtIndex:secondSpritePointCount + 5];
                     [nextSix runAction:lightUp4];
-                }
+                }*/
      
             }
         }
@@ -1389,18 +1344,10 @@ static inline CGFloat RandomRange(CGFloat min,
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    //[self removeSpriteFromScene];
-    
-    
-    
-    
     if (firstPointTest) {
-        NSLog(@"first point test true");
+        NSLog(@"on Which Question, %i", onWhichQuestion);
         for (SKSpriteNode *spritePoint in spriteFromPoint) {
-        
-            SKAction *moveTest = [SKAction moveTo:CGPointMake(0, 0) duration:0.1];
             [spritePoint removeFromParent];
-            //[spritePoint runAction:moveTest];
         }
     
         for (SKShapeNode *hitNode in hitBoxTrack) {
@@ -1415,13 +1362,29 @@ static inline CGFloat RandomRange(CGFloat min,
 
         firstPointTest = FALSE;
         onWhichQuestion++;
+        
+        if (onWhichQuestion == 5) {
+            int i = 0;
+            for (SKSpriteNode *letterSprite in groupTwoLetters) {
+                letterSprite.scale = 0.2;
+                letterSprite.position = CGPointMake(750,650 - i);
+                [self addChild:letterSprite];
+                i += 100;
+            }
+        }
 
     }
     
 }
 
 -(void)update:(NSTimeInterval)currentTime {
-    
+  
+    [self enumerateChildNodesWithName:@"firstLine" usingBlock:^(SKNode *node, BOOL *stop) {
+        SKSpriteNode *arrowOnFirstLine = (SKSpriteNode *)node;
+        if (CGRectIntersectsRect(arrowOnFirstLine.frame, fingerTrace.frame)) {
+            [arrowOnFirstLine removeFromParent];
+        }
+    }];
     
     if (multiStroke && firstStrokeComplete && arrowAdded == FALSE) {
         
@@ -1491,8 +1454,10 @@ static inline CGFloat RandomRange(CGFloat min,
     multiStroke = TRUE;
     secondStroke = @"down";
     
+    
+    
+    
     CGPoint letterAvalue1 = CGPointMake(beginx-100, beginy+40);
-
     CGPoint letterAvalue5 = CGPointMake(beginx - 180, beginy + 40);
     CGPoint letterAvalue6 = CGPointMake(beginx - 210, beginy +25);
     CGPoint letterAvalue7 = CGPointMake(beginx - 230, beginy);
@@ -1512,6 +1477,27 @@ static inline CGFloat RandomRange(CGFloat min,
     CGPoint letterAvalue23 = CGPointMake(beginx-180, beginy - 20);
     CGPoint letterAvalue24 = CGPointMake(beginx-180, beginy - 160);
     CGPoint letterAvalue25 = CGPointMake(beginx-180, beginy - 240);
+    
+    cgpath = CGPathCreateMutable();
+    
+    CGPathMoveToPoint(cgpath, NULL, beginx, beginy);
+    
+    CGPathAddCurveToPoint(cgpath, NULL,
+                          letterAvalue6.x,letterAvalue6.y-40,
+                          letterAvalue8.x+20,letterAvalue8.y-40,
+                          letterAvalue10.x+40, letterAvalue10.y);
+    
+    CGPathAddCurveToPoint(cgpath, NULL,
+                          letterAvalue10.x+40, letterAvalue10.y,
+                          letterAvalue14.x, letterAvalue14.y-30,
+                          letterAvalue17.x, letterAvalue17.y-80);
+    
+    CGPathAddCurveToPoint(cgpath, NULL,
+                          letterAvalue18.x+80, letterAvalue18.y-10,
+                          letterAvalue19.x+80, letterAvalue19.y-10,
+                          letterAvalue20.x+70, letterAvalue20.y);
+    
+    CGPathAddLineToPoint(cgpath, NULL, letterAvalue25.x+160, letterAvalue25.y);
     
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue1]];
     [arrowObjects setObject:[NSNumber numberWithFloat:18.9] forKey:@"0"];
@@ -1569,11 +1555,7 @@ static inline CGFloat RandomRange(CGFloat min,
     [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"18"];
     [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue25]];
     [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"19"];
-    
 
-
-
-    
 }
 
 
@@ -1755,8 +1737,38 @@ static inline CGFloat RandomRange(CGFloat min,
     float beginx = 400;
     float beginy = 650;
     
-    multiStroke = TRUE;
-    secondStroke = @"up";
+    multiStroke = FALSE;
+    
+    CGPoint letterAvalue1 = CGPointMake(beginx, beginy);
+    CGPoint letterAvalue4 = CGPointMake(beginx-90, beginy+30);
+    CGPoint letterAvalue7 = CGPointMake(beginx-150, beginy-10);
+    CGPoint letterAvalue9 = CGPointMake(beginx-120, beginy-60);
+    CGPoint letterAvalue12 = CGPointMake(beginx-60, beginy-110);
+    CGPoint letterAvalue14 = CGPointMake(beginx+10, beginy-130);
+    CGPoint letterAvalue16 = CGPointMake(beginx-25, beginy-170);
+    CGPoint letterAvalue19 = CGPointMake(beginx-95, beginy-200);
+    
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue1]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:18.0] forKey:@"0"];
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue4]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:19.5] forKey:@"1"];
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue7]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20] forKey:@"2"];
+    
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue9]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.1] forKey:@"3"];
+    
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue12]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.2] forKey:@"4"];
+    
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue14]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.3] forKey:@"5"];
+    
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue16]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"6"];
+    
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue19]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20] forKey:@"7"];
 }
 
 -(void) createLetterH {
@@ -1814,11 +1826,11 @@ static inline CGFloat RandomRange(CGFloat min,
     CGPoint letterAvalue5 = CGPointMake(beginx-10, beginy-270);
     CGPoint letterAvalue6 = CGPointMake(beginx-10, beginy-310);
     CGPoint letterAvalue9 = CGPointMake(beginx+10, beginy-255);
-    CGPoint letterAvalue10 = CGPointMake(beginx+10, beginy-225);
-    CGPoint letterAvalue11 = CGPointMake(beginx+10, beginy-200);
-    CGPoint letterAvalue12 = CGPointMake(beginx+10, beginy-150);
-    CGPoint letterAvalue13 = CGPointMake(beginx+10, beginy-100);
-    CGPoint letterAvalue14 = CGPointMake(beginx+25, beginy-70);
+    CGPoint letterAvalue10 = CGPointMake(beginx+40, beginy-225);
+    CGPoint letterAvalue11 = CGPointMake(beginx+40, beginy-200);
+    CGPoint letterAvalue12 = CGPointMake(beginx+40, beginy-150);
+    CGPoint letterAvalue13 = CGPointMake(beginx+40, beginy-100);
+    CGPoint letterAvalue14 = CGPointMake(beginx+45, beginy-70);
     CGPoint letterAvalue15 = CGPointMake(beginx+90, beginy-50);
     CGPoint letterAvalue16 = CGPointMake(beginx+155, beginy-70);
     CGPoint letterAvalue17 = CGPointMake(beginx+155, beginy-100);
@@ -1872,7 +1884,7 @@ static inline CGFloat RandomRange(CGFloat min,
     [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue14]];
     [arrowObjects setObject:[NSNumber numberWithFloat:23] forKey:@"11"];
     
-    [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue15]];
+    /*[pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue15]];
     [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"12"];
 
     [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue16]];
@@ -1911,7 +1923,7 @@ static inline CGFloat RandomRange(CGFloat min,
     [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue28]];
     [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"25"];
     [pointsForSprite2 addObject:[NSValue valueWithCGPoint:letterAvalue29]];
-    [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"26"];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"26"];*/
 
  
 }
@@ -1925,11 +1937,43 @@ static inline CGFloat RandomRange(CGFloat min,
 }
 
 -(void) createLetterO {
-    float beginx = 400;
-    float beginy = 650;
-    
-    multiStroke = TRUE;
+ 
     secondStroke = @"up";
+    
+    float beginx = 580;
+    float beginy = 400;
+    multiStroke = FALSE;
+    
+    CGPoint letterAvalue1 = CGPointMake(beginx, beginy);
+    CGPoint letterAvalue4 = CGPointMake(beginx-90, beginy+30);
+    CGPoint letterAvalue7 = CGPointMake(beginx-150, beginy-10);
+    CGPoint letterAvalue9 = CGPointMake(beginx-120, beginy-60);
+    CGPoint letterAvalue12 = CGPointMake(beginx-60, beginy-110);
+    CGPoint letterAvalue14 = CGPointMake(beginx+10, beginy-130);
+    CGPoint letterAvalue16 = CGPointMake(beginx-25, beginy-170);
+    CGPoint letterAvalue19 = CGPointMake(beginx-95, beginy-200);
+    
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue1]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:18.0] forKey:@"0"];
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue4]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:19.5] forKey:@"1"];
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue7]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20] forKey:@"2"];
+    
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue9]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.1] forKey:@"3"];
+    
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue12]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.2] forKey:@"4"];
+    
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue14]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.3] forKey:@"5"];
+    
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue16]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"6"];
+    
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue19]];
+    [arrowObjects setObject:[NSNumber numberWithFloat:20] forKey:@"7"];
 }
 
 -(void) createLetterP {
@@ -1963,36 +2007,22 @@ static inline CGFloat RandomRange(CGFloat min,
     multiStroke = FALSE;
     
     CGPoint letterAvalue1 = CGPointMake(beginx, beginy);
-
     CGPoint letterAvalue4 = CGPointMake(beginx-90, beginy+30);
-
     CGPoint letterAvalue7 = CGPointMake(beginx-150, beginy-10);
- 
-    CGPoint letterAvalue9 = CGPointMake(beginx-150, beginy-60);
-  
+    CGPoint letterAvalue9 = CGPointMake(beginx-120, beginy-60);
     CGPoint letterAvalue12 = CGPointMake(beginx-60, beginy-110);
- 
-    CGPoint letterAvalue14 = CGPointMake(beginx-10, beginy-130);
- 
-    CGPoint letterAvalue16 = CGPointMake(beginx+5, beginy-150);
+    CGPoint letterAvalue14 = CGPointMake(beginx+10, beginy-130);
+    CGPoint letterAvalue16 = CGPointMake(beginx-25, beginy-170);
+    CGPoint letterAvalue19 = CGPointMake(beginx-95, beginy-200);
 
-    CGPoint letterAvalue19 = CGPointMake(beginx-35, beginy-180);
-    CGPoint letterAvalue20 = CGPointMake(beginx-45, beginy-190);
-    CGPoint letterAvalue21 = CGPointMake(beginx-55, beginy-200);
-    CGPoint letterAvalue22 = CGPointMake(beginx-65, beginy-210);
-    CGPoint letterAvalue23 = CGPointMake(beginx-75, beginy-220);
-    CGPoint letterAvalue24 = CGPointMake(beginx-163, beginy-230);
-    
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue1]];
     [arrowObjects setObject:[NSNumber numberWithFloat:18.0] forKey:@"0"];
-
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue4]];
     [arrowObjects setObject:[NSNumber numberWithFloat:19.5] forKey:@"1"];
-
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue7]];
     [arrowObjects setObject:[NSNumber numberWithFloat:20] forKey:@"2"];
 
-    /*[pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue9]];
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue9]];
     [arrowObjects setObject:[NSNumber numberWithFloat:20.1] forKey:@"3"];
 
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue12]];
@@ -2005,16 +2035,8 @@ static inline CGFloat RandomRange(CGFloat min,
     [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"6"];
 
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue19]];
-    [arrowObjects setObject:[NSNumber numberWithFloat:20] forKey:@"7"];*/
-    
-    /*[pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue20]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue21]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue22]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue23]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue24]];
-*/
+    [arrowObjects setObject:[NSNumber numberWithFloat:20] forKey:@"7"];
 
-    
 }
 
 -(void) createLetterT {
@@ -2022,7 +2044,7 @@ static inline CGFloat RandomRange(CGFloat min,
     float beginx = 500;
     float beginy = 470;
     
-    CGPoint letterAvalue1 = CGPointMake(beginx, beginy);
+    CGPoint letterAvalue1 = CGPointMake(beginx, beginy+40);
     CGPoint letterAvalue2 = CGPointMake(beginx, beginy-35);
     CGPoint letterAvalue3 = CGPointMake(beginx, beginy-80);
     CGPoint letterAvalue4 = CGPointMake(beginx, beginy-125);
@@ -2030,23 +2052,12 @@ static inline CGFloat RandomRange(CGFloat min,
     CGPoint letterAvalue6 = CGPointMake(beginx, beginy-225);
     CGPoint letterAvalue7 = CGPointMake(beginx, beginy-270);
     CGPoint letterAvalue8 = CGPointMake(beginx, beginy-310);
-    CGPoint letterAvalue9 = CGPointMake(beginx-150, beginy+100);
-    CGPoint letterAvalue10 = CGPointMake(beginx-110, beginy+100);
-    CGPoint letterAvalue11 = CGPointMake(beginx-60, beginy+100);
-    CGPoint letterAvalue12 = CGPointMake(beginx-10, beginy+100);
-    CGPoint letterAvalue13 = CGPointMake(beginx+30, beginy+100);
-    CGPoint letterAvalue14 = CGPointMake(beginx+90, beginy+100);
-    CGPoint letterAvalue15 = CGPointMake(beginx-130, beginy+35);
-    CGPoint letterAvalue16 = CGPointMake(beginx-135, beginy+30);
-    CGPoint letterAvalue17 = CGPointMake(beginx-140, beginy+25);
-    CGPoint letterAvalue18 = CGPointMake(beginx-145, beginy+20);
-    CGPoint letterAvalue19 = CGPointMake(beginx-150, beginy+15);
-    CGPoint letterAvalue20 = CGPointMake(beginx-153, beginy+10);
-    CGPoint letterAvalue21 = CGPointMake(beginx-156, beginy+5);
-    CGPoint letterAvalue22 = CGPointMake(beginx-159, beginy+0);
-    CGPoint letterAvalue23 = CGPointMake(beginx-161, beginy-5);
-    CGPoint letterAvalue24 = CGPointMake(beginx-163, beginy-10);
-
+    CGPoint letterAvalue9 = CGPointMake(beginx-150, beginy);
+    CGPoint letterAvalue10 = CGPointMake(beginx-110, beginy);
+    CGPoint letterAvalue11 = CGPointMake(beginx-60, beginy);
+    CGPoint letterAvalue12 = CGPointMake(beginx-10, beginy);
+    CGPoint letterAvalue13 = CGPointMake(beginx+30, beginy);
+    CGPoint letterAvalue14 = CGPointMake(beginx+90, beginy);
     
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue1]];
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue2]];
@@ -2062,16 +2073,23 @@ static inline CGFloat RandomRange(CGFloat min,
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue12]];
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue13]];
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue14]];
-    /*[pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue15]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue16]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue17]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue18]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue19]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue20]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue21]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue22]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue23]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue24]];*/
+    
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"0"];
+    
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"1"];
+    
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"2"];
+    
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"3"];
+    
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"4"];
+    
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"5"];
+    
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"6"];
+    
+    [arrowObjects setObject:[NSNumber numberWithFloat:20.5] forKey:@"7"];
+
 
 }
 
@@ -2100,133 +2118,7 @@ static inline CGFloat RandomRange(CGFloat min,
 }
 
 -(void)createLetters {
-    /*letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-c.png"];
-    NSURL *letterCurl = [[NSBundle mainBundle]URLForResource:@"letterCsound" withExtension:@"mp3"];
-    letterC.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterCurl error:nil];
-    letterC.name = @"C";
-    letterC.scale = 0.2;
-    
-    letterD = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-d.png"];
-    NSURL *letterDurl = [[NSBundle mainBundle]URLForResource:@"letterDsound" withExtension:@"mp3"];
-    letterD.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterDurl error:nil];
-    letterD.name = @"D";
-    letterD.scale = 0.2;
-    
-    letterE = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-e.png"];
-    NSURL *letterEurl = [[NSBundle mainBundle]URLForResource:@"letterEsound" withExtension:@"mp3"];
-    letterE.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterEurl error:nil];
-    letterE.name = @"E";
-    
-    letterF = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-f.png"];
-    NSURL *letterFurl = [[NSBundle mainBundle]URLForResource:@"letterFsound" withExtension:@"mp3"];
-    letterF.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterFurl error:nil];
-    letterF.name = @"F";
-    
-    letterG = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-g.png"];
-    NSURL *letterGurl = [[NSBundle mainBundle]URLForResource:@"letterGsound" withExtension:@"mp3"];
-    letterG.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterGurl error:nil];
-    letterG.name = @"G";
-    
-    letterH = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-h.png"];
-    NSURL *letterHurl = [[NSBundle mainBundle]URLForResource:@"letterHsound" withExtension:@"mp3"];
-    letterH.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterHurl error:nil];
-    letterH.name = @"H";
-    
-    letterI = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-i.png"];
-    NSURL *letterIurl = [[NSBundle mainBundle]URLForResource:@"letterIsound" withExtension:@"mp3"];
-    letterI.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterIurl error:nil];
-    letterI.name = @"I";
-    
-    letterJ = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-j.png"];
-    NSURL *letterJurl = [[NSBundle mainBundle]URLForResource:@"letterJsound" withExtension:@"mp3"];
-    letterJ.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterJurl error:nil];
-    letterJ.name = @"J";
-    
-    letterK = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-k.png"];
-    NSURL *letterKurl = [[NSBundle mainBundle]URLForResource:@"letterKsound" withExtension:@"mp3"];
-    letterK.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterKurl error:nil];
-    letterK.name = @"K";
-    
-    letterL = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-l.png"];
-    NSURL *letterLurl = [[NSBundle mainBundle]URLForResource:@"letterLsound" withExtension:@"mp3"];
-    letterL.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterLurl error:nil];
-    letterL.name = @"L";
-    
-    letterM = [LowerCaseLetter spriteNodeWithImageNamed:@"cartoon-m.png"];
-    NSURL *letterMurl = [[NSBundle mainBundle]URLForResource:@"letterMsound" withExtension:@"mp3"];
-    letterM.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterMurl error:nil];
-    letterM.name = @"M";
-    letterM.scale = 0.2;
-    [self createLetterM];
-    
-    letterN = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-n.png"];
-    NSURL *letterNurl = [[NSBundle mainBundle]URLForResource:@"letterNsound" withExtension:@"mp3"];
-    letterN.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterNurl error:nil];
-    letterN.name = @"N";
-    
-    letterO = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-o.png"];
-    NSURL *letterOurl = [[NSBundle mainBundle]URLForResource:@"letterOsound" withExtension:@"mp3"];
-    letterO.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterOurl error:nil];
-    letterO.name = @"O";
-    
-    letterP = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-p.png"];
-    NSURL *letterPurl = [[NSBundle mainBundle]URLForResource:@"letterPsound" withExtension:@"mp3"];
-    letterP.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterPurl error:nil];
-    letterP.name = @"P";
-    
-    letterQ = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-q.png"];
-    NSURL *letterQurl = [[NSBundle mainBundle]URLForResource:@"letterQsound" withExtension:@"mp3"];
-    letterQ.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterQurl error:nil];
-    letterQ.name = @"Q";
-    
-    letterR = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-r.png"];
-    NSURL *letterRurl = [[NSBundle mainBundle]URLForResource:@"letterRsound" withExtension:@"mp3"];
-    letterR.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterRurl error:nil];
-    letterR.name = @"R";
-    
-    letterS = [LowerCaseLetter spriteNodeWithImageNamed:@"letter-S.png"];
-    NSURL *letterSurl = [[NSBundle mainBundle]URLForResource:@"letterSsound" withExtension:@"mp3"];
-    letterS.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterSurl error:nil];
-    letterS.name = @"S";
-    letterS.scale = 0.2;
-    [self createLetterS];
-    
-    letterT = [LowerCaseLetter spriteNodeWithImageNamed:@"letter-t.png"];
-    NSURL *letterTurl = [[NSBundle mainBundle]URLForResource:@"letterTsound" withExtension:@"mp3"];
-    letterT.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterTurl error:nil];
-    letterT.name = @"T";
-    letterT.scale = 0.2;
-    [self createLetterT];
-    
-    letterU = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-u.png"];
-    NSURL *letterUurl = [[NSBundle mainBundle]URLForResource:@"letterUsound" withExtension:@"mp3"];
-    letterU.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterUurl error:nil];
-    letterU.name = @"U";
-    
-    letterV = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-v.png"];
-    NSURL *letterVurl = [[NSBundle mainBundle]URLForResource:@"letterVsound" withExtension:@"mp3"];
-    letterV.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterVurl error:nil];
-    letterV.name = @"V";
-    
-    letterW = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-w.png"];
-    NSURL *letterWurl = [[NSBundle mainBundle]URLForResource:@"letterWsound" withExtension:@"mp3"];
-    letterA.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterWurl error:nil];
-    letterA.name = @"W";
-    
-    letterX = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-x.png"];
-    NSURL *letterXurl = [[NSBundle mainBundle]URLForResource:@"letterXsound" withExtension:@"mp3"];
-    letterX.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterXurl error:nil];
-    letterX.name = @"X";
-    
-    letterY = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-y.png"];
-    NSURL *letterYurl = [[NSBundle mainBundle]URLForResource:@"letterYsound" withExtension:@"mp3"];
-    letterY.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterYurl error:nil];
-    letterY.name = @"Y";
-    
-    letterZ = [LowerCaseLetter spriteNodeWithImageNamed:@"lower-z.png"];
-    NSURL *letterZurl = [[NSBundle mainBundle]URLForResource:@"letterZsound" withExtension:@"mp3"];
-    letterZ.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterZurl error:nil];
-    letterZ.name = @"Z";*/
+
 
 }
 

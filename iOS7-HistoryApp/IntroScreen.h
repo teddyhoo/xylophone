@@ -10,6 +10,7 @@
 #import "MainMenu.h"
 #import "MatchPix.h"
 #import "LetterTrace.h"
+#import "Credits.h"
 
 @interface IntroScreen : SKScene
 {
@@ -26,5 +27,5 @@
 @property (nonatomic,retain) MainMenu *myMainMenu;
 @property (nonatomic,retain) MatchPix *matchingScene;
 @property (nonatomic,retain) LetterTrace *traceScene;
-
+@property (nonatomic,retain) Credits *credits;
 @end

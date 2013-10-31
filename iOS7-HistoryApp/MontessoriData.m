@@ -74,9 +74,9 @@ CGPoint startPoint;
 
 -(LowerCaseLetter *) createLetterA {
     
-    startPoint = CGPointMake(900, 650);
+    startPoint = CGPointMake(500,300);
     
-    CGPoint letterAvalue1 = CGPointMake(400, 500);
+    /*CGPoint letterAvalue1 = CGPointMake(400, 500);
     CGPoint letterAvalue2 = CGPointMake(385, 505);
     CGPoint letterAvalue3 = CGPointMake(370, 510);
     CGPoint letterAvalue4 = CGPointMake(355, 510);
@@ -116,12 +116,12 @@ CGPoint startPoint;
     CGPoint letterAvalue38 = CGPointMake(414, 420);
     CGPoint letterAvalue39 = CGPointMake(415, 400);
     CGPoint letterAvalue40 = CGPointMake(425, 380);
-    CGPoint letterAvalue41 = CGPointMake(430, 360);
+    CGPoint letterAvalue41 = CGPointMake(430, 360);*/
     
     
-    NSMutableArray *pointsForSprite = [[NSMutableArray alloc]init];
+    //NSMutableArray *pointsForSprite = [[NSMutableArray alloc]init];
     
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue1]];
+    /*[pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue1]];
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue2]];
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue3]];
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue4]];
@@ -161,7 +161,7 @@ CGPoint startPoint;
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue38]];
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue39]];
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue40]];
-    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue41]];
+    [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue41]];*/
     
     letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"a_blue_600x600.png"];
     NSURL *letterAurl = [[NSBundle mainBundle]URLForResource:@"a" withExtension:@"aiff"];

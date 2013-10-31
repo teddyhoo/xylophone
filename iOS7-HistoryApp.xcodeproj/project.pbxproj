@@ -320,6 +320,12 @@
 		AD8B2AD51802F7EC004D2FE0 /* b_red_1000x600.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8B2AD21802F7EC004D2FE0 /* b_red_1000x600.png */; };
 		AD8B2AD61802F7EC004D2FE0 /* b_red_1000x600@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8B2AD31802F7EC004D2FE0 /* b_red_1000x600@2x.png */; };
 		AD8B2AD71802F7EC004D2FE0 /* b_red_1000x600@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8B2AD31802F7EC004D2FE0 /* b_red_1000x600@2x.png */; };
+		AD9DF48F1820A6FE00E9CA67 /* Credits.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9DF48E1820A6FE00E9CA67 /* Credits.m */; };
+		AD9DF4921821329100E9CA67 /* FilterFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9DF4911821329100E9CA67 /* FilterFrame.m */; };
+		AD9DF4951821331100E9CA67 /* perlin.c in Sources */ = {isa = PBXBuildFile; fileRef = AD9DF4931821331100E9CA67 /* perlin.c */; };
+		AD9DF4971821949300E9CA67 /* ted.png in Resources */ = {isa = PBXBuildFile; fileRef = AD9DF4961821949300E9CA67 /* ted.png */; };
+		AD9DF4991821949900E9CA67 /* stewie-cartoon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD9DF4981821949900E9CA67 /* stewie-cartoon.png */; };
+		AD9DF49B1821ADDF00E9CA67 /* displayLetter.sks in Resources */ = {isa = PBXBuildFile; fileRef = AD9DF49A1821ADDF00E9CA67 /* displayLetter.sks */; };
 		ADB760AA18146C470080EA5C /* a.aiff in Resources */ = {isa = PBXBuildFile; fileRef = ADB7609018146C470080EA5C /* a.aiff */; };
 		ADB760AB18146C470080EA5C /* b.aiff in Resources */ = {isa = PBXBuildFile; fileRef = ADB7609118146C470080EA5C /* b.aiff */; };
 		ADB760AC18146C470080EA5C /* c.aiff in Resources */ = {isa = PBXBuildFile; fileRef = ADB7609218146C470080EA5C /* c.aiff */; };
@@ -732,6 +738,15 @@
 		AD8B2ACE18024211004D2FE0 /* writing_bckgnd_wood@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "writing_bckgnd_wood@2x.jpg"; sourceTree = "<group>"; };
 		AD8B2AD21802F7EC004D2FE0 /* b_red_1000x600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b_red_1000x600.png; sourceTree = "<group>"; };
 		AD8B2AD31802F7EC004D2FE0 /* b_red_1000x600@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b_red_1000x600@2x.png"; sourceTree = "<group>"; };
+		AD9DF48D1820A6FE00E9CA67 /* Credits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Credits.h; sourceTree = "<group>"; };
+		AD9DF48E1820A6FE00E9CA67 /* Credits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Credits.m; sourceTree = "<group>"; };
+		AD9DF4901821329100E9CA67 /* FilterFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterFrame.h; sourceTree = "<group>"; };
+		AD9DF4911821329100E9CA67 /* FilterFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterFrame.m; sourceTree = "<group>"; };
+		AD9DF4931821331100E9CA67 /* perlin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = perlin.c; sourceTree = "<group>"; };
+		AD9DF4941821331100E9CA67 /* perlin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = perlin.h; sourceTree = "<group>"; };
+		AD9DF4961821949300E9CA67 /* ted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ted.png; sourceTree = "<group>"; };
+		AD9DF4981821949900E9CA67 /* stewie-cartoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stewie-cartoon.png"; sourceTree = "<group>"; };
+		AD9DF49A1821ADDF00E9CA67 /* displayLetter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = displayLetter.sks; sourceTree = "<group>"; };
 		ADB7609018146C470080EA5C /* a.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = a.aiff; sourceTree = "<group>"; };
 		ADB7609118146C470080EA5C /* b.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = b.aiff; sourceTree = "<group>"; };
 		ADB7609218146C470080EA5C /* c.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = c.aiff; sourceTree = "<group>"; };
@@ -909,6 +924,15 @@
 				555E133917EBBE7400FC9A7B /* Parallax.m */,
 				55A07F6317C2D140003CB6F3 /* MatchPix.h */,
 				55A07F6417C2D140003CB6F3 /* MatchPix.m */,
+				AD9DF49A1821ADDF00E9CA67 /* displayLetter.sks */,
+				AD9DF48D1820A6FE00E9CA67 /* Credits.h */,
+				AD9DF48E1820A6FE00E9CA67 /* Credits.m */,
+				AD9DF4931821331100E9CA67 /* perlin.c */,
+				AD9DF4941821331100E9CA67 /* perlin.h */,
+				AD9DF4901821329100E9CA67 /* FilterFrame.h */,
+				AD9DF4911821329100E9CA67 /* FilterFrame.m */,
+				AD9DF4981821949900E9CA67 /* stewie-cartoon.png */,
+				AD9DF4961821949300E9CA67 /* ted.png */,
 			);
 			name = Montessori;
 			sourceTree = "<group>";
@@ -1500,12 +1524,14 @@
 				55401D5617C69156002C0633 /* Correct-button-iphone.png in Resources */,
 				AD8B2AD41802F7EC004D2FE0 /* b_red_1000x600.png in Resources */,
 				559A6A5017D3D48F000489FC /* magical_sweep_01.wav in Resources */,
+				AD9DF4971821949300E9CA67 /* ted.png in Resources */,
 				559A6A6F17D3D560000489FC /* cartoon-capital-M.png in Resources */,
 				55C6817417F3728900008B31 /* lower-j.png in Resources */,
 				ADBB32721806D219000FC2D3 /* r_600x600@2x.png in Resources */,
 				ADB760B618146C470080EA5C /* m.aiff in Resources */,
 				AD398EBA17FEF419000327B9 /* sprite234.png in Resources */,
 				55D4EC8317F234910063D81A /* bat1.png in Resources */,
+				AD9DF49B1821ADDF00E9CA67 /* displayLetter.sks in Resources */,
 				55C6816417F3728900008B31 /* lower-b.png in Resources */,
 				ADF8DB4017FF1B2C00A1B98D /* arrow-cloud.png in Resources */,
 				AD398EB717FEF3E5000327B9 /* sprite639.png in Resources */,
@@ -1701,6 +1727,7 @@
 				ADF8DB5217FF1B2C00A1B98D /* camel.png in Resources */,
 				ADF8DB6217FF1B2C00A1B98D /* flower.png in Resources */,
 				ADF8DB5E17FF1B2C00A1B98D /* feather-yellow.png in Resources */,
+				AD9DF4991821949900E9CA67 /* stewie-cartoon.png in Resources */,
 				ADB760AA18146C470080EA5C /* a.aiff in Resources */,
 				ADBB32751806D219000FC2D3 /* u_600x600@2x.png in Resources */,
 				ADBB326F1806D219000FC2D3 /* o_600x600@2x.png in Resources */,
@@ -1954,6 +1981,7 @@
 				5588306517B7FA40009A27A3 /* SmoothLineView.m in Sources */,
 				5543B8EC17DCAE2200282295 /* WorldHistoryMainMenu.m in Sources */,
 				555E133A17EBBE7400FC9A7B /* Parallax.m in Sources */,
+				AD9DF4951821331100E9CA67 /* perlin.c in Sources */,
 				AD8B2AC31802096A004D2FE0 /* SKEmitterNode+SKTExtras.m in Sources */,
 				55CF8EE217CC9077004B1652 /* IntroScreen.m in Sources */,
 				55C9B4F017DA732B00520531 /* Quizzer.m in Sources */,
@@ -1972,9 +2000,11 @@
 				55C6F0BE17DDF6CF00056865 /* HistoryBaseScene.m in Sources */,
 				AD8B2AC11802096A004D2FE0 /* SKAction+SKTExtras.m in Sources */,
 				555E133E17EBBEDB00FC9A7B /* ParallaxView.m in Sources */,
+				AD9DF48F1820A6FE00E9CA67 /* Credits.m in Sources */,
 				558D960B179C801100B6F32C /* MyScrollView.m in Sources */,
 				5588307217B8019E009A27A3 /* SMXMLDocument.m in Sources */,
 				AD1A5AC0180350D2002C13D9 /* SKTEffects.m in Sources */,
+				AD9DF4921821329100E9CA67 /* FilterFrame.m in Sources */,
 				55C61B9B17DF36870063CF98 /* LowerCaseLetter.m in Sources */,
 				AD8B2AC51802096A004D2FE0 /* SKNode+SKTExtras.m in Sources */,
 				558D95D9179C46C800B6F32C /* main.m in Sources */,
