@@ -820,11 +820,17 @@ float letterBeginY = 0;
         
     } else if (onWhichQuestion == 11) {
         
+        [self createLetterI];
         
         
     } else if (onWhichQuestion == 12) {
         
+        [self createLetterP];
+        
     } else if (onWhichQuestion == 13) {
+        
+        [self createLetterN];
+        
         
     } else if (onWhichQuestion == 14) {
         
