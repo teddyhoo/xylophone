@@ -32,11 +32,17 @@
     
     NSLog(@"called did Move To View");
     
-    NSString *headerTitle = @"The Stage Classroom";
+    NSString *import1 = @"import <MontessoriFoundation/MontessoriFoundation.h>";
+    NSString *import2 = @"import <TeachingExperience/TeachingExperience.h>";
+    
+    NSString *headerTitle = @"The Stage Classroom : Maria Montessori";
     
     SKLabelNode *headerTitleForCredits = [SKLabelNode labelNodeWithFontNamed:@"StalinistOne-Regular"];
     headerTitleForCredits.text = headerTitle;
-    headerTitleForCredits.position = CGPointMake(550, 720);
+    headerTitleForCredits.position = CGPointMake(150, 720);
+    headerTitleForCredits.fontSize = 16;
+    headerTitleForCredits.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+    
     [self addChild:headerTitleForCredits];
     
     
@@ -44,7 +50,7 @@
                               @"[CoolGraphics designedBy:@\"Mark\"]",
                               @"[CoolVocals spokenBy:@\"Lorelei\"];",
                               @"[ThemeSong sungBy:@\"The Lorelei\'s onVocals:Haley onUkelele:Lorelei];",
-                              @"[TheCode writtenBy:@\"Ted\"];",
+                              @"[TheCode writtenBy:@\"Ted\" withDog:@\"Stewie\"];",
                               @"[TheStageClassroom brainchildOf:@\"Ms. Stage\"];",
                               
                               @"[self haveFunWhileYouLearn];",
@@ -52,7 +58,7 @@
                               nil];
     
     int yPos = 0;
-    
+
     for (NSString *creditInfo in header) {
         SKLabelNode *labelForCredit = [SKLabelNode labelNodeWithFontNamed:@"courier"];
         labelForCredit.text = creditInfo;
@@ -71,6 +77,9 @@
     
     tedHead.position = CGPointMake(70, 300);
     [self addChild:tedHead];
+    stewieHead.position = CGPointMake(780, 300);
+    stewieHead.scale = 0.8;
+    [self addChild:stewieHead];
     
     if (!self.contentCreated) {
         [self createSceneContents];

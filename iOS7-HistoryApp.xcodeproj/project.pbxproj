@@ -320,6 +320,16 @@
 		AD8B2AD51802F7EC004D2FE0 /* b_red_1000x600.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8B2AD21802F7EC004D2FE0 /* b_red_1000x600.png */; };
 		AD8B2AD61802F7EC004D2FE0 /* b_red_1000x600@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8B2AD31802F7EC004D2FE0 /* b_red_1000x600@2x.png */; };
 		AD8B2AD71802F7EC004D2FE0 /* b_red_1000x600@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8B2AD31802F7EC004D2FE0 /* b_red_1000x600@2x.png */; };
+		AD9758F018232C880052FAE3 /* FUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9758EF18232C880052FAE3 /* FUIButton.m */; };
+		AD9758F318232D410052FAE3 /* QuizButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9758F218232D410052FAE3 /* QuizButtons.m */; };
+		AD9758F618232DE30052FAE3 /* UIImage+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9758F518232DE30052FAE3 /* UIImage+FlatUI.m */; };
+		AD9758F91823331C0052FAE3 /* UIColor+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9758F81823331C0052FAE3 /* UIColor+FlatUI.m */; };
+		AD9758FC1827ABA50052FAE3 /* SparkPart.sks in Resources */ = {isa = PBXBuildFile; fileRef = AD9758FB1827ABA50052FAE3 /* SparkPart.sks */; };
+		AD9758FE1827DD590052FAE3 /* quiz-button-torquoise.png in Resources */ = {isa = PBXBuildFile; fileRef = AD9758FD1827DD590052FAE3 /* quiz-button-torquoise.png */; };
+		AD9759011829CAB60052FAE3 /* RedrawLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9759001829CAB60052FAE3 /* RedrawLetter.m */; };
+		AD9759031829D1430052FAE3 /* Chevron.png in Resources */ = {isa = PBXBuildFile; fileRef = AD9759021829D1430052FAE3 /* Chevron.png */; };
+		AD9759051829E6DB0052FAE3 /* finger_point.png in Resources */ = {isa = PBXBuildFile; fileRef = AD9759041829E6DB0052FAE3 /* finger_point.png */; };
+		AD975907182BB9FE0052FAE3 /* LetterControlPoints.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD975906182BB9FE0052FAE3 /* LetterControlPoints.plist */; };
 		AD9DF48F1820A6FE00E9CA67 /* Credits.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9DF48E1820A6FE00E9CA67 /* Credits.m */; };
 		AD9DF4921821329100E9CA67 /* FilterFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9DF4911821329100E9CA67 /* FilterFrame.m */; };
 		AD9DF4951821331100E9CA67 /* perlin.c in Sources */ = {isa = PBXBuildFile; fileRef = AD9DF4931821331100E9CA67 /* perlin.c */; };
@@ -738,6 +748,21 @@
 		AD8B2ACE18024211004D2FE0 /* writing_bckgnd_wood@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "writing_bckgnd_wood@2x.jpg"; sourceTree = "<group>"; };
 		AD8B2AD21802F7EC004D2FE0 /* b_red_1000x600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b_red_1000x600.png; sourceTree = "<group>"; };
 		AD8B2AD31802F7EC004D2FE0 /* b_red_1000x600@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b_red_1000x600@2x.png"; sourceTree = "<group>"; };
+		AD9758EE18232C880052FAE3 /* FUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FUIButton.h; sourceTree = "<group>"; };
+		AD9758EF18232C880052FAE3 /* FUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FUIButton.m; sourceTree = "<group>"; };
+		AD9758F118232D410052FAE3 /* QuizButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizButtons.h; sourceTree = "<group>"; };
+		AD9758F218232D410052FAE3 /* QuizButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizButtons.m; sourceTree = "<group>"; };
+		AD9758F418232DE30052FAE3 /* UIImage+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FlatUI.h"; sourceTree = "<group>"; };
+		AD9758F518232DE30052FAE3 /* UIImage+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FlatUI.m"; sourceTree = "<group>"; };
+		AD9758F71823331C0052FAE3 /* UIColor+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FlatUI.h"; sourceTree = "<group>"; };
+		AD9758F81823331C0052FAE3 /* UIColor+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FlatUI.m"; sourceTree = "<group>"; };
+		AD9758FB1827ABA50052FAE3 /* SparkPart.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SparkPart.sks; sourceTree = "<group>"; };
+		AD9758FD1827DD590052FAE3 /* quiz-button-torquoise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quiz-button-torquoise.png"; sourceTree = "<group>"; };
+		AD9758FF1829CAB60052FAE3 /* RedrawLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedrawLetter.h; sourceTree = "<group>"; };
+		AD9759001829CAB60052FAE3 /* RedrawLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedrawLetter.m; sourceTree = "<group>"; };
+		AD9759021829D1430052FAE3 /* Chevron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chevron.png; sourceTree = "<group>"; };
+		AD9759041829E6DB0052FAE3 /* finger_point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = finger_point.png; sourceTree = "<group>"; };
+		AD975906182BB9FE0052FAE3 /* LetterControlPoints.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LetterControlPoints.plist; sourceTree = "<group>"; };
 		AD9DF48D1820A6FE00E9CA67 /* Credits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Credits.h; sourceTree = "<group>"; };
 		AD9DF48E1820A6FE00E9CA67 /* Credits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Credits.m; sourceTree = "<group>"; };
 		AD9DF4901821329100E9CA67 /* FilterFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterFrame.h; sourceTree = "<group>"; };
@@ -918,21 +943,19 @@
 				550C2F0117C0AA7500162E98 /* MainMenu.m */,
 				55588D7717EE64A10070C199 /* LetterTrace.h */,
 				55588D7817EE64A10070C199 /* LetterTrace.m */,
+				AD975906182BB9FE0052FAE3 /* LetterControlPoints.plist */,
+				AD9758FF1829CAB60052FAE3 /* RedrawLetter.h */,
+				AD9759001829CAB60052FAE3 /* RedrawLetter.m */,
 				555E133C17EBBEDB00FC9A7B /* ParallaxView.h */,
 				555E133D17EBBEDB00FC9A7B /* ParallaxView.m */,
 				555E133817EBBE7400FC9A7B /* Parallax.h */,
 				555E133917EBBE7400FC9A7B /* Parallax.m */,
 				55A07F6317C2D140003CB6F3 /* MatchPix.h */,
 				55A07F6417C2D140003CB6F3 /* MatchPix.m */,
-				AD9DF49A1821ADDF00E9CA67 /* displayLetter.sks */,
 				AD9DF48D1820A6FE00E9CA67 /* Credits.h */,
 				AD9DF48E1820A6FE00E9CA67 /* Credits.m */,
-				AD9DF4931821331100E9CA67 /* perlin.c */,
-				AD9DF4941821331100E9CA67 /* perlin.h */,
 				AD9DF4901821329100E9CA67 /* FilterFrame.h */,
 				AD9DF4911821329100E9CA67 /* FilterFrame.m */,
-				AD9DF4981821949900E9CA67 /* stewie-cartoon.png */,
-				AD9DF4961821949300E9CA67 /* ted.png */,
 			);
 			name = Montessori;
 			sourceTree = "<group>";
@@ -956,6 +979,8 @@
 				55C6F0BD17DDF6CF00056865 /* HistoryBaseScene.m */,
 				55493B4717E244D400503CAC /* TopicPicker.h */,
 				55493B4817E244D400503CAC /* TopicPicker.m */,
+				AD9758F118232D410052FAE3 /* QuizButtons.h */,
+				AD9758F218232D410052FAE3 /* QuizButtons.m */,
 			);
 			name = "AP World History";
 			sourceTree = "<group>";
@@ -963,6 +988,9 @@
 		5543B8F417DCB4A100282295 /* Graphics Files */ = {
 			isa = PBXGroup;
 			children = (
+				AD9758FD1827DD590052FAE3 /* quiz-button-torquoise.png */,
+				AD9DF4981821949900E9CA67 /* stewie-cartoon.png */,
+				AD9DF4961821949300E9CA67 /* ted.png */,
 				AD398EAC17FE1086000327B9 /* writing_bckgnd_test_1.jpg */,
 				AD398EA717FE0CD1000327B9 /* sign.png */,
 				55493B6017E642DE00503CAC /* Incorrect.png */,
@@ -988,6 +1016,7 @@
 				558D960D179C80DA00B6F32C /* Arrow-blue-longest.png */,
 				55C9B45617D790CE00520531 /* hand-point-45-degrees-left.png */,
 				ADB760D61815DB5D0080EA5C /* pinwheel-2.png */,
+				AD9758FB1827ABA50052FAE3 /* SparkPart.sks */,
 				AD398EB317FEF3E0000327B9 /* sprite642.png */,
 				AD398EB617FEF3E5000327B9 /* sprite639.png */,
 				AD398EB917FEF419000327B9 /* sprite234.png */,
@@ -1039,6 +1068,7 @@
 		558D95D2179C46C800B6F32C /* iOS7-HistoryApp */ = {
 			isa = PBXGroup;
 			children = (
+				AD9758FA182437B60052FAE3 /* Helper Classes */,
 				AD1A5AC41804181F002C13D9 /* SKAction Util */,
 				552A3E1617E9D5A70090C743 /* Montessori */,
 				5543B8F317DCB45E00282295 /* AP World History */,
@@ -1205,6 +1235,7 @@
 		55C9B45C17D88F3000520531 /* Particle Effects */ = {
 			isa = PBXGroup;
 			children = (
+				AD9DF49A1821ADDF00E9CA67 /* displayLetter.sks */,
 				55C9B46017D8900600520531 /* happyExplode.sks */,
 				55588D8A17EE827B0070C199 /* CirclePop.sks */,
 				55C9B46117D8900600520531 /* spark.png */,
@@ -1343,9 +1374,25 @@
 			name = "SKAction Util";
 			sourceTree = "<group>";
 		};
+		AD9758FA182437B60052FAE3 /* Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+				AD9758EE18232C880052FAE3 /* FUIButton.h */,
+				AD9758EF18232C880052FAE3 /* FUIButton.m */,
+				AD9758F418232DE30052FAE3 /* UIImage+FlatUI.h */,
+				AD9758F518232DE30052FAE3 /* UIImage+FlatUI.m */,
+				AD9758F71823331C0052FAE3 /* UIColor+FlatUI.h */,
+				AD9758F81823331C0052FAE3 /* UIColor+FlatUI.m */,
+				AD9DF4941821331100E9CA67 /* perlin.h */,
+				AD9DF4931821331100E9CA67 /* perlin.c */,
+			);
+			name = "Helper Classes";
+			sourceTree = "<group>";
+		};
 		AD9DF48C181D7D2D00E9CA67 /* arrow.atlas */ = {
 			isa = PBXGroup;
 			children = (
+				AD9759021829D1430052FAE3 /* Chevron.png */,
 				AD24E2C8181C083A00A68266 /* left-yellow-mini-arrow.png */,
 				AD24E2C6181C071000A68266 /* arrow-purple-left.png */,
 				ADB760CE1815D72A0080EA5C /* arrow-green-up.png */,
@@ -1363,6 +1410,7 @@
 		ADF8DB0317FF1AD500A1B98D /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				AD9759041829E6DB0052FAE3 /* finger_point.png */,
 				AD24E2BC181A07E700A68266 /* yellow-arrow-left.png */,
 				AD24E2BD181A07E700A68266 /* yellow-arrow-right.png */,
 				AD24E2BE181A07E700A68266 /* yellow-arrow-up.png */,
@@ -1569,6 +1617,7 @@
 				55493B5217E51BCC00503CAC /* circle.png in Resources */,
 				ADF8DB4A17FF1B2C00A1B98D /* bear.png in Resources */,
 				55493B6117E642DE00503CAC /* Incorrect.png in Resources */,
+				AD9759031829D1430052FAE3 /* Chevron.png in Resources */,
 				ADF8DBA417FF1B2C00A1B98D /* table.png in Resources */,
 				ADBB32681806D219000FC2D3 /* h_1000x600@2x.png in Resources */,
 				ADF8DB9217FF1B2C00A1B98D /* sprite319.png in Resources */,
@@ -1637,6 +1686,7 @@
 				559A6A8D17D3D560000489FC /* cartoon-lower-a.png in Resources */,
 				55123F2117F1DC9B0093E9F9 /* letter-c-lower-normal-1.png in Resources */,
 				ADF8DB4217FF1B2C00A1B98D /* balloons.png in Resources */,
+				AD9758FC1827ABA50052FAE3 /* SparkPart.sks in Resources */,
 				ADF8DBBF17FF1B9000A1B98D /* goat.atlas in Resources */,
 				ADBB327D180B667C000FC2D3 /* a_blue_600x600.png in Resources */,
 				55C6816217F3728900008B31 /* lower-a.png in Resources */,
@@ -1674,6 +1724,8 @@
 				555E133317EB77FB00FC9A7B /* letter-A-1.png in Resources */,
 				ADF8DB7217FF1B2C00A1B98D /* lantern.png in Resources */,
 				ADF8DBBB17FF1B9000A1B98D /* ant.atlas in Resources */,
+				AD9759051829E6DB0052FAE3 /* finger_point.png in Resources */,
+				AD9758FE1827DD590052FAE3 /* quiz-button-torquoise.png in Resources */,
 				55D4EC8B17F234910063D81A /* bat5.png in Resources */,
 				ADF8DB9817FF1B2C00A1B98D /* sprite329.png in Resources */,
 				559A6A4E17D3D48F000489FC /* magicwand.wav in Resources */,
@@ -1735,6 +1787,7 @@
 				ADBB32701806D219000FC2D3 /* p_1000x600@2x.png in Resources */,
 				5588307D17B801E0009A27A3 /* TableData.plist in Resources */,
 				ADF8DBA617FF1B2C00A1B98D /* vase.png in Resources */,
+				AD975907182BB9FE0052FAE3 /* LetterControlPoints.plist in Resources */,
 				ADF8DBAA17FF1B2C00A1B98D /* volcano.png in Resources */,
 				ADF8DB7E17FF1B2C00A1B98D /* monkeys.png in Resources */,
 				ADF8DBA017FF1B2C00A1B98D /* sprite620.png in Resources */,
@@ -1978,8 +2031,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD9758F018232C880052FAE3 /* FUIButton.m in Sources */,
 				5588306517B7FA40009A27A3 /* SmoothLineView.m in Sources */,
+				AD9759011829CAB60052FAE3 /* RedrawLetter.m in Sources */,
 				5543B8EC17DCAE2200282295 /* WorldHistoryMainMenu.m in Sources */,
+				AD9758F318232D410052FAE3 /* QuizButtons.m in Sources */,
 				555E133A17EBBE7400FC9A7B /* Parallax.m in Sources */,
 				AD9DF4951821331100E9CA67 /* perlin.c in Sources */,
 				AD8B2AC31802096A004D2FE0 /* SKEmitterNode+SKTExtras.m in Sources */,
@@ -1988,6 +2044,7 @@
 				AD1A5AC1180350D2002C13D9 /* SKTTimingFunctions.m in Sources */,
 				5588306E17B80182009A27A3 /* HistoryData.m in Sources */,
 				5588306117B7F9B1009A27A3 /* Matching.m in Sources */,
+				AD9758F618232DE30052FAE3 /* UIImage+FlatUI.m in Sources */,
 				5588305517ABA218009A27A3 /* DTTimelineScene.m in Sources */,
 				558D95E6179C46C800B6F32C /* ViewController.m in Sources */,
 				AD8B2AC91802096A004D2FE0 /* SKTUtils.mm in Sources */,
@@ -2000,6 +2057,7 @@
 				55C6F0BE17DDF6CF00056865 /* HistoryBaseScene.m in Sources */,
 				AD8B2AC11802096A004D2FE0 /* SKAction+SKTExtras.m in Sources */,
 				555E133E17EBBEDB00FC9A7B /* ParallaxView.m in Sources */,
+				AD9758F91823331C0052FAE3 /* UIColor+FlatUI.m in Sources */,
 				AD9DF48F1820A6FE00E9CA67 /* Credits.m in Sources */,
 				558D960B179C801100B6F32C /* MyScrollView.m in Sources */,
 				5588307217B8019E009A27A3 /* SMXMLDocument.m in Sources */,

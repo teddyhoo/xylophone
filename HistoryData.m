@@ -63,6 +63,8 @@ static NSString *subjectType = @"americanhistory";
         effectsTerm = [[NSMutableArray alloc] init];
         explanationTerm = [[NSMutableArray alloc] init];
         
+        questionsByTopic = [[NSMutableDictionary alloc]init];
+        
         NSString *sampleXML;
         
         if ([subjectType isEqualToString:@"worldhistory"] ) {
@@ -144,6 +146,7 @@ static NSString *subjectType = @"americanhistory";
             [sectionForQuestion addObject:section];
             [imageForQuestion addObject:image];
             
+            [questionsByTopic setValue:section forKey:questionResult];
             
             
         }

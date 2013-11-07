@@ -42,6 +42,8 @@
     NSMutableDictionary *americanHistoryTopics;
     NSMutableDictionary *worldHistoryTopics;
     
+    NSMutableDictionary *questionsByTopic;
+    NSMutableDictionary *quizAnswersByTopic;
 }
 @property (nonatomic,retain) NSMutableArray *helperTips;
 @property (nonatomic,retain) NSMutableArray *quizQuestions;

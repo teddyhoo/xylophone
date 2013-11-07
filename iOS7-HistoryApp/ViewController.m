@@ -11,13 +11,14 @@
 #import "MainMenu.h"
 #import "IntroScreen.h"
 #import "WorldHistoryMainMenu.h"
-
+#import "QuizButtons.h"
 
 @implementation ViewController
 
 @synthesize myScrollView;
 @synthesize introScreen;
 MainMenu *theMainMenu;
+QuizButtons *quizButtonView;
 
 
 /*
@@ -59,16 +60,31 @@ MainMenu *theMainMenu;
 -(void) viewWillLayoutSubviews {
     
     [super viewWillLayoutSubviews];
-    spriteView = (SKView *)self.view;
-    spriteView.showsFPS = YES;
-    spriteView.showsNodeCount = YES;
+    //spriteView = (SKView *)self.view;
+    //spriteView.showsFPS = YES;
+    //spriteView.showsNodeCount = YES;
     
     if(!spriteView.scene) {
+        //NEW
+        //
+        spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
+        
+        //
+        //END
+        
+        
         SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
         introScreen = [IntroScreen sceneWithSize:spriteView.bounds.size];
         //introScreen.scaleMode = SKSceneScaleModeAspectFill;
         [spriteView presentScene:introScreen transition:reveal];
+        
+        //NEW
+        [self.view addSubview:spriteView];
+        //
     }
+    
+    //quizButtonView = [[QuizButtons alloc]initWithFrame:CGRectMake(100, 100, 400, 600)];
+    //[self.view addSubview:quizButtonView];
     
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         // iOS 7

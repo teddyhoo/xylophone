@@ -7,6 +7,7 @@
 //
 
 #import "TopicPicker.h"
+#import "HistoryData.h"
 
 @implementation TopicPicker
 
@@ -14,6 +15,7 @@
 
 SKSpriteNode *startArrow;
 NSMutableArray *topicSpriteLabels;
+int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestward, numAntebellum, numCivilWar, numReconstruct, numGilded;
 
 -(void) setDelegate:(id)delegate {
     
@@ -25,7 +27,55 @@ NSMutableArray *topicSpriteLabels;
 {
     self = [super init];
     if (self) {
+        
+        HistoryData *sharedData = [HistoryData sharedManager];
+
+        NSMutableArray *quizQuestions = [[NSMutableArray alloc]init];
+        NSMutableArray *quizAnswers = [[NSMutableArray alloc]init];
+        NSMutableArray *quizWrongOne = [[NSMutableArray alloc]init];
+        NSMutableArray *quizWrongTwo = [[NSMutableArray alloc]init];
+        NSMutableArray *quizWrongThree = [[NSMutableArray alloc]init];
+        NSMutableArray *quizWrongFour = [[NSMutableArray alloc]init];
+        NSMutableArray *questionClue = [[NSMutableArray alloc]init];
+        NSMutableArray *tagFirst = [[NSMutableArray alloc]init];
+        NSMutableArray *tagSecond = [[NSMutableArray alloc]init];
+        NSMutableArray *questionSection = [[NSMutableArray alloc]init];
+        NSMutableArray *imageList = [[NSMutableArray alloc]init];
+        
+        NSMutableDictionary *sortedQuestions = [[NSMutableDictionary alloc]init];
+        
+        int i = 0;
+        
+        for (NSString *questionsForSection in sharedData.sectionForQuestion) {
+            
+            //if ([questionsForSection isEqualToString:currentlySelectedTerm]) {
                 
+                NSString *temp = [sharedData.quizQuestions objectAtIndex:i];
+                NSString *temp2 = [sharedData.quizAnswers objectAtIndex:i];
+                NSString *temp3 = [sharedData.wrongAnswerOne objectAtIndex:i];
+                NSString *temp4 = [sharedData.wrongAnswerTwo objectAtIndex:i];
+                NSString *temp5 = [sharedData.wrongAnswerThree objectAtIndex:i];
+                
+                NSString *temp7 = [sharedData.helperTips objectAtIndex:i];
+                
+                NSString *temp11 = [sharedData.sectionForQuestion objectAtIndex:i];
+                NSString *temp12 = [sharedData.imageForQuestion objectAtIndex:i];
+                
+                [quizQuestions addObject:temp];
+                [quizAnswers addObject:temp2];
+                [quizWrongOne addObject:temp3];
+                [quizWrongTwo addObject:temp4];
+                [quizWrongThree addObject:temp5];
+                [questionClue addObject:temp7];
+                [questionSection addObject:temp11];
+                [imageList addObject:temp12];
+            
+                [sortedQuestions setValue:temp11 forKey:temp];
+           
+            
+                i++;
+        }
+        
         SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"Muncie"];
         titleLabel.text = @"Pick a Topic";
         titleLabel.fontColor = [UIColor blackColor];
@@ -34,6 +84,21 @@ NSMutableArray *topicSpriteLabels;
         titleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
         titleLabel.name = @"title";
 
+        
+        numColonial = 0;
+        
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"Colonial"]) {
+                NSLog(@"value: %@", [sortedQuestions valueForKey:key]);
+                numColonial++;
+            }
+        }
+        
+        NSLog(@"number of colonial: %i", numColonial);
+        
+    
+        
         
         topic2 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic2.text = @"Colonial";
@@ -44,6 +109,18 @@ NSMutableArray *topicSpriteLabels;
         topic2.name = @"Colonial";
 
         
+        numRevolution =  0;
+        
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"Revolution"]) {
+                numRevolution++;
+            }
+        }
+        
+        NSLog(@"number of revolution: %i", numRevolution);
+        
+        
         topic3 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic3.text = @"Revolution";
         topic3.fontColor = [UIColor redColor];
@@ -51,6 +128,18 @@ NSMutableArray *topicSpriteLabels;
         topic3.position = CGPointMake(0, 225);
         topic3.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic3.name = @"Revolution";
+        
+        
+        numEarlyRep =  0;
+        
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"Early Republic"]) {
+                numEarlyRep++;
+            }
+        }
+        
+        NSLog(@"number of early republic: %i", numEarlyRep);
         
         topic4 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic4.text = @"Early Republic";
@@ -60,6 +149,17 @@ NSMutableArray *topicSpriteLabels;
         topic4.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic4.name = @"Early Republic";
         
+        
+        numEraGood =  0;
+        
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"Era of Good Feelings"]) {
+                numEraGood++;
+            }
+        }
+        
+        NSLog(@"number of era of good feelings: %i", numEraGood);
         topic5 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic5.text = @"Era of Good Feelings";
         topic5.fontColor = [UIColor redColor];
@@ -68,6 +168,17 @@ NSMutableArray *topicSpriteLabels;
         topic5.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic5.name = @"Era of Good Feelings";
         
+        numJacksonian =  0;
+        
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"Jacksonian"]) {
+                numJacksonian++;
+            }
+        }
+        
+        NSLog(@"number of Jacksonian: %i", numJacksonian);
+        
         topic6 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic6.text = @"Jacksonian Era";
         topic6.fontColor = [UIColor redColor];
@@ -75,6 +186,18 @@ NSMutableArray *topicSpriteLabels;
         topic6.position = CGPointMake(0, 0);
         topic6.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic6.name = @"Jacksonian";
+        
+        numWestward =  0;
+        
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"Westward Expansion"]) {
+                NSLog(@"value: %@", [sortedQuestions valueForKey:key]);
+                numWestward++;
+            }
+        }
+        
+        NSLog(@"number of westward: %i", numWestward);
         
         topic7 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic7.text = @"Westward Expansion";
@@ -253,12 +376,10 @@ NSMutableArray *topicSpriteLabels;
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     
-    CGPoint buttonLocation = topic2.position;
-    
-
+    //CGPoint buttonLocation = topic2.position;
     SKAction *selectAnimate = [SKAction colorizeWithColor:[UIColor orangeColor] colorBlendFactor:0.9 duration:0.1];
-    SKAction *zoomSelected = [SKAction scaleTo:2.0 duration:0.3];
-    SKAction *sequenceActions = [SKAction sequence:@[selectAnimate,zoomSelected]];
+    SKAction *zoomSelected = [SKAction scaleTo:1.5 duration:0.1];
+    //SKAction *sequenceActions = [SKAction sequence:@[selectAnimate,zoomSelected]];
     
     if (CGRectContainsPoint(startArrow.frame, location)) {
         NSString *topicSelected = startArrow.name;
@@ -269,7 +390,6 @@ NSMutableArray *topicSpriteLabels;
         
     }
     
-    
     if (CGRectContainsPoint(topic2.frame, location)) {
         
         [topic2 runAction:zoomSelected];
@@ -277,7 +397,9 @@ NSMutableArray *topicSpriteLabels;
         
             
     } else if (CGRectContainsPoint(topic3.frame, location)) {
-            
+        
+        NSLog(@"Revolution");
+        
         [topic3 runAction:zoomSelected];
         [self minimizeTopics:topic3.name];
             
@@ -289,7 +411,6 @@ NSMutableArray *topicSpriteLabels;
             
     } else if (CGRectContainsPoint(topic5.frame, location)) {
         
-        SKAction *selectAnimate = [SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:0.9 duration:0.5];
         [topic5 runAction:zoomSelected];
         [self minimizeTopics:topic5.name];
 
@@ -386,8 +507,7 @@ NSMutableArray *topicSpriteLabels;
 
 -(void) minimizeTopics:(NSString *)spriteName {
     
-    SKAction *scaleSmaller = [SKAction scaleTo:0.7 duration:0.2];
-    SKAction *selectAnimate = [SKAction colorizeWithColor:[UIColor orangeColor] colorBlendFactor:0.9 duration:0.1];
+    SKAction *scaleSmaller = [SKAction scaleTo:0.7 duration:0.1];
     
     for(SKSpriteNode *otherTopics in topicSpriteLabels) {
         

@@ -48,7 +48,11 @@ SKSpriteNode *scoreBackground;
 SKSpriteNode *explanationIcon;
 SKSpriteNode *explanationButton;
 SKSpriteNode *backToMainMenuArrow;
-
+SKSpriteNode *renderLabel;
+SKSpriteNode *renderLabel2;
+SKSpriteNode *renderLabel3;
+SKSpriteNode *renderLabel4;
+SKSpriteNode *renderLabel5;
 
 
 HistoryData *sharedData;
@@ -293,6 +297,7 @@ CGSize winSize;
     
     questionCounter++;
     alreadyAnswered = FALSE;
+    [renderLabel removeFromParent];
     
     [question removeFromParent];
     [answer1 removeFromParent];
@@ -388,7 +393,7 @@ CGSize winSize;
         timerOn = TRUE;
         [self updateScoreSection];
         
-        firstAnswer = [SKSpriteNode spriteNodeWithImageNamed:@"Answer-button-ipadhd.png"];
+        firstAnswer = [SKSpriteNode spriteNodeWithImageNamed:@"quiz-button-torquoise.png"];
         secondAnswer = [SKSpriteNode spriteNodeWithImageNamed:@"Answer-button-ipadhd.png"];
         thirdAnswer = [SKSpriteNode spriteNodeWithImageNamed:@"Answer-button-ipadhd.png"];
         fourthAnswer = [SKSpriteNode spriteNodeWithImageNamed:@"Answer-button-ipadhd.png"];
@@ -432,21 +437,17 @@ CGSize winSize;
         //}
         
         NSString *currentQuestion = [quizQuestions objectAtIndex:questionCounter];
-        
-        UILabel *firstLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 600, 300)];
+        UILabel *firstLabel = [[UILabel alloc]initWithFrame:CGRectMake(200, 0, 600, 300)];
         firstLabel.text = currentQuestion;
         firstLabel.textColor = [UIColor blackColor];
-        firstLabel.font = [UIFont fontWithName:@"Carton-Slab" size:30.0];
+        firstLabel.font = [UIFont fontWithName:@"Carton-Slab" size:20.0];
         firstLabel.numberOfLines = 5;
-        
-        
         firstLabel.preferredMaxLayoutWidth = 600;
-        
         UIImage *imageToRender = [self makeImageFromLabel:firstLabel];
         SKTexture *labelTexture = [SKTexture textureWithImage:imageToRender];
-        SKSpriteNode *renderLabel = [SKSpriteNode spriteNodeWithTexture:labelTexture];
+        renderLabel = [SKSpriteNode spriteNodeWithTexture:labelTexture];
         renderLabel.position = CGPointMake(300,900);
-        //[self addChild:renderLabel];
+        [self addChild:renderLabel];
         
         question = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         question.text = currentQuestion;
@@ -455,16 +456,31 @@ CGSize winSize;
         question.position = CGPointMake(answerPosition.x, answerPosition.y + 140);
         question.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
         question.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
-        [self addChild:question];
+        //[self addChild:question];
         
         
-        answer1 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
+        
+        NSString *answer1 = [quizAnswers objectAtIndex:questionCounter];
+        UILabel *secondLabel = [[UILabel alloc]initWithFrame:CGRectMake(200, 0, 400, 300)];
+        secondLabel.text = currentQuestion;
+        secondLabel.textColor = [UIColor blackColor];
+        secondLabel.font = [UIFont fontWithName:@"Carton-Slab" size:20.0];
+        secondLabel.numberOfLines = 5;
+        secondLabel.preferredMaxLayoutWidth = 400;
+
+        UIImage *answer1Render = [self makeImageFromLabel:secondLabel];
+        SKTexture *labelTexture2 = [SKTexture textureWithImage:answer1Render];
+        renderLabel2 = [SKSpriteNode spriteNodeWithTexture:labelTexture2];
+        renderLabel2.position = CGPointMake(300, 700);
+        //[self addChild:renderLabel2];
+        
+        /*answer1 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         answer1.text = firstAnswerPrint;
         answer1.fontSize = 20;
         answer1.fontColor = [UIColor blackColor];
         answer1.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
         answer1.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
-                   
+           */
                    
         answer2 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         answer2.text = secondAnswerPrint;
@@ -492,7 +508,8 @@ CGSize winSize;
         thirdAnswer.position = CGPointMake(answerPosition.x, answerPosition.y - 350);
         fourthAnswer.position = CGPointMake(answerPosition.x, answerPosition.y - 525);
         
-        [firstAnswer addChild:answer1];
+        //[firstAnswer addChild:answer1];
+        [firstAnswer addChild:renderLabel2];
         [secondAnswer addChild:answer2];
         [thirdAnswer addChild:answer3];
         [fourthAnswer addChild:answer4];
@@ -502,7 +519,7 @@ CGSize winSize;
         [self addChild:thirdAnswer];
         [self addChild:fourthAnswer];
 
-        answer1.position = answerRelativeToButton;
+        //answer1.position = answerRelativeToButton;
         answer2.position = answerRelativeToButton;
         answer3.position = answerRelativeToButton;
         answer4.position = answerRelativeToButton;

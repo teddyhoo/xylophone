@@ -16,40 +16,79 @@ SKSpriteNode *letterA;
 SKSpriteNode *letterB;
 SKSpriteNode *backToMainMenuArrow;
 
+NSMutableArray *myLines;
+NSMutableArray *myEndLines;
+NSMutableArray *matchingData;
+NSMutableArray *myArrows;
+NSMutableArray *correctAndIncorrectMarks;
+NSMutableArray *myCurrentTerms;
+NSMutableArray *labelTermsForRemove;
+
+int termNumber = 0;
+int termsInSection = 0;
+int correct;
+int incorrect;
+int midPoint;
+int midPointHoriz;
+int cause_y_offset;
+int cause_long_y_offset;
+int effect_y_offset;
+int effect_long_y_offset;
+
+BOOL sectionCompleted;
+BOOL mapFlag = FALSE;
+BOOL docFlag = FALSE;
+
 - (id)initWithSize:(CGSize)size
 {
     self = [super initWithSize:size];
     if (self) {
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        myLabel.text = @"Matching Exercises";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame)+100,
-                                       CGRectGetMidY(self.frame)+200);
+        self.backgroundColor = [SKColor colorWithRed:0.8 green:1.0 blue:1.0 alpha:1.0];
         
         
-        MySpriteNode *testSprite = [MySpriteNode spriteNodeWithImageNamed:@"Arrow-blue-longest.png"];
-        testSprite.position = CGPointMake(400, 400);
-        [self addChild:testSprite];
+        NSMutableArray *instructionsText = [[NSMutableArray alloc]initWithObjects:
+                                        @"A term is presented to you",
+                                        @"The causes and effects for the term are also displayed",
+                                        @"If a cause Drag the term to the left ",
+                                        @"If effect Drag the term to the right",
+                                        nil];
+        
+        
+        
+       
+        
+        int i=0;
+        
+        for (NSString *instruct in instructionsText) {
+            NSLog(@"instructions");
+            
+            SKLabelNode *myInstruct = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+            myInstruct.text = instruct;
+            myInstruct.fontSize = 20;
+            myInstruct.fontColor = [UIColor redColor];
+            myInstruct.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - i);
+            [self addChild:myInstruct];
+            i += 50;
+            
+        }
         
         backToMainMenuArrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrow-left.png"];
         backToMainMenuArrow.position = CGPointMake(50, 50);
         [self addChild:backToMainMenuArrow];
         
+        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        
+        myLabel.text = @"Matching Exercises";
+        myLabel.fontColor = [UIColor blueColor];
+        myLabel.fontSize = 30;
+        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+                                       CGRectGetMidY(self.frame)+200);
         [self addChild:myLabel];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+
 
 @end
