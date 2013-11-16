@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
+#import "LowerCaseLetter.h"
 
 @interface RedrawLetter : SKNode
 
+-(instancetype)initWithPosition:(CGPoint) position withKey:(NSNumber*)keyForLetter;
 
+@property (nonatomic,retain)NSNumber* timeToComplete;
+@property (nonatomic,retain)NSString* representLetter;
 
 @end

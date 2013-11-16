@@ -34,12 +34,19 @@
 @property (nonatomic,retain) AVAudioPlayer *wordSample3;
 @property (nonatomic,retain) AVAudioPlayer *wordSample4;
 @property (nonatomic,retain) NSMutableDictionary *wordsForLetter;
-@property BOOL centerStage;
 
+@property (nonatomic,retain) SKEmitterNode *emitFire;
+@property (nonatomic,retain) NSNumber *numberAttempts;
+@property (nonatomic,retain) NSNumber *timeForTrace;
+
+@property BOOL centerStage;
 
 -(void) playTheSound;
 -(void) playWordSample:(NSNumber *)wordNumber;
 -(void) createControlPoints:(NSMutableArray *)controlPointsForLetter;
 -(void) atCenterStage;
+-(void) fireEmitter;
+
+
 
 @end

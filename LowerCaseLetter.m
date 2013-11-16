@@ -10,7 +10,7 @@
 
 @implementation LowerCaseLetter
 
-@synthesize baseSound, wordSample1, wordSample2, wordSample3, wordSample4, centerStage;
+@synthesize baseSound, wordSample1, wordSample2, wordSample3, wordSample4, centerStage, wordsForLetter, timeForTrace, numberAttempts;
 
 
 
@@ -48,5 +48,11 @@
 
     
 }
+
+-(void)fireEmitter {
+    
+    
+}
+
 
 @end

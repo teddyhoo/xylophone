@@ -15,7 +15,9 @@
 #import "IntroScreen.h"
 #import "MontessoriData.h"
 
-
+#import "SKAction+SKTExtras.h"
+#import "SKTTimingFunctions.h"
+#import "SKTEffects.h"
 
 @implementation MatchPix
 
@@ -617,7 +619,8 @@ float degToRad(float degree) {
         
         
         SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
-        //tempPicForQ = picForQuestion;
+        tempPicForQ = picForQuestion;
+        tempPicForQ.userInteractionEnabled = NO;
         //[picForQuestion removeFromParent];
 
         SKAction *waitBegin = [SKAction waitForDuration:0.2];
@@ -629,12 +632,25 @@ float degToRad(float degree) {
         }];
         SKAction *sequenceLoad = [SKAction sequence:@[waitBegin,flyBatAway,waitToLoad,loadNextImage]];
         
+        SKTMoveEffect *actionMove = [SKTMoveEffect effectWithNode:picForQuestion duration:1.0
+                                                    startPosition:picForQuestion.position
+                                                      endPosition:CGPointMake(picForQuestion.position.x, picForQuestion.position.y - 400) ];
         
-        [picForQuestion runAction:sequenceLoad];
+        actionMove.timingFunction = SKTTimingFunctionBounceEaseOut;
+        
+        SKAction *actionWithEffect = [SKAction actionWithEffect:actionMove];
+        
+        SKAction *tumbleScreen = [SKAction skt_screenTumbleWithNode:picForQuestion angle:40 oscillations:10 duration:1.0];
+        [self runAction:tumbleScreen];
+        
+        [picForQuestion runAction:actionWithEffect];
+        
+        SKAction *zoomEffect = [SKAction skt_screenZoomWithNode:letterB amount:CGPointMake(500, 500) oscillations:5 duration:1.0];
+        [self runAction:zoomEffect];
         
         questionCount++;
         
-        //[self nextQuestion];
+        [self nextQuestion];
         
         
     } else if (CGRectIntersectsRect(letterC.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"C"]) {
@@ -683,6 +699,7 @@ float degToRad(float degree) {
         questionCount++;
         
         [self nextQuestion];
+        
     } else if (CGRectIntersectsRect(letterE.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"E"]) {
         
         self.userInteractionEnabled = NO;
@@ -706,6 +723,7 @@ float degToRad(float degree) {
         questionCount++;
         
         [self nextQuestion];
+        
     }  else if (CGRectIntersectsRect(letterF.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"F"]) {
             
         self.userInteractionEnabled = NO;
@@ -717,8 +735,7 @@ float degToRad(float degree) {
         [letterB runAction:sequenceUpDown];
             
         [avSound play];
-            
-            
+
         SKSpriteNode *tempPicForQ = [SKSpriteNode alloc];
         tempPicForQ = picForQuestion;
         [picForQuestion removeFromParent];
@@ -775,6 +792,7 @@ float degToRad(float degree) {
         questionCount++;
         
         [self nextQuestion];
+        
     } else if (CGRectIntersectsRect(letterJ.frame, picForQuestion.frame) && [picForQuestion.name isEqualToString:@"J"]) {
         
         self.userInteractionEnabled = NO;

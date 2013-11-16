@@ -14,6 +14,7 @@
 #import "LetterTrace.h"
 #import "Credits.h"
 
+
 @implementation IntroScreen
 
 @synthesize introductionLabel;
@@ -133,14 +134,14 @@ CGFloat height;
         
         [self addChild:openEffect];
         
-        NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"sesame-street" withExtension:@"mp3"];
+        NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"16_30" withExtension:@"mp3"];
         
         avSound = [[AVAudioPlayer alloc]initWithContentsOfURL:soundURL error:nil];
-        //[avSound play];
+        [avSound play];
         
         dragNDrop = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
         dragNDrop.fontSize = 30;
-        dragNDrop.text = @"Pictures and Letters";
+        dragNDrop.text = @"Choose Letter";
         dragNDrop.fontColor = [UIColor orangeColor];
         dragNDrop.position = CGPointMake(200, 200);
         dragNDrop.name = @"drag";
@@ -188,7 +189,7 @@ CGFloat height;
     UITouch *touch = [touches anyObject];
     CGPoint theTouch = [touch locationInNode:self];
 
-    //[avSound stop];
+    [avSound stop];
     if (CGRectContainsPoint(optionsMenu.frame, theTouch)) {
         
         WorldHistoryMainMenu *worldHistory = [[WorldHistoryMainMenu alloc]initWithSize:CGSizeMake(768, 1024)];

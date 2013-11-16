@@ -13,6 +13,7 @@
 #import "WorldHistoryMainMenu.h"
 #import "QuizButtons.h"
 
+
 @implementation ViewController
 
 @synthesize myScrollView;
@@ -61,14 +62,28 @@ QuizButtons *quizButtonView;
     
     [super viewWillLayoutSubviews];
     //spriteView = (SKView *)self.view;
-    //spriteView.showsFPS = YES;
-    //spriteView.showsNodeCount = YES;
+    spriteView.showsFPS = YES;
+    spriteView.showsNodeCount = YES;
     
     if(!spriteView.scene) {
         //NEW
         //
-        spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
-        
+        if ([[UIDevice currentDevice].model isEqualToString:@"iPad"]) {
+            spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
+            spriteView.showsFPS = YES;
+            spriteView.showsNodeCount = YES;
+        } else if ([[UIDevice currentDevice].model isEqualToString:@"iPhone"]){
+            spriteView = [[SKView alloc]initWithFrame:CGRectMake(-60, 0, 650, 400)];
+            spriteView.showsFPS = YES;
+            spriteView.showsNodeCount = YES;
+            
+        } else {
+            
+            spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
+            spriteView.showsFPS = YES;
+            spriteView.showsNodeCount = YES;
+            
+        }
         //
         //END
         
