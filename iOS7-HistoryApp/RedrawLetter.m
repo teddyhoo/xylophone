@@ -8,123 +8,146 @@
 
 #import "RedrawLetter.h"
 #import "MontessoriData.h"
+#import "LowerCaseLetter.h"
 
 @implementation RedrawLetter
 
-@synthesize timeToComplete, representLetter;
+@synthesize timeToComplete, representLetter, spritePointObjects,letterData;
 MontessoriData *sharedData;
+SKShapeNode *highlightLetter;
 
 -(instancetype) initWithPosition:(CGPoint)position withKey:(NSNumber *)keyForLetter {
     
     //self.userInteractionEnabled = YES;
     
+    spritePointObjects = [[NSMutableArray alloc]init];
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(-100,-100,500,500)];
+    
+    highlightLetter = [SKShapeNode node];
+    highlightLetter.path = path.CGPath;
+    highlightLetter.strokeColor = [UIColor orangeColor];
+    highlightLetter.lineWidth = 3;
+    highlightLetter.antialiased = NO;
+    
+    
     if (self = [super init]) {
+        
         sharedData = [MontessoriData sharedManager];
-
-        self.position = position;
         self.userInteractionEnabled = YES;
+        self.position = position;
+        
+        _layerSize = CGSizeMake(400, 400);
+
+        //letterData = [[LowerCaseLetter alloc]init];
         
         int convertKey = [keyForLetter intValue];
         
-        if(convertKey == 0) {
-            
+        NSLog(@"convert key %i", convertKey);
+        
+        if(convertKey == 1) {
+            letterData = sharedData.letterA;
             representLetter = @"A";
-            
-        } else if (convertKey == 1) {
-            
-            representLetter = @"B";
-            
         } else if (convertKey == 2) {
-            
-            representLetter = @"C";
-            
+            letterData = sharedData.letterB;
+            representLetter = @"B";
         } else if (convertKey == 3) {
-            
-            representLetter = @"M";
-            
+            letterData = sharedData.letterC;
+            representLetter = @"C";
         } else if (convertKey == 4) {
-            
-            representLetter = @"S";
-            
+            letterData = sharedData.letterM;
+            representLetter = @"M";
         } else if (convertKey == 5) {
-            
-            representLetter = @"O";
-            
+            letterData = sharedData.letterS;
+            representLetter = @"S";
         } else if (convertKey == 6) {
-            
-            representLetter = @"A";
-            
+            letterData = sharedData.letterT;
+            representLetter = @"T";
         } else if (convertKey == 7) {
-            
-            representLetter = @"A";
-            
+            letterData = sharedData.letterO;
+            representLetter = @"O";
         } else if (convertKey == 8) {
-            
-            representLetter = @"A";
-            
+            letterData = sharedData.letterG;
+            representLetter = @"G";
         } else if (convertKey == 9) {
-            
-            representLetter = @"A";
-            
+            letterData = sharedData.letterR;
+            representLetter = @"R";
         } else if (convertKey == 10) {
-            
-            representLetter = @"A";
-            
+            letterData = sharedData.letterD;
+            representLetter = @"D";
         } else if (convertKey == 11) {
-            
-            representLetter = @"A";
-            
+            letterData = sharedData.letterF;
+            representLetter = @"F";
         } else if (convertKey == 12) {
-            
+            letterData = sharedData.letterI;
             representLetter = @"A";
-            
         } else if (convertKey == 13) {
-            
+            letterData = sharedData.letterP;
             representLetter = @"A";
-            
         } else if (convertKey == 14) {
-            
+            letterData = sharedData.letterN;
+
             representLetter = @"A";
             
         } else if (convertKey == 15) {
-            
+            letterData = sharedData.letterL;
+
             representLetter = @"A";
             
         } else if (convertKey == 16) {
-            
+            letterData = sharedData.letterH;
+
             representLetter = @"A";
             
         } else if (convertKey == 17) {
-            
+            letterData = sharedData.letterA;
+
             representLetter = @"A";
             
         } else if (convertKey == 18) {
-            
+            letterData = sharedData.letterA;
+
             representLetter = @"A";
             
         } else if (convertKey == 19) {
-            
+            letterData = sharedData.letterA;
+
             representLetter = @"A";
             
         } else if (convertKey == 20) {
-            
+            letterData = sharedData.letterA;
+
             representLetter = @"A";
             
         } else if (convertKey == 21) {
-            
+            letterData = sharedData.letterA;
+
             representLetter = @"A";
             
         } else if (convertKey == 22) {
-            
+            letterData = sharedData.letterA;
+
             representLetter = @"A";
             
         } else if (convertKey == 23) {
+            letterData = sharedData.letterA;
+
             representLetter = @"A";
+            
         } else if (convertKey == 24) {
+            letterData = sharedData.letterA;
+
             representLetter = @"A";
         } else if (convertKey == 25) {
+            letterData = sharedData.letterA;
+
             representLetter = @"A";
         } else if (convertKey == 26) {
+            letterData = sharedData.letterA;
+
+            representLetter = @"A";
+        } else if (convertKey == 26) {
+            letterData = sharedData.letterA;
+
             representLetter = @"A";
         }
 
@@ -134,9 +157,33 @@ MontessoriData *sharedData;
     
 }
 
+-(void)addPointToNode:(SKSpriteNode*)drawnPoint {
+    
+    [spritePointObjects addObject:drawnPoint];
+    
+    
+    
+}
+
+-(NSMutableArray *)drawMyself {
+    
+    return spritePointObjects;
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    NSLog (@"touched drawn letter");
+    NSLog (@"touched node element");
+    UITouch *touch = [touches anyObject];
+    SKAction *scaleIt = [SKAction scaleTo:1.2 duration:0.2];
+    [self runAction:scaleIt];
+    
+    [letterData playTheSound];
+    //[self addChild:highlightLetter];
+    
+    
+    
+    
+
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
