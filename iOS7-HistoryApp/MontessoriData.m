@@ -11,12 +11,9 @@
 
 static MontessoriData *sharedMyManager = nil;
 
-
-
 @implementation MontessoriData
 
-
-@synthesize letterA, letterB, letterC, letterD, letterE, letterF, letterG, letterH, letterI, letterJ, letterK, letterL, letterM, letterN, letterO, letterP, letterQ, letterR, letterS, letterT, letterU, letterV, letterW, letterX, letterY, letterZ;
+@synthesize letterA, letterB, letterC, letterD, letterE, letterF, letterG, letterH, letterI, letterJ, letterK, letterL, letterM, letterN, letterO, letterP, letterQ, letterR, letterS, letterT, letterU, letterV, letterW, letterX, letterY, letterZ, letterDrawResults;
 
 CGPoint startPoint;
 
@@ -37,6 +34,7 @@ CGPoint startPoint;
 -(id)init {
     
 	if (self = [super init]) {
+        letterDrawResults = [[NSMutableArray alloc]init];
         
         letterA = [self createLetterA];
         letterB = [self createLetterB];
@@ -71,6 +69,29 @@ CGPoint startPoint;
     }
     return self;
 }
+
+-(void)archiveShapeDrawn:(NSMutableArray*)spriteCloudObjects
+                   onDay:(NSDate*)dateDone
+               firstLine:(NSNumber *)pointsMissed
+              secondLine:(NSNumber *)secondPointsMissed
+             whichLetter:(NSString *)letterName {
+    
+    
+    NSMutableDictionary *studentData = [[NSMutableDictionary alloc]init];
+    
+    [studentData setObject:letterName forKey:@"letter"];
+    [studentData setObject:dateDone forKey:@"dateDone"];
+    [studentData setObject:pointsMissed forKey:@"missed"];
+    [studentData setObject:secondPointsMissed forKey:@"missed2"];
+    [studentData setObject:spriteCloudObjects forKey:@"shape"];
+    [studentData setObject:pointsMissed forKey:@"firstLine"];
+    [studentData setObject:secondPointsMissed forKey:@"secondLine"];
+    
+    [letterDrawResults addObject:studentData];
+    
+}
+
+
 
 -(LowerCaseLetter *) createLetterA {
     
@@ -181,7 +202,7 @@ CGPoint startPoint;
     float beginy = 780;
 
 
-    letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"b_red_1000x600.png"];
+    letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"b_1.png"];
     NSURL *letterBurl = [[NSBundle mainBundle]URLForResource:@"b" withExtension:@"aiff"];
     letterB.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterBurl error:nil];
     letterB.name = @"B";
@@ -231,6 +252,9 @@ CGPoint startPoint;
     letterF.anchorPoint = CGPointMake(1.0, 0.5);
     NSURL *letterFurl = [[NSBundle mainBundle]URLForResource:@"f2" withExtension:@"aiff"];
     letterF.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterFurl error:nil];
+    
+    letterF.name = @"F";
+    
     return letterF;
     
 }
@@ -239,6 +263,7 @@ CGPoint startPoint;
     letterG = [LowerCaseLetter spriteNodeWithImageNamed:@"g_1000x600.png"];
     NSURL *letterGurl = [[NSBundle mainBundle]URLForResource:@"g" withExtension:@"aiff"];
     letterG.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterGurl error:nil];
+    letterG.name = @"G";
     
     letterG.anchorPoint = CGPointMake(1.0,0.8);
     return letterG;
@@ -250,6 +275,8 @@ CGPoint startPoint;
     letterH.anchorPoint = CGPointMake(1.0, 0.65);
     NSURL *letterHurl = [[NSBundle mainBundle]URLForResource:@"h2" withExtension:@"aiff"];
     letterH.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterHurl error:nil];
+    letterH.name = @"H";
+    
     return letterH;
 }
 
@@ -257,6 +284,8 @@ CGPoint startPoint;
     letterI = [LowerCaseLetter spriteNodeWithImageNamed:@"i_850x600.png"];
     NSURL *letterIurl = [[NSBundle mainBundle]URLForResource:@"i2" withExtension:@"aiff"];
     letterI.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterIurl error:nil];
+    letterI.name = @"I";
+    
     return letterI;
 }
 
@@ -266,6 +295,9 @@ CGPoint startPoint;
     
     NSURL *letterJurl = [[NSBundle mainBundle]URLForResource:@"j2" withExtension:@"aiff"];
     letterJ.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterJurl error:nil];
+    
+    letterJ.name = @"J";
+    
     return letterJ;
 }
 
@@ -274,6 +306,8 @@ CGPoint startPoint;
     letterK.anchorPoint = CGPointMake(1.0, 0.4);
     NSURL *letterKurl = [[NSBundle mainBundle]URLForResource:@"k" withExtension:@"aiff"];
     letterK.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterKurl error:nil];
+    letterK.name = @"K";
+    
     return letterK;
 }
 
@@ -282,6 +316,9 @@ CGPoint startPoint;
     letterL.anchorPoint = CGPointMake(1.0, 0.65);
     NSURL *letterLurl = [[NSBundle mainBundle]URLForResource:@"l" withExtension:@"aiff"];
     letterL.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterLurl error:nil];
+    
+    letterL.name = @"L";
+    
     return letterL;
 }
 
@@ -289,6 +326,9 @@ CGPoint startPoint;
     letterM = [LowerCaseLetter spriteNodeWithImageNamed:@"m_600x850.png"];
     NSURL *letterMurl = [[NSBundle mainBundle]URLForResource:@"m" withExtension:@"aiff"];
     letterM.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterMurl error:nil];
+    
+    letterM.name = @"M";
+    
     return letterM;
 }
 
@@ -297,6 +337,8 @@ CGPoint startPoint;
     letterN.anchorPoint = CGPointMake(1.0, 0.65);
     NSURL *letterNurl = [[NSBundle mainBundle]URLForResource:@"n" withExtension:@"aiff"];
     letterN.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterNurl error:nil];
+    letterN.name = @"N";
+    
     return letterN;
 }
 
@@ -305,6 +347,8 @@ CGPoint startPoint;
     letterO.anchorPoint = CGPointMake(1.0, 0.65);
     NSURL *letterOurl = [[NSBundle mainBundle]URLForResource:@"o" withExtension:@"aiff"];
     letterO.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterOurl error:nil];
+    letterN.name = @"N";
+    
     return letterO;
 }
 
@@ -314,6 +358,8 @@ CGPoint startPoint;
     
     NSURL *letterPurl = [[NSBundle mainBundle]URLForResource:@"p" withExtension:@"aiff"];
     letterP.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterPurl error:nil];
+    letterP.name = @"P";
+    
     return letterP;
 }
 
@@ -322,6 +368,8 @@ CGPoint startPoint;
     letterQ.anchorPoint = CGPointMake(1.0, 0.8);
     NSURL *letterQurl = [[NSBundle mainBundle]URLForResource:@"q" withExtension:@"aiff"];
     letterQ.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterQurl error:nil];
+    letterQ.name = @"Q";
+    
     return letterQ;
 }
 
@@ -331,6 +379,8 @@ CGPoint startPoint;
     
     NSURL *letterRurl = [[NSBundle mainBundle]URLForResource:@"r" withExtension:@"aiff"];
     letterR.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterRurl error:nil];
+    letterR.name = @"R";
+    
     return letterR;
 }
 
@@ -338,6 +388,8 @@ CGPoint startPoint;
     letterS = [LowerCaseLetter spriteNodeWithImageNamed:@"s_600x600.png"];
     NSURL *letterSurl = [[NSBundle mainBundle]URLForResource:@"s" withExtension:@"aiff"];
     letterS.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterSurl error:nil];
+    letterS.name = @"S";
+    
     return letterS;
 }
 
@@ -345,6 +397,8 @@ CGPoint startPoint;
     letterT = [LowerCaseLetter spriteNodeWithImageNamed:@"t_850x600.png"];
     NSURL *letterTurl = [[NSBundle mainBundle]URLForResource:@"t2" withExtension:@"aiff"];
     letterT.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterTurl error:nil];
+    letterT.name = @"T";
+    
     return letterT;
 }
 
@@ -352,6 +406,8 @@ CGPoint startPoint;
     letterU = [LowerCaseLetter spriteNodeWithImageNamed:@"u_600x600.png"];
     NSURL *letterUurl = [[NSBundle mainBundle]URLForResource:@"u" withExtension:@"aiff"];
     letterU.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterUurl error:nil];
+    letterU.name = @"U";
+    
     return letterU;
 }
 
@@ -359,6 +415,7 @@ CGPoint startPoint;
     letterV = [LowerCaseLetter spriteNodeWithImageNamed:@"v_600x600.png"];
     NSURL *letterVurl = [[NSBundle mainBundle]URLForResource:@"v" withExtension:@"aiff"];
     letterV.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterVurl error:nil];
+    letterV.name = @"V";
     return letterV;
 }
 
@@ -366,6 +423,8 @@ CGPoint startPoint;
     letterW = [LowerCaseLetter spriteNodeWithImageNamed:@"w_600x850.png"];
     NSURL *letterWurl = [[NSBundle mainBundle]URLForResource:@"w" withExtension:@"aiff"];
     letterW.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterWurl error:nil];
+    letterU.name = @"W";
+    
     return letterW;
 }
 
@@ -375,6 +434,7 @@ CGPoint startPoint;
     
     NSURL *letterXurl = [[NSBundle mainBundle]URLForResource:@"x" withExtension:@"aiff"];
     letterX.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterXurl error:nil];
+    letterX.name = @"X";
     return letterX;
 }
 
@@ -383,6 +443,8 @@ CGPoint startPoint;
     letterY.anchorPoint = CGPointMake(1.0, 0.8);
     NSURL *letterYurl = [[NSBundle mainBundle]URLForResource:@"y" withExtension:@"aiff"];
     letterY.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterYurl error:nil];
+    letterY.name = @"Y";
+    
     return letterY;
 }
 
@@ -391,6 +453,7 @@ CGPoint startPoint;
     letterZ.anchorPoint = CGPointMake(1.0, 0.65);
     NSURL *letterZurl = [[NSBundle mainBundle]URLForResource:@"z" withExtension:@"aiff"];
     letterZ.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterZurl error:nil];
+    letterZ.name = @"Z";
     return letterZ;
 }
 

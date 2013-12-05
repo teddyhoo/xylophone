@@ -11,6 +11,7 @@
 #import "MatchPix.h"
 #import "LetterTrace.h"
 #import "Credits.h"
+#import "TeacherParent.h"
 
 @interface IntroScreen : SKScene
 {
@@ -28,4 +29,6 @@
 @property (nonatomic,retain) MatchPix *matchingScene;
 @property (nonatomic,retain) LetterTrace *traceScene;
 @property (nonatomic,retain) Credits *credits;
+@property (nonatomic,retain) TeacherParent *teacherReview;
+
 @end

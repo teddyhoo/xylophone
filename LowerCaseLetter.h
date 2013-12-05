@@ -46,6 +46,7 @@
 -(void) createControlPoints:(NSMutableArray *)controlPointsForLetter;
 -(void) atCenterStage;
 -(void) fireEmitter;
+-(NSString *) whichLetter;
 
 
 

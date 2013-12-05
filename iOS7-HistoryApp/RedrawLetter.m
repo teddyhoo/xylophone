@@ -12,7 +12,7 @@
 
 @implementation RedrawLetter
 
-@synthesize timeToComplete, representLetter, spritePointObjects,letterData;
+@synthesize timeToComplete, representLetter, spritePointObjects,letterData,dateDrawn;
 MontessoriData *sharedData;
 SKShapeNode *highlightLetter;
 
@@ -170,15 +170,23 @@ SKShapeNode *highlightLetter;
     return spritePointObjects;
 }
 
+
+-(void) saveWork {
+    
+    
+}
+
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     NSLog (@"touched node element");
     UITouch *touch = [touches anyObject];
+    CGPoint touchLocation  = [touch locationInNode:self];
     SKAction *scaleIt = [SKAction scaleTo:1.2 duration:0.2];
     [self runAction:scaleIt];
     
     [letterData playTheSound];
-    //[self addChild:highlightLetter];
+    [self addChild:highlightLetter];
     
     
     

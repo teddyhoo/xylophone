@@ -36,13 +36,11 @@ NSMutableArray *letterProblems;
 NSMutableArray *controlPointSprites;
 NSMutableArray *pointsForSprite;
 NSMutableArray *pointsForSprite2;
-//NSMutableArray *spriteFromPoint;
 NSMutableArray *controlPoints;
 NSMutableArray *shapeNodeObjects;
 NSMutableDictionary *arrowObjects;
 NSMutableArray *traceThePath;
 NSMutableArray *finishedLevelText;
-//NSMutableArray *listOfTrailSprites;
 NSMutableArray *timeToDrawLetter;
 NSMutableArray *allPicsForQuestions;
 NSMutableArray *allLettersSprites;
@@ -164,5 +162,8 @@ CGFloat height;
 //int timerForLetter = 0;
 
 @implementation Chooser
+
+
+
 
 @end

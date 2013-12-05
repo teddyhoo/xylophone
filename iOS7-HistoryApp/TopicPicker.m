@@ -84,9 +84,8 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         titleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
         titleLabel.name = @"title";
 
-        
+// ----------------------------------------------------------------------------------------------
         numColonial = 0;
-        
         for (NSString *key in sortedQuestions) {
             
             if ([[sortedQuestions valueForKey:key] isEqualToString:@"Colonial"]) {
@@ -94,20 +93,17 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
                 numColonial++;
             }
         }
-        
         NSLog(@"number of colonial: %i", numColonial);
-        
-    
-        
         
         topic2 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic2.text = @"Colonial";
         topic2.fontColor = [UIColor redColor];
-        topic2.fontSize = 30;
-        topic2.position = CGPointMake(0, 300);
-        topic2.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
+        topic2.fontSize = 20;
+        topic2.position = CGPointMake(-300, 300);
+        topic2.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
         topic2.name = @"Colonial";
 
+// ----------------------------------------------------------------------------------------------
         
         numRevolution =  0;
         
@@ -129,6 +125,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic3.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic3.name = @"Revolution";
         
+// ----------------------------------------------------------------------------------------------
         
         numEarlyRep =  0;
         
@@ -146,9 +143,10 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic4.fontColor = [UIColor redColor];
         topic4.fontSize = 30;
         topic4.position = CGPointMake(0, 150);
-        topic4.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
+        topic4.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
         topic4.name = @"Early Republic";
         
+// ----------------------------------------------------------------------------------------------
         
         numEraGood =  0;
         
@@ -167,16 +165,16 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic5.position = CGPointMake(0, 75);
         topic5.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic5.name = @"Era of Good Feelings";
-        
+    
+// ----------------------------------------------------------------------------------------------
+
         numJacksonian =  0;
-        
         for (NSString *key in sortedQuestions) {
             
             if ([[sortedQuestions valueForKey:key] isEqualToString:@"Jacksonian"]) {
                 numJacksonian++;
             }
         }
-        
         NSLog(@"number of Jacksonian: %i", numJacksonian);
         
         topic6 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
@@ -187,16 +185,15 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic6.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic6.name = @"Jacksonian";
         
-        numWestward =  0;
+// ----------------------------------------------------------------------------------------------
         
+        numWestward =  0;
         for (NSString *key in sortedQuestions) {
             
             if ([[sortedQuestions valueForKey:key] isEqualToString:@"Westward Expansion"]) {
-                NSLog(@"value: %@", [sortedQuestions valueForKey:key]);
                 numWestward++;
             }
         }
-        
         NSLog(@"number of westward: %i", numWestward);
         
         topic7 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
@@ -207,6 +204,18 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic7.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic7.name = @"Westward Expansion";
         
+// ----------------------------------------------------------------------------------------------
+        
+        numAntebellum =  0;
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"Antebellum"]) {
+                NSLog(@"value: %@", [sortedQuestions valueForKey:key]);
+                numAntebellum++;
+            }
+        }
+        NSLog(@"number of antebellum: %i", numAntebellum);
+        
         topic8 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic8.text = @"Antebellum";
         topic8.fontColor = [UIColor redColor];
@@ -215,6 +224,19 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic8.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic8.name = @"Antebellum";
         
+// ----------------------------------------------------------------------------------------------
+        
+        numCivilWar =  0;
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"Civil War"]) {
+                NSLog(@"value: %@", [sortedQuestions valueForKey:key]);
+                numCivilWar++;
+            }
+        }
+        NSLog(@"number of civil war: %i", numCivilWar);
+
+
         topic9 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic9.text = @"Civil War";
         topic9.fontColor = [UIColor redColor];
@@ -223,6 +245,18 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic9.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic9.name = @"Civil War";
         
+// ----------------------------------------------------------------------------------------------
+        
+        numReconstruct =  0;
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"Reconstruction"]) {
+                NSLog(@"value: %@", [sortedQuestions valueForKey:key]);
+                numReconstruct++;
+            }
+        }
+        NSLog(@"number of reconstruction: %i", numReconstruct);
+        
         topic10 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic10.text = @"Reconstruction";
         topic10.fontColor = [UIColor redColor];
@@ -230,6 +264,17 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic10.position = CGPointMake(0, -300);
         topic10.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic10.name = @"Reconstruction";
+
+// ----------------------------------------------------------------------------------------------
+        
+        int numGilded =  0;
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"Gilded Age"]) {
+                numGilded++;
+            }
+        }
+        NSLog(@"number of gilded: %i", numGilded);
         
         topic11 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic11.text = @"Gilded Age";
@@ -239,12 +284,35 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic11.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic11.name = @"Gilded Age";
         
+        
+// ----------------------------------------------------------------------------------------------
+       
+        int numProgressive =  0;
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"Progressive Age"]) {
+                numProgressive++;
+            }
+        }
+        NSLog(@"number of Progressive: %i", numProgressive);
+        
         topic12 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic12.text = @"Progressive";
         topic12.fontColor = [UIColor redColor];
         topic12.fontSize = 30;
         topic12.position = CGPointMake(300, 300);
         topic12.name = @"Progressive";
+
+// ----------------------------------------------------------------------------------------------
+        
+        int numImperialism =  0;
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"Imperialism Age"]) {
+                numImperialism++;
+            }
+        }
+        NSLog(@"number of Imperialism: %i", numImperialism);
         
         topic13 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic13.text = @"Imperialism";
@@ -253,6 +321,16 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic13.position = CGPointMake(300, 225);
         topic13.name = @"Imperialism";
         
+// ----------------------------------------------------------------------------------------------
+       
+        int numWorldWarI =  0;
+        for (NSString *key in sortedQuestions) {
+            
+            if ([[sortedQuestions valueForKey:key] isEqualToString:@"World War I Age"]) {
+                numWorldWarI++;
+            }
+        }
+        NSLog(@"number of World War I: %i", numWorldWarI);
         topic14 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic14.text = @"World War I";
         topic14.fontColor = [UIColor redColor];
@@ -260,12 +338,16 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic14.position = CGPointMake(300, 150);
         topic14.name = @"World War I";
         
+// ----------------------------------------------------------------------------------------------
+        
         topic15 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic15.text = @"Roaring 20's";
         topic15.fontColor = [UIColor redColor];
         topic15.fontSize = 30;
         topic15.position = CGPointMake(300, 75);
         topic15.name = @"Roaring 20's";
+        
+// ----------------------------------------------------------------------------------------------
         
         topic16 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic16.text = @"Depression";
@@ -275,6 +357,9 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic16.name = @"Depression";
         
         
+// ----------------------------------------------------------------------------------------------
+        
+        
         topic17 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic17.text = @"World War II";
         topic17.fontColor = [UIColor redColor];
@@ -282,6 +367,10 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic17.position = CGPointMake(300, -75);
         topic17.name = @"World War II";
         
+
+        
+// ----------------------------------------------------------------------------------------------
+       
         topic18 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic18.text = @"Cold War";
         topic18.fontColor = [UIColor redColor];
@@ -289,6 +378,9 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic18.position = CGPointMake(300, -150);
         topic18.name = @"Cold War";
         
+        
+// ----------------------------------------------------------------------------------------------
+       
         topic19 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic19.text = @"Civil Rights";
         topic19.fontColor = [UIColor redColor];
@@ -296,6 +388,9 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic19.position = CGPointMake(300, -225);
         topic19.name = @"Civil Rights";
         
+        
+// ----------------------------------------------------------------------------------------------
+       
         topic20 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic20.text = @"60's and 70's";
         topic20.fontColor = [UIColor redColor];
@@ -303,6 +398,9 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic20.position = CGPointMake(300, -300);
         topic20.name = @"60's and 70's";
         
+        
+// ----------------------------------------------------------------------------------------------
+       
         topic21 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic21.text = @"Reagan Era";
         topic21.fontColor = [UIColor redColor];
@@ -310,6 +408,8 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic21.position = CGPointMake(300, -375);
         topic21.name = @"Reagan Era";
         
+// ----------------------------------------------------------------------------------------------
+       
         topic22 = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         topic22.text = @"Modern Era";
         topic22.fontColor = [UIColor redColor];

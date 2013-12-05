@@ -14,8 +14,15 @@
 @implementation Quizzer
 
 @synthesize answerButton1, answerButton2, answerButton3, answerButton4;
-@synthesize quizQuestions, quizAnswers, quizWrongOne, quizWrongTwo, quizWrongThree, quizWrongFour, questionClue, questionSection, tagFirst, tagSecond, difficultyLevel, imageList, forward, goForward;
+@synthesize quizQuestions, quizAnswers, quizWrongOne, quizWrongTwo, quizWrongThree, quizWrongFour,
+questionClue, questionSection, tagFirst, tagSecond, difficultyLevel, imageList, forward, goForward;
 @synthesize currentlySelectedTerm;
+
+
+
+
+HistoryData *sharedData;
+TopicPicker *pickTopic;
 
 SKLabelNode *scoreActual;
 SKLabelNode *score;
@@ -32,8 +39,6 @@ SKLabelNode *totalScoreNow; //auto-calculated
 SKLabelNode *totalQuestionsComplete; // dynamic
 SKLabelNode *classifyQuestionCategory; // from xml
 SKLabelNode *totalTimeDisplay; // dynamic
-
-
 SKSpriteNode *correctQuestionAnswer;
 SKSpriteNode *wrongQuestionAnswer;
 SKSpriteNode *birdie;
@@ -55,9 +60,6 @@ SKSpriteNode *renderLabel4;
 SKSpriteNode *renderLabel5;
 
 
-HistoryData *sharedData;
-TopicPicker *pickTopic;
-
 static int questionCounter = 0;
 static int totalCorrect = 0;
 static int correctAnswer = 0;
@@ -74,6 +76,25 @@ int totalTimeTrack = 0;
 int degreeOfDifficulty = 1;
 int circlesPerRow = 20;
 int currentRow = 1;
+int questionTextWidth;
+CGPoint _score_pos;
+CGPoint _scoreActual_pos;
+CGPoint _totalTime_pos;
+CGPoint _totalScore_pos; // Label: Tot Quest:
+CGPoint _birdie_pos;
+CGPoint _questionCategory_pos;
+CGPoint _totalQuestionsComplete_pos;
+CGPoint _totalScoreNow_pos;
+CGPoint _totalTime_pos;
+CGPoint _total_Actual_Time;
+CGPoint _setOfAnswers;
+CGPoint _totalScoreCounter;
+CGPoint answerRelativeToButton;
+CGPoint _pointForTitlePosition;
+CGPoint _timerCounterPos;
+CGPoint _explanation_pos;
+CGPoint answerPosition;
+CGSize winSize;
 
 BOOL sameQuestion = false;
 BOOL sameQuestion2 = false;
@@ -93,27 +114,7 @@ NSMutableArray *allStar;
 NSMutableArray *allXimg;
 HistoryData *sharedData;
 
-int questionTextWidth;
 
-CGPoint _score_pos;
-CGPoint _scoreActual_pos;
-CGPoint _totalTime_pos;
-CGPoint _totalScore_pos; // Label: Tot Quest:
-CGPoint _birdie_pos;
-CGPoint _questionCategory_pos;
-CGPoint _totalQuestionsComplete_pos;
-CGPoint _totalScoreNow_pos;
-CGPoint _totalTime_pos;
-CGPoint _total_Actual_Time;
-CGPoint _setOfAnswers;
-CGPoint _totalScoreCounter;
-CGPoint answerRelativeToButton;
-CGPoint _pointForTitlePosition;
-CGPoint _timerCounterPos;
-CGPoint _explanation_pos;
-CGPoint answerPosition;
-
-CGSize winSize;
 
 
 - (id)initWithSize:(CGSize)size

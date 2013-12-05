@@ -10,7 +10,7 @@
 
 @implementation LowerCaseLetter
 
-@synthesize baseSound, wordSample1, wordSample2, wordSample3, wordSample4, centerStage, wordsForLetter, timeForTrace, numberAttempts;
+@synthesize baseSound,wordSample1, wordSample2, wordSample3, wordSample4, centerStage, wordsForLetter, timeForTrace, numberAttempts;
 
 
 
@@ -53,6 +53,8 @@
     
     
 }
+
+
 
 
 @end

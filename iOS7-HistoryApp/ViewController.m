@@ -20,7 +20,7 @@
 @synthesize introScreen;
 MainMenu *theMainMenu;
 QuizButtons *quizButtonView;
-
+BOOL isIphone = FALSE;
 
 /*
 - (void)viewDidLoad
@@ -65,14 +65,31 @@ QuizButtons *quizButtonView;
     spriteView.showsFPS = YES;
     spriteView.showsNodeCount = YES;
     
+    
+    NSString *deviceType = [UIDevice currentDevice].model;
+    
+    if([deviceType isEqualToString:@"iPhone"]) {
+        
+        isIphone = TRUE;
+        
+    } else {
+        
+        isIphone = FALSE;
+    }
+    
+    
     if(!spriteView.scene) {
         //NEW
         //
-        if ([[UIDevice currentDevice].model isEqualToString:@"iPad"]) {
+        if (!isIphone) {
+            
             spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
             spriteView.showsFPS = YES;
             spriteView.showsNodeCount = YES;
-        } else if ([[UIDevice currentDevice].model isEqualToString:@"iPhone"]){
+            
+        } else if (isIphone){
+            
+            NSLog(@"sizing for iPhone");
             spriteView = [[SKView alloc]initWithFrame:CGRectMake(-60, 0, 650, 400)];
             spriteView.showsFPS = YES;
             spriteView.showsNodeCount = YES;

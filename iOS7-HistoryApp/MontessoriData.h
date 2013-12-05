@@ -22,6 +22,8 @@
 
 +(id)sharedManager;
 
+
+@property (nonatomic,retain) NSMutableArray *letterDrawResults;
 // Image of a lower case letter
 
 @property (nonatomic,retain) LowerCaseLetter *letterA;
@@ -108,5 +110,10 @@
 -(LowerCaseLetter *)createLetterY;
 -(LowerCaseLetter *)createLetterZ;
 
+-(void)archiveShapeDrawn:(NSMutableArray*)spriteCloudObjects
+                   onDay:(NSDate*)dateDone
+               firstLine:(NSNumber *)pointsMissed
+              secondLine:(NSNumber *)secondPointsMissed
+             whichLetter:(NSString *)letterName;
 
 @end

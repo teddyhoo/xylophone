@@ -39,8 +39,8 @@ NSMutableArray *optionsForMenu;
         SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         titleLabel.text = @"A P World History Study Prep";
         titleLabel.fontColor = [UIColor redColor];
-        titleLabel.fontSize = 50;
-        titleLabel.position = CGPointMake(400, 900);
+        titleLabel.fontSize = 20;
+        titleLabel.position = CGPointMake(50, 900);
         titleLabel.name = @"title";
         [titleLabel setUserInteractionEnabled:YES];
         
@@ -49,16 +49,16 @@ NSMutableArray *optionsForMenu;
         SKLabelNode *quizExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         quizExercisesLabel.text = @"Quiz Exercises";
         quizExercisesLabel.fontColor = [UIColor orangeColor];
-        quizExercisesLabel.fontSize = 40;
-        quizExercisesLabel.position = CGPointMake(400, 650);
+        quizExercisesLabel.fontSize = 20;
+        quizExercisesLabel.position = CGPointMake(150, 650);
         quizExercisesLabel.name = @"quiz";
         [self addChild:quizExercisesLabel];
 
         SKLabelNode *matchingExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         matchingExercisesLabel.text = @"Matching Exercises";
         matchingExercisesLabel.fontColor = [UIColor orangeColor];
-        matchingExercisesLabel.fontSize = 40;
-        matchingExercisesLabel.position = CGPointMake(400, 550);
+        matchingExercisesLabel.fontSize = 20;
+        matchingExercisesLabel.position = CGPointMake(150, 600);
         matchingExercisesLabel.name = @"match";
         
         [self addChild:matchingExercisesLabel];
@@ -67,8 +67,8 @@ NSMutableArray *optionsForMenu;
         SKLabelNode *essayExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         essayExercisesLabel.text = @"Essay Exercises";
         essayExercisesLabel.fontColor = [UIColor orangeColor];
-        essayExercisesLabel.fontSize = 40;
-        essayExercisesLabel.position = CGPointMake(400, 450);
+        essayExercisesLabel.fontSize = 20;
+        essayExercisesLabel.position = CGPointMake(150, 550);
         essayExercisesLabel.name = @"essay";
         
         [self addChild:essayExercisesLabel];
@@ -76,8 +76,8 @@ NSMutableArray *optionsForMenu;
         SKLabelNode *tableExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         tableExercisesLabel.text = @"Data Tables";
         tableExercisesLabel.fontColor = [UIColor orangeColor];
-        tableExercisesLabel.fontSize = 40;
-        tableExercisesLabel.position = CGPointMake(400, 350);
+        tableExercisesLabel.fontSize = 20;
+        tableExercisesLabel.position = CGPointMake(150, 500);
         tableExercisesLabel.name = @"table";
         
         [self addChild:tableExercisesLabel];
@@ -85,8 +85,8 @@ NSMutableArray *optionsForMenu;
         SKLabelNode *timelineExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         timelineExercisesLabel.text = @"Timelines";
         timelineExercisesLabel.fontColor = [UIColor orangeColor];
-        timelineExercisesLabel.fontSize = 40;
-        timelineExercisesLabel.position = CGPointMake(400, 250);
+        timelineExercisesLabel.fontSize = 20;
+        timelineExercisesLabel.position = CGPointMake(150, 450);
         timelineExercisesLabel.name = @"timeline";
         
         [self addChild:timelineExercisesLabel];
@@ -94,8 +94,8 @@ NSMutableArray *optionsForMenu;
         SKLabelNode *moreQuestionsLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
         moreQuestionsLabel.text = @"Get More Questions";
         moreQuestionsLabel.fontColor = [UIColor orangeColor];
-        moreQuestionsLabel.fontSize = 40;
-        moreQuestionsLabel.position = CGPointMake(400, 150);
+        moreQuestionsLabel.fontSize = 20;
+        moreQuestionsLabel.position = CGPointMake(150, 400);
         moreQuestionsLabel.name = @"moreQ";
         
         [self addChild:moreQuestionsLabel];

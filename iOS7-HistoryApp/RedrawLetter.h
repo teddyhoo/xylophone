@@ -22,5 +22,7 @@
 @property (nonatomic,retain)LowerCaseLetter* letterData;
 @property (nonatomic,retain)NSMutableArray *spritePointObjects;
 @property (readonly,nonatomic)CGSize layerSize;
+@property (nonatomic,retain)NSString *dateDrawn;
+
 
 @end
