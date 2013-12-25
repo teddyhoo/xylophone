@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "TopicPicker.h"
+#import "TCProgressTimerNode.h"
 
 @interface Quizzer : SKScene {
 
@@ -70,13 +71,13 @@
 @property (nonatomic,strong) SKSpriteNode * answerButton3;
 @property (nonatomic,strong) SKSpriteNode * answerButton4;
 
+@property (nonatomic,strong) TCProgressTimerNode *progressTimerNode2;
+@property (nonatomic) NSTimeInterval startTime;
 
 -(void) addBackButton;
 -(void) printNextQuestion;
--(void) updateScoreSection;
 -(void) checkAnswer:(NSNumber*)index;
 -(void) finishedWithSection;
--(void) setUpTimer;
 -(void) setupCorrectAndIncorrect;
 -(void) selectedTopic:(NSString *)theSelection;
 

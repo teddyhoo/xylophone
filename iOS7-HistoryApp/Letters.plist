@@ -4,134 +4,319 @@
 <array>
 	<dict>
 		<key>letter</key>
-		<string>B</string>
-		<key>image</key>
-		<string>bottle</string>
-		<key>phrase</key>
-		<string>Bottle</string>
-		<key>animation</key>
-		<string>no</string>
-		<key>scale</key>
-		<string>0.5</string>
-	</dict>
-	<dict>
-		<key>letter</key>
 		<string>A</string>
-		<key>image</key>
+		<key>group</key>
+		<string>1</string>
+		<key>phrase</key>
 		<string>apple</string>
-		<key>phrase</key>
-		<string>Apple</string>
 		<key>animation</key>
 		<string>no</string>
 		<key>scale</key>
-		<string>0.5</string>
-	</dict>
-	<dict>
-		<key>letter</key>
-		<string>B</string>
-		<key>image</key>
-		<string>balloons</string>
-		<key>phrase</key>
-		<string>Balloons</string>
-		<key>animation</key>
-		<string>no</string>
-		<key>scale</key>
-		<string>0.5</string>
+		<string>0.3</string>
 	</dict>
 	<dict>
 		<key>letter</key>
 		<string>C</string>
-		<key>image</key>
+		<key>group</key>
+		<string>1</string>
+		<key>phrase</key>
 		<string>cactus</string>
-		<key>phrase</key>
-		<string>Cactus</string>
 		<key>animation</key>
 		<string>no</string>
 		<key>scale</key>
-		<string>0.5</string>
+		<string>0.2</string>
 	</dict>
 	<dict>
 		<key>letter</key>
 		<string>B</string>
-		<key>image</key>
+		<key>group</key>
+		<string>1</string>
+		<key>phrase</key>
 		<string>basket</string>
-		<key>phrase</key>
-		<string>Basket</string>
 		<key>animation</key>
 		<string>no</string>
 		<key>scale</key>
-		<string>0.5</string>
+		<string>0.3</string>
 	</dict>
 	<dict>
 		<key>letter</key>
 		<string>B</string>
-		<key>image</key>
-		<string>bear</string>
+		<key>group</key>
+		<string>1</string>
 		<key>phrase</key>
-		<string>Ball</string>
+		<string>bell</string>
 		<key>animation</key>
 		<string>no</string>
 		<key>scale</key>
-		<string>0.5</string>
+		<string>0.3</string>
 	</dict>
 	<dict>
 		<key>letter</key>
 		<string>C</string>
-		<key>image</key>
+		<key>group</key>
+		<string>1</string>
+		<key>phrase</key>
 		<string>camel</string>
-		<key>phrase</key>
-		<string>Camel</string>
 		<key>animation</key>
 		<string>no</string>
 		<key>scale</key>
-		<string>0.5</string>
-	</dict>
-	<dict>
-		<key>letter</key>
-		<string>D</string>
-		<key>image</key>
-		<string>drum</string>
-		<key>phrase</key>
-		<string>Drum</string>
-		<key>animation</key>
-		<string>no</string>
-		<key>scale</key>
-		<string>0.5</string>
+		<string>0.2</string>
 	</dict>
 	<dict>
 		<key>letter</key>
 		<string>M</string>
-		<key>image</key>
-		<string>sprite329</string>
+		<key>group</key>
+		<string>1</string>
 		<key>phrase</key>
-		<string>Mushroom</string>
+		<string>mushroom</string>
 		<key>animation</key>
 		<string>no</string>
 		<key>scale</key>
-		<string>0.5</string>
+		<string>0.2</string>
 	</dict>
 	<dict>
 		<key>letter</key>
 		<string>S</string>
-		<key>image</key>
-		<string>spring</string>
+		<key>group</key>
+		<string>1</string>
 		<key>phrase</key>
-		<string>Spring</string>
+		<string>spring</string>
 		<key>animation</key>
 		<string>no</string>
+		<key>scale</key>
+		<string>0.2</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>B</string>
+		<key>group</key>
+		<string>1</string>
+		<key>phrase</key>
+		<string>balloons</string>
+		<key>animation</key>
+		<string>no</string>
+		<key>scale</key>
+		<string>0.2</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>T</string>
+		<key>group</key>
+		<string>1</string>
+		<key>phrase</key>
+		<string>table</string>
 		<key>scale</key>
 		<string>0.5</string>
 	</dict>
 	<dict>
 		<key>letter</key>
 		<string>T</string>
-		<key>image</key>
-		<string>table</string>
+		<key>group</key>
+		<string>1</string>
 		<key>phrase</key>
-		<string>Table</string>
+		<string>tire</string>
 		<key>scale</key>
-		<string>0.5</string>
+		<string>0.3</string>
 	</dict>
-	<dict/>
+	<dict>
+		<key>letter</key>
+		<string>D</string>
+		<key>group</key>
+		<string>2</string>
+		<key>phrase</key>
+		<string>diamond</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>D</string>
+		<key>group</key>
+		<string>2</string>
+		<key>phrase</key>
+		<string>duck</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>D</string>
+		<key>group</key>
+		<string>2</string>
+		<key>phrase</key>
+		<string>drum</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>E</string>
+		<key>group</key>
+		<string>4</string>
+		<key>phrase</key>
+		<string>elephant</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>F</string>
+		<key>group</key>
+		<string>2</string>
+		<key>phrase</key>
+		<string>flower</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>F</string>
+		<key>group</key>
+		<string>2</string>
+		<key>phrase</key>
+		<string>feet</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>F</string>
+		<key>group</key>
+		<string>2</string>
+		<key>phrase</key>
+		<string>feather-red</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>H</string>
+		<key>group</key>
+		<string>3</string>
+		<key>phrase</key>
+		<string>helmet</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>I</string>
+		<key>group</key>
+		<string>3</string>
+		<key>phrase</key>
+		<string>igloo</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>G</string>
+		<key>group</key>
+		<string>2</string>
+		<key>phrase</key>
+		<string>gift</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>K</string>
+		<key>group</key>
+		<string>4</string>
+		<key>phrase</key>
+		<string>kite</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>L</string>
+		<key>group</key>
+		<string>3</string>
+		<key>phrase</key>
+		<string>lamp-street</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>L</string>
+		<key>group</key>
+		<string>3</string>
+		<key>phrase</key>
+		<string>lantern</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>L</string>
+		<key>group</key>
+		<string>3</string>
+		<key>phrase</key>
+		<string>lion</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>N</string>
+		<key>group</key>
+		<string>3</string>
+		<key>phrase</key>
+		<string>net</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>P</string>
+		<key>group</key>
+		<string>3</string>
+		<key>phrase</key>
+		<string>parrot</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>Z</string>
+		<key>group</key>
+		<string>4</string>
+		<key>phrase</key>
+		<string>zebra</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>V</string>
+		<key>group</key>
+		<string>5</string>
+		<key>phrase</key>
+		<string>volcano</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>W</string>
+		<key>group</key>
+		<string>5</string>
+		<key>phrase</key>
+		<string>web</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
+	<dict>
+		<key>letter</key>
+		<string>F</string>
+		<key>group</key>
+		<string>2</string>
+		<key>phrase</key>
+		<string>flower</string>
+		<key>scale</key>
+		<string>0.3</string>
+	</dict>
 </array>
 </plist>

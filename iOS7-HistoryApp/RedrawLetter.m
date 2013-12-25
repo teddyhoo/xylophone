@@ -37,12 +37,8 @@ SKShapeNode *highlightLetter;
         self.position = position;
         
         _layerSize = CGSizeMake(400, 400);
-
-        //letterData = [[LowerCaseLetter alloc]init];
         
         int convertKey = [keyForLetter intValue];
-        
-        NSLog(@"convert key %i", convertKey);
         
         if(convertKey == 1) {
             letterData = sharedData.letterA;
@@ -79,23 +75,20 @@ SKShapeNode *highlightLetter;
             representLetter = @"F";
         } else if (convertKey == 12) {
             letterData = sharedData.letterI;
-            representLetter = @"A";
+            representLetter = @"I";
         } else if (convertKey == 13) {
             letterData = sharedData.letterP;
-            representLetter = @"A";
+            representLetter = @"P";
         } else if (convertKey == 14) {
             letterData = sharedData.letterN;
-
             representLetter = @"A";
             
         } else if (convertKey == 15) {
             letterData = sharedData.letterL;
-
             representLetter = @"A";
             
         } else if (convertKey == 16) {
             letterData = sharedData.letterH;
-
             representLetter = @"A";
             
         } else if (convertKey == 17) {
@@ -157,12 +150,19 @@ SKShapeNode *highlightLetter;
     
 }
 
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:spritePointObjects forKey:@"letterShape"];
+    // [aCoder encodeObject:DATE-DRAWN forKey:@"date"];
+    
+    
+}
 -(void)addPointToNode:(SKSpriteNode*)drawnPoint {
     
     [spritePointObjects addObject:drawnPoint];
-    
-    
-    
+ 
 }
 
 -(NSMutableArray *)drawMyself {

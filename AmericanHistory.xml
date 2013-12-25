@@ -2,6 +2,41 @@
 <results totalResults="1000">
     <questions>
         
+        <question>
+            <title>The primary objective with the Open Door Policy of 1899 was to:</title>
+            <answer>establish sphere of influence in China</answer>
+            <firstWrong>allow other nations to participate in trade with china</firstWrong>
+            <secondWrong>establish the U.S. as dominant world power by declaring that no one could intervene in China</secondWrong>
+            <thirdWrong>signal to those leading rebellion in Phillipines that the U.S. was dominant power in Asia</thirdWrong>
+            <fourthWrong>None</fourthWrong>
+            <clue>Secretary of State John Hay issued this proclamation in reaction to the threat of European powers dominating trade activity in China.</clue>
+            <time>Imperialism</time>
+            <tag1>Economic</tag1>
+            <tag2> </tag2>
+            <tag3> </tag3>
+            <difficulty>1</difficulty>
+            <image>0</image>
+            <crossref> </crossref>
+        </question>
+        
+        
+        <question>
+            <title>The primary objective with the Open Door Policy of 1899 was to:</title>
+            <answer>Joint-stock</answer>
+            <firstWrong>Royal</firstWrong>
+            <secondWrong>Proprietary</secondWrong>
+            <thirdWrong>Corporate</thirdWrong>
+            <fourthWrong>None</fourthWrong>
+            <clue>Joint-stock was a type of business structure but the type of colony was Corporate.</clue>
+            <time>Colonial</time>
+            <tag1>Imperialism</tag1>
+            <tag2> </tag2>
+            <tag3> </tag3>
+            <difficulty>1</difficulty>
+            <image>0</image>
+            <crossref> </crossref>
+        </question>
+        
         
         <!-- Colonial -->
         <question>
@@ -16,7 +51,7 @@
             <tag1>Imperialism</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -33,7 +68,7 @@
             <tag1>Imperialism</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -50,7 +85,7 @@
             <tag1>Imperialism</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -67,7 +102,7 @@
             <tag1>Imperialism</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -84,7 +119,7 @@
             <tag1>Imperialism</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -101,7 +136,7 @@
             <tag1>Imperialism</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -122,7 +157,7 @@
             <tag1>Slavery</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -139,7 +174,7 @@
             <tag1>Slavery</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -156,7 +191,7 @@
             <tag1>Slavery</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -173,7 +208,7 @@
             <tag1>Reform</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref>0</crossref>
         </question>
@@ -193,7 +228,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>3</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -211,7 +246,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -228,7 +263,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -245,7 +280,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>5</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -262,7 +297,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>5</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -279,7 +314,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -296,7 +331,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>2</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -313,7 +348,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>3</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -332,7 +367,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -350,7 +385,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -368,7 +403,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -385,7 +420,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -402,7 +437,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -419,7 +454,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -437,7 +472,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -454,7 +489,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -471,7 +506,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -493,7 +528,7 @@
     <tag1>Slavery</tag1>
     <tag2>State's Rights</tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref>0</crossref>
 </question>
@@ -510,7 +545,7 @@
     <tag1>Last</tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref>0</crossref>
 </question>
@@ -527,7 +562,7 @@
     <tag1>Political</tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -544,7 +579,7 @@
     <tag1>Reform</tag1>
     <tag2>Women</tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -561,7 +596,7 @@
     <tag1>Slavery</tag1>
     <tag2>Economic</tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -578,7 +613,7 @@
     <tag1>Women</tag1>
     <tag2>Reform</tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -592,165 +627,11 @@
     <thirdWrong>Elected Martin Van Buren president</thirdWrong>
     <fourthWrong>France</fourthWrong>
     <clue>They were the first party to hold a national convention and the other parties followed. They lost in landslide to Andrew Jackson in 1832 presidential election.</clue>
-    <time>Jacksonsian</time>
-    <tag1>Jacksonian</tag1>
-    <tag2> </tag2>
-    <tag3> </tag3>
-    <difficulty> </difficulty>
-    <image>0</image>
-    <crossref> </crossref>
-</question>
-
-<question>
-    <title>What was NOT significant about the election of 1840?</title>
-    <answer>Van Buren lost electoral vote, but won popular vote</answer>
-    <firstWrong>High voter turnout</firstWrong>
-    <secondWrong>Rise of the Whig Party</secondWrong>
-    <thirdWrong>Depicting Van Buren as an elite</thirdWrong>
-    <fourthWrong> </fourthWrong>
-    <clue>The election of 1840 marked a turning point in American politics. There were two solid national parties and voter turnout was upwards of 80%.</clue>
-    <time>Jacksonsian</time>
-    <tag1>Jacksonian</tag1>
-    <tag2> </tag2>
-    <tag3> </tag3>
-    <difficulty> </difficulty>
-    <image>0</image>
-    <crossref> </crossref>
-</question>
-
-
-<question>
-    <title>Which of the following factors did not contribute to the Panic of 1837?</title>
-    <answer>Tarriff of 1832</answer>
-    <firstWrong>Waning European capital investment</firstWrong>
-    <secondWrong>Wheat crop failure</secondWrong>
-    <thirdWrong>Cotton surplus</thirdWrong>
-    <fourthWrong> </fourthWrong>
-    <clue>The Panic of 1837 was caused by a variety of factors: economic problems in Europe which caused reduction in U.S. investment, wheat crop failure, cotton surplus, failur of state banks, and rampant speculation.</clue>
-    <time>Jacksonsian</time>
-    <tag1>Jacksonian</tag1>
-    <tag2> </tag2>
-    <tag3> </tag3>
-    <difficulty> </difficulty>
-    <image>0</image>
-    <crossref> </crossref>
-</question>
-
-<question>
-    <title>What did Calhoun assert in South Carolina Exposition and Protest?</title>
-    <answer>States could call a special convention to invalidate a Federal Law</answer>
-    <firstWrong>State law took precedence over Federal Law</firstWrong>
-    <secondWrong>Federal law took precedence over State Law, with only the Supreme Court deciding disputes</secondWrong>
-    <thirdWrong>States could vote to secede with a specially convened session of state legislature and unanimous vote</thirdWrong>
-    <fourthWrong> </fourthWrong>
-    <clue>Calhoun and Jackson sparred vigorously about states rights (Calhoun) and federal rights (Jackson). Calhoun was from South Carolina, heavily dependent on a slave populace. When Jackson signed the Tarriff of 1828, South Carolina believed it to be a dangerous precedent to allow the Federal government to evenually outlaw slavery.</clue>
-    <time>Jacksonsian</time>
-    <tag1>Slavery</tag1>
-    <tag2>State's Rights</tag2>
-    <tag3> </tag3>
-    <difficulty> </difficulty>
-    <image>0</image>
-    <crossref>0</crossref>
-</question>
-
-<question>
-    <title>Which group DID NOT support Andrew Jackson's presidency in 1828?</title>
-    <answer>New England merchants</answer>
-    <firstWrong>Southern farmers</firstWrong>
-    <secondWrong>Western farmers</secondWrong>
-    <thirdWrong>Opponents of a national bank</thirdWrong>
-    <fourthWrong> </fourthWrong>
-    <clue>Jackson strongly opposed the national bank, which was due to be recharted in a few years. He was a President who appealed to the common man. </clue>
-    <time>Jacksonsian</time>
-    <tag1>Last</tag1>
-    <tag2> </tag2>
-    <tag3> </tag3>
-    <difficulty> </difficulty>
-    <image>0</image>
-    <crossref>0</crossref>
-</question>
-
-<question>
-    <title>What was the major cohesive force of the Whig party?</title>
-    <answer>Opposition to Jacksonian policy</answer>
-    <firstWrong>Unification behind William Henry Harrison</firstWrong>
-    <secondWrong>State's Right's</secondWrong>
-    <thirdWrong>Expansionism to West</thirdWrong>
-    <fourthWrong> </fourthWrong>
-    <clue>The Whig party had no consistent platform, except opposition to the policies of Andrew Jackson. They really could not have a consisten party platform as it would have risked dividing the party. They painted their candidates as common, simple men using imagery of log cabins and cider.</clue>
-    <time>Jacksonian</time>
-    <tag1>Political</tag1>
-    <tag2> </tag2>
-    <tag3> </tag3>
-    <difficulty> </difficulty>
-    <image>0</image>
-    <crossref> </crossref>
-</question>
-
-<question>
-    <title>What did the Declaration of Sentiments declare at the Seneca Falls Convention in 1848?</title>
-    <answer>Equality of women</answer>
-    <firstWrong>Equality of women and slaves</firstWrong>
-    <secondWrong>Equality of free slaves and blacks</secondWrong>
-    <thirdWrong>Equality of Native American Indians</thirdWrong>
-    <fourthWrong> </fourthWrong>
-    <clue>Drafted by Elizabeth Cady Stanton, the declaration called for equal rights between men and women.</clue>
-    <time>Jacksonian</time>
-    <tag1>Reform</tag1>
-    <tag2>Women</tag2>
-    <tag3> </tag3>
-    <difficulty> </difficulty>
-    <image>0</image>
-    <crossref> </crossref>
-</question>
-
-<question>
-    <title>What was NOT a reason for Nullification as described by Calhoun?</title>
-    <answer>Established legal path to secession from Union</answer>
-    <firstWrong>Tarriff of 1828</firstWrong>
-    <secondWrong>Drop in Cotton prices</secondWrong>
-    <thirdWrong>Defending institution of slavery</thirdWrong>
-    <fourthWrong> </fourthWrong>
-    <clue>Because Jackson had passed the Tarriff of 1828, southern farmers were threatened for two reasons: it reduced the amount of capital that French and British traders had with which to purchase cotton and it was overstepping boundaries on Federal law which could later be used to make slavery illegal. He wrote South Carolina Exposition and Protest and did not advocate for secession, but establish minority (states) rights.</clue>
-    <time>Jacksonian</time>
-    <tag1>Slavery</tag1>
-    <tag2>Economic</tag2>
-    <tag3> </tag3>
-    <difficulty> </difficulty>
-    <image>0</image>
-    <crossref> </crossref>
-</question>
-
-<question>
-    <title>What is most closely associated with the cult of domesticity?</title>
-    <answer>Harriet Beecher's A Treatise on Domestic Economy (1841)</answer>
-    <firstWrong>Elizabeth Cady Stanton's Declaration of Sentiments'</firstWrong>
-    <secondWrong>Susan B. Anthony's Declaration of Women's Liberties'</secondWrong>
-    <thirdWrong>Lucretia Mott's Seneca Falls Convention speech'</thirdWrong>
-    <fourthWrong> </fourthWrong>
-    <clue>The starting point in women's liberation history is generally considered to be the Seneca Falls Convention in New York. At the convention, Elizabeth Cady Stanton presented the Declaration of Sentiments. Prior to the women's liberation movement, historians refer to the CULT of DOMESTICITY, as written by Harriet Beecher. She preached that the woman's place was in the home and that women should focus their training on domestic arts.</clue>
-    <time>Jacksonian</time>
-    <tag1>Women</tag1>
-    <tag2>Reform</tag2>
-    <tag3> </tag3>
-    <difficulty> </difficulty>
-    <image>0</image>
-    <crossref> </crossref>
-</question>
-
-<question>
-    <title>What was the significance of Anti-Mason party of 1832?</title>
-    <answer>First national third party</answer>
-    <firstWrong>They were the Illuminati</firstWrong>
-    <secondWrong>They were formed from ashes of Federalist party</secondWrong>
-    <thirdWrong>Elected Martin Van Buren president</thirdWrong>
-    <fourthWrong>France</fourthWrong>
-    <clue>They were the first party to hold a national convention and the other parties followed. They lost in landslide to Andrew Jackson in 1832 presidential election.</clue>
     <time>Jacksonian</time>
     <tag1>Jacksonian</tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -767,7 +648,7 @@
     <tag1>Jacksonian</tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -785,7 +666,7 @@
     <tag1>Jacksonian</tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -798,11 +679,11 @@
     <thirdWrong>States could vote to secede with a specially convened session of state legislature and unanimous vote</thirdWrong>
     <fourthWrong> </fourthWrong>
     <clue>Calhoun and Jackson sparred vigorously about states rights (Calhoun) and federal rights (Jackson). Calhoun was from South Carolina, heavily dependent on a slave populace. When Jackson signed the Tarriff of 1828, South Carolina believed it to be a dangerous precedent to allow the Federal government to evenually outlaw slavery.</clue>
-    <time>Jacksonsian</time>
+    <time>Jacksonian</time>
     <tag1>Slavery</tag1>
     <tag2>State's Rights</tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref>0</crossref>
 </question>
@@ -815,11 +696,11 @@
     <thirdWrong>Opponents of a national bank</thirdWrong>
     <fourthWrong> </fourthWrong>
     <clue>Jackson strongly opposed the national bank, which was due to be recharted in a few years. He was a President who appealed to the common man. </clue>
-    <time>Jacksonsian</time>
+    <time>Jacksonian</time>
     <tag1>Last</tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref>0</crossref>
 </question>
@@ -836,7 +717,161 @@
     <tag1>Political</tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
+    <image>0</image>
+    <crossref> </crossref>
+</question>
+
+<question>
+    <title>What did the Declaration of Sentiments declare at the Seneca Falls Convention in 1848?</title>
+    <answer>Equality of women</answer>
+    <firstWrong>Equality of women and slaves</firstWrong>
+    <secondWrong>Equality of free slaves and blacks</secondWrong>
+    <thirdWrong>Equality of Native American Indians</thirdWrong>
+    <fourthWrong> </fourthWrong>
+    <clue>Drafted by Elizabeth Cady Stanton, the declaration called for equal rights between men and women.</clue>
+    <time>Jacksonian</time>
+    <tag1>Reform</tag1>
+    <tag2>Women</tag2>
+    <tag3> </tag3>
+    <difficulty>1</difficulty>
+    <image>0</image>
+    <crossref> </crossref>
+</question>
+
+<question>
+    <title>What was NOT a reason for Nullification as described by Calhoun?</title>
+    <answer>Established legal path to secession from Union</answer>
+    <firstWrong>Tarriff of 1828</firstWrong>
+    <secondWrong>Drop in Cotton prices</secondWrong>
+    <thirdWrong>Defending institution of slavery</thirdWrong>
+    <fourthWrong> </fourthWrong>
+    <clue>Because Jackson had passed the Tarriff of 1828, southern farmers were threatened for two reasons: it reduced the amount of capital that French and British traders had with which to purchase cotton and it was overstepping boundaries on Federal law which could later be used to make slavery illegal. He wrote South Carolina Exposition and Protest and did not advocate for secession, but establish minority (states) rights.</clue>
+    <time>Jacksonian</time>
+    <tag1>Slavery</tag1>
+    <tag2>Economic</tag2>
+    <tag3> </tag3>
+    <difficulty>1</difficulty>
+    <image>0</image>
+    <crossref> </crossref>
+</question>
+
+<question>
+    <title>What is most closely associated with the cult of domesticity?</title>
+    <answer>Harriet Beecher's A Treatise on Domestic Economy (1841)</answer>
+    <firstWrong>Elizabeth Cady Stanton's Declaration of Sentiments'</firstWrong>
+    <secondWrong>Susan B. Anthony's Declaration of Women's Liberties'</secondWrong>
+    <thirdWrong>Lucretia Mott's Seneca Falls Convention speech'</thirdWrong>
+    <fourthWrong> </fourthWrong>
+    <clue>The starting point in women's liberation history is generally considered to be the Seneca Falls Convention in New York. At the convention, Elizabeth Cady Stanton presented the Declaration of Sentiments. Prior to the women's liberation movement, historians refer to the CULT of DOMESTICITY, as written by Harriet Beecher. She preached that the woman's place was in the home and that women should focus their training on domestic arts.</clue>
+    <time>Jacksonian</time>
+    <tag1>Women</tag1>
+    <tag2>Reform</tag2>
+    <tag3> </tag3>
+    <difficulty>1</difficulty>
+    <image>0</image>
+    <crossref> </crossref>
+</question>
+
+<question>
+    <title>What was the significance of Anti-Mason party of 1832?</title>
+    <answer>First national third party</answer>
+    <firstWrong>They were the Illuminati</firstWrong>
+    <secondWrong>They were formed from ashes of Federalist party</secondWrong>
+    <thirdWrong>Elected Martin Van Buren president</thirdWrong>
+    <fourthWrong>France</fourthWrong>
+    <clue>They were the first party to hold a national convention and the other parties followed. They lost in landslide to Andrew Jackson in 1832 presidential election.</clue>
+    <time>Jacksonian</time>
+    <tag1>Jacksonian</tag1>
+    <tag2> </tag2>
+    <tag3> </tag3>
+    <difficulty>1</difficulty>
+    <image>0</image>
+    <crossref> </crossref>
+</question>
+
+<question>
+    <title>What was NOT significant about the election of 1840?</title>
+    <answer>Van Buren lost electoral vote, but won popular vote</answer>
+    <firstWrong>High voter turnout</firstWrong>
+    <secondWrong>Rise of the Whig Party</secondWrong>
+    <thirdWrong>Depicting Van Buren as an elite</thirdWrong>
+    <fourthWrong> </fourthWrong>
+    <clue>The election of 1840 marked a turning point in American politics. There were two solid national parties and voter turnout was upwards of 80%.</clue>
+    <time>Jacksonian</time>
+    <tag1>Jacksonian</tag1>
+    <tag2> </tag2>
+    <tag3> </tag3>
+    <difficulty>1</difficulty>
+    <image>0</image>
+    <crossref> </crossref>
+</question>
+
+
+<question>
+    <title>Which of the following factors did not contribute to the Panic of 1837?</title>
+    <answer>Tarriff of 1832</answer>
+    <firstWrong>Waning European capital investment</firstWrong>
+    <secondWrong>Wheat crop failure</secondWrong>
+    <thirdWrong>Cotton surplus</thirdWrong>
+    <fourthWrong> </fourthWrong>
+    <clue>The Panic of 1837 was caused by a variety of factors: economic problems in Europe which caused reduction in U.S. investment, wheat crop failure, cotton surplus, failur of state banks, and rampant speculation.</clue>
+    <time>Jacksonian</time>
+    <tag1>Jacksonian</tag1>
+    <tag2> </tag2>
+    <tag3> </tag3>
+    <difficulty>1</difficulty>
+    <image>0</image>
+    <crossref> </crossref>
+</question>
+
+<question>
+    <title>What did Calhoun assert in South Carolina Exposition and Protest?</title>
+    <answer>States could call a special convention to invalidate a Federal Law</answer>
+    <firstWrong>State law took precedence over Federal Law</firstWrong>
+    <secondWrong>Federal law took precedence over State Law, with only the Supreme Court deciding disputes</secondWrong>
+    <thirdWrong>States could vote to secede with a specially convened session of state legislature and unanimous vote</thirdWrong>
+    <fourthWrong> </fourthWrong>
+    <clue>Calhoun and Jackson sparred vigorously about states rights (Calhoun) and federal rights (Jackson). Calhoun was from South Carolina, heavily dependent on a slave populace. When Jackson signed the Tarriff of 1828, South Carolina believed it to be a dangerous precedent to allow the Federal government to evenually outlaw slavery.</clue>
+    <time>Jacksonian</time>
+    <tag1>Slavery</tag1>
+    <tag2>State's Rights</tag2>
+    <tag3> </tag3>
+    <difficulty>1</difficulty>
+    <image>0</image>
+    <crossref>0</crossref>
+</question>
+
+<question>
+    <title>Which group DID NOT support Andrew Jackson's presidency in 1828?</title>
+    <answer>New England merchants</answer>
+    <firstWrong>Southern farmers</firstWrong>
+    <secondWrong>Western farmers</secondWrong>
+    <thirdWrong>Opponents of a national bank</thirdWrong>
+    <fourthWrong> </fourthWrong>
+    <clue>Jackson strongly opposed the national bank, which was due to be recharted in a few years. He was a President who appealed to the common man. </clue>
+    <time>Jacksonian</time>
+    <tag1>Last</tag1>
+    <tag2> </tag2>
+    <tag3> </tag3>
+    <difficulty>1</difficulty>
+    <image>0</image>
+    <crossref>0</crossref>
+</question>
+
+<question>
+    <title>What was the major cohesive force of the Whig party?</title>
+    <answer>Opposition to Jacksonian policy</answer>
+    <firstWrong>Unification behind William Henry Harrison</firstWrong>
+    <secondWrong>State's Right's</secondWrong>
+    <thirdWrong>Expansionism to West</thirdWrong>
+    <fourthWrong> </fourthWrong>
+    <clue>The Whig party had no consistent platform, except opposition to the policies of Andrew Jackson. They really could not have a consisten party platform as it would have risked dividing the party. They painted their candidates as common, simple men using imagery of log cabins and cider.</clue>
+    <time>Jacksonian</time>
+    <tag1>Political</tag1>
+    <tag2> </tag2>
+    <tag3> </tag3>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -859,7 +894,7 @@
             <tag1>Business</tag1>
             <tag2>Trusts</tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -876,7 +911,7 @@
             <tag1>Slavery</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -893,7 +928,7 @@
             <tag1>Slavery</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -910,7 +945,7 @@
             <tag1>Slavery</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -927,7 +962,7 @@
             <tag1>Reform</tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref>0</crossref>
         </question>
@@ -947,7 +982,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -964,7 +999,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -981,7 +1016,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -1000,7 +1035,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -1017,12 +1052,12 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
         
-        <!-- Roaring 20's -->
+        <!-- Roaring w -->
         
         <!-- Depression -->
         
@@ -1039,7 +1074,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -1056,7 +1091,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -1073,7 +1108,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -1090,7 +1125,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -1107,7 +1142,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -1126,7 +1161,7 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
@@ -1143,12 +1178,12 @@
             <tag1> </tag1>
             <tag2> </tag2>
             <tag3> </tag3>
-            <difficulty> </difficulty>
+            <difficulty>1</difficulty>
             <image>0</image>
             <crossref> </crossref>
         </question>
 
-<!-- 60's and 70's -->
+<!-- Sixties -->
 
 <question>
     <title>What was Nixon's response to Johnson's Great Society?</title>
@@ -1158,11 +1193,11 @@
     <thirdWrong>Medicare</thirdWrong>
     <fourthWrong>None of the above</fourthWrong>
     <clue>Nixon made an effort to reform the Welfare system. </clue>
-    <time>60's and 70's</time>
+    <time>Sixties</time>
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -1175,11 +1210,11 @@
     <thirdWrong>Silent majority</thirdWrong>
     <fourthWrong>None of the above</fourthWrong>
     <clue>The integration of the military occurred during Truman administration.</clue>
-    <time>60's and 70's</time>
+    <time>Sixties</time>
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -1192,11 +1227,11 @@
     <thirdWrong>Head Start</thirdWrong>
     <fourthWrong>None of the above</fourthWrong>
     <clue>LBJ's Great Society was an extension of New Deal social reforms</clue>
-    <time>60's and 70's</time>
+    <time>Sixties</time>
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -1213,7 +1248,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -1230,7 +1265,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -1249,7 +1284,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -1267,7 +1302,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -1285,7 +1320,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -1302,7 +1337,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>
@@ -1319,7 +1354,7 @@
     <tag1> </tag1>
     <tag2> </tag2>
     <tag3> </tag3>
-    <difficulty> </difficulty>
+    <difficulty>1</difficulty>
     <image>0</image>
     <crossref> </crossref>
 </question>

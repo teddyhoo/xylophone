@@ -15,7 +15,7 @@
 {
     SmoothLineView *slv;
     
-    SKView *spriteView;
+    //SKView *spriteView;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *undoButton;

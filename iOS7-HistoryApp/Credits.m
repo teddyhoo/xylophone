@@ -7,7 +7,6 @@
 //
 
 #import "Credits.h"
-#import "FilterFrame.h"
 
 @implementation Credits
 
@@ -31,9 +30,7 @@
 - (void) didMoveToView:(SKView *)view {
     
     NSLog(@"called did Move To View");
-    
-    NSString *import1 = @"import <MontessoriFoundation/MontessoriFoundation.h>";
-    NSString *import2 = @"import <TeachingExperience/TeachingExperience.h>";
+
     
     NSString *headerTitle = @"The Stage Classroom : Maria Montessori";
     

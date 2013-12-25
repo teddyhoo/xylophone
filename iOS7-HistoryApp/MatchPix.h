@@ -10,4 +10,9 @@
 
 @interface MatchPix : SKScene
 
+@property (nonatomic,retain) SKSpriteNode* gridPaper;
+@property (nonatomic,retain) SKSpriteNode* selectedImage;
+
+-(id)initWithSize:(CGSize)size onWhichGroup:(NSNumber *)group;
+
 @end

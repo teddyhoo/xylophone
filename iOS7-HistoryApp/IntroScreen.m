@@ -74,7 +74,7 @@ CGFloat fontSizeForPlatform = 20;
         
         for (NSString *letter in header1) {
 
-            
+            NSLog(@"adding label nodes");
             SKLabelNode *letterSprite = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
             
             letterSprite.fontSize = 26;
@@ -99,8 +99,11 @@ CGFloat fontSizeForPlatform = 20;
             onLetter++;
         }
         
+        NSLog(@"added all label nodes");
+        
         for (NSString *letter in header2) {
             
+            NSLog(@"adding second label node");
             
             SKLabelNode *letterSprite = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
             
@@ -126,7 +129,7 @@ CGFloat fontSizeForPlatform = 20;
             onLetter++;
         }
         
-        
+        NSLog(@"added all 2 label nodes");
         SKLabelNode *presents = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
         presents.fontSize = 16;
         presents.fontColor = [UIColor purpleColor];
@@ -141,44 +144,13 @@ CGFloat fontSizeForPlatform = 20;
         presents2.position = CGPointMake(width / 2, height/1.8);
         presents2.text = @"LEARNING MONTESSORI KID STUFF ";
         [self addChild:presents2];
-        
-        SKSpriteNode *cloud1 = [SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud.png"];
-        cloud1.position = CGPointMake(width/1.3, height/1.3);
-        //[self addChild:cloud1];
-        
-        SKSpriteNode *cloud2 = [SKSpriteNode spriteNodeWithImageNamed:@"sign.png"];
-        cloud2.position = CGPointMake(600, 200);
-        //[self addChild:cloud2];
-        
-        SKLabelNode *credit1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        credit1.text = @"ms. mary frances stage";
-        credit1.fontSize = 20;
-        credit1.fontColor = [UIColor orangeColor];
-        //credit1.position = CGPointMake(2400, 1000);
-        //credit1.position = CGPointMake(width * 3.3, height);
-        
-        
-        //[self addChild:credit1];
-        
-        SKLabelNode *credit2 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        credit2.text = @"mr. ted hooban";
-        credit2.fontSize = 20;
-        credit2.fontColor = [UIColor redColor];
-        //credit2.position = CGPointMake(-1200, 900);
-        //credit2.position = CGPointMake(width * -2.2, height);
-        
-        //[self addChild:credit2];
+
         
         SKAction *moveTitle = [SKAction moveTo:CGPointMake(width / 1.5, height / 2.2) duration:1.0];
         [introductionLabel runAction:moveTitle];
         
-        SKAction *moveCredit = [SKAction moveTo:CGPointMake(width / 2.5, height / 2.7) duration:1.2];
-        [credit1 runAction:moveCredit];
         
-        SKAction *moveCredit2 = [SKAction moveTo:CGPointMake(width / 3.0, height / 2.9) duration:0.7];
-        [credit2 runAction:moveCredit2];
-        
-        NSMutableArray *wormTextures = [[NSMutableArray alloc]init];
+        /*NSMutableArray *wormTextures = [[NSMutableArray alloc]init];
         SKTextureAtlas *wormAtlas = [SKTextureAtlas atlasNamed:@"earthworm.atlas"];
         for (int i=0; i < 6; i++) {
             SKTexture *wormTexture =[wormAtlas textureNamed:[NSString stringWithFormat:@"%i.png",i]];
@@ -194,7 +166,7 @@ CGFloat fontSizeForPlatform = 20;
         [worm runAction:repeatCrawlAnim];
         [worm runAction:moveCrawl];
         
-        [self addChild:worm];
+        [self addChild:worm];*/
         
         NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"16_30" withExtension:@"mp3"];
         
@@ -239,14 +211,14 @@ CGFloat fontSizeForPlatform = 20;
         optionsMenu.fontColor = [UIColor orangeColor];
         optionsMenu.position = CGPointMake(width / 2, height / 4.0);
         optionsMenu.name = @"menu";
-        //[self addChild:optionsMenu];
+        [self addChild:optionsMenu];
         
-        NSMutableArray *frogHopTextures = [[NSMutableArray alloc]init];
+        /*NSMutableArray *frogHopTextures = [[NSMutableArray alloc]init];
         SKTextureAtlas *frogHopAtlas = [SKTextureAtlas atlasNamed:@"frog2.atlas"];
         for (int fr = 0; fr < 8; fr++) {
             SKTexture *frogHopTexture = [frogHopAtlas textureNamed:[NSString stringWithFormat:@"frog_frame_%i.png",fr]];
             [frogHopTextures addObject:frogHopTexture];
-        }
+        }*/
         
     }
     return self;
@@ -288,7 +260,7 @@ CGFloat fontSizeForPlatform = 20;
             [spriteView presentScene:credits transition:creditTransition];
         } else {
             //myMainMenu = [[MainMenu alloc]initWithSize:CGSizeMake(1024, 768)];
-            traceScene = [[LetterTrace alloc]initWithSize:CGSizeMake(1024,768)];
+            traceScene = [[LetterTrace alloc]initWithSize:CGSizeMake(1024,768) andGroup:[NSNumber numberWithInt:1]];
             SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionLeft duration:1.0];
             spriteView = (SKView*)self.view;
             [spriteView presentScene:traceScene transition:reveal];

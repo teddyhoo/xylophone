@@ -38,7 +38,7 @@
 @property (nonatomic,retain) SKEmitterNode *emitFire;
 @property (nonatomic,retain) NSNumber *numberAttempts;
 @property (nonatomic,retain) NSNumber *timeForTrace;
-
+@property (nonatomic,retain) NSString *whichLetter;
 @property BOOL centerStage;
 
 -(void) playTheSound;
@@ -46,7 +46,7 @@
 -(void) createControlPoints:(NSMutableArray *)controlPointsForLetter;
 -(void) atCenterStage;
 -(void) fireEmitter;
--(NSString *) whichLetter;
+
 
 
 

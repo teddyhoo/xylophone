@@ -112,14 +112,7 @@ int onWhichLetter;
     CGPoint letterAvalue5 = CGPointMake(240, 300);
     CGPoint letterAvalue6 = CGPointMake(200, 300);
     CGPoint letterAvalue7 = CGPointMake(160, 260);
-    CGPoint letterAvalue8 = CGPointMake(400, 400);
-    CGPoint letterAvalue9 = CGPointMake(400, 400);
-    CGPoint letterAvalue10 = CGPointMake(400, 400);
-    CGPoint letterAvalue11 = CGPointMake(400, 400);
-    CGPoint letterAvalue12 = CGPointMake(400, 400);
-    CGPoint letterAvalue13 = CGPointMake(400, 400);
-    CGPoint letterAvalue14 = CGPointMake(400, 400);
-    CGPoint letterAvalue15 = CGPointMake(400, 400);
+
     
     
     pointsForSprite = [[NSMutableArray alloc]init];

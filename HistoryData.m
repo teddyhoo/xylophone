@@ -58,7 +58,7 @@ static NSString *subjectType = @"americanhistory";
         helperTips = [[NSMutableArray alloc] init];
         sectionForQuestion = [[NSMutableArray alloc] init];
         imageForQuestion = [[NSMutableArray alloc]init];
-        
+        difficultyForQuestion = [[NSMutableArray alloc]init];
         causesTerm = [[NSMutableArray alloc] init];
         effectsTerm = [[NSMutableArray alloc] init];
         explanationTerm = [[NSMutableArray alloc] init];
@@ -87,7 +87,7 @@ static NSString *subjectType = @"americanhistory";
             
             sampleXML = [[NSBundle mainBundle] pathForResource:@"AmericanHistory" ofType:@"xml"];
             
-            NSString *pListData = [[NSBundle mainBundle] pathForResource:@"Matching" ofType:@"plist"];
+            NSString *pListData = [[NSBundle mainBundle] pathForResource:@"Matching-World-History" ofType:@"plist"];
             matchingData = [[NSMutableArray alloc] initWithContentsOfFile:pListData];
             
             
@@ -130,10 +130,11 @@ static NSString *subjectType = @"americanhistory";
             NSString *wrongFour = [question valueWithPath:@"fourthWrong"];
             NSString *clue = [question valueWithPath:@"clue"];
             NSString *section = [question valueWithPath:@"time"];
+
             //NSString *tagFirst = [question valueWithPath:@"tag1"];
             //NSString *tagSecond = [question valueWithPath:@"tag2"];
             //NSString *tagThird = [question valueWithPath:@"tag3"];
-            //NSString *difficulty = [question valueWithPath:@"difficulty"];
+            NSString *difficulty = [question valueWithPath:@"difficulty"];
             NSString *image = [question valueWithPath:@"image"];
             
             [quizQuestions addObject:questionResult];
@@ -145,6 +146,7 @@ static NSString *subjectType = @"americanhistory";
             [helperTips addObject:clue];
             [sectionForQuestion addObject:section];
             [imageForQuestion addObject:image];
+            [difficultyForQuestion addObject:difficulty];
             
             [questionsByTopic setValue:section forKey:questionResult];
             
@@ -153,6 +155,7 @@ static NSString *subjectType = @"americanhistory";
         
         
         NSLog(@"Number of questions: %i",[quizQuestions count]);
+        
        
         
     }

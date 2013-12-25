@@ -1,0 +1,1196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Type</key>
+		<string>chainEffect</string>
+		<key>Term1</key>
+		<string>French &amp; Indian War</string>
+		<key>Term2</key>
+		<string>Salutory Neglect End</string>
+		<key>Term3</key>
+		<string>Revolution</string>
+		<key>Term2A</key>
+		<string>Albany Congress</string>
+		<key>Term2B</key>
+		<string>Colonial militia</string>
+		<key>Term3A</key>
+		<string>Proclamation 1763</string>
+		<key></key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string>chainEffect</string>
+		<key>Term1</key>
+		<string></string>
+		<key>Term2</key>
+		<string>Constitution</string>
+		<key>Term3</key>
+		<string>Bill of Rights</string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string>chainEffect</string>
+		<key>Term1</key>
+		<string>Articles of Confederation</string>
+		<key>Term2</key>
+		<string>Constitution</string>
+		<key>Term3</key>
+		<string>Bill of Rights</string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string>chainEffect</string>
+		<key>Term1</key>
+		<string>Manifest Destiny</string>
+		<key>Term2</key>
+		<string>Mexican War</string>
+		<key>Term3</key>
+		<string>Texas</string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string>chainEffect</string>
+		<key>Term1</key>
+		<string>Bacon&apos;s Rebellion</string>
+		<key>Term2</key>
+		<string>Slavery</string>
+		<key>Term3</key>
+		<string>Indentured Servants</string>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string>chainEffect</string>
+		<key>Term1</key>
+		<string>Articles of Confederation</string>
+		<key>Term2</key>
+		<string>Constitution</string>
+		<key>Term3</key>
+		<string>Bill of Rights</string>
+	</dict>
+	<dict>
+		<key>Townshend Acts</key>
+		<string>Topic</string>
+		<key>Duties on Tea, Glass, Paper</key>
+		<string>LTE</string>
+		<key>Revenue sources</key>
+		<string>LTC</string>
+		<key>Pay Crown officials in colonies</key>
+		<string>LTE</string>
+		<key>Writ of Assistance</key>
+		<string>LTE</string>
+		<key>Suspen NY assembly</key>
+		<string>LTE</string>
+		<key>Chancellor of Exchequer</key>
+		<string>LTC</string>
+		<key>Letters From a Farmer in PA</key>
+		<string>LTE</string>
+		<key>Massachusetts Circular Letter</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Declaratory Act</key>
+		<string>Topic</string>
+		<key>Parliament controls colonies</key>
+		<string>LTE</string>
+		<key>Greenville replaced</key>
+		<string>LTC</string>
+		<key>Stamp Act repeal</key>
+		<string>LTC</string>
+		<key>Increased conflict</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>French and Indian War</key>
+		<string>Topic</string>
+		<key>Salutory Neglect ends</key>
+		<string>LTE</string>
+		<key>Pontiac&apos;s Rebellion</key>
+		<string>LTE</string>
+		<key>European Wars</key>
+		<string>LTC</string>
+		<key>Seven Years War</key>
+		<string>LTC</string>
+		<key>Proclamation 1763</key>
+		<string>LTE</string>
+		<key>Sugar Act of 1764</key>
+		<string>LTE</string>
+		<key>Revolution</key>
+		<string>LTE</string>
+		<key>Increasing value of colonies</key>
+		<string>LTC</string>
+		<key>New item</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Articles of Confedertion</key>
+		<string>Topic</string>
+		<key>Fear of monarchy</key>
+		<string>LTC</string>
+		<key>Declare war</key>
+		<string>LTE</string>
+		<key>American Revolution</key>
+		<string>LTC</string>
+		<key>Constitution</key>
+		<string>LTE</string>
+		<key>Inability to tax</key>
+		<string>LTE</string>
+		<key>Inability to raise army</key>
+		<string>LTE</string>
+		<key>Second Continental Congress</key>
+		<string>LTC</string>
+		<key>Ratification by 13 states</key>
+		<string>LTC</string>
+		<key>Weak government</key>
+		<string>LTE</string>
+		<key>New item</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Eisenhower Doctrine</key>
+		<string>Topic</string>
+		<key>Middle East</key>
+		<string>LTC</string>
+		<key>Economic Aid</key>
+		<string>LTE</string>
+		<key>Communism</key>
+		<string>LTC</string>
+		<key>Suez Canal</key>
+		<string>LTC</string>
+		<key>Oil</key>
+		<string>LTC</string>
+		<key>Military action</key>
+		<string>LTE</string>
+		<key>Lebanon crisis</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Eisenhower Conservativism</key>
+		<string>Topic</string>
+		<key>Cut New Deal</key>
+		<string>LTE</string>
+		<key>Federal Aid Highway Act</key>
+		<string>LTE</string>
+		<key>Creeping socialism</key>
+		<string>LTC</string>
+		<key>Tax reductions</key>
+		<string>LTE</string>
+		<key>Budget Deficits</key>
+		<string>LTC</string>
+		<key>St. Lawrence Seaway</key>
+		<string>LTE</string>
+		<key>Railroad decline</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>SEATO</key>
+		<string>Topic</string>
+		<key>Geneva Accords</key>
+		<string>LTC</string>
+		<key>Dulles</key>
+		<string>LTC</string>
+		<key>Pactomania</key>
+		<string>LTE</string>
+		<key>Ho Chi Minh</key>
+		<string>LTC</string>
+		<key>Ngo Dinh Diem</key>
+		<string>LTE</string>
+		<key>17th parallel</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>Isolationism - 1930s</key>
+		<string>Topic</string>
+		<key>Nye Committee</key>
+		<string>LTC</string>
+		<key>George Washington</key>
+		<string>LTC</string>
+		<key>Merchants of Death</key>
+		<string>LTC</string>
+		<key>Failure League of Nations</key>
+		<string>LTE</string>
+		<key>Stimson Doctrine</key>
+		<string>LTE</string>
+		<key>Neutrality Acts</key>
+		<string>LTE</string>
+		<key>WWII</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Kellog-Briand Pact</key>
+		<string>Topic</string>
+		<key>WWI</key>
+		<string>LTC</string>
+		<key>Ban Warfare</key>
+		<string>LTE</string>
+		<key>Self-defense</key>
+		<string>LTE</string>
+		<key>UN Charter</key>
+		<string>LTE</string>
+		<key>Nuremberg Tribunal</key>
+		<string>LTE</string>
+		<key>French foreign minister</key>
+		<string>LTC</string>
+		<key>French fear of Germans</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>Marshall Plan</key>
+		<string>Topic</string>
+		<key>Communism</key>
+		<string>LTC</string>
+		<key>World War II </key>
+		<string>LTC</string>
+		<key>Secure Western Europe</key>
+		<string>LTE</string>
+		<key>Long Telegram</key>
+		<string>LTC</string>
+		<key>Truman Doctrine</key>
+		<string>LTC</string>
+		<key>Cold War</key>
+		<string>LTE</string>
+		<key>Domino Theory</key>
+		<string>LTE</string>
+		<key>Greece</key>
+		<string>LTC</string>
+		<key>Turkey</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>Korean War</key>
+		<string>Topic</string>
+		<key>Integration</key>
+		<string>LTE</string>
+		<key>United Nations forces</key>
+		<string>LTE</string>
+		<key>38th parallel</key>
+		<string>LTC</string>
+		<key>China</key>
+		<string>LTC</string>
+		<key>Communism</key>
+		<string>LTC</string>
+		<key>Military spending 4x</key>
+		<string>LTE</string>
+		<key>China emerges as power</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>McCarthyism</key>
+		<string>Topic</string>
+		<key>Korean War</key>
+		<string>LTC</string>
+		<key>Alger Hiss</key>
+		<string>LTC</string>
+		<key>Nixon Rise</key>
+		<string>LTE</string>
+		<key>British-American Spy Network</key>
+		<string>LTC</string>
+		<key>Rosenberg Arrest</key>
+		<string>LTE</string>
+		<key>McCarran Internal Security Act</key>
+		<string>LTE</string>
+		<key>Soviet Atomic Bomb</key>
+		<string>LTC</string>
+		<key>Blacklisting</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>WORLD WAR II</key>
+		<string>Topic</string>
+		<key>End Depression</key>
+		<string>LTE</string>
+		<key>Migration West</key>
+		<string>LTE</string>
+		<key>FEPC</key>
+		<string>LTE</string>
+		<key>Isolationism</key>
+		<string>LTC</string>
+		<key>Superpower</key>
+		<string>LTE</string>
+		<key>Appeasement</key>
+		<string>LTC</string>
+		<key>Pearl Harbor</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>English Colonization</key>
+		<string>Topic</string>
+		<key>Defeat Spanish Armada</key>
+		<string>LTC</string>
+		<key>Population Growth</key>
+		<string>LTC</string>
+		<key>Economic Depression</key>
+		<string>LTC</string>
+		<key>Joint-stock</key>
+		<string>LTC</string>
+		<key>Jamestown</key>
+		<string>LTE</string>
+		<key>Tobacco</key>
+		<string>LTE</string>
+		<key>Indentured Servants</key>
+		<string>LTE</string>
+		<key>Virginia Company</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>White Backlash</key>
+		<string>Topic</string>
+		<key>Nixon elected</key>
+		<string>LTE</string>
+		<key>Urban riots</key>
+		<string>LTC</string>
+		<key>George Wallace</key>
+		<string>LTE</string>
+		<key>Silent Majority</key>
+		<string>LTE</string>
+		<key>Anti-war demonstrators</key>
+		<string>LTC</string>
+		<key>Democratic convention</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>Social Reform</key>
+		<string>DocTopic</string>
+		<key>Great Society</key>
+		<string>1Doc</string>
+		<key>New Deal</key>
+		<string>2Doc</string>
+		<key>Medicare</key>
+		<string>1-1Doc</string>
+		<key>Medicaid</key>
+		<string>1-1Doc</string>
+		<key>Social Security</key>
+		<string>2-1Doc</string>
+		<key>Immigration Reform</key>
+		<string>1-1Doc</string>
+		<key>National Foundation on the Arts and Humanities</key>
+		<string>1-1Doc</string>
+		<key>FDIC</key>
+		<string>2-1Doc</string>
+		<key>Department of Housing and Urban Development</key>
+		<string>1-1Doc</string>
+		<key>Securities and Exchange Commission</key>
+		<string>2-1Doc</string>
+		<key>Equal Employment Opportunity Commission</key>
+		<string>1-1Doc</string>
+	</dict>
+	<dict>
+		<key>Vietnam War</key>
+		<string>Topic</string>
+		<key>End War on Poverty</key>
+		<string>LTE</string>
+		<key>Gulf of Tonkin</key>
+		<string>LTC</string>
+		<key>Domino Theory</key>
+		<string>LTC</string>
+		<key>Communism</key>
+		<string>LTC</string>
+		<key>Distrust of Govt</key>
+		<string>LTE</string>
+		<key>Protests</key>
+		<string>LTE</string>
+		<key>Draft</key>
+		<string>LTE</string>
+		<key>LBJ withdraw from running</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>War on Poverty</key>
+		<string>Topic</string>
+		<key>LBJ</key>
+		<string>LTC</string>
+		<key>Head Start </key>
+		<string>LTE</string>
+		<key>OEO</key>
+		<string>LTE</string>
+		<key>Job Corps</key>
+		<string>LTE</string>
+		<key>The Other America</key>
+		<string>LTC</string>
+		<key>Michael Harrington</key>
+		<string>LTC</string>
+		<key>New Deal</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>New Deal</key>
+		<string>Topic</string>
+		<key>FDIC</key>
+		<string>LTE</string>
+		<key>Social Security</key>
+		<string>LTE</string>
+		<key>Wagner Act</key>
+		<string>LTE</string>
+		<key>Credit</key>
+		<string>LTC</string>
+		<key>Market Crash</key>
+		<string>LTC</string>
+		<key>Overproduction</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>Civil Rights - 1900s</key>
+		<string>DocTopic</string>
+		<key>Ida B. Wells</key>
+		<string>1Doc</string>
+		<key>Marcus Garvey</key>
+		<string>2Doc</string>
+		<key>Universal Negro Improvement Association</key>
+		<string>1-1Doc</string>
+		<key>Negro World</key>
+		<string>1-1Doc</string>
+		<key>Niagra Movement</key>
+		<string>2-1Doc</string>
+		<key>New item</key>
+		<string></string>
+		<key>New item - 2</key>
+		<string></string>
+		<key>New item - 3</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Civil Rights - 50s &amp; 60s</key>
+		<string>DocTopic</string>
+		<key>Martin Luther King</key>
+		<string>1Doc</string>
+		<key>Malcolm X</key>
+		<string>2Doc</string>
+		<key>March on Washington</key>
+		<string>1-1Doc</string>
+		<key>SCLC</key>
+		<string>1-1Doc</string>
+		<key>March to Montgomery</key>
+		<string>1-1Doc</string>
+		<key>Black nationalism</key>
+		<string>2-1Doc</string>
+		<key>SNCC</key>
+		<string>2-1Doc</string>
+		<key>Stokely Carmichael</key>
+		<string>2-1Doc</string>
+	</dict>
+	<dict>
+		<key>NATO</key>
+		<string>Topic</string>
+		<key>Warsaw Pact</key>
+		<string>LTE</string>
+		<key>Soviet aggression</key>
+		<string>LTC</string>
+		<key>Non-isolationism</key>
+		<string>LTE</string>
+		<key>Berlin Blockade</key>
+		<string>LTC</string>
+		<key>Korean War</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Brinksmanship</key>
+		<string>Topic</string>
+		<key>Dulles</key>
+		<string>LTC</string>
+		<key>Bay of Pigs</key>
+		<string>LTE</string>
+		<key>Cuban Missile Crisis</key>
+		<string>LTE</string>
+		<key>Eisenhower</key>
+		<string>LTC</string>
+		<key>Cuba Soviet Alliance</key>
+		<string>LTE</string>
+		<key>New item</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Cuba</key>
+		<string>Topic</string>
+		<key>Bay of Pigs</key>
+		<string>LTE</string>
+		<key>Nuclear War</key>
+		<string>LTE</string>
+		<key>Castro</key>
+		<string>LTC</string>
+		<key>Cuban Exiles</key>
+		<string>CON1</string>
+		<key>Communist Govt</key>
+		<string>CON2</string>
+	</dict>
+	<dict>
+		<key>Cold War</key>
+		<string>DocTopic</string>
+		<key>Eisenhower</key>
+		<string>1Doc</string>
+		<key>Truman</key>
+		<string>2Doc</string>
+		<key>Containment</key>
+		<string>2-1Doc</string>
+		<key>Korean War</key>
+		<string>2-1Doc</string>
+		<key>Brinksmanship</key>
+		<string>1-1Doc</string>
+		<key>Dulles</key>
+		<string>1-1Doc</string>
+		<key>Marshall</key>
+		<string>2-1Doc</string>
+		<key>U-2 </key>
+		<string>1-1Doc</string>
+		<key>Long cable</key>
+		<string>2-1Doc</string>
+		<key>Kennan</key>
+		<string>2-1Doc</string>
+		<key>Sputnik</key>
+		<string>1-1Doc</string>
+	</dict>
+	<dict>
+		<key>New Deal</key>
+		<string>DocTopic</string>
+		<key>Unemployment</key>
+		<string>1Doc</string>
+		<key>Financial Recovery</key>
+		<string>2Doc</string>
+		<key>Emergency Banking Relief Act</key>
+		<string>2-1Doc</string>
+		<key>Federal Deposit Insurance Corporation</key>
+		<string>2-1Doc</string>
+		<key>Home Owners Loan Corporation</key>
+		<string>2-1Doc</string>
+		<key>Federal Emergency Relief Administration</key>
+		<string>1-1Doc</string>
+		<key>Public Works Administration</key>
+		<string>1-1Doc</string>
+		<key>Civilian Conservatin Corps</key>
+		<string>1-1Doc</string>
+		<key>Tennessee Valley Authority</key>
+		<string>1-1Doc</string>
+		<key>Civil Works Administrations</key>
+		<string>1-1Doc</string>
+		<key>Securities and Exchange Commission</key>
+		<string>2-1Doc</string>
+		<key>Federal Housing Administration</key>
+		<string>2-1Doc</string>
+		<key>Works Progress Administration</key>
+		<string>1-1Doc</string>
+	</dict>
+	<dict>
+		<key>Progressive Presidents</key>
+		<string>DocTopic</string>
+		<key>Roosevelt</key>
+		<string>1Doc</string>
+		<key>Wilson</key>
+		<string>2Doc</string>
+		<key>Federal Reserve</key>
+		<string>2-1Doc</string>
+		<key>League of Nations</key>
+		<string>2-1Doc</string>
+		<key>Conservation</key>
+		<string>1-1Doc</string>
+		<key>Panama Canal</key>
+		<string>1-1Doc</string>
+		<key>Corollary to Monroe Doctrine</key>
+		<string>1-1Doc</string>
+		<key>Food and Drug Regs</key>
+		<string>1-1Doc</string>
+	</dict>
+	<dict>
+		<key>Gospel of Efficiency</key>
+		<string>Topic</string>
+		<key>Frederick W. Taylor</key>
+		<string>LTC</string>
+		<key>Increase production</key>
+		<string>LTE</string>
+		<key>Labor</key>
+		<string>CON2</string>
+		<key>Efficiency</key>
+		<string>CON1</string>
+		<key>Legislative Reference Bureau</key>
+		<string>LTE</string>
+		<key>Robert La Follette</key>
+		<string>LTE</string>
+		<key>Wisconsin idea</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Progressivism</key>
+		<string>Topic</string>
+		<key>Socialists</key>
+		<string>CON2</string>
+		<key>Roosevelt</key>
+		<string>CON1</string>
+		<key>Muckrakers</key>
+		<string>LTC</string>
+		<key>Sherman Anti-Trust Act</key>
+		<string>LTC</string>
+		<key>Mugwumps</key>
+		<string>LTC</string>
+		<key>Populists</key>
+		<string>LTC</string>
+		<key>Industrialization</key>
+		<string>LTC</string>
+		<key>Urbanization</key>
+		<string>LTC</string>
+		<key>Immigration</key>
+		<string>LTC</string>
+		<key>Democracy Reform</key>
+		<string>LTE</string>
+		<key>Public Ownership Utilities</key>
+		<string>LTE</string>
+		<key>Settlement Houses</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Women&apos;s Christian Temperance Union</key>
+		<string>Topic</string>
+		<key>Frances Willard</key>
+		<string>LTC</string>
+		<key>National Child Labor Committee</key>
+		<string>LTE</string>
+		<key>Anti-Saloon League</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Early Republic</key>
+		<string>DocTopic</string>
+		<key>Constitution</key>
+		<string>1Doc</string>
+		<key>Bill of Rights</key>
+		<string>2Doc</string>
+		<key>Separation of Powers</key>
+		<string>1-1Doc</string>
+		<key>Connecticut Compromise</key>
+		<string>1-1Doc</string>
+		<key>Freedom of Speech</key>
+		<string>2-1Doc</string>
+		<key>Freedom of Religion</key>
+		<string>2-1Doc</string>
+		<key>Bi-Cameral Legislature</key>
+		<string>1-1Doc</string>
+	</dict>
+	<dict>
+		<key>Interstate Commerce Commission</key>
+		<string>Topic</string>
+		<key>Grover Cleveland</key>
+		<string>LTC</string>
+		<key>Wabash v. Illinois</key>
+		<string>LTC</string>
+		<key>First Independent Regulatory  Commission</key>
+		<string>LTE</string>
+		<key>Low freight rates</key>
+		<string>LTE</string>
+		<key>Weak powers </key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Mugwumps</key>
+		<string>Topic</string>
+		<key>Republican Party split</key>
+		<string>STC</string>
+		<key>Civil service reform</key>
+		<string>LTC</string>
+		<key>Grover Cleveland</key>
+		<string>STE</string>
+		<key>Blaine nominated</key>
+		<string>STE</string>
+	</dict>
+	<dict>
+		<key>Pendleton Act 1883</key>
+		<string>Topic</string>
+		<key>Big Business</key>
+		<string>LTC</string>
+		<key>Civil Service Exams</key>
+		<string>LTE</string>
+		<key>Merit based</key>
+		<string>LTE</string>
+		<key>President discretion expand</key>
+		<string>LTE</string>
+		<key>Shield appointees from political removal</key>
+		<string>LTE</string>
+		<key>Chester Arthur</key>
+		<string>STC</string>
+		<key>American people</key>
+		<string>LTC</string>
+		<key>Big machine politics</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>Progressive Reforms</key>
+		<string>DocTopic</string>
+		<key>Bull Moose</key>
+		<string>1Doc</string>
+		<key>Theodore Roosevelt</key>
+		<string>1-1Doc</string>
+		<key>Reform Party</key>
+		<string>1-1Doc</string>
+		<key>Sherman Anti-Trust Act</key>
+		<string>1-1Doc</string>
+		<key>Labor Reforms</key>
+		<string>1-1Doc</string>
+	</dict>
+	<dict>
+		<key>Immigration 1900&apos;s</key>
+		<string>Topic</string>
+		<key>Labor Leaders</key>
+		<string>CON1</string>
+		<key>Immigrants</key>
+		<string>CON2</string>
+		<key>Urbanization</key>
+		<string>LTE</string>
+		<key>Famine</key>
+		<string>LTC</string>
+		<key>Slavs</key>
+		<string>LTC</string>
+		<key>Jews</key>
+		<string>LTC</string>
+		<key>Ellis Island</key>
+		<string>LTE</string>
+		<key>Nativism</key>
+		<string>STE</string>
+		<key>Henry Cabot Lodge</key>
+		<string>STE</string>
+		<key>Chinese Exclusion Act</key>
+		<string>STE</string>
+		<key>Angel Island</key>
+		<string>LTC</string>
+	</dict>
+	<dict>
+		<key>Labor Unions</key>
+		<string>DocTopic</string>
+		<key>Knights of Labor</key>
+		<string>1Doc</string>
+		<key>Anarchists</key>
+		<string>1-1Doc</string>
+		<key>Skilled and Unskilled</key>
+		<string>1-1Doc</string>
+		<key>Haymarket </key>
+		<string>1-1Doc</string>
+		<key>Terence Powderly</key>
+		<string>1-1Doc</string>
+		<key>International Workers of World</key>
+		<string>2Doc</string>
+		<key>Daniel De Leon</key>
+		<string>2-1Doc</string>
+		<key>Socialistic</key>
+		<string>2-1Doc</string>
+		<key>Western Federation of Miners</key>
+		<string>2-1Doc</string>
+		<key>Mining and Lumber</key>
+		<string>2-1Doc</string>
+		<key>Wobblies</key>
+		<string>2-1Doc</string>
+	</dict>
+	<dict>
+		<key>Reconstruction Leaders</key>
+		<string>DocTopic</string>
+		<key>Booker T. Washington</key>
+		<string>1Doc</string>
+		<key>W.E.B. Dubois</key>
+		<string>2Doc</string>
+		<key>Souls of Black Folk</key>
+		<string>2-1Doc</string>
+		<key>Civil Rights activist</key>
+		<string>2-1Doc</string>
+		<key>Higher education</key>
+		<string>2-1Doc</string>
+		<key>Niagra Movement</key>
+		<string>2-1Doc</string>
+		<key>Atlanta Compromise</key>
+		<string>1-1Doc</string>
+		<key>Born into Slavery</key>
+		<string>1-1Doc</string>
+		<key>Tuskegee Machine</key>
+		<string>1-1Doc</string>
+		<key>Accept segregation</key>
+		<string>1-1Doc</string>
+		<key>Develop trade skills</key>
+		<string>1-1Doc</string>
+	</dict>
+	<dict>
+		<key>Slavery in Supreme Court</key>
+		<string>DocTopic</string>
+		<key>Dred Scott</key>
+		<string>1Doc</string>
+		<key>Plessy v. Ferguson</key>
+		<string>2Doc</string>
+		<key>Separate but Equal</key>
+		<string>2-1Doc</string>
+		<key>Inflamed North South tensions</key>
+		<string>1-1Doc</string>
+		<key>Slavery state issue</key>
+		<string>1-1Doc</string>
+		<key>Slaves property</key>
+		<string>1-1Doc</string>
+		<key>Brown v. Board overturns</key>
+		<string>2-1Doc</string>
+	</dict>
+	<dict>
+		<key>Labor Strikes</key>
+		<string>DocTopic</string>
+		<key>Haymarket Affair</key>
+		<string>1Doc</string>
+		<key>Homestead Strike</key>
+		<string>2Doc</string>
+		<key>Anarchists</key>
+		<string>1-1Doc</string>
+		<key>Pinkerton</key>
+		<string>2-1Doc</string>
+	</dict>
+	<dict>
+		<key>Dawes Act 1887</key>
+		<string>Topic</string>
+		<key>Century of Dishonor</key>
+		<string>LTC</string>
+		<key>Helen Hunt Jackson</key>
+		<string>LTC</string>
+		<key>160 acres to family heads</key>
+		<string>LTE</string>
+		<key>Loss of half Indian lands</key>
+		<string>LTE</string>
+		<key>Forced assimilation</key>
+		<string>LTE</string>
+		<key>Break up reservations</key>
+		<string>STE</string>
+		<key>Indian culture destroyed</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Indian Wars</key>
+		<string>Topic</string>
+		<key>Dawes Act </key>
+		<string>LTE</string>
+		<key>Buffalos decimated</key>
+		<string>LTE</string>
+		<key>Ft. Laramie Treaty</key>
+		<string>LTC</string>
+		<key>North Dakota </key>
+		<string>LTE</string>
+		<key>Miners</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Big Business</key>
+		<string>DocTopic</string>
+		<key>JP Morgan</key>
+		<string>Doc1</string>
+		<key>Rockefeller</key>
+		<string>Doc2</string>
+		<key>Carnegie</key>
+		<string>Doc3</string>
+		<key>Vertical Integration</key>
+		<string>Doc3-1</string>
+		<key>Horizontal Integration</key>
+		<string>Doc3-2</string>
+		<key>Finance</key>
+		<string>Doc1-1</string>
+		<key>Steel</key>
+		<string>Doc3-1</string>
+		<key>Standard Oil</key>
+		<string>Doc2-1</string>
+		<key>Trusts</key>
+		<string>Doc2-1</string>
+		<key>Homestead Strike</key>
+		<string>Doc2-1</string>
+		<key>Gospel of Wealth</key>
+		<string>Doc3-1</string>
+		<key>Electricity</key>
+		<string>Doc1-1</string>
+	</dict>
+	<dict>
+		<key>Revolutionary Publications</key>
+		<string>DocTopic</string>
+		<key>Common Sense</key>
+		<string>Doc1</string>
+		<key>Federalist Papers</key>
+		<string>Doc2</string>
+		<key>Thomas Paine</key>
+		<string>Doc1-1</string>
+		<key>James Madison</key>
+		<string>Doc2-1</string>
+		<key>Alexander Hamilton</key>
+		<string>Doc2-1</string>
+		<key>Beginning of Revolution</key>
+		<string>Doc1-1</string>
+		<key>End of Revolution</key>
+		<string>Doc2-1</string>
+		<key>Mother country</key>
+		<string>Doc1-1</string>
+		<key>Inspired Revolution</key>
+		<string>Doc1-1</string>
+		<key>Publius</key>
+		<string>Doc2-1</string>
+		<key>Danger of Factions</key>
+		<string>Doc2-1</string>
+		<key>Principle of Judicial Review</key>
+		<string>Doc2-1</string>
+		<key>Opposed to Bill of Rights</key>
+		<string>Doc2-1</string>
+	</dict>
+	<dict>
+		<key>Civil War - Strengths</key>
+		<string>DocTopic</string>
+		<key>North</key>
+		<string>Doc1</string>
+		<key>South</key>
+		<string>Doc2</string>
+		<key>Manufacturing</key>
+		<string>Doc1-1</string>
+		<key>23 States</key>
+		<string>Doc1-1</string>
+		<key>11 States</key>
+		<string>Doc2-1</string>
+		<key>Geographic advantage</key>
+		<string>Doc2-1</string>
+		<key>Railroads</key>
+		<string>Doc1-1</string>
+		<key>More experienced military</key>
+		<string>Doc2-1</string>
+		<key>Control of Mississippi</key>
+		<string>Doc1-1</string>
+		<key>Population</key>
+		<string>Doc1-1</string>
+		<key>New item</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Birth of Nation</key>
+		<string>DocTopic</string>
+		<key>Constitution</key>
+		<string>Doc1</string>
+		<key>Separation of Powers</key>
+		<string>Doc1-1</string>
+		<key>Congress Declare War</key>
+		<string>Doc1-1</string>
+		<key>Legality of Slavery</key>
+		<string>Doc1-1</string>
+		<key>Electoral College</key>
+		<string>Doc1-1</string>
+		<key>Provision for President Impeachment</key>
+		<string>Doc1-1</string>
+		<key>State of the Union</key>
+		<string>Doc1-1</string>
+		<key>Federalism</key>
+		<string>Doc1-1</string>
+		<key>Bicameral Legislature</key>
+		<string>Doc1-1</string>
+		<key>Enumeration of Congress Powers</key>
+		<string>Doc1-1</string>
+		<key>Three-fifths Compromise</key>
+		<string>Doc1-1</string>
+		<key>Bill of Rights</key>
+		<string>Doc2</string>
+		<key>Freedom of Speech</key>
+		<string>Doc2-1</string>
+		<key>Speedy and Public Trial</key>
+		<string>Doc2-1</string>
+	</dict>
+	<dict>
+		<key>Pontiac&apos;s Rebellion</key>
+		<string>Topic</string>
+		<key>Political</key>
+		<string>Category</string>
+		<key>End Salutory Neglect</key>
+		<string>LTE</string>
+		<key>Proclamation of 1763</key>
+		<string>LTE</string>
+		<key>Indian attacks</key>
+		<string>LTC</string>
+		<key>Bar American expansion</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Sugar Acts 1764</key>
+		<string>Topic</string>
+		<key>Economic</key>
+		<string></string>
+		<key>French and Indian War</key>
+		<string>LTC</string>
+		<key>Triangular Trade</key>
+		<string>LTC</string>
+		<key>American Smugglers</key>
+		<string>LTC</string>
+		<key>American Revolution</key>
+		<string>LTE</string>
+		<key>Rise Real Whig Thinking</key>
+		<string>LTE</string>
+		<key>John Locke Thinking</key>
+		<string>LTE</string>
+		<key>Standing soldiers in colonies</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Currency Act 1764</key>
+		<string>Topic</string>
+		<key>Colonial America</key>
+		<string>Category</string>
+		<key>Shortage hard money</key>
+		<string>LTC</string>
+		<key>Trade imbalance with Britain</key>
+		<string>LTC</string>
+		<key>Colonies prohibited printing money</key>
+		<string>LTE</string>
+		<key>Paper money plummets</key>
+		<string>LTE</string>
+		<key>Deflation</key>
+		<string>LTE</string>
+		<key>Economic tailspin</key>
+		<string>LTE</string>
+		<key>George Grenville</key>
+		<string>CON1</string>
+		<key>Colonists</key>
+		<string>CON2</string>
+	</dict>
+	<dict>
+		<key>Black Codes</key>
+		<string>Topic</string>
+		<key>Slavery</key>
+		<string>Category</string>
+		<key>African-American</key>
+		<string>Subcat1</string>
+		<key>Social</key>
+		<string>Subcat2</string>
+		<key>Reconstruction End</key>
+		<string>LTC</string>
+		<key>Sharecropping</key>
+		<string>LTE</string>
+		<key>Cycle of Poverty</key>
+		<string>LTE</string>
+		<key>Slavery ends</key>
+		<string>LTE</string>
+		<key>Restriction civil rights</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Indian Wars 1860s-70s</key>
+		<string>Topic</string>
+		<key>Territory</key>
+		<string>Category</string>
+		<key>War</key>
+		<string>Subcat1</string>
+		<key>Social</key>
+		<string>Subcat2</string>
+		<key>Louisiana Purchase</key>
+		<string>LTC</string>
+		<key>Indian Removal Act</key>
+		<string>LTC</string>
+		<key>Indian Intercourse Act</key>
+		<string>LTC</string>
+		<key>Ft. Laramie Treaty</key>
+		<string>LTC</string>
+		<key>Report on Condition of Indian Tribes</key>
+		<string>LTE</string>
+		<key>Destroy Reservations</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Manifest Destiny</key>
+		<string>Topic</string>
+		<key>Political</key>
+		<string>Category</string>
+		<key>Social</key>
+		<string>SubCat1</string>
+		<key>Religion</key>
+		<string>LTC</string>
+		<key>Louisiana Purchase</key>
+		<string>LTC</string>
+		<key>Texas Annexation</key>
+		<string>LTC</string>
+		<key>Civil War</key>
+		<string>LTE</string>
+		<key>Indian displace</key>
+		<string>LTE</string>
+		<key>Railroads</key>
+		<string>LTE</string>
+		<key>Indian Wars</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Revolutionary War</key>
+		<string>Topic</string>
+		<key>Political</key>
+		<string>Category</string>
+		<key>Social</key>
+		<string>SubCat1</string>
+		<key>War</key>
+		<string>SubCat2</string>
+		<key>Enlightenment</key>
+		<string>LTC</string>
+		<key>Salutory Neglect</key>
+		<string>LTC</string>
+		<key>Great Awakening</key>
+		<string>LTC</string>
+		<key>Stamp Act</key>
+		<string>LTC</string>
+		<key>Coercive Acts</key>
+		<string>LTC</string>
+		<key>Common Sense</key>
+		<string>LTC</string>
+		<key>Articles of Confederation</key>
+		<string>LTE</string>
+		<key>Constitution</key>
+		<string>LTE</string>
+		<key>Shay&apos;s Rebellion</key>
+		<string>LTE</string>
+		<key>Economic crisis</key>
+		<string>LTE</string>
+		<key>Spain - Mississippi control</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Civil War</key>
+		<string>Topic</string>
+		<key>Political</key>
+		<string>Category</string>
+		<key>Slavery</key>
+		<string>SubCat1</string>
+		<key>War</key>
+		<string>SubCat2</string>
+		<key>Missouri Compromise</key>
+		<string>LTC</string>
+		<key>Kansas-Nebraska Act</key>
+		<string>LTC</string>
+		<key>Wilmot Proviso</key>
+		<string>LTC</string>
+		<key>Agragrian South </key>
+		<string>LTC</string>
+		<key>Emancipation</key>
+		<string>LTE</string>
+		<key>Blacks in political office</key>
+		<string>LTE</string>
+		<key>Segregation</key>
+		<string>LTE</string>
+		<key>Dredd Scott</key>
+		<string>LTC</string>
+		<key>Plessy v. Ferguson</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Nullification</key>
+		<string>Topic</string>
+		<key>Political</key>
+		<string>Category</string>
+		<key>Andrew Jackson</key>
+		<string>Subcat1</string>
+		<key>Constitution</key>
+		<string>Subcat2</string>
+		<key>Slavery</key>
+		<string>LTC</string>
+		<key>Civil War</key>
+		<string>LTE</string>
+		<key>Calhoun</key>
+		<string>LTC</string>
+		<key>Decrease states rights</key>
+		<string>LTE</string>
+	</dict>
+	<dict>
+		<key>Trail of Tears</key>
+		<string>Topic</string>
+		<key>Social</key>
+		<string>Category</string>
+		<key>Andrew Jackson</key>
+		<string>Subcat1</string>
+		<key>Native Americans</key>
+		<string>Subcat2</string>
+		<key>Westward Expansion</key>
+		<string>LTC</string>
+		<key>Worcester v. Georgia</key>
+		<string>LTC</string>
+	</dict>
+</array>
+</plist>

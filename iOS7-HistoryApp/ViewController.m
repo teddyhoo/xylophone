@@ -61,62 +61,65 @@ BOOL isIphone = FALSE;
 -(void) viewWillLayoutSubviews {
     
     [super viewWillLayoutSubviews];
-    //spriteView = (SKView *)self.view;
-    spriteView.showsFPS = YES;
-    spriteView.showsNodeCount = YES;
+    
+    
+    SKView *spriteView = (SKView *)self.view;
+    //spriteView.showsFPS = YES;
+    //spriteView.showsNodeCount = YES;
     
     
     NSString *deviceType = [UIDevice currentDevice].model;
-    
+    deviceType = @"iPad";
     if([deviceType isEqualToString:@"iPhone"]) {
         
         isIphone = TRUE;
-        
+       
     } else {
         
         isIphone = FALSE;
     }
     
+    NSLog(@"device type: @%",deviceType);
     
     if(!spriteView.scene) {
         //NEW
         //
         if (!isIphone) {
-            
-            spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
+            NSLog(@"not for iPhone");
+            //spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
             spriteView.showsFPS = YES;
-            spriteView.showsNodeCount = YES;
+            //spriteView.showsNodeCount = YES;
             
         } else if (isIphone){
             
             NSLog(@"sizing for iPhone");
-            spriteView = [[SKView alloc]initWithFrame:CGRectMake(-60, 0, 650, 400)];
+            //spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 350, 550)];
             spriteView.showsFPS = YES;
-            spriteView.showsNodeCount = YES;
+            //spriteView.showsNodeCount = YES;
             
         } else {
-            
-            spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
+            NSLog(@"other");
+            //spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
             spriteView.showsFPS = YES;
-            spriteView.showsNodeCount = YES;
+            //spriteView.showsNodeCount = YES;
             
         }
         //
         //END
         
         
-        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
+        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.1];
         introScreen = [IntroScreen sceneWithSize:spriteView.bounds.size];
-        //introScreen.scaleMode = SKSceneScaleModeAspectFill;
+        introScreen.scaleMode = SKSceneScaleModeAspectFit;
+        NSLog(@"loading scene");
         [spriteView presentScene:introScreen transition:reveal];
+        NSLog(@"loaded scene");
         
         //NEW
-        [self.view addSubview:spriteView];
+        //[self.view addSubview:spriteView];
         //
     }
-    
-    //quizButtonView = [[QuizButtons alloc]initWithFrame:CGRectMake(100, 100, 400, 600)];
-    //[self.view addSubview:quizButtonView];
+
     
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         // iOS 7

@@ -7,9 +7,10 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <AVFoundation/AVFoundation.h>
 @import CoreImage;
 
-@interface LetterTrace : SKScene {
+@interface LetterTrace : SKScene <AVAudioPlayerDelegate,AVAudioRecorderDelegate> {
 
     int drawStep;
     SKEffectNode *effectNode;
@@ -19,7 +20,13 @@
 }
 
 
+
 @property (nonatomic,strong) SKSpriteNode* background;
 @property (nonatomic,strong) SKSpriteNode* selectedNode;
 @property (nonatomic,retain) NSTimer *timeForQuestion;
+@property (nonatomic,strong) AVAudioRecorder *audioRecorder;
+@property (nonatomic,strong) AVAudioPlayer *audioPlayer;
+
+-(id)initWithSize:(CGSize)size andGroup:(NSNumber *)groupID;
+
 @end
