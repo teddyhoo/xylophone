@@ -105,25 +105,6 @@ int groupNumber;
         gridPaper = [SKSpriteNode spriteNodeWithImageNamed:@"forest-bg.png"];
         gridPaper.position = CGPointMake(size.width/2, size.height/2);
         [self addChild:gridPaper];
-
-        //groupNumber = 1;
-        
-        /*NSMutableArray *animFrames = [NSMutableArray array];
-        SKTextureAtlas *imageAnimationAtlas = [SKTextureAtlas atlasNamed:@"goat"];
-        
-        int numImages = imageAnimationAtlas.textureNames.count;
-        for (int i=1; i <= numImages; i++) {
-            NSString *textureName = [NSString stringWithFormat:@"%d",i];
-            SKTexture *temp = [imageAnimationAtlas textureNamed:textureName];
-            [animFrames addObject:temp];
-        }
-        texturesForAnim = animFrames;
-        
-        SKTexture *temp2 = texturesForAnim[0];
-        firstImageAnimate = [SKSpriteNode spriteNodeWithTexture:temp2];
-        firstImageAnimate.position = CGPointMake(500, 400);
-        [self addChild:firstImageAnimate];
-        [self setInMotion];*/
         
         NSString *pListData = [[NSBundle mainBundle]pathForResource:@"Letters" ofType:@"plist"];
         allPicsForQuestions = [[NSMutableArray alloc]initWithContentsOfFile:pListData];
@@ -137,24 +118,19 @@ int groupNumber;
                 if ([[problem valueForKey:key] isEqualToString:groupNumberKeyVal]) {
                     
                     /*if ([[problem valueForKey:@"animation"]isEqualToString:@"yes"]) {
-                        NSLog(@"atlas name: %@",[problem valueForKey:@"phrase"]);
                         
                         NSMutableArray *animFrames = [NSMutableArray array];
                         SKTextureAtlas *imageAnimationAtlas = [SKTextureAtlas atlasNamed:[problem valueForKey:@"phrase"]];
                         
                         int numImages = imageAnimationAtlas.textureNames.count;
-                        for (int i=1; i <= numImages; i++) {
+                        for (int i=0; i < numImages; i++) {
                             NSString *textureName = [NSString stringWithFormat:@"%d",i];
                             SKTexture *temp = [imageAnimationAtlas textureNamed:textureName];
                             [animFrames addObject:temp];
                         }
                         texturesForAnim = animFrames;
-                        
-                        SKTexture *temp2 = texturesForAnim[0];
-                        firstImageAnimate = [SKSpriteNode spriteNodeWithTexture:temp2];
-                        firstImageAnimate.position = CGPointMake(500, 400);
-                        [self addChild:firstImageAnimate];
-                        [self setInMotion];
+                        SKSpriteNode *imageForSound = [SKSpriteNode spriteNodeWithImageNamed:animFrames[0]];
+                        [imagesForLetters addObject:imageForSound];
                         
                     } else {*/
                         SKSpriteNode *imageForSound = [SKSpriteNode spriteNodeWithImageNamed:[problem valueForKey:@"phrase"]];
@@ -163,8 +139,6 @@ int groupNumber;
                         imageForSound.scale = [numberForScale floatValue];
                         [imagesForLetters addObject:imageForSound];
                     //}
-                    
-                    
                     
                 }
                 
@@ -816,10 +790,25 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
 -(void)nextQuestion {
     if (questionCount < [imagesForLetters count]) {
 
-        picForQuestion = (SKSpriteNode *)[imagesForLetters objectAtIndex:questionCount];
-        picForQuestion.position = CGPointMake(500, 400);
-        picForQuestion.alpha = 1.0;
-        [self addChild:picForQuestion];
+        if([[imagesForLetters objectAtIndex:questionCount]
+            isKindOfClass:[NSMutableArray class]]) {
+            
+            NSMutableArray *animationFrames = [imagesForLetters objectAtIndex:questionCount];
+            SKTexture *temp = animationFrames[0];
+            firstImageAnimate = [SKSpriteNode spriteNodeWithTexture:temp];
+            firstImageAnimate.name = @"A";
+            firstImageAnimate.position = CGPointMake(500, 400);
+            [self addChild:firstImageAnimate];
+            [self setInMotion];
+            
+            
+        } else {
+            picForQuestion = (SKSpriteNode *)[imagesForLetters objectAtIndex:questionCount];
+            picForQuestion.position = CGPointMake(500, 400);
+            picForQuestion.alpha = 1.0;
+            [self addChild:picForQuestion];
+        }
+        
 
         self.userInteractionEnabled = YES;
     } else {
@@ -893,12 +882,17 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
         [animFrames addObject:temp];
     }
     texturesForAnim = animFrames;
+    SKAction *pictureAnimation =  [SKAction animateWithTextures:texturesForAnim timePerFrame:0.1];
     
-    SKTexture *temp2 = texturesForAnim[0];
-    firstImageAnimate = [SKSpriteNode spriteNodeWithTexture:temp2];
-    firstImageAnimate.position = CGPointMake(500, 400);
-    [self addChild:firstImageAnimate];
-    [self setInMotion];
+    //SKTexture *temp2 = texturesForAnim[0];
+    //firstImageAnimate = [SKSpriteNode spriteNodeWithTexture:temp2];
+    //firstImageAnimate.position = CGPointMake(500, 400);
+    //[self addChild:firstImageAnimate];
+    //[self setInMotion];
+    [picForQuestion actionForKey:@"animation"];
+    [picForQuestion runAction:[SKAction repeatActionForever:pictureAnimation] withKey:@"animation"];
+    
+    
     
 }
 
@@ -922,6 +916,7 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
 
 
 -(void) checkCollisions {
+    
     
     for (LowerCaseLetter *letterHit in allLettersSprites) {
         if(CGRectIntersectsRect(letterHit.frame, picForQuestion.frame)) {

@@ -11,6 +11,11 @@
 #import "MontessoriData.h"
 #import "RedrawLetter.h"
 #import "LowerCaseLetter.h"
+#import "SKTUtils.h"
+#import "SKTTimingFunctions.h"
+#import "SKAction+SKTExtras.h"
+#import "SKTTimingFunctions.h"
+#import "SKTEffects.h"
 
 @implementation TeacherParent
 
@@ -25,6 +30,7 @@ SKLabelNode *groupFour;
 SKLabelNode *groupFive;
 
 int onWhichGroup;
+int onWhichQuestion;
 
 LowerCaseLetter *letterA;
 LowerCaseLetter *letterB;
@@ -52,6 +58,9 @@ LowerCaseLetter *letterW;
 LowerCaseLetter *letterX;
 LowerCaseLetter *letterY;
 LowerCaseLetter *letterZ;
+LowerCaseLetter *chosenLetter;
+
+RedrawLetter *currentRedrawLetter;
 
 // Group 1: a, b, c, m, s, t
 NSMutableArray *groupOneLetters;
@@ -95,10 +104,7 @@ CGFloat height;
         groupFiveLetters = [[NSMutableArray alloc]init];
         allTheLetters = [[NSMutableArray alloc]init];
         shapesForLetters = [[NSMutableArray alloc]init];
-        
-        [self getDataHistory];
-        
-        
+
         NSMutableArray *studentSprites = [[NSMutableArray alloc]init];
         NSArray *studentNames = [[NSArray alloc]initWithObjects:
                                  @"Student: Ted Hooban",
@@ -127,34 +133,82 @@ CGFloat height;
     }
     
     letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"a_blue_600x600.png"];
-    letterA.name = @"A";
+    letterA.whichLetter = @"A";
     
-    letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"b_850x600.png"];
+    letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"b_red_1000x600.png"];
+    letterB.whichLetter = @"B";
+    
     letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"c_600x600.png"];
-    letterD = [LowerCaseLetter spriteNodeWithImageNamed:@"d_1000x600.png"];;
-    letterE = [LowerCaseLetter spriteNodeWithImageNamed:@"e_600x600.png"];;
-    letterF = [LowerCaseLetter spriteNodeWithImageNamed:@"f_850x600.png"];;
-    letterG = [LowerCaseLetter spriteNodeWithImageNamed:@"g_1000x600.png"];;
-    letterH = [LowerCaseLetter spriteNodeWithImageNamed:@"h_1000x600.png"];;
-    letterI = [LowerCaseLetter spriteNodeWithImageNamed:@"i_850x600.png"];;
-    letterJ = [LowerCaseLetter spriteNodeWithImageNamed:@"j_1000x600.png"];;
-    letterK = [LowerCaseLetter spriteNodeWithImageNamed:@"k_1000x600.png"];;
-    letterL = [LowerCaseLetter spriteNodeWithImageNamed:@"l_1000x600.png"];;
-    letterM = [LowerCaseLetter spriteNodeWithImageNamed:@"m_600x850.png"];;
-    letterN = [LowerCaseLetter spriteNodeWithImageNamed:@"n_600x600.png"];;
-    letterO = [LowerCaseLetter spriteNodeWithImageNamed:@"o_600x600.png"];;
-    letterP = [LowerCaseLetter spriteNodeWithImageNamed:@"p_1000x600.png"];;
-    letterQ = [LowerCaseLetter spriteNodeWithImageNamed:@"q_1000x620.png"];;
-    letterR = [LowerCaseLetter spriteNodeWithImageNamed:@"r_600x600.png"];;
-    letterS = [LowerCaseLetter spriteNodeWithImageNamed:@"s_600x600.png"];;
-    letterT = [LowerCaseLetter spriteNodeWithImageNamed:@"t_850x600.png"];;
-    letterU = [LowerCaseLetter spriteNodeWithImageNamed:@"u_600x600.png"];;
-    letterV = [LowerCaseLetter spriteNodeWithImageNamed:@"v_600x600.png"];;
-    letterW = [LowerCaseLetter spriteNodeWithImageNamed:@"w_600x850.png"];;
-    letterX = [LowerCaseLetter spriteNodeWithImageNamed:@"x_600x600.png"];;
-    letterY = [LowerCaseLetter spriteNodeWithImageNamed:@"y_1000x600.png"];;
-    letterZ = [LowerCaseLetter spriteNodeWithImageNamed:@"z_600x600.png"];;
+    letterC.whichLetter = @"C";
     
+    letterD = [LowerCaseLetter spriteNodeWithImageNamed:@"d_1000x600.png"];
+    letterD.whichLetter = @"D";
+    
+    letterE = [LowerCaseLetter spriteNodeWithImageNamed:@"e_600x600.png"];
+    letterE.whichLetter = @"E";
+    
+    letterF = [LowerCaseLetter spriteNodeWithImageNamed:@"f_850x600.png"];
+    letterF.whichLetter = @"F";
+    
+    letterG = [LowerCaseLetter spriteNodeWithImageNamed:@"g_1000x600.png"];
+    letterG.whichLetter = @"G";
+    
+    letterH = [LowerCaseLetter spriteNodeWithImageNamed:@"h_1000x600.png"];
+    letterH.whichLetter = @"H";
+    
+    letterI = [LowerCaseLetter spriteNodeWithImageNamed:@"i_850x600.png"];
+    letterI.whichLetter = @"I";
+    
+    letterJ = [LowerCaseLetter spriteNodeWithImageNamed:@"j_1000x600.png"];
+    letterJ.whichLetter = @"J";
+    
+    letterK = [LowerCaseLetter spriteNodeWithImageNamed:@"k_1000x600.png"];
+    letterK.whichLetter = @"K";
+    
+    letterL = [LowerCaseLetter spriteNodeWithImageNamed:@"l_1000x600.png"];
+    letterL.whichLetter = @"L";
+    
+    letterM = [LowerCaseLetter spriteNodeWithImageNamed:@"m_600x850.png"];
+    letterM.whichLetter = @"M";
+    
+    letterN = [LowerCaseLetter spriteNodeWithImageNamed:@"n_600x600.png"];
+    letterN.whichLetter = @"N";
+    
+    letterO = [LowerCaseLetter spriteNodeWithImageNamed:@"o_600x600.png"];
+    letterO.whichLetter = @"O";
+    
+    letterP = [LowerCaseLetter spriteNodeWithImageNamed:@"p_1000x600.png"];
+    letterP.whichLetter = @"P";
+    
+    letterQ = [LowerCaseLetter spriteNodeWithImageNamed:@"q_1000x620.png"];
+    letterQ.whichLetter = @"Q";
+    
+    letterR = [LowerCaseLetter spriteNodeWithImageNamed:@"r_600x600.png"];;
+    letterR.whichLetter = @"R";
+    
+    letterS = [LowerCaseLetter spriteNodeWithImageNamed:@"s_600x600.png"];;
+    letterS.whichLetter = @"S";
+    
+    letterT = [LowerCaseLetter spriteNodeWithImageNamed:@"t_850x600.png"];;
+    letterT.whichLetter = @"T";
+    
+    letterU = [LowerCaseLetter spriteNodeWithImageNamed:@"u_600x600.png"];;
+    letterU.whichLetter = @"U";
+    
+    letterV = [LowerCaseLetter spriteNodeWithImageNamed:@"v_600x600.png"];;
+    letterV.whichLetter = @"V";
+    
+    letterW = [LowerCaseLetter spriteNodeWithImageNamed:@"w_600x850.png"];;
+    letterW.whichLetter = @"W";
+    
+    letterX = [LowerCaseLetter spriteNodeWithImageNamed:@"x_600x600.png"];;
+    letterX.whichLetter = @"X";
+    
+    letterY = [LowerCaseLetter spriteNodeWithImageNamed:@"y_1000x600.png"];;
+    letterY.whichLetter = @"Y";
+    
+    letterZ = [LowerCaseLetter spriteNodeWithImageNamed:@"z_600x600.png"];;
+    letterZ.whichLetter = @"Z";
     
     [allTheLetters addObject:letterA];
     [allTheLetters addObject:letterB];
@@ -183,27 +237,43 @@ CGFloat height;
     [allTheLetters addObject:letterY];
     [allTheLetters addObject:letterZ];
     
+    for (LowerCaseLetter *letter in allTheLetters) {
+        
+        letter.position = CGPointMake(0,-1000);
+        letter.alpha = 0.0;
+        letter.scale = 0.1;
+        letter.centerStage = FALSE;
+        [self addChild:letter];
+    }
+    
+    
+    [self getDataHistory];
+    
     [groupOneLetters addObject:letterA];
     [groupOneLetters addObject:letterB];
     [groupOneLetters addObject:letterC];
     [groupOneLetters addObject:letterM];
     [groupOneLetters addObject:letterS];
     [groupOneLetters addObject:letterT];
+    
     [groupTwoLetters addObject:letterO];
     [groupTwoLetters addObject:letterG];
     [groupTwoLetters addObject:letterR];
     [groupTwoLetters addObject:letterD];
     [groupTwoLetters addObject:letterF];
+    
     [groupThreeLetters addObject:letterI];
     [groupThreeLetters addObject:letterP];
     [groupThreeLetters addObject:letterN];
     [groupThreeLetters addObject:letterL];
     [groupThreeLetters addObject:letterH];
+    
     [groupFourLetters addObject:letterE];
     [groupFourLetters addObject:letterZ];
     [groupFourLetters addObject:letterX];
     [groupFourLetters addObject:letterK];
     [groupFourLetters addObject:letterQ];
+    
     [groupFiveLetters addObject:letterU];
     [groupFiveLetters addObject:letterV];
     [groupFiveLetters addObject:letterW];
@@ -211,47 +281,45 @@ CGFloat height;
     [groupFiveLetters addObject:letterY];
     
     groupOne = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    groupOne.text = @"Group 1";
+    groupOne.text = @"PURPLE";
     groupOne.name = @"group1";
-    groupOne.fontColor = [UIColor redColor];
-    groupOne.fontSize = 40;
-    groupOne.position = CGPointMake(150, 700);
+    groupOne.fontColor = [UIColor purpleColor];
+    groupOne.fontSize = 30;
+    groupOne.position = CGPointMake(200, 50);
     [self addChild:groupOne];
     
     
     groupTwo = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    groupTwo.text = @"Group 2";
+    groupTwo.text = @"YELLOW";
     groupTwo.name = @"group2";
-    groupTwo.fontColor = [UIColor redColor];
-    groupTwo.fontSize = 40;
-    groupTwo.position = CGPointMake(150, 600);
+    groupTwo.fontColor = [UIColor yellowColor];
+    groupTwo.fontSize = 30;
+    groupTwo.position = CGPointMake(350, 50);
     [self addChild:groupTwo];
     
     groupThree = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    groupThree.text = @"Group 3";
+    groupThree.text = @"PINK";
     groupThree.name = @"group3";
-    groupThree.fontColor = [UIColor redColor];
-    groupThree.fontSize = 40;
-    groupThree.position = CGPointMake(150, 500);
+    groupThree.fontColor = [UIColor orangeColor];
+    groupThree.fontSize = 30;
+    groupThree.position = CGPointMake(500, 50);
     [self addChild:groupThree];
     
     groupFour = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    groupFour.text = @"Group 4";
+    groupFour.text = @"GREEN";
     groupFour.name = @"group4";
-    groupFour.fontColor = [UIColor redColor];
-    groupFour.fontSize = 40;
-    groupFour.position = CGPointMake(150, 400);
+    groupFour.fontColor = [UIColor greenColor];
+    groupFour.fontSize = 30;
+    groupFour.position = CGPointMake(650, 50);
     [self addChild:groupFour];
     
     
     groupFive = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    groupFive.text = @"Group 5";
+    groupFive.text = @"BLUE";
     groupFive.name = @"group5";
-    groupFive.fontColor = [UIColor redColor];
-    groupFive.fontSize = 40;
-    groupFive.position = CGPointMake(150, 300);
-    [self addChild:groupFive];
-    
+    groupFive.fontColor = [UIColor blueColor];
+    groupFive.fontSize = 30;
+    groupFive.position = CGPointMake(800, 50);
     
     return self;
 }
@@ -261,24 +329,30 @@ CGFloat height;
     
     for (NSDictionary *results in sharedData.letterDrawResults) {
         for (NSString *key in results) {
+            
             if ([key isEqualToString:@"shape"]) {
-                NSString *letterOn = [results objectForKey:@"letter"];
-                
+                NSString *letterVal = [results objectForKey:@"letter"];
                 NSDate *dateOf = [results objectForKey:@"dateDone"];
                 NSDateFormatter *dateFormatted = [[NSDateFormatter alloc]init];
                 [dateFormatted setTimeStyle:NSDateFormatterShortStyle];
                 [dateFormatted setDateStyle:NSDateFormatterLongStyle];
                 NSString *formatDate = [dateFormatted stringFromDate:dateOf];
+                
+                LowerCaseLetter *paramLetter;
+                
+                for (LowerCaseLetter *currentLetter in allTheLetters) {
+                    if ([currentLetter.whichLetter isEqualToString:letterVal]) {
+                        paramLetter = currentLetter;
+                    }
+                }
 
-                RedrawLetter *redrawLetterNode = [[RedrawLetter alloc]initWithPosition:CGPointMake(0, 0) withKey:letterOn];
-
+                RedrawLetter *redrawLetterNode = [[RedrawLetter alloc]initWithPosition:CGPointMake(0, 0) withLetter:paramLetter];
                 redrawLetterNode.dateDrawn = formatDate;
                 
                 NSMutableArray *theCloudObjects = [results objectForKey:key];
                 for (SKSpriteNode *drawSprite in theCloudObjects) {
-                    SKSpriteNode *newCloud = [SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud2.png"];
+                    SKSpriteNode *newCloud = [SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud3.png"];
                     newCloud.position = drawSprite.position;
-                    newCloud.scale = 0.25;
                     [redrawLetterNode addPointToNode:newCloud];
                 }
                 
@@ -286,12 +360,10 @@ CGFloat height;
                 dateLabel.text = formatDate;
                 dateLabel.fontColor = [UIColor purpleColor];
                 dateLabel.fontSize = 20;
-                dateLabel.position = CGPointMake(200, 300);
+                dateLabel.position = CGPointMake(600, 600);
                 SKLabelNode *totalPoints = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-                
-                
+
                 [redrawLetterNode addChild:dateLabel];
-                redrawLetterNode.position = CGPointMake(-200,-200);
                 [shapesForLetters addObject:redrawLetterNode];
             }
         }
@@ -305,126 +377,354 @@ CGFloat height;
     SKAction *scaleUp = [SKAction scaleTo:0.5 duration:0.4];
     [letterOn runAction:moveAction];
     [letterOn runAction:scaleUp];
-    int xposition = 250;
-    int yposition = 180;
+    int xposition = 500;
+    int yposition = 400;
     
     for (RedrawLetter *letterShapes in shapesForLetters) {
         
-        if ([letterOn.name isEqualToString:letterShapes.name]) {
-            NSLog(@"match");
+        if ([chosenLetter.whichLetter isEqualToString:letterShapes.representLetter]) {
+            NSMutableArray *spritesToDraw = [letterShapes drawMyself];
+            for (SKSpriteNode *drawSprite in spritesToDraw) {
+                SKSpriteNode *newCloud = [SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud3.png"];
+                newCloud.position = drawSprite.position;
+                [letterShapes addChild:newCloud];
+            }
+            [self addChild:letterShapes];
+            letterShapes.position = CGPointMake(xposition, yposition);
+            letterShapes.scale = 0.4;
+            currentRedrawLetter = letterShapes;
         }
-        NSMutableArray *spritesToDraw = [letterShapes drawMyself];
-        for (SKSpriteNode *drawSprite in spritesToDraw) {
-            SKSpriteNode *newCloud = [SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud2.png"];
-            newCloud.position = drawSprite.position;
-            newCloud.scale = 0.3;
-            [letterShapes addChild:newCloud];
+        
+    }
+}
+
+-(void)closePreviousGroup:(NSNumber*)whichGroupClose {
+    
+    if ([whichGroupClose intValue] == 1) {
+        SKAction *closeLetters = [SKAction moveTo:CGPointMake(groupOne.position.x, -400) duration:0.2];
+        for (LowerCaseLetter *openLetterBox in groupOneLetters) {
+            if(!openLetterBox.centerStage) {
+                [openLetterBox runAction:closeLetters];
+            }
         }
-        [self addChild:letterShapes];
+    } else if ([whichGroupClose intValue] == 2){
+        SKAction *closeLetters = [SKAction moveTo:CGPointMake(groupTwo.position.x, -400) duration:0.2];
+        for (LowerCaseLetter *openLetterBox in groupTwoLetters) {
+            if(!openLetterBox.centerStage) {
+                [openLetterBox runAction:closeLetters];
+            }
+        }
         
-        letterShapes.position = CGPointMake(xposition, yposition);
-        letterShapes.scale = 0.4;
+    } else if ([whichGroupClose intValue] == 3) {
+        SKAction *closeLetters = [SKAction moveTo:CGPointMake(groupThree.position.x, -400) duration:0.2];
+        for (LowerCaseLetter *openLetterBox in groupThreeLetters) {
+            if(!openLetterBox.centerStage) {
+                [openLetterBox runAction:closeLetters];
+            }
+        }
         
-        xposition += 245;
-        if (xposition > 800) {
-            xposition = 250;
-            yposition -= 150;
+    } else if ([whichGroupClose intValue] == 4)  {
+        SKAction *closeLetters = [SKAction moveTo:CGPointMake(groupFour.position.x, -400) duration:0.2];
+        for (LowerCaseLetter *openLetterBox in groupFourLetters) {
+            if(!openLetterBox.centerStage) {
+                [openLetterBox runAction:closeLetters];
+            }
+        }
+    } else if ([whichGroupClose intValue] == 5) {
+        SKAction *closeLetters = [SKAction moveTo:CGPointMake(groupFive.position.x, -400) duration:0.2];
+        for (LowerCaseLetter *openLetterBox in groupFiveLetters) {
+            if(!openLetterBox.centerStage) {
+                [openLetterBox runAction:closeLetters];
+            }
         }
     }
 }
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
     CGPoint theTouch = [touch locationInNode:self];
     
+    if(CGRectContainsPoint(currentRedrawLetter.frame, theTouch)) {
+        NSLog(@"current redraw frame tapped");
+        
+        [currentRedrawLetter removeAllChildren];
+        NSMutableArray *spritesToDraw = [currentRedrawLetter drawMyself];
+        for (SKSpriteNode *drawSprite in spritesToDraw) {
+            SKSpriteNode *newCloud = [SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud3.png"];
+            newCloud.position = drawSprite.position;
+            [currentRedrawLetter addChild:newCloud];
+        }
+        //[self addChild:currentRedrawLetter];
+        currentRedrawLetter.position = CGPointMake(400, 300);
+        currentRedrawLetter.scale = 0.7;
+    }
+    
+    
     for (LowerCaseLetter *touchLetter in allTheLetters) {
-        if (CGRectContainsPoint(touchLetter.frame,theTouch)) {
+        if (CGRectContainsPoint(touchLetter.frame,theTouch) && !touchLetter.centerStage) {
+            chosenLetter = touchLetter;
+            chosenLetter.centerStage = TRUE;
+            touchLetter.centerStage = TRUE;
             [self letterTouch:touchLetter];
   
+        } else if (CGRectContainsPoint(touchLetter.frame,theTouch) && touchLetter.centerStage) {
+            touchLetter.scale = 0.1;
+            touchLetter.centerStage = FALSE;
+            
+            if(onWhichGroup != 1) {
+                [self closePreviousGroup:[NSNumber numberWithInt:onWhichGroup]];
+
+            } else if (onWhichGroup != 2) {
+                [self closePreviousGroup:[NSNumber numberWithInt:onWhichGroup]];
+
+            } else if (onWhichGroup != 3) {
+                [self closePreviousGroup:[NSNumber numberWithInt:onWhichGroup]];
+
+            } else if (onWhichGroup != 4) {
+                [self closePreviousGroup:[NSNumber numberWithInt:onWhichGroup]];
+
+            } else if (onWhichGroup != 5) {
+                [self closePreviousGroup:[NSNumber numberWithInt:onWhichGroup]];
+
+            }
+            [currentRedrawLetter removeFromParent];
+            
         }
     }
     
-
-    if (CGRectContainsPoint(groupOne.frame, theTouch)) {
+    if(CGRectContainsPoint(groupOne.frame, theTouch)) {
         
-        int i = 0;
-        for (LowerCaseLetter *letterSprite in groupOneLetters) {
-            letterSprite.scale = 0.1;
-            letterSprite.position = CGPointMake(150 + i, 650);
+        int i = 100;
+        
+        if (onWhichGroup != 1) {
             
-            [self addChild:letterSprite];
-            i += 90;
+            [self closePreviousGroup:[NSNumber numberWithInt:onWhichGroup]];
+            
+            for (LowerCaseLetter *openLetterBox in groupOneLetters) {
+                int newX = groupOne.position.x;
+                int newY = groupOne.position.y + i;
+                openLetterBox.position = groupOne.position;
+                
+                SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:openLetterBox
+                                                                 duration:0.3
+                                                            startPosition:groupOne.position
+                                                              endPosition:CGPointMake(newX,newY)];
+                
+                moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
+                SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
+                openLetterBox.alpha = 1.0;
+                [openLetterBox runAction:actionWithEffectForLetter];
+                
+                i += 70;
+            }
+            
             onWhichGroup = 1;
+            
+        } else {
+            
+            onWhichGroup = 0;
+            
+            SKAction *closeLetters = [SKAction moveTo:CGPointMake(groupOne.position.x, -500) duration:0.5];
+            
+            for (LowerCaseLetter *openLetterBox in groupOneLetters) {
+                openLetterBox.alpha = 1.0;
+                if (!openLetterBox.centerStage) {
+                    [openLetterBox runAction:closeLetters];
+                }
+                
+            }
         }
         
-    } else if (CGRectContainsPoint(groupTwo.frame, theTouch)) {
+    } else if(CGRectContainsPoint(groupTwo.frame, theTouch)) {
         
-        int i = 0;
-        for (LowerCaseLetter *letterSprite in groupTwoLetters) {
-            letterSprite.scale = 0.1;
-            letterSprite.position = CGPointMake(150 + i, 550);
-            [self addChild:letterSprite];
-            i += 90;
+        
+        int i = 100;
+        
+        if (onWhichGroup != 2) {
+            
+            [self closePreviousGroup:[NSNumber numberWithInt:onWhichGroup]];
+            
+            for (LowerCaseLetter *openLetterBox in groupTwoLetters) {
+                int newX = groupTwo.position.x - i + 50;
+                int newY = groupTwo.position.y + i;
+                openLetterBox.position = groupTwo.position;
+                
+                SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:openLetterBox
+                                                                 duration:0.3
+                                                            startPosition:groupTwo.position
+                                                              endPosition:CGPointMake(newX,newY)];
+                
+                moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
+                
+                
+                SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
+                openLetterBox.alpha = 1.0;
+                [openLetterBox runAction:actionWithEffectForLetter];
+                
+                i += 70;
+            }
+            
             onWhichGroup = 2;
+            
+        } else {
+            
+            onWhichGroup = 0;
+            
+            SKAction *closeLetters = [SKAction moveTo:CGPointMake(groupTwo.position.x, -500) duration:0.5];
+            SKAction *scaleDown = [SKAction scaleTo:0.0 duration:1.0];
+            
+            for (LowerCaseLetter *openLetterBox in groupTwoLetters) {
+                openLetterBox.alpha = 1.0;
+                if (!openLetterBox.centerStage) {
+                    [openLetterBox runAction:closeLetters];
+                }
+                
+            }
         }
         
-    } else if (CGRectContainsPoint(groupThree.frame, theTouch)) {
         
-        int i = 0;
-        for (LowerCaseLetter *letterSprite in groupThreeLetters) {
-            letterSprite.scale = 0.1;
-            letterSprite.position = CGPointMake(150 + i, 450);
-            [self addChild:letterSprite];
-            i += 100;
+        
+    } else if(CGRectContainsPoint(groupThree.frame, theTouch)) {
+        int i = 100;
+        
+        if (onWhichGroup != 3) {
+            [self closePreviousGroup:[NSNumber numberWithInt:onWhichGroup]];
+            
+            
+            for (LowerCaseLetter *openLetterBox in groupThreeLetters) {
+                
+                int newX = groupThree.position.x + i - 10 ;
+                int newY = groupThree.position.y + i;
+                openLetterBox.position = groupThree.position;
+                SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:openLetterBox
+                                                                 duration:0.3
+                                                            startPosition:groupThree.position
+                                                              endPosition:CGPointMake(newX,newY)];
+                
+                moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
+                
+                
+                SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
+                openLetterBox.alpha = 1.0;
+                [openLetterBox runAction:actionWithEffectForLetter];
+                
+                i += 70;
+            }
+            
             onWhichGroup = 3;
+            
+        } else {
+            
+            onWhichGroup = 0;
+            
+            SKAction *closeLetters = [SKAction moveTo:CGPointMake(groupThree.position.x, -500) duration:0.2];
+            SKAction *scaleDown = [SKAction scaleTo:0.0 duration:1.0];
+            
+            for (LowerCaseLetter *openLetterBox in groupThreeLetters) {
+                openLetterBox.alpha = 1.0;
+                if (!openLetterBox.centerStage) {
+                    [openLetterBox runAction:closeLetters];
+                }
+                
+            }
         }
         
-    } else if (CGRectContainsPoint(groupFour.frame, theTouch)) {
         
-        int i = 0;
+    } else if(CGRectContainsPoint(groupFour.frame, theTouch)) {
+        int i = 100;
         
-        for (LowerCaseLetter *letterSprite in groupFourLetters) {
-            letterSprite.scale = 0.1;
-            letterSprite.position = CGPointMake(150 + i, 350 );
-            [self addChild:letterSprite];
-            i += 70;
+        if (onWhichGroup != 4) {
+            [self closePreviousGroup:[NSNumber numberWithInt:onWhichGroup]];
+            
+            
+            for (LowerCaseLetter *openLetterBox in groupFourLetters) {
+                int newX = groupFour.position.x + i - 40;
+                int newY = groupFour.position.y + i;
+                openLetterBox.position = groupFour.position;
+                SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:openLetterBox
+                                                                 duration:0.3
+                                                            startPosition:groupFour.position
+                                                              endPosition:CGPointMake(newX,newY)];
+                
+                moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
+                
+                
+                SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
+                openLetterBox.alpha = 1.0;
+                [openLetterBox runAction:actionWithEffectForLetter];
+                
+                i += 70;
+            }
+            
             onWhichGroup = 4;
+            
+        } else {
+            
+            onWhichGroup = 0;
+            
+            SKAction *closeLetters = [SKAction moveTo:CGPointMake(groupFour.position.x, -500) duration:0.2];
+            for (LowerCaseLetter *openLetterBox in groupFourLetters) {
+                openLetterBox.alpha = 1.0;
+                if (!openLetterBox.centerStage) {
+                    [openLetterBox runAction:closeLetters];
+                }
+            }
         }
         
-    } else if (CGRectContainsPoint(groupFive.frame, theTouch)) {
-        int i = 0;
-        for (LowerCaseLetter *letterSprite in groupFiveLetters) {
-            letterSprite.scale = 0.1;
-            letterSprite.position = CGPointMake(150 + i, 250);
-            [self addChild:letterSprite];
-            i += 70;
+    } else if(CGRectContainsPoint(groupFive.frame, theTouch)) {
+        int i = 100;
+        
+        if (onWhichGroup != 5) {
+            [self closePreviousGroup:[NSNumber numberWithInt:onWhichGroup]];
+            
+            
+            for (LowerCaseLetter *openLetterBox in groupFiveLetters) {
+                int newX = groupFive.position.x;
+                int newY = groupFive.position.y + i;
+                openLetterBox.position = groupFive.position;
+                SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:openLetterBox
+                                                                 duration:0.3
+                                                            startPosition:groupFive.position
+                                                              endPosition:CGPointMake(newX,newY)];
+                
+                moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
+                
+                SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
+                openLetterBox.alpha = 1.0;
+                [openLetterBox runAction:actionWithEffectForLetter];
+                
+                i += 70;
+            }
+            
             onWhichGroup = 5;
+            
+        } else {
+            onWhichGroup = 0;
+            SKAction *closeLetters = [SKAction moveTo:CGPointMake(groupFive.position.x, -500) duration:0.2];
+            
+            for (LowerCaseLetter *openLetterBox in groupFiveLetters) {
+                openLetterBox.alpha = 1.0;
+                if (!openLetterBox.centerStage) {
+                    [openLetterBox runAction:closeLetters];
+                }
+            }
         }
-        
-    }
-
-    for (SKLabelNode *studentLabel in studentSprites) {
+    
+        for (SKLabelNode *studentLabel in studentSprites) {
         NSLog(@"text: %@", studentLabel.text);
         
-        if (CGRectContainsPoint(studentLabel.frame,theTouch)) {
-            SKAction *setToHeadLine = [SKAction moveTo:CGPointMake(400, 600) duration:1.0];
-            [studentLabel runAction:setToHeadLine];
+            if (CGRectContainsPoint(studentLabel.frame,theTouch)) {
+                SKAction *setToHeadLine = [SKAction moveTo:CGPointMake(400, 600) duration:1.0];
+                [studentLabel runAction:setToHeadLine];
+            }
         }
-        
     }
 
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    
-}
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    
-    
-}
+
 
 @end

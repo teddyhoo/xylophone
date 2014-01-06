@@ -13,8 +13,9 @@
 #import "QuizzerTracker.h"
 #import "ReviewQuestion.h"
 #import "TCProgressTimerNode.h"
+#import "ExplanationViewer.h"
 
-#define kCyclesPerSecond 0.5f
+#define kCyclesPerSecond 0.03f
 
 @implementation Quizzer
 
@@ -26,16 +27,18 @@ questionClue, questionSection, tagFirst, tagSecond, difficultyLevel, imageList, 
 HistoryData *sharedData;
 TopicPicker *pickTopic;
 QuizzerTracker *hudScore;
+ExplanationViewer *explainView;
+
+NSMutableArray *questionData;
+
 SKLabelNode *scoreActual;
 SKLabelNode *score;
 SKLabelNode *totalTime;
-
 SKLabelNode *correctQuestions;
 SKLabelNode *totalScore;
 SKLabelNode *explanationText; // from xml
 SKLabelNode *explanationTextForQuestion;
 SKLabelNode *questionExplanation;
-
 SKLabelNode *numberOfCorrect;
 SKLabelNode *totalScoreNow; //auto-calculated
 SKLabelNode *totalQuestionsComplete; // dynamic
@@ -81,22 +84,7 @@ int totalTimeTrack = 0;
 int degreeOfDifficulty = 1;
 int circlesPerRow = 12;
 int currentRow = 1;
-int questionTextWidth;
-CGPoint _score_pos;
-CGPoint _scoreActual_pos;
-CGPoint _totalTime_pos;
-CGPoint _totalScore_pos; // Label: Tot Quest:
-CGPoint _questionCategory_pos;
-CGPoint _totalQuestionsComplete_pos;
-CGPoint _totalScoreNow_pos;
-CGPoint _totalTime_pos;
-CGPoint _total_Actual_Time;
-CGPoint _setOfAnswers;
-CGPoint _totalScoreCounter;
-CGPoint _pointForTitlePosition;
-CGPoint _timerCounterPos;
-CGPoint _explanation_pos;
-CGPoint answerPosition;
+
 CGSize winSize;
 
 BOOL sameQuestion = false;
@@ -122,25 +110,35 @@ HistoryData *sharedData;
     self = [super initWithSize:size];
     if (self) {
 
-        _progressTimerNode2 = [[TCProgressTimerNode alloc] initWithForegroundImageNamed:@"progress_foreground"
-                    backgroundImageNamed:@"progress_background"
-                    accessoryImageNamed:nil];
-        
-        _progressTimerNode2.position = CGPointMake(600,900);
-        [self addChild:_progressTimerNode2];
-        [_progressTimerNode2 setProgress:0.5f];
-        self.startTime = CACurrentMediaTime();
         
         winSize = CGSizeMake(680, 1250);
-        answerPosition = CGPointMake(450, 700);
-        _totalTime_pos = CGPointMake(300, 200); // Total Time Count Label
-        _total_Actual_Time = CGPointMake(400, 200); // Total Time Counter
-        _totalScore_pos = CGPointMake(300, 300); // % Label
-        _totalScoreNow_pos = CGPointMake(400, 300); // % value
-        _timerCounterPos = CGPointMake(300, 400);
-        _explanation_pos = CGPointMake(400, 400);
 
         [self setUserInteractionEnabled:YES];
+        NSString *pListData = [[NSBundle mainBundle]
+                               pathForResource:@"APUSQuiz"
+                               ofType:@"plist"];
+        
+        questionData = [[NSMutableArray alloc] initWithContentsOfFile:pListData];
+        
+        for (NSString *information in questionData) {
+            
+            if ([information isEqualToString:@"Question"]) {
+                NSLog(@"question: %@", information);
+                
+            } else if ([information isEqualToString:@"Correct"]) {
+                
+            } else if ([information isEqualToString:@"Answer1"]) {
+                
+                
+            } else if ([information isEqualToString:@"Answer2"]) {
+                
+            } else if ([information isEqualToString:@"Answer3"]) {
+                
+                
+            } else if ([information isEqualToString:@"Answer4"]) {
+                
+            }
+        }
         
         sharedData = [HistoryData sharedManager];
         quizQuestions = nil;
@@ -205,12 +203,33 @@ HistoryData *sharedData;
         helpButton.scale = 0.5;
         [self addChild:helpButton];
         
+        
+        totalTimeDisplay = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        totalTimeDisplay.position = CGPointMake(980, 680);
+        totalTimeDisplay.text = @"00";
+        [self addChild:totalTimeDisplay];
+
+        button1 = [SKSpriteNode spriteNodeWithImageNamed:@"button-blue-2.png"];
+        button2 = [SKSpriteNode spriteNodeWithImageNamed:@"button-blue-2.png"];
+        button3 = [SKSpriteNode spriteNodeWithImageNamed:@"button-blue-2.png"];
+        button4 = [SKSpriteNode spriteNodeWithImageNamed:@"button-blue-2.png"];
+        
+        button1.position = CGPointMake(1400, 750);
+        button2.position = CGPointMake(1400, 595);
+        button3.position = CGPointMake(1400, 440);
+        button4.position = CGPointMake(1400, 285);
+        
+        [self addChild:button1];
+        [self addChild:button2];
+        [self addChild:button3];
+        [self addChild:button4];
         [self topicPicker];
         
     }
     return self;
     
 }
+
 
 -(void) topicPicker {
     
@@ -220,6 +239,23 @@ HistoryData *sharedData;
     [pickTopic setUserInteractionEnabled:YES];
     [pickTopic setDelegate:self];
     [self addChild:pickTopic];
+    
+    
+}
+
+-(void)startTimer {
+    _progressTimerNode2 = [[TCProgressTimerNode alloc] initWithForegroundImageNamed:@"progress_foreground"
+                                                               backgroundImageNamed:@"progress_background"
+                                                                accessoryImageNamed:nil];
+    
+    _progressTimerNode2.position = CGPointMake(670,980);
+    [self addChild:_progressTimerNode2];
+    [_progressTimerNode2 setProgress:0.0f];
+    self.startTime = CACurrentMediaTime();
+    
+}
+
+-(void)stopTimer {
     
     
 }
@@ -251,9 +287,6 @@ HistoryData *sharedData;
     questionSection = [[NSMutableArray alloc]init];
     imageList = [[NSMutableArray alloc]init];
     difficultyLevel = [[NSMutableArray alloc]init];
-    
-    
-    
     currentlySelectedTerm = theSelection;
     
     int i = 0;
@@ -286,8 +319,7 @@ HistoryData *sharedData;
         i++;
         
     }
-    
-    
+
     [self setupCorrectAndIncorrect];
     [self setupQuestionView];
     [self printNextQuestion];
@@ -295,6 +327,9 @@ HistoryData *sharedData;
 
 -(void) nextQuestion {
     if(!alreadyAnswered) return;
+    
+    [self startTimer];
+    timerOn = TRUE;
     
     questionCounter++;
     alreadyAnswered = FALSE;
@@ -330,8 +365,6 @@ HistoryData *sharedData;
     int totalQuestionsForRows = [quizQuestions count];
     int totalRows = (totalQuestionsForRows+1)/circlesPerRow;
     int incompleteRowCount = [quizQuestions count]%circlesPerRow;
-    //if (incompleteRowCount == 0)
-    //    totalRows--;
     int totalSlots = [quizQuestions count]+incompleteRowCount;
     int yValue = 120;
     
@@ -370,9 +403,9 @@ HistoryData *sharedData;
 
 -(void) setupQuestionView {
     
-    SKLabelNode *title = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    title.position = _pointForTitlePosition;
-    [self addChild:title];
+    //SKLabelNode *title = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+    //title.position = _pointForTitlePosition;
+    //[self addChild:title];
     
     sameQuestion = FALSE;
     sameQuestion2 = FALSE;
@@ -389,13 +422,13 @@ HistoryData *sharedData;
         
     } else {
         
+        [self startTimer];
+        
         [hudScore updateOtherInfo:[difficultyLevel objectAtIndex:questionCounter]
                      topicSection:[questionSection objectAtIndex:questionCounter]];
         
         NSString *degDiff = [difficultyLevel objectAtIndex:questionCounter];
         degreeOfDifficulty = [degDiff integerValue];
-        NSLog(@"returned degree of difficulty: %i",degreeOfDifficulty);
-        
         amountOfTime = 0;
         timerOn = TRUE;
 
@@ -431,12 +464,7 @@ HistoryData *sharedData;
             thirdAnswerPrint = [quizWrongThree objectAtIndex:questionCounter];
             fourthAnswerPrint = [quizAnswers objectAtIndex:questionCounter];
             
-        } //else if (correctAnswer == 4) {
-        //    firstAnswerPrint = [quizWrongOne objectAtIndex:questionCounter];
-        //    secondAnswerPrint = [quizWrongTwo objectAtIndex:questionCounter];
-        //    thirdAnswerPrint = [quizWrongThree objectAtIndex:questionCounter];
-        //    fourthAnswerPrint = [quizWrongFour objectAtIndex:questionCounter];
-        //}
+        }
         
         NSString *currentQuestion = [quizQuestions objectAtIndex:questionCounter];
         
@@ -450,14 +478,14 @@ HistoryData *sharedData;
         SKTexture *labelTexture = [SKTexture textureWithImage:imageToRender];
         renderLabel = [SKSpriteNode spriteNodeWithTexture:labelTexture];
         renderLabel.position = CGPointMake(400,900);
-        renderLabel.scale = 1.6;
+        renderLabel.scale = 1.8;
         [self addChild:renderLabel];
         
         
         NSString *currentQuestionA1 = firstAnswerPrint;
         UILabel *firstLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 400, 200)];
         firstLabel2.text = currentQuestionA1;
-        firstLabel2.textColor = [UIColor whiteColor];
+        firstLabel2.textColor = [UIColor blackColor];
         firstLabel2.font = [UIFont fontWithName:@"Carton-Slab" size:12.0];
         firstLabel2.numberOfLines = 4;
         firstLabel2.preferredMaxLayoutWidth = 400;
@@ -465,27 +493,25 @@ HistoryData *sharedData;
         SKTexture *labelTexture2 = [SKTexture textureWithImage:imageToRender2];
         renderLabel2 = [SKSpriteNode spriteNodeWithTexture:labelTexture2];
         renderLabel2.position = CGPointMake(5,0);
-        renderLabel2.scale = 1.5;
-        
+        renderLabel2.scale = 1.7;
 
-        
         NSString *currentQuestionA2 = secondAnswerPrint;
         UILabel *firstLabel3 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 400, 200)];
         firstLabel3.text = currentQuestionA2;
-        firstLabel3.textColor = [UIColor whiteColor];
-        firstLabel3.font = [UIFont fontWithName:@"Carton-Slab" size:24.0];
+        firstLabel3.textColor = [UIColor blackColor];
+        firstLabel3.font = [UIFont fontWithName:@"Carton-Slab" size:48.0];
         firstLabel3.numberOfLines = 4;
         firstLabel3.preferredMaxLayoutWidth = 400;
         UIImage *imageToRender3 = [self makeImageFromLabel:firstLabel3];
         SKTexture *labelTexture3 = [SKTexture textureWithImage:imageToRender3];
         renderLabel3 = [SKSpriteNode spriteNodeWithTexture:labelTexture3];
         renderLabel3.position = CGPointMake(5,0);
-        renderLabel3.scale = 1.5;
+        renderLabel3.scale = 1.7;
         
         NSString *currentQuestionA3 = thirdAnswerPrint;
         UILabel *firstLabel4 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 400, 200)];
         firstLabel4.text = currentQuestionA3;
-        firstLabel4.textColor = [UIColor whiteColor];
+        firstLabel4.textColor = [UIColor blackColor];
         firstLabel4.font = [UIFont fontWithName:@"Carton-Slab" size:24.0];
         firstLabel4.numberOfLines = 4;
         firstLabel4.preferredMaxLayoutWidth = 400;
@@ -493,12 +519,12 @@ HistoryData *sharedData;
         SKTexture *labelTexture4 = [SKTexture textureWithImage:imageToRender4];
         renderLabel4 = [SKSpriteNode spriteNodeWithTexture:labelTexture4];
         renderLabel4.position = CGPointMake(5,0);
-        renderLabel4.scale = 1.5;
+        renderLabel4.scale = 1.7;
         
         NSString *currentQuestionA4 = fourthAnswerPrint;
         UILabel *firstLabel5 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 400, 200)];
         firstLabel5.text = currentQuestionA4;
-        firstLabel5.textColor = [UIColor whiteColor];
+        firstLabel5.textColor = [UIColor blackColor];
         firstLabel5.font = [UIFont fontWithName:@"Carton-Slab" size:24.0];
         firstLabel5.numberOfLines = 4;
         firstLabel5.preferredMaxLayoutWidth = 400;
@@ -506,31 +532,27 @@ HistoryData *sharedData;
         SKTexture *labelTexture5 = [SKTexture textureWithImage:imageToRender5];
         renderLabel5 = [SKSpriteNode spriteNodeWithTexture:labelTexture5];
         renderLabel5.position = CGPointMake(5,0);
-        renderLabel5.scale = 1.5;
-        
-        button1 = [SKSpriteNode spriteNodeWithImageNamed:@"button-blue-2.png"];
-        button2 = [SKSpriteNode spriteNodeWithImageNamed:@"button-blue-2.png"];
-        button3 = [SKSpriteNode spriteNodeWithImageNamed:@"button-blue-2.png"];
-        button4 = [SKSpriteNode spriteNodeWithImageNamed:@"button-blue-2.png"];
-        
-        [button1 addChild:renderLabel2];
-        button1.position = CGPointMake(400, 750);
-        [self addChild:button1];
-        
-        [button2 addChild:renderLabel3];
-        button2.position = CGPointMake(400, 595);
-        [self addChild:button2];
-        
-        [button3 addChild:renderLabel4];
-        button3.position = CGPointMake(400, 440);
-        [self addChild:button3];
-        
-        [button4 addChild:renderLabel5];
-        button4.position = CGPointMake(400, 285);
-        [self addChild:button4];
+        renderLabel5.scale = 1.7;
         
         
         
+        SKAction *moveButtonOn = [SKAction moveByX:-1000 y:0 duration:0.5];
+        [button1 runAction:moveButtonOn];
+        [button2 runAction:moveButtonOn];
+        [button3 runAction:moveButtonOn];
+        [button4 runAction:moveButtonOn];
+        
+        renderLabel2.position = CGPointMake(400, 750);
+        renderLabel3.position = CGPointMake(400, 595);
+        renderLabel4.position = CGPointMake(400, 440);
+        renderLabel5.position = CGPointMake(400, 285);
+        
+        [self addChild:renderLabel2];
+        [self addChild:renderLabel3];
+        [self addChild:renderLabel4];
+        [self addChild:renderLabel5];
+        
+
         NSString *imageName = [NSString stringWithFormat:[imageList objectAtIndex:questionCounter]];
         
         if([imageName isEqualToString:@"0"]) {
@@ -539,18 +561,21 @@ HistoryData *sharedData;
             
         } else {
             
-            imageForQuestion = [SKSpriteNode spriteNodeWithImageNamed:imageName];
-            imageForQuestion.position = CGPointMake(280,-300);
+            
+            imageForQuestion = [SKSpriteNode spriteNodeWithImageNamed:@"background-with-title-2"];
+            SKSpriteNode *sourceImage = [SKSpriteNode spriteNodeWithImageNamed:imageName];
+
+            imageForQuestion.position = CGPointMake(300,-600);
+            sourceImage.position = CGPointMake(0, 0);
+            [imageForQuestion addChild:sourceImage];
+            
             [self addChild:imageForQuestion];
             
-            SKAction *moveImage = [SKAction moveToY:500 duration:0.2];
+            SKAction *moveImage = [SKAction moveToY:600 duration:0.2];
             [imageForQuestion runAction:moveImage];
             removeImage = TRUE;
             
         }
-        
-
-        
     }
     
 }
@@ -570,24 +595,55 @@ HistoryData *sharedData;
 -(void) finishedWithSection {
     
     int totalIncorrect = questionCounter - numberCorrectAnswers;
+    CGFloat percentage = (float)numberCorrectAnswers / (float)questionCounter * 100.0f;
+    int percentageConv = round(percentage);
+    
+    NSLog(@"correct: %d total questions:%d percentage: %f convPercent:%d",numberCorrectAnswers,questionCounter,percentage,percentageConv);
     
     ReviewQuestion *reviewPage = [[ReviewQuestion alloc]init];
     reviewPage.position = CGPointMake(0, 0);
+    [reviewPage updateScoreWindow:[NSNumber numberWithInt:totalWeightedScore]
+                           totalQ:[NSNumber numberWithInt:questionCounter]
+                       percentage:[NSNumber numberWithInt:percentageConv]
+                          totTime:[NSNumber numberWithInt:totalTimeTrack]
+                       correctAns:[NSNumber numberWithInt:numberCorrectAnswers]];
+    
     [self addChild:reviewPage];
 }
 
 -(void)update:(NSTimeInterval)currentTime {
     [super update:currentTime];
-    CGFloat secondsElapsed = currentTime - self.startTime;
-    CGFloat cycle = secondsElapsed * kCyclesPerSecond;
-    CGFloat progress = cycle - (NSInteger)cycle;
-    [self.progressTimerNode2 setProgress:progress];
+    
+    if (timerOn) {
+        CGFloat secondsElapsed = currentTime - self.startTime;
+        int timerTotal = round(secondsElapsed);
+        amountOfTime = timerTotal;
+        [totalTimeDisplay removeFromParent];
+        totalTimeDisplay = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        totalTimeDisplay.fontColor = [UIColor whiteColor];
+        totalTimeDisplay.fontSize = 32;
+        totalTimeDisplay.text = [NSString stringWithFormat:@"%i",timerTotal];
+        totalTimeDisplay.position = CGPointMake(670, 965);
+        [self addChild:totalTimeDisplay];
+        
+        CGFloat cycle = secondsElapsed * kCyclesPerSecond;
+        CGFloat progress = cycle - (NSInteger)cycle;
+        [self.progressTimerNode2 setProgress:progress];
+    }
 }
 
 -(void)checkAnswer:(NSNumber*) index {
 
-    [hudScore moveBackOnScreen];
+    timerOn = FALSE;
+    totalTimeTrack += amountOfTime;
     
+    [hudScore moveBackOnScreen];
+    SKAction *moveButtonOff = [SKAction moveByX:1000 y:0 duration:0.5];
+
+    [button1 runAction:moveButtonOff];
+    [button2 runAction:moveButtonOff];
+    [button3 runAction:moveButtonOff];
+    [button4 runAction:moveButtonOff];
     if(alreadyAnswered == TRUE) return;
     //[timerBar stopAllActions];
     timerOn = false;
@@ -630,10 +686,10 @@ HistoryData *sharedData;
         scoreOnQuestion = scoreOnQuestion * degreeOfDifficulty;
         
         totalWeightedScore += scoreOnQuestion;
-        
-        /*****************************************************************************/
         [hudScore updateScore:[NSNumber numberWithInt:totalWeightedScore]];
         numberCorrectAnswers++;
+        /*****************************************************************************/
+       
         
         SKSpriteNode *circleToPop = [scoreKeeperSprites objectAtIndex:questionCounter];
 
@@ -663,8 +719,7 @@ HistoryData *sharedData;
         offsetStar += 75;
         
         NSMutableArray *answerArchive = [[NSMutableArray alloc]init];
-        
-        
+
         if (theIndex == 0) {
             
             correctQuestionAnswer.position = button1.position;
@@ -722,8 +777,7 @@ HistoryData *sharedData;
             [reviewAnswers setObject:answerArchive forKey:[NSNumber numberWithInt:questionCounter]];
             
         }
-
-        [self addChild:wrongQuestionAnswer];
+        
         [self addChild:correctQuestionAnswer];
 
     } else {  // Incorrect Answer
@@ -806,9 +860,7 @@ HistoryData *sharedData;
             [answerArchive addObject:[NSNumber numberWithInt:theIndex]];
             //[reviewAnswers setObject:answerArchive forKey:[NSNumber numberWithInt:questionCounter]];
         }
-        
-        
-        
+
         if (correctAnswer == 0) {
             SKAction *moveOverlay = [SKAction moveTo:button1.position duration:1.0];
             correctQuestionAnswer.position = CGPointMake(-800, button1.position.y);
@@ -894,8 +946,40 @@ HistoryData *sharedData;
         
     } else if (CGRectContainsPoint(helpButton.frame, location)) {
         
+        explainView = [[ExplanationViewer alloc]init];
+        [explainView setSize:self.size];
+        explainView.position = CGPointMake(0,0);
+        SKAction *moveToCenter = [SKAction moveTo:CGPointMake(20, 20) duration:0.3];
+        [explainView runAction:moveToCenter];
+        [self addChild:explainView];
+        
+        UILabel *helperLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 300)];
+        helperLabel.text = [questionClue objectAtIndex:questionCounter];
+        helperLabel.textColor = [UIColor blackColor];
+        helperLabel.font = [UIFont fontWithName:@"Carton-Slab" size:24.0];
+        helperLabel.numberOfLines = 4;
+        helperLabel.preferredMaxLayoutWidth = 270;
+        UIImage *imageToRender = [self makeImageFromLabel:helperLabel];
+        SKTexture *labelTexture = [SKTexture textureWithImage:imageToRender];
+        SKSpriteNode *renderLabelExplain = [SKSpriteNode spriteNodeWithTexture:labelTexture];
+        renderLabelExplain.position = CGPointMake(350,550);
+        renderLabelExplain.scale = 1.4;
+        [explainView addChild:renderLabelExplain];
+
+        
+        
         
     } else if (CGRectContainsPoint(explanationIcon.frame, location)) {
+        explainView = [[ExplanationViewer alloc]init];
+        [explainView setSize:self.size];
+        explainView.position = CGPointMake(0,0);
+        SKAction *moveToCenter = [SKAction moveTo:CGPointMake(20, 20) duration:0.3];
+        [explainView runAction:moveToCenter];
+        [self addChild:explainView];
+        
+    } else if (CGRectContainsPoint(imageForQuestion.frame, location)) {
+        
+        [imageForQuestion removeFromParent];
         
     }
     

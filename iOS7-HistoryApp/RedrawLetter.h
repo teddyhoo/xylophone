@@ -13,6 +13,8 @@
 @interface RedrawLetter : SKNode
 
 -(instancetype)initWithPosition:(CGPoint) position withKey:(NSNumber*)keyForLetter;
+-(instancetype)initWithPosition:(CGPoint)position withLetter:(LowerCaseLetter*)letter;
+
 -(void)addPointToNode:(SKSpriteNode*)drawnPoint;
 -(NSMutableArray *)drawMyself;
 

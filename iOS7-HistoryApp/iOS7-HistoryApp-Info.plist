@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.doublethink.gate.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.stageclassroom.montessoriletters.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -26,6 +26,8 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>caslon-antique.bold.ttf</string>
+		<string>Oranienbaum.ttf</string>
 		<string>Carton-Slab.otf</string>
 		<string>StalinistOne-Regular.ttf</string>
 		<string>TipoType - Fenix.otf</string>
@@ -48,8 +50,6 @@
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>

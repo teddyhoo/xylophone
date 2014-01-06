@@ -12,7 +12,10 @@
 
 @interface ArrowWithEmitter : SKSpriteNode;
 
--(void)fireEmitter;
+@property (nonatomic,retain) NSString* directionArrow;
 
+-(instancetype)init:(NSString*)direction;
+-(void)fireEmitter;
+-(void)setDirection:(NSString*)direction;
 
 @end

@@ -4,20 +4,48 @@
 <array>
 	<dict>
 		<key>Question</key>
+		<string>Who was the first president of the U.S.</string>
+		<key>Correct</key>
+		<string>George Washington</string>
+		<key>Answer1</key>
+		<string>Abraham Lincoln</string>
+		<key>Answer2</key>
+		<string>Thomas Jefferson</string>
+		<key>Answer3</key>
+		<string>James Madison</string>
+		<key>Answer4</key>
+		<string>Alexander Hamilton</string>
+		<key>Time</key>
+		<string>Colonial</string>
+		<key>Tag1</key>
+		<string>Politics</string>
+		<key>Tag2</key>
 		<string></string>
+		<key>Tag3</key>
+		<string></string>
+		<key>Difficulty</key>
+		<string>4</string>
+		<key>Image</key>
+		<string>0</string>
+		<key>Crossref</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>Question</key>
+		<string>What was an idiot?</string>
 		<key>Correct</key>
 		<string></string>
 		<key>Answer1</key>
 		<string></string>
 		<key>Answer2</key>
 		<string></string>
+		<key>Tag1</key>
+		<string></string>
 		<key>Answer3</key>
 		<string></string>
 		<key>Answer4</key>
 		<string></string>
 		<key>Time</key>
-		<string></string>
-		<key>Tag1</key>
 		<string></string>
 		<key>Tag2</key>
 		<string></string>
@@ -32,35 +60,7 @@
 	</dict>
 	<dict>
 		<key>Question</key>
-		<string></string>
-		<key>Correct</key>
-		<string></string>
-		<key>Answer1</key>
-		<string></string>
-		<key>Answer2</key>
-		<string></string>
-		<key>Tag1</key>
-		<string></string>
-		<key>Answer3</key>
-		<string></string>
-		<key>Answer4</key>
-		<string></string>
-		<key>Time</key>
-		<string></string>
-		<key>Tag2</key>
-		<string></string>
-		<key>Tag3</key>
-		<string></string>
-		<key>Difficulty</key>
-		<string></string>
-		<key>Image</key>
-		<string></string>
-		<key>Crossref</key>
-		<string></string>
-	</dict>
-	<dict>
-		<key>Question</key>
-		<string></string>
+		<string>Who sucks balls?</string>
 		<key>Correct</key>
 		<string></string>
 		<key>Answer1</key>

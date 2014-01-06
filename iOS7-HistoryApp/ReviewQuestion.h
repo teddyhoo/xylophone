@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface ReviewQuestion : SKNode
+@interface ReviewQuestion : SKScene
 
 
 @property (nonatomic,retain) NSString* question;
@@ -18,11 +18,16 @@
 @property (nonatomic,retain) NSString* answer3;
 @property (nonatomic,retain) NSString* answer4;
 @property (nonatomic,retain) NSNumber* correctAnswer;
+@property (nonatomic,retain) NSNumber* totalQuestions;
+@property (nonatomic,retain) NSNumber* totalScore;
 @property (nonatomic,retain) NSMutableArray *explanation;
 
 @property (readonly,nonatomic)CGSize layerSize;
 
--(void)setSize:(CGSize)size;
-
+-(void)updateScoreWindow:(NSNumber*)totalScore
+                  totalQ:(NSNumber*)totalQuestions
+              percentage:(NSNumber*)percent
+                 totTime:(NSNumber*)totalTestTime
+              correctAns:(NSNumber*)correctAnswers;
 
 @end

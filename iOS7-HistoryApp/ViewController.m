@@ -11,7 +11,6 @@
 #import "MainMenu.h"
 #import "IntroScreen.h"
 #import "WorldHistoryMainMenu.h"
-#import "QuizButtons.h"
 
 
 @implementation ViewController
@@ -19,7 +18,6 @@
 @synthesize myScrollView;
 @synthesize introScreen;
 MainMenu *theMainMenu;
-QuizButtons *quizButtonView;
 BOOL isIphone = FALSE;
 
 /*
@@ -110,10 +108,8 @@ BOOL isIphone = FALSE;
         
         SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.1];
         introScreen = [IntroScreen sceneWithSize:spriteView.bounds.size];
-        introScreen.scaleMode = SKSceneScaleModeAspectFit;
-        NSLog(@"loading scene");
+        introScreen.scaleMode = SKSceneScaleModeFill;
         [spriteView presentScene:introScreen transition:reveal];
-        NSLog(@"loaded scene");
         
         //NEW
         //[self.view addSubview:spriteView];

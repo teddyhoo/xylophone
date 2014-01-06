@@ -98,8 +98,10 @@ CGSize winSize;
         
         background = [SKSpriteNode spriteNodeWithImageNamed:@"old-notebook-10.png"];
         background.name = @"background";
-        [background setAnchorPoint:CGPointZero];
-        [self addChild:background];
+        //[background setAnchorPoint:CGPointZero];
+        //[self addChild:background];
+        //background.position = CGPointMake(size.width / 2, size.height / 2);
+        
         self.backgroundColor = [SKColor colorWithRed:0.8 green:1.0 blue:1.0 alpha:1.0];
        
         winSize = CGSizeMake(size.width, size.height);
@@ -148,7 +150,7 @@ CGSize winSize;
             
             SKLabelNode *myInstruct = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
             myInstruct.text = instruct;
-            myInstruct.fontSize = 36;
+            myInstruct.fontSize = 12;
             myInstruct.fontColor = [UIColor redColor];
             myInstruct.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - i);
             myInstruct.name = @"instruct";
@@ -161,20 +163,21 @@ CGSize winSize;
         
         myLabel.text = @"Matching Exercises";
         myLabel.fontColor = [UIColor blueColor];
-        myLabel.fontSize = 36;
+        myLabel.fontSize = 24;
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                        CGRectGetMidY(self.frame)+200);
         [self addChild:myLabel];
         
-        backToMainMenuArrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrow_left.png"];
-        backToMainMenuArrow.scale = 0.5;
-        backToMainMenuArrow.position = CGPointMake(50, 20);
+        backToMainMenuArrow = [SKSpriteNode spriteNodeWithImageNamed:@"home-3.png"];
+        backToMainMenuArrow.scale = 0.2;
+        backToMainMenuArrow.position = CGPointMake(250, 20);
         [self addChild:backToMainMenuArrow];
         
-        forward = [SKSpriteNode spriteNodeWithImageNamed:@"arrow-right.png"];
+        forward = [SKSpriteNode spriteNodeWithImageNamed:@"next-button.png"];
         forward.name = @"next";
-        //forward.scale = 0.5;
-        forward.position = CGPointMake(550, 40);
+        forward.scale = 0.2;
+
+        forward.position = CGPointMake(300, 20);
         [self addChild:forward];
     }
     return self;
@@ -269,12 +272,11 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
     
     if (termNumber == 0) {
         [self removeAllChildren];
-        //scoreHUD = [Scoreboard initWithPosition:CGPointMake(winSize.width/2, winSize.height/8)];
+        scoreHUD = [[Scoreboard alloc]init];
+        scoreHUD.position = CGPointMake(0,0);
         [self addChild:backToMainMenuArrow];
         [self addChild:forward];
-        scoreHUD = [[Scoreboard alloc]init];
-        [scoreHUD initWithPosition:CGPointMake(winSize.width/2, winSize.height/1.05)];
-        //[self addChild:scoreHUD];
+        [self addChild:scoreHUD];
     }
     
     for (SKLabelNode *oldTerm in termsToMatch) {

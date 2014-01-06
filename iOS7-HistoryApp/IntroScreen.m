@@ -74,7 +74,6 @@ CGFloat fontSizeForPlatform = 20;
         
         for (NSString *letter in header1) {
 
-            NSLog(@"adding label nodes");
             SKLabelNode *letterSprite = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
             
             letterSprite.fontSize = 26;
@@ -99,11 +98,8 @@ CGFloat fontSizeForPlatform = 20;
             onLetter++;
         }
         
-        NSLog(@"added all label nodes");
         
         for (NSString *letter in header2) {
-            
-            NSLog(@"adding second label node");
             
             SKLabelNode *letterSprite = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
             
@@ -129,7 +125,6 @@ CGFloat fontSizeForPlatform = 20;
             onLetter++;
         }
         
-        NSLog(@"added all 2 label nodes");
         SKLabelNode *presents = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
         presents.fontSize = 16;
         presents.fontColor = [UIColor purpleColor];
@@ -150,8 +145,8 @@ CGFloat fontSizeForPlatform = 20;
         [introductionLabel runAction:moveTitle];
         
         
-        /*NSMutableArray *wormTextures = [[NSMutableArray alloc]init];
-        SKTextureAtlas *wormAtlas = [SKTextureAtlas atlasNamed:@"earthworm.atlas"];
+        NSMutableArray *wormTextures = [[NSMutableArray alloc]init];
+        SKTextureAtlas *wormAtlas = [SKTextureAtlas atlasNamed:@"earthworm"];
         for (int i=0; i < 6; i++) {
             SKTexture *wormTexture =[wormAtlas textureNamed:[NSString stringWithFormat:@"%i.png",i]];
 
@@ -166,7 +161,7 @@ CGFloat fontSizeForPlatform = 20;
         [worm runAction:repeatCrawlAnim];
         [worm runAction:moveCrawl];
         
-        [self addChild:worm];*/
+        [self addChild:worm];
         
         NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"16_30" withExtension:@"mp3"];
         

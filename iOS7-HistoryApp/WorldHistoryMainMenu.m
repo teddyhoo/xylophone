@@ -9,6 +9,7 @@
 #import "WorldHistoryMainMenu.h"
 #import "Matching.h"
 #import "Quizzer.h"
+#import "ContentInAppPurchase.h"
 
 @implementation WorldHistoryMainMenu
 
@@ -23,77 +24,94 @@ CGSize *introScreenSize;
     self = [super initWithSize:size];
     if (self) {
         
-        self.backgroundColor = [SKColor colorWithRed:0.8 green:1.0 blue:1.0 alpha:1.0];
+        self.backgroundColor = [SKColor colorWithRed:1.0 green:0.9 blue:0.8 alpha:1.0];
 
-        SKSpriteNode *cloud1 = [SKSpriteNode spriteNodeWithImageNamed:@"constitution-bg-2.jpg"];
-        cloud1.position = CGPointMake(500,500);
+        SKSpriteNode *cloud1 = [SKSpriteNode spriteNodeWithImageNamed:@"american-history-bg.png"];
+        cloud1.position = CGPointMake(400,500);
+        //cloud1.yScale = 1.3;
+        cloud1.alpha = 0.1;
         [self addChild:cloud1];
         
-        SKSpriteNode *cloud2 = [SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud2.png"];
-        cloud2.position = CGPointMake(200, 800);
-        //[self addChild:cloud2];
-
-       
-        SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
+        SKSpriteNode *image1 = [SKSpriteNode spriteNodeWithImageNamed:@"drummer-colored-infantry.png"];
+        SKSpriteNode *image2 = [SKSpriteNode spriteNodeWithImageNamed:@"frederick-douglas.png"];
+        SKSpriteNode *image3 = [SKSpriteNode spriteNodeWithImageNamed:@"great-depression-iconic.png"];
+        SKSpriteNode *image4 = [SKSpriteNode spriteNodeWithImageNamed:@"kennedy-portrait.png"];
+         SKSpriteNode *image5 = [SKSpriteNode spriteNodeWithImageNamed:@"uncle-sam-i-want-you.png"];
+        
+        image1.position = CGPointMake(1000, 200);
+        image2.position = CGPointMake(1000, 380);
+        image3.position = CGPointMake(1000, 560);
+        [image3 runAction:[SKAction rotateByAngle:24.8 duration:0.1]];
+        image4.position = CGPointMake(1000, 740);
+        [image4 runAction:[SKAction rotateByAngle:19.4 duration:0.1]];
+        image5.position = CGPointMake(1000, 930);
+        SKAction *moveToBG = [SKAction moveByX:-900 y:0 duration:1.0];
+        
+        SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         titleLabel.text = @"AP U.S. History";
-        titleLabel.fontColor = [UIColor redColor];
-        titleLabel.fontSize = 60;
-        titleLabel.position = CGPointMake(size.width/2, 750);
+        titleLabel.fontColor = [UIColor blackColor];
+        titleLabel.fontSize = 80;
+        titleLabel.position = CGPointMake(size.width/1.6, 900);
         titleLabel.name = @"title";
         [titleLabel setUserInteractionEnabled:YES];
         
         [self addChild:titleLabel];
         
-        SKLabelNode *quizExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
-        quizExercisesLabel.text = @"Quiz Exercises";
-        quizExercisesLabel.fontColor = [UIColor orangeColor];
-        quizExercisesLabel.fontSize = 50;
-        quizExercisesLabel.position = CGPointMake(size.width/2, 650);
+        SKLabelNode *quizExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
+        quizExercisesLabel.text = @"QUIZ";
+        quizExercisesLabel.fontColor = [UIColor blackColor];
+        quizExercisesLabel.fontSize = 72;
+        quizExercisesLabel.position = CGPointMake(size.width/1.2, 750);
         quizExercisesLabel.name = @"quiz";
+        quizExercisesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         [self addChild:quizExercisesLabel];
 
-        SKLabelNode *matchingExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
-        matchingExercisesLabel.text = @"Matching Exercises";
-        matchingExercisesLabel.fontColor = [UIColor orangeColor];
-        matchingExercisesLabel.fontSize = 50;
-        matchingExercisesLabel.position = CGPointMake(size.width/2, 550);
+        SKLabelNode *matchingExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
+        matchingExercisesLabel.text = @"MATCH";
+        matchingExercisesLabel.fontColor = [UIColor blackColor];
+        matchingExercisesLabel.fontSize = 72;
+        matchingExercisesLabel.position = CGPointMake(size.width/1.2, 625);
+        matchingExercisesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         matchingExercisesLabel.name = @"match";
         
         [self addChild:matchingExercisesLabel];
-        
-        
-        SKLabelNode *essayExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
-        essayExercisesLabel.text = @"Essay Exercises";
-        essayExercisesLabel.fontColor = [UIColor orangeColor];
-        essayExercisesLabel.fontSize = 50;
-        essayExercisesLabel.position = CGPointMake(size.width/2, 450);
+
+        SKLabelNode *essayExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
+        essayExercisesLabel.text = @"ESSAY";
+        essayExercisesLabel.fontColor = [UIColor blackColor];
+        essayExercisesLabel.fontSize = 72;
+        essayExercisesLabel.position = CGPointMake(size.width/1.2, 500);
+        essayExercisesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         essayExercisesLabel.name = @"essay";
         
         [self addChild:essayExercisesLabel];
         
-        SKLabelNode *tableExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
-        tableExercisesLabel.text = @"Data Tables";
-        tableExercisesLabel.fontColor = [UIColor orangeColor];
-        tableExercisesLabel.fontSize = 50;
-        tableExercisesLabel.position = CGPointMake(size.width/2, 350);
+        SKLabelNode *tableExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
+        tableExercisesLabel.text = @"DOCUMENTS";
+        tableExercisesLabel.fontColor = [UIColor blackColor];
+        tableExercisesLabel.fontSize = 72;
+        tableExercisesLabel.position = CGPointMake(size.width/1.2, 375);
+        tableExercisesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         tableExercisesLabel.name = @"table";
         
         [self addChild:tableExercisesLabel];
         
-        SKLabelNode *timelineExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
-        timelineExercisesLabel.text = @"Timelines";
-        timelineExercisesLabel.fontColor = [UIColor orangeColor];
-        timelineExercisesLabel.fontSize = 50;
-        timelineExercisesLabel.position = CGPointMake(size.width/2, 250);
+        SKLabelNode *timelineExercisesLabel = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
+        timelineExercisesLabel.text = @"TIMELINE";
+        timelineExercisesLabel.fontColor = [UIColor blackColor];
+        timelineExercisesLabel.fontSize = 72;
+        timelineExercisesLabel.position = CGPointMake(size.width/1.2, 250);
+        timelineExercisesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         timelineExercisesLabel.name = @"timeline";
         
         [self addChild:timelineExercisesLabel];
         
-        SKLabelNode *moreQuestionsLabel = [SKLabelNode labelNodeWithFontNamed:@"TipoType - Fenix"];
-        moreQuestionsLabel.text = @"Get More Questions";
-        moreQuestionsLabel.fontColor = [UIColor orangeColor];
-        moreQuestionsLabel.fontSize = 50;
-        moreQuestionsLabel.position = CGPointMake(size.width/2, 150);
+        SKLabelNode *moreQuestionsLabel = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
+        moreQuestionsLabel.text = @"PURCHASE";
+        moreQuestionsLabel.fontColor = [UIColor blackColor];
+        moreQuestionsLabel.fontSize = 72;
+        moreQuestionsLabel.position = CGPointMake(size.width/1.2, 125);
+        moreQuestionsLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         moreQuestionsLabel.name = @"moreQ";
         
         [self addChild:moreQuestionsLabel];
@@ -107,6 +125,25 @@ CGSize *introScreenSize;
         [optionsForMenu addObject:tableExercisesLabel];
         [optionsForMenu addObject:timelineExercisesLabel];
         [optionsForMenu addObject:moreQuestionsLabel];
+
+        [self addChild:image1];
+        [self addChild:image2];
+        [self addChild:image3];
+        [self addChild:image4];
+        [self addChild:image5];
+        
+        image1.alpha = 0.1;
+        image2.alpha = 0.5;
+        image3.alpha = 0.5;
+        image4.alpha = 0.3;
+        image5.alpha = 0.9;
+        
+        [image1 runAction:moveToBG];
+        [image2 runAction:moveToBG];
+        [image3 runAction:moveToBG];
+        [image4 runAction:moveToBG];
+        [image5 runAction:moveToBG];
+        
         
     }
     return self;
@@ -162,7 +199,7 @@ CGSize *introScreenSize;
     
     SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.9];
     Matching *matchScene = [Matching sceneWithSize:self.view.bounds.size];
-    //matchScene.scaleMode = SKSceneScaleModeAspectFill;
+    matchScene.scaleMode = SKSceneScaleModeResizeFill;
     [self.view presentScene:matchScene transition:transitionToMatch];
     
 }
@@ -179,6 +216,9 @@ CGSize *introScreenSize;
     
     SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.9];
     Matching *matchScene = [[Matching alloc]initWithSize:CGSizeMake(768, 1024)];
+    matchScene.scaleMode = SKSceneScaleModeResizeFill;
+    
+    
     [self.view presentScene:matchScene transition:transitionToMatch];
     
 }
@@ -205,8 +245,8 @@ CGSize *introScreenSize;
 -(void)gotoSectionMoreQuestions {
     
     SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.9];
-    Matching *matchScene = [[Matching alloc]initWithSize:CGSizeMake(768, 1024)];
-    [self.view presentScene:matchScene transition:transitionToMatch];
+    ContentInAppPurchase *inAppPurchase = [[ContentInAppPurchase alloc]initWithSize:CGSizeMake(768, 1024)];
+    [self.view presentScene:inAppPurchase transition:transitionToMatch];
     
 }
 

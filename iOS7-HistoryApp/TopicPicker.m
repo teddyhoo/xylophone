@@ -180,11 +180,11 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         titleLabel.text = @"Choose Topic";
         titleLabel.fontColor = [UIColor yellowColor];
         titleLabel.fontSize = 40;
-        titleLabel.position = CGPointMake(150, 350);
+        titleLabel.position = CGPointMake(180, 370);
         titleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         titleLabel.name = @"title";
         
-        topic2 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic2 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic2.text = @"Colonial";
         topic2.fontColor = [UIColor blackColor];
         topic2.fontSize = 40;
@@ -192,7 +192,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic2.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic2.name = @"Colonial";
 // ----------------------------------------------------------------------------------------------
-        topic3 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic3 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic3.text = @"Revolution";
         topic3.fontColor = [UIColor blackColor];
         topic3.fontSize = 40;
@@ -201,7 +201,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic3.name = @"Revolution";
 // ----------------------------------------------------------------------------------------------
 
-        topic4 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic4 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic4.text = @"Early Republic";
         topic4.fontColor = [UIColor blackColor];
         topic4.fontSize =40;
@@ -209,7 +209,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic4.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic4.name = @"Early Republic";
 // ----------------------------------------------------------------------------------------------
-        topic5 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic5 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic5.text = @"Good Feelings";
         topic5.fontColor = [UIColor blackColor];
         topic5.fontSize = 40;
@@ -217,7 +217,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic5.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic5.name = @"Era of Good Feelings";
 // ----------------------------------------------------------------------------------------------
-        topic6 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic6 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic6.text = @"Jacksonian";
         topic6.fontColor = [UIColor blackColor];
         topic6.fontSize = 40;
@@ -225,7 +225,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic6.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic6.name = @"Jacksonian";
 // ----------------------------------------------------------------------------------------------
-        topic7 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic7 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic7.text = @"The West";
         topic7.fontColor = [UIColor blackColor];
         topic7.fontSize = 40;
@@ -234,7 +234,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic7.name = @"Westward Expansion";
         
 // ----------------------------------------------------------------------------------------------
-        topic8 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic8 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic8.text = @"Antebellum";
         topic8.fontColor = [UIColor blackColor];
         topic8.fontSize = 40;
@@ -242,7 +242,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic8.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic8.name = @"Antebellum";
 // ----------------------------------------------------------------------------------------------
-        topic9 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic9 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic9.text = @"Civil War";
         topic9.fontColor = [UIColor blackColor];
         topic9.fontSize = 40;
@@ -250,7 +250,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic9.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic9.name = @"Civil War";
 // ----------------------------------------------------------------------------------------------
-        topic10 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic10 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic10.text = @"Reconstruction";
         topic10.fontColor = [UIColor blackColor];
         topic10.fontSize = 40;
@@ -259,7 +259,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic10.name = @"Reconstruction";
 
 // ----------------------------------------------------------------------------------------------
-        topic11 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic11 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic11.text = @"Gilded Age";
         topic11.fontColor = [UIColor blackColor];
         topic11.fontSize = 40;
@@ -268,7 +268,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic11.name = @"Gilded Age";
 
 // ----------------------------------------------------------------------------------------------
-        topic12 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic12 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic12.text = @"Progressive";
         topic12.fontColor = [UIColor blackColor];
         topic12.fontSize = 40;
@@ -276,7 +276,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic12.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic12.name = @"Progressive";
 // ----------------------------------------------------------------------------------------------
-        topic13 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic13 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic13.text = @"Imperialism";
         topic13.fontColor = [UIColor blackColor];
         topic13.fontSize = 40;
@@ -285,7 +285,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic13.name = @"Imperialism";
         
 // ----------------------------------------------------------------------------------------------
-        topic14 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic14 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic14.text = @"World War I";
         topic14.fontColor = [UIColor blackColor];
         topic14.fontSize = 40;
@@ -295,7 +295,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         
 // ----------------------------------------------------------------------------------------------
         
-        topic15 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic15 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic15.text = @"Roaring 20's";
         topic15.fontColor = [UIColor blackColor];
         topic15.fontSize = 40;
@@ -305,7 +305,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         
 // ----------------------------------------------------------------------------------------------
         
-        topic16 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic16 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic16.text = @"Depression";
         topic16.fontColor = [UIColor blackColor];
         topic16.fontSize = 40;
@@ -317,7 +317,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
 // ----------------------------------------------------------------------------------------------
         
         
-        topic17 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic17 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic17.text = @"World War II";
         topic17.fontColor = [UIColor blackColor];
         topic17.fontSize = 40;
@@ -329,7 +329,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         
 // ----------------------------------------------------------------------------------------------
        
-        topic18 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic18 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic18.text = @"Cold War";
         topic18.fontColor = [UIColor blackColor];
         topic18.fontSize = 40;
@@ -340,7 +340,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         
 // ----------------------------------------------------------------------------------------------
        
-        topic19 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic19 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic19.text = @"Civil Rights";
         topic19.fontColor = [UIColor blackColor];
         topic19.fontSize = 40;
@@ -351,7 +351,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         
 // ----------------------------------------------------------------------------------------------
        
-        topic20 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic20 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic20.text = @"60's and 70's";
         topic20.fontColor = [UIColor blackColor];
         topic20.fontSize = 40;
@@ -362,7 +362,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         
 // ----------------------------------------------------------------------------------------------
        
-        topic21 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic21 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic21.text = @"Reagan Era";
         topic21.fontColor = [UIColor blackColor];
         topic21.fontSize = 40;
@@ -372,7 +372,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         
 // ----------------------------------------------------------------------------------------------
        
-        topic22 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        topic22 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic22.text = @"Modern Era";
         topic22.fontColor = [UIColor blackColor];
         topic22.fontSize = 40;
@@ -448,7 +448,6 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         NSString *topicSelected = startArrow.name;
         [_delegate selectedTopic:topicSelected];
         [self removeFromParent];
-        
         [self.parent removeFromParent];
         
     }
