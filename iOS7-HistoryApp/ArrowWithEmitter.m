@@ -326,7 +326,6 @@ BOOL fireEmitterFired = FALSE;
     //if (fireEmitterFired) {
         
     //} else {
-        NSLog(@"fired emitter");
     /*
     if([directionArrow isEqualToString:@"down"]) {
         openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartUpDown" ofType:@"sks"];

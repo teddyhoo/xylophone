@@ -114,31 +114,6 @@ HistoryData *sharedData;
         winSize = CGSizeMake(680, 1250);
 
         [self setUserInteractionEnabled:YES];
-        NSString *pListData = [[NSBundle mainBundle]
-                               pathForResource:@"APUSQuiz"
-                               ofType:@"plist"];
-        
-        questionData = [[NSMutableArray alloc] initWithContentsOfFile:pListData];
-        
-        for (NSString *information in questionData) {
-            
-            if ([information isEqualToString:@"Question"]) {
-                NSLog(@"question: %@", information);
-                
-            } else if ([information isEqualToString:@"Correct"]) {
-                
-            } else if ([information isEqualToString:@"Answer1"]) {
-                
-                
-            } else if ([information isEqualToString:@"Answer2"]) {
-                
-            } else if ([information isEqualToString:@"Answer3"]) {
-                
-                
-            } else if ([information isEqualToString:@"Answer4"]) {
-                
-            }
-        }
         
         sharedData = [HistoryData sharedManager];
         quizQuestions = nil;
@@ -314,6 +289,58 @@ HistoryData *sharedData;
             [questionSection addObject:temp11];
             [imageList addObject:temp12];
             [difficultyLevel addObject:temp8];
+        }
+        
+        i++;
+        
+    }
+
+    NSString *pListData = [[NSBundle mainBundle]
+                           pathForResource:@"APUSQuiz"
+                           ofType:@"plist"];
+    
+    questionData = [[NSMutableArray alloc] initWithContentsOfFile:pListData];
+    
+    for (NSDictionary *dic in questionData) {
+        
+        for (NSString *information in dic) {
+            if ([information isEqualToString:@"Question"]) {
+                
+                [quizQuestions addObject:[dic valueForKey:information]];
+                
+            } else if ([information isEqualToString:@"Correct"]) {
+                
+                [quizAnswers addObject:[dic valueForKey:information]];
+                
+            } else if ([information isEqualToString:@"Answer1"]) {
+                
+                [quizWrongOne addObject:[dic valueForKey:information]];
+                
+            } else if ([information isEqualToString:@"Answer2"]) {
+                
+                [quizWrongTwo addObject:[dic valueForKey:information]];
+                
+            } else if ([information isEqualToString:@"Answer3"]) {
+                
+                [quizWrongThree addObject:[dic valueForKey:information]];
+                
+            } else if ([information isEqualToString:@"helperTips"]) {
+                
+                [questionClue addObject:[dic valueForKey:information]];
+                
+            } else if ([information isEqualToString:@"difficulty"]) {
+                
+                [difficultyLevel addObject:[dic valueForKey:information]];
+                
+            } else if ([information isEqualToString:@"section"]) {
+                
+                [questionSection addObject:[dic valueForKey:information]];
+                
+            } else if ([information isEqualToString:@"image"]) {
+                
+                [questionSection addObject:[dic valueForKey:information]];
+
+            }
         }
         
         i++;

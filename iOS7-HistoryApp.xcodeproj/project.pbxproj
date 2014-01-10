@@ -322,6 +322,7 @@
 		AD9F704218777AA700552A02 /* SparkPart.sks in Resources */ = {isa = PBXBuildFile; fileRef = AD9F704118777AA700552A02 /* SparkPart.sks */; };
 		AD9F704418777C0B00552A02 /* SparkPartUpDown.sks in Resources */ = {isa = PBXBuildFile; fileRef = AD9F704318777C0A00552A02 /* SparkPartUpDown.sks */; };
 		AD9F70681879D5BB00552A02 /* MoveArrow.atlas in Resources */ = {isa = PBXBuildFile; fileRef = AD9F70671879D5BB00552A02 /* MoveArrow.atlas */; };
+		AD9F706A187EFB6F00552A02 /* spotlight-9@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9F7069187EFB6F00552A02 /* spotlight-9@2x.jpg */; };
 		ADA2FF04185F267C00AE9239 /* MatchImage.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA2FF03185F267C00AE9239 /* MatchImage.m */; };
 		ADA2FF06185F685300AE9239 /* APUSQuiz.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADA2FF05185F685300AE9239 /* APUSQuiz.plist */; };
 		ADA2FF2318650E7200AE9239 /* QuizzerTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA2FF2218650E7200AE9239 /* QuizzerTracker.m */; };
@@ -711,6 +712,7 @@
 		AD9F704118777AA700552A02 /* SparkPart.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SparkPart.sks; sourceTree = "<group>"; };
 		AD9F704318777C0A00552A02 /* SparkPartUpDown.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SparkPartUpDown.sks; sourceTree = "<group>"; };
 		AD9F70671879D5BB00552A02 /* MoveArrow.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = MoveArrow.atlas; sourceTree = "<group>"; };
+		AD9F7069187EFB6F00552A02 /* spotlight-9@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "spotlight-9@2x.jpg"; sourceTree = "<group>"; };
 		ADA2FF02185F267C00AE9239 /* MatchImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchImage.h; sourceTree = "<group>"; };
 		ADA2FF03185F267C00AE9239 /* MatchImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchImage.m; sourceTree = "<group>"; };
 		ADA2FF05185F685300AE9239 /* APUSQuiz.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APUSQuiz.plist; sourceTree = "<group>"; };
@@ -1312,6 +1314,7 @@
 		AD374D8B186A412700B92399 /* General Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				AD9F7069187EFB6F00552A02 /* spotlight-9@2x.jpg */,
 				AD763EBE1870CFDC00354C8D /* finger_point@2x.png */,
 				AD374DC6186A425500B92399 /* stewie-cartoon.png */,
 				AD374DC7186A425500B92399 /* ted.png */,
@@ -1586,6 +1589,7 @@
 				559A6A4A17D3D48F000489FC /* voice_girl_tween_correct.wav in Resources */,
 				AD374D6D186A406000B92399 /* TipoType - Fenix.otf in Resources */,
 				AD374CA7186A3C5200B92399 /* b_16@2x.png in Resources */,
+				AD9F706A187EFB6F00552A02 /* spotlight-9@2x.jpg in Resources */,
 				AD9A89CC1855EFE400BD590B /* Matching.plist in Resources */,
 				AD763EBF1870CFDC00354C8D /* finger_point@2x.png in Resources */,
 				AD9F700A18745E8400552A02 /* frederick-douglas.png in Resources */,

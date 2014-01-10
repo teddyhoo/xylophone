@@ -13,8 +13,10 @@
 		<string>Thomas Jefferson</string>
 		<key>Answer3</key>
 		<string>James Madison</string>
-		<key>Answer4</key>
+		<key>helperTips</key>
 		<string>Alexander Hamilton</string>
+		<key>difficulty</key>
+		<string>3</string>
 		<key>Time</key>
 		<string>Colonial</string>
 		<key>Tag1</key>
