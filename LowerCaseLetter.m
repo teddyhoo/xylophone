@@ -7,6 +7,7 @@
 //
 
 #import "LowerCaseLetter.h"
+#import <AVFoundation/AVFoundation.h>
 
 @implementation LowerCaseLetter
 

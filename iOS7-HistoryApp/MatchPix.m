@@ -17,6 +17,10 @@
 #import "SKAction+SKTExtras.h"
 #import "SKTTimingFunctions.h"
 #import "SKTEffects.h"
+#import "SKTUtils.h"
+#import "SKTTimingFunctions.h"
+
+
 #import "MatchImage.h"
 
 
@@ -161,12 +165,12 @@ int groupNumber;
             letterS.scale = 0.2;
             letterT.scale = 0.2;
             
-            letterA.position = CGPointMake(1800, 800);
-            letterB.position = CGPointMake(1500, 800);
-            letterC.position = CGPointMake(1200, 800);
-            letterM.position = CGPointMake(1800, 200);
-            letterS.position = CGPointMake(1500, 200);
-            letterT.position = CGPointMake(1200, 200);
+            letterA.position = CGPointMake(1300, 500);
+            letterB.position = CGPointMake(1400, 600);
+            letterC.position = CGPointMake(1500, 600);
+            letterM.position = CGPointMake(1600, 500);
+            letterS.position = CGPointMake(1500, 400);
+            letterT.position = CGPointMake(1400, 400);
             
             letterA.name = @"A";
             letterB.name = @"B";
@@ -197,39 +201,49 @@ int groupNumber;
             SKAction *moveToPositionWithSound = [SKAction moveByX:-1100 y:0 duration:0.1];
             
             SKAction *firstLetter = [SKAction runBlock:^{
-                [letterA runAction:moveToPositionWithSound];
-                [letterA playTheSound];
+                float newX = letterA.position.x - 1100;
+                float newY = letterA.position.y;
+                
+                SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterA
+                                                                 duration:1.2
+                                                            startPosition:letterA.position
+                                                              endPosition:CGPointMake(newX,newY)];
+                
+                moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
+                SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
+                [letterA runAction:actionWithEffectForLetter];
+                //[letterA playTheSound];
                 [letterA fireEmitter];
             }];
             
             SKAction *chainNextLetter = [SKAction runBlock:^{
                 [letterB runAction:moveToPositionWithSound];
-                [letterB playTheSound];
+                //[letterB playTheSound];
                 [letterB fireEmitter];
             }];
             
             SKAction *chainThirdLetter = [SKAction runBlock:^{
                 [letterC runAction:moveToPositionWithSound];
-                [letterC playTheSound];
+                //[letterC playTheSound];
                 [letterC fireEmitter];
             }];
             
             SKAction *chainFourthLetter = [SKAction runBlock:^{
                 [letterM runAction:moveToPositionWithSound];
-                [letterM playTheSound];
+                //[letterM playTheSound];
                 [letterM fireEmitter];
             }];
             
             SKAction *chainFifthLetter = [SKAction runBlock:^{
                 [letterS runAction:moveToPositionWithSound];
-                [letterS playTheSound];
+                //[letterS playTheSound];
                 [letterS fireEmitter];
                 
             }];
             
             SKAction *chainSixthLetter = [SKAction runBlock:^{
                 [letterT runAction:moveToPositionWithSound];
-                [letterT playTheSound];
+                //[letterT playTheSound];
                 [letterT fireEmitter];
                 
                 [self nextQuestion];
@@ -294,32 +308,32 @@ int groupNumber;
             
             SKAction *firstLetter = [SKAction runBlock:^{
                 [letterG runAction:moveToPositionWithSound];
-                [letterG playTheSound];
+                //[letterG playTheSound];
                 [letterG fireEmitter];
             }];
             
             SKAction *chainNextLetter = [SKAction runBlock:^{
                 [letterR runAction:moveToPositionWithSound];
-                [letterR playTheSound];
+                //[letterR playTheSound];
                 [letterR fireEmitter];
             }];
             
             SKAction *chainThirdLetter = [SKAction runBlock:^{
                 [letterF runAction:moveToPositionWithSound];
-                [letterF playTheSound];
+                //[letterF playTheSound];
                 [letterF fireEmitter];
             }];
             
             SKAction *chainFourthLetter = [SKAction runBlock:^{
                 [letterD runAction:moveToPositionWithSound];
-                [letterD playTheSound];
+                //[letterD playTheSound];
                 [letterD fireEmitter];
             }];
 
             
             SKAction *chainSixthLetter = [SKAction runBlock:^{
                 [letterO runAction:moveToPositionWithSound];
-                [letterO playTheSound];
+                //[letterO playTheSound];
                 [letterO fireEmitter];
                 
                 [self nextQuestion];
@@ -384,32 +398,32 @@ int groupNumber;
             
             SKAction *firstLetter = [SKAction runBlock:^{
                 [letterH runAction:moveToPositionWithSound];
-                [letterH playTheSound];
+                //[letterH playTheSound];
                 [letterH fireEmitter];
             }];
             
             SKAction *chainNextLetter = [SKAction runBlock:^{
                 [letterI runAction:moveToPositionWithSound];
-                [letterI playTheSound];
+                //[letterI playTheSound];
                 [letterI fireEmitter];
             }];
             
             SKAction *chainThirdLetter = [SKAction runBlock:^{
                 [letterP runAction:moveToPositionWithSound];
-                [letterP playTheSound];
+                //[letterP playTheSound];
                 [letterP fireEmitter];
             }];
             
             SKAction *chainFourthLetter = [SKAction runBlock:^{
                 [letterN runAction:moveToPositionWithSound];
-                [letterN playTheSound];
+                //[letterN playTheSound];
                 [letterN fireEmitter];
             }];
             
             
             SKAction *chainSixthLetter = [SKAction runBlock:^{
                 [letterL runAction:moveToPositionWithSound];
-                [letterL playTheSound];
+                //[letterL playTheSound];
                 [letterL fireEmitter];
                 
                 [self nextQuestion];
@@ -474,32 +488,32 @@ int groupNumber;
             
             SKAction *firstLetter = [SKAction runBlock:^{
                 [letterK runAction:moveToPositionWithSound];
-                [letterK playTheSound];
+                //[letterK playTheSound];
                 [letterK fireEmitter];
             }];
             
             SKAction *chainNextLetter = [SKAction runBlock:^{
                 [letterE runAction:moveToPositionWithSound];
-                [letterE playTheSound];
+                //letterE playTheSound];
                 [letterE fireEmitter];
             }];
             
             SKAction *chainThirdLetter = [SKAction runBlock:^{
                 [letterX runAction:moveToPositionWithSound];
-                [letterX playTheSound];
+                //[letterX playTheSound];
                 [letterX fireEmitter];
             }];
             
             SKAction *chainFourthLetter = [SKAction runBlock:^{
                 [letterZ runAction:moveToPositionWithSound];
-                [letterZ playTheSound];
+                //[letterZ playTheSound];
                 [letterZ fireEmitter];
             }];
             
             
             SKAction *chainSixthLetter = [SKAction runBlock:^{
                 [letterQ runAction:moveToPositionWithSound];
-                [letterQ playTheSound];
+                //[letterQ playTheSound];
                 [letterQ fireEmitter];
                 
                 [self nextQuestion];
@@ -564,32 +578,32 @@ int groupNumber;
             
             SKAction *firstLetter = [SKAction runBlock:^{
                 [letterJ runAction:moveToPositionWithSound];
-                [letterJ playTheSound];
+                //[letterJ playTheSound];
                 [letterJ fireEmitter];
             }];
             
             SKAction *chainNextLetter = [SKAction runBlock:^{
                 [letterU runAction:moveToPositionWithSound];
-                [letterU playTheSound];
+                //[letterU playTheSound];
                 [letterU fireEmitter];
             }];
             
             SKAction *chainThirdLetter = [SKAction runBlock:^{
                 [letterV runAction:moveToPositionWithSound];
-                [letterV playTheSound];
+                //[letterV playTheSound];
                 [letterV fireEmitter];
             }];
             
             SKAction *chainFourthLetter = [SKAction runBlock:^{
                 [letterW runAction:moveToPositionWithSound];
-                [letterW playTheSound];
+                //[letterW playTheSound];
                 [letterW fireEmitter];
             }];
             
             
             SKAction *chainSixthLetter = [SKAction runBlock:^{
                 [letterY runAction:moveToPositionWithSound];
-                [letterY playTheSound];
+                //[letterY playTheSound];
                 [letterY fireEmitter];
                 
                 [self nextQuestion];

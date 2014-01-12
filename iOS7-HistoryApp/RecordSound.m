@@ -35,7 +35,7 @@ SKLabelNode *titleForRecording;
     
     _layerSize = CGSizeMake(400, 400);
     if (self = [super init]) {
-        
+        self.userInteractionEnabled = YES;
         recordingLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
         finishedRecordLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
         playbackLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
@@ -84,25 +84,16 @@ SKLabelNode *titleForRecording;
 
         [self addChild:soundIcon];
         
-        playIcon = [SKSpriteNode spriteNodeWithImageNamed:@"play-button.png"];
-        playIcon.position = CGPointMake(900, 580);
-        playIcon.scale = 0.8;
-        [self addChild:playIcon];
-        
         stopIcon = [SKSpriteNode spriteNodeWithImageNamed:@"pause-button.png"];
         stopIcon.position = CGPointMake(800, 580);
         stopIcon.scale = 0.8;
         [self addChild:stopIcon];
         
+        playIcon = [SKSpriteNode spriteNodeWithImageNamed:@"play-button.png"];
+        playIcon.position = CGPointMake(900, 580);
+        playIcon.scale = 0.8;
+        [self addChild:playIcon];
         
-        [self addChild:titleForRecording];
-        [self addChild:recordingLabel];
-        recordingLabel.alpha = 0.0;
-        [self addChild:finishedRecordLabel];
-        finishedRecordLabel.alpha = 0.0;
-        [self addChild:playbackLabel];
-        playbackLabel.alpha = 0.0;
-        self.userInteractionEnabled = YES;
     }
     
     return self;
@@ -189,6 +180,11 @@ SKLabelNode *titleForRecording;
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)aRecorder successfully:(BOOL)flag
 {
 	
+    
+    [self enumerateChildNodesWithName:@"label" usingBlock:^(SKNode *node, BOOL *stop) {
+        SKLabelNode *label = (SKLabelNode*)node;
+        [label removeFromParent];
+    }];
     // Stop monitoring levels, time
 	[timer invalidate];
 	//meter1.progress = 0.0f;
@@ -223,8 +219,8 @@ SKLabelNode *titleForRecording;
 		return;
 	}
     
-    //[player prepareToPlay];
-	//[player play];
+    [player prepareToPlay];
+	[player play];
 }
 
 
@@ -278,31 +274,19 @@ SKLabelNode *titleForRecording;
     CGPoint touchLocation  = [touch locationInNode:self];
     
     if(CGRectContainsPoint(soundIcon.frame, touchLocation)) {
-        [self enumerateChildNodesWithName:@"label" usingBlock:^(SKNode *node, BOOL *stop) {
-            SKLabelNode *label = (SKLabelNode*)node;
-            [label removeFromParent];
-        }];
+        [self addChild:recordingLabel];
         [self startAudioSession];
         [self record];
         
     } else if (CGRectContainsPoint(playIcon.frame, touchLocation)) {
-        recordingLabel.alpha = 0.0;
-        playbackLabel.alpha = 1.0;
-        [self enumerateChildNodesWithName:@"label" usingBlock:^(SKNode *node, BOOL *stop) {
-            SKLabelNode *label = (SKLabelNode*)node;
-            [label removeFromParent];
-        }];
+
+        [self addChild:playbackLabel];
         [player prepareToPlay];
         [player play];
-        [self removeFromParent];
+
         
     } else if (CGRectContainsPoint(stopIcon.frame, touchLocation)) {
-        [self enumerateChildNodesWithName:@"label" usingBlock:^(SKNode *node, BOOL *stop) {
-            SKLabelNode *label = (SKLabelNode*)node;
-            [label removeFromParent];
-        }];
-        finishedRecordLabel.alpha = 1.0;
-        playbackLabel.alpha = 0.0;
+        [self addChild:finishedRecordLabel];
         [self stopRecording];
         
     }

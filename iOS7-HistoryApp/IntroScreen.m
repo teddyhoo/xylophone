@@ -166,7 +166,7 @@ CGFloat fontSizeForPlatform = 20;
         NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"16_30" withExtension:@"mp3"];
         
         avSound = [[AVAudioPlayer alloc]initWithContentsOfURL:soundURL error:nil];
-        //[avSound play];
+        [avSound play];
         
         tracingScene = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
         tracingScene.fontSize = fontSizeForPlatform;
@@ -207,13 +207,7 @@ CGFloat fontSizeForPlatform = 20;
         optionsMenu.position = CGPointMake(width / 2, height / 4.0);
         optionsMenu.name = @"menu";
         [self addChild:optionsMenu];
-        
-        /*NSMutableArray *frogHopTextures = [[NSMutableArray alloc]init];
-        SKTextureAtlas *frogHopAtlas = [SKTextureAtlas atlasNamed:@"frog2.atlas"];
-        for (int fr = 0; fr < 8; fr++) {
-            SKTexture *frogHopTexture = [frogHopAtlas textureNamed:[NSString stringWithFormat:@"frog_frame_%i.png",fr]];
-            [frogHopTextures addObject:frogHopTexture];
-        }*/
+
         
     }
     return self;

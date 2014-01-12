@@ -21,7 +21,7 @@
         //[self addChild:scoreWindow];
         
         SKLabelNode *scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
-        scoreLabel.position = CGPointMake(400,830);
+        scoreLabel.position = CGPointMake(200,830);
         scoreLabel.text = @"Test Summary";
         scoreLabel.name = @"scoreLabel";
         scoreLabel.fontColor = [UIColor blackColor];
@@ -33,11 +33,12 @@
         //[self addChild:difficultyWindow];
         
         SKLabelNode *difficultyLabel = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
-        difficultyLabel.position = CGPointMake(300,740);
+        difficultyLabel.position = CGPointMake(100,740);
         difficultyLabel.text = @"Total Score";
         difficultyLabel.name = @"difficultyLabel";
         difficultyLabel.fontColor = [UIColor blackColor];
         difficultyLabel.fontSize = 40;
+        difficultyLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
         [self addChild:difficultyLabel];
         
         SKSpriteNode *categoryWindow = [SKSpriteNode spriteNodeWithImageNamed:@"label-title-550x180.png"];
@@ -45,19 +46,21 @@
         //[self addChild:categoryWindow];
         
         SKLabelNode *categoryLabel = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
-        categoryLabel.position = CGPointMake(300,610);
+        categoryLabel.position = CGPointMake(100,610);
         categoryLabel.text = @"Correct / Total";
         categoryLabel.name = @"categoryLabel";
         categoryLabel.fontColor = [UIColor blackColor];
         categoryLabel.fontSize = 40;
+        categoryLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
         [self addChild:categoryLabel];
         
         SKLabelNode *categoryTime = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
-        categoryTime.position = CGPointMake(300, 500);
+        categoryTime.position = CGPointMake(100, 500);
         categoryTime.text = @"Total Time";
         categoryTime.name = @"timeLabel";
         categoryTime.fontColor = [UIColor blackColor];
         categoryTime.fontSize = 40;
+        categoryTime.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
         [self addChild:categoryTime];
 
     }
@@ -75,19 +78,21 @@
     
     
     SKLabelNode *totalScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    totalScoreLabel.position = CGPointMake(300, 670);
+    totalScoreLabel.position = CGPointMake(650, 740);
     int iTotalScore = [totalScore intValue];
     //NSString *totalScoreStr = [NSString stringWithFormat:@"%i",iTotalScore];
     totalScoreLabel.text = [NSString stringWithFormat:@"%i",iTotalScore];
     totalScoreLabel.fontColor = [UIColor greenColor];
-    totalScoreLabel.fontSize = 60;
+    totalScoreLabel.fontSize = 32;
+    totalScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
     [self addChild:totalScoreLabel];
     
     SKLabelNode *correctAndIncorrect = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    correctAndIncorrect.position = CGPointMake(300, 560);
-    correctAndIncorrect.text = [NSString stringWithFormat:@"%i out of %i (%i)",[correctAnswers integerValue],[totalQuestions intValue],[percent intValue]];
+    correctAndIncorrect.position = CGPointMake(650, 610);
+    correctAndIncorrect.text = [NSString stringWithFormat:@"%i / %i (%i)",[correctAnswers integerValue],[totalQuestions intValue],[percent intValue]];
     correctAndIncorrect.fontSize = 32;
     correctAndIncorrect.fontColor = [UIColor redColor];
+    correctAndIncorrect.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
     [self addChild:correctAndIncorrect];
     
     int totalTimeSS = [totalTestTime intValue];
@@ -97,17 +102,19 @@
     int avgTimePerQ = totalTimeSS / totalQtemp;
     
     SKLabelNode *totalTime = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
-    totalTime.position = CGPointMake(300, 470);
-    totalTime.text = [NSString stringWithFormat:@"%i mins %i sec ",totalTimeMM, totalTimeSSmod];
+    totalTime.position = CGPointMake(650, 500);
+    totalTime.text = [NSString stringWithFormat:@"%i m %i s ",totalTimeMM, totalTimeSSmod];
     totalTime.fontSize = 32;
     totalTime.fontColor = [UIColor redColor];
+    totalTime.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
     [self addChild:totalTime];
     
     SKLabelNode *averageTimeToAnswer = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
-    averageTimeToAnswer.position = CGPointMake(300,420);
-    averageTimeToAnswer.text = [NSString stringWithFormat:@"Average: %i",avgTimePerQ];
+    averageTimeToAnswer.position = CGPointMake(650,460);
+    averageTimeToAnswer.text = [NSString stringWithFormat:@"Avg: %i",avgTimePerQ];
     averageTimeToAnswer.fontSize = 32;
     averageTimeToAnswer.fontColor = [UIColor redColor];
+    averageTimeToAnswer.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
     [self addChild:averageTimeToAnswer];
     
 }

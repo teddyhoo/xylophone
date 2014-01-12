@@ -4,6 +4,96 @@
 <array>
 	<dict>
 		<key>Question</key>
+		<string>What political transformation contributed to the sense of nationalism and optimism during the Era of Good Feelings?</string>
+		<key>Correct</key>
+		<string>Massive decline of the Federalist Party</string>
+		<key>Answer1</key>
+		<string>Rapid rise of the Federalist Party</string>
+		<key>Answer2</key>
+		<string>Rapid rise of the Republican Party</string>
+		<key>Answer3</key>
+		<string>Charismatic leadership of James Monroe</string>
+		<key>helperTips</key>
+		<string>This party was vigorously opposed to the War of 1812 and plotted to secede from the Union.</string>
+		<key>difficulty</key>
+		<string>5</string>
+		<key>Image</key>
+		<string>0</string>
+		<key>Time</key>
+		<string>Good Feelings</string>
+		<key>Tag1</key>
+		<string>Politics</string>
+		<key>Tag2</key>
+		<string>0</string>
+		<key>Tag3</key>
+		<string>0</string>
+		<key>Crossref</key>
+		<string>0</string>
+		<key>Explanation</key>
+		<string>The Federalists were nearly extinct and James Monroe lead a surge in nationalism.</string>
+	</dict>
+	<dict>
+		<key>Question</key>
+		<string>Which of the following is not consistent with a policy of Economic Nationalism?</string>
+		<key>Correct</key>
+		<string>Subsidies given to farmers to grow more wheat and corn</string>
+		<key>Answer1</key>
+		<string>Tarriff of 1816</string>
+		<key>Answer2</key>
+		<string>National Bank</string>
+		<key>Answer3</key>
+		<string>Roads and canals</string>
+		<key>helperTips</key>
+		<string>The three components of Henry Clay&apos;s American System</string>
+		<key>difficulty</key>
+		<string>5</string>
+		<key>Image</key>
+		<string>0</string>
+		<key>Time</key>
+		<string>Good Feelings</string>
+		<key>Tag1</key>
+		<string>Social</string>
+		<key>Tag2</key>
+		<string>Economic</string>
+		<key>Tag3</key>
+		<string>0</string>
+		<key>Crossref</key>
+		<string>0</string>
+		<key>Explanation</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Question</key>
+		<string>What was the major point of contention with Henry Clay&apos;s &quot;American System&quot;?</string>
+		<key>Correct</key>
+		<string>Allocation of Federal funds to states for road-building</string>
+		<key>Answer1</key>
+		<string>Chartering a second National Bank</string>
+		<key>Answer2</key>
+		<string>Protective Tariffs benefitting only northeast merchants</string>
+		<key>Answer3</key>
+		<string>Central currency backed by gold</string>
+		<key>helperTips</key>
+		<string>Federal v. States Rights political battles were in their infancy.</string>
+		<key>difficulty</key>
+		<string>4</string>
+		<key>Image</key>
+		<string>0</string>
+		<key>Time</key>
+		<string>Good Feelings</string>
+		<key>Tag1</key>
+		<string>Politics</string>
+		<key>Tag2</key>
+		<string>0</string>
+		<key>Tag3</key>
+		<string>0</string>
+		<key>Crossref</key>
+		<string>0</string>
+		<key>Explanation</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Question</key>
 		<string>Who was the first president of the U.S.</string>
 		<key>Correct</key>
 		<string>George Washington</string>
@@ -17,131 +107,19 @@
 		<string>Alexander Hamilton</string>
 		<key>difficulty</key>
 		<string>3</string>
+		<key>Image</key>
+		<string>0</string>
 		<key>Time</key>
 		<string>Colonial</string>
 		<key>Tag1</key>
 		<string>Politics</string>
 		<key>Tag2</key>
-		<string></string>
+		<string>0</string>
 		<key>Tag3</key>
-		<string></string>
-		<key>Difficulty</key>
-		<string>4</string>
-		<key>Image</key>
 		<string>0</string>
 		<key>Crossref</key>
 		<string>0</string>
-	</dict>
-	<dict>
-		<key>Question</key>
-		<string>What was an idiot?</string>
-		<key>Correct</key>
-		<string></string>
-		<key>Answer1</key>
-		<string></string>
-		<key>Answer2</key>
-		<string></string>
-		<key>Tag1</key>
-		<string></string>
-		<key>Answer3</key>
-		<string></string>
-		<key>Answer4</key>
-		<string></string>
-		<key>Time</key>
-		<string></string>
-		<key>Tag2</key>
-		<string></string>
-		<key>Tag3</key>
-		<string></string>
-		<key>Difficulty</key>
-		<string></string>
-		<key>Image</key>
-		<string></string>
-		<key>Crossref</key>
-		<string></string>
-	</dict>
-	<dict>
-		<key>Question</key>
-		<string>Who sucks balls?</string>
-		<key>Correct</key>
-		<string></string>
-		<key>Answer1</key>
-		<string></string>
-		<key>Answer2</key>
-		<string></string>
-		<key>Answer3</key>
-		<string></string>
-		<key>Answer4</key>
-		<string></string>
-		<key>Time</key>
-		<string></string>
-		<key>Tag1</key>
-		<string></string>
-		<key>Tag2</key>
-		<string></string>
-		<key>Tag3</key>
-		<string></string>
-		<key>Difficulty</key>
-		<string></string>
-		<key>Image</key>
-		<string></string>
-		<key>Crossref</key>
-		<string></string>
-	</dict>
-	<dict>
-		<key>Question</key>
-		<string></string>
-		<key>Correct</key>
-		<string></string>
-		<key>Answer1</key>
-		<string></string>
-		<key>Answer2</key>
-		<string></string>
-		<key>Answer3</key>
-		<string></string>
-		<key>Answer4</key>
-		<string></string>
-		<key>Time</key>
-		<string></string>
-		<key>Tag1</key>
-		<string></string>
-		<key>Tag2</key>
-		<string></string>
-		<key>Tag3</key>
-		<string></string>
-		<key>Difficulty</key>
-		<string></string>
-		<key>Image</key>
-		<string></string>
-		<key>Crossref</key>
-		<string></string>
-	</dict>
-	<dict>
-		<key>Question</key>
-		<string></string>
-		<key>Correct</key>
-		<string></string>
-		<key>Answer1</key>
-		<string></string>
-		<key>Answer2</key>
-		<string></string>
-		<key>Answer3</key>
-		<string></string>
-		<key>Answer4</key>
-		<string></string>
-		<key>Time</key>
-		<string></string>
-		<key>Tag1</key>
-		<string></string>
-		<key>Tag2</key>
-		<string></string>
-		<key>Tag3</key>
-		<string></string>
-		<key>Difficulty</key>
-		<string></string>
-		<key>Image</key>
-		<string></string>
-		<key>Crossref</key>
+		<key>Explanation</key>
 		<string></string>
 	</dict>
 </array>

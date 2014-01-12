@@ -215,7 +215,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic5.fontSize = 40;
         topic5.position = CGPointMake(50, 75);
         topic5.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
-        topic5.name = @"Era of Good Feelings";
+        topic5.name = @"Good Feelings";
 // ----------------------------------------------------------------------------------------------
         topic6 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         topic6.text = @"Jacksonian";

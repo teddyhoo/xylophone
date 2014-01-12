@@ -303,47 +303,56 @@ HistoryData *sharedData;
     
     for (NSDictionary *dic in questionData) {
         
-        for (NSString *information in dic) {
-            if ([information isEqualToString:@"Question"]) {
+        
+            
+        if ([[dic valueForKey:@"Time"]isEqualToString:currentlySelectedTerm]) {
+            
+            for (NSString *information in dic) {
+
+                if ([information isEqualToString:@"Question"]) {
                 
-                [quizQuestions addObject:[dic valueForKey:information]];
+                    NSString *temp11 = [dic valueForKey:information];
+                    [quizQuestions addObject:temp11];
                 
-            } else if ([information isEqualToString:@"Correct"]) {
+                } else if ([information isEqualToString:@"Correct"]) {
                 
-                [quizAnswers addObject:[dic valueForKey:information]];
+                    NSString *temp12 = [dic valueForKey:information];
+                    [quizAnswers addObject:temp12];
                 
-            } else if ([information isEqualToString:@"Answer1"]) {
+                } else if ([information isEqualToString:@"Answer1"]) {
                 
-                [quizWrongOne addObject:[dic valueForKey:information]];
+                    [quizWrongOne addObject:[dic valueForKey:information]];
                 
-            } else if ([information isEqualToString:@"Answer2"]) {
+                } else if ([information isEqualToString:@"Answer2"]) {
                 
-                [quizWrongTwo addObject:[dic valueForKey:information]];
+                    [quizWrongTwo addObject:[dic valueForKey:information]];
                 
-            } else if ([information isEqualToString:@"Answer3"]) {
+                } else if ([information isEqualToString:@"Answer3"]) {
                 
-                [quizWrongThree addObject:[dic valueForKey:information]];
+                    [quizWrongThree addObject:[dic valueForKey:information]];
                 
-            } else if ([information isEqualToString:@"helperTips"]) {
+                } else if ([information isEqualToString:@"helperTips"]) {
                 
-                [questionClue addObject:[dic valueForKey:information]];
+                    [questionClue addObject:[dic valueForKey:information]];
                 
-            } else if ([information isEqualToString:@"difficulty"]) {
+                } else if ([information isEqualToString:@"difficulty"]) {
                 
                 [difficultyLevel addObject:[dic valueForKey:information]];
                 
-            } else if ([information isEqualToString:@"section"]) {
+                } else if ([information isEqualToString:@"Time"]) {
                 
-                [questionSection addObject:[dic valueForKey:information]];
+                    [questionSection addObject:[dic valueForKey:information]];
                 
-            } else if ([information isEqualToString:@"image"]) {
+                } else if ([information isEqualToString:@"Image"]) {
                 
-                [questionSection addObject:[dic valueForKey:information]];
+                    [imageList addObject:[dic valueForKey:information]];
 
+                }
             }
+            i++;
         }
         
-        i++;
+        
         
     }
 
@@ -355,10 +364,11 @@ HistoryData *sharedData;
 -(void) nextQuestion {
     if(!alreadyAnswered) return;
     
-    [self startTimer];
+    //[self startTimer];
     timerOn = TRUE;
     
     questionCounter++;
+    NSLog(@"question counter: %i",questionCounter);
     alreadyAnswered = FALSE;
     [renderLabel removeFromParent];
     
@@ -380,7 +390,7 @@ HistoryData *sharedData;
         [self finishedWithSection];
         
     } else {
-        
+        NSLog(@"printing next");
         [self printNextQuestion];
     }
     
@@ -448,9 +458,9 @@ HistoryData *sharedData;
         [self finishedWithSection];
         
     } else {
-        
+        NSLog(@"start timer");
         [self startTimer];
-        
+        NSLog(@"update scoreboard");
         [hudScore updateOtherInfo:[difficultyLevel objectAtIndex:questionCounter]
                      topicSection:[questionSection objectAtIndex:questionCounter]];
         
@@ -493,7 +503,10 @@ HistoryData *sharedData;
             
         }
         
+        NSLog(@"question count: %i",questionCounter);
         NSString *currentQuestion = [quizQuestions objectAtIndex:questionCounter];
+        NSLog(@"Q: %@",currentQuestion);
+        
         
         UILabel *firstLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 400, 600)];
         firstLabel.text = currentQuestion;
@@ -621,11 +634,9 @@ HistoryData *sharedData;
 
 -(void) finishedWithSection {
     
-    int totalIncorrect = questionCounter - numberCorrectAnswers;
+    [totalTimeDisplay removeFromParent];
     CGFloat percentage = (float)numberCorrectAnswers / (float)questionCounter * 100.0f;
     int percentageConv = round(percentage);
-    
-    NSLog(@"correct: %d total questions:%d percentage: %f convPercent:%d",numberCorrectAnswers,questionCounter,percentage,percentageConv);
     
     ReviewQuestion *reviewPage = [[ReviewQuestion alloc]init];
     reviewPage.position = CGPointMake(0, 0);
@@ -893,22 +904,18 @@ HistoryData *sharedData;
             correctQuestionAnswer.position = CGPointMake(-800, button1.position.y);
             [correctQuestionAnswer runAction:moveOverlay];
         } else if (correctAnswer == 1) {
-            //correctQuestionAnswer.position = button2.position;
             SKAction *moveOverlay = [SKAction moveTo:button2.position duration:1.0];
             correctQuestionAnswer.position = CGPointMake(-800, button2.position.y);
             [correctQuestionAnswer runAction:moveOverlay];
         } else if (correctAnswer == 2) {
-            //correctQuestionAnswer.position = button3.position;
             SKAction *moveOverlay = [SKAction moveTo:button3.position duration:1.0];
             correctQuestionAnswer.position = CGPointMake(-800, button3.position.y);
             [correctQuestionAnswer runAction:moveOverlay];
         } else if (correctAnswer == 3) {
-            //correctQuestionAnswer.position = button4.position;
             SKAction *moveOverlay = [SKAction moveTo:button4.position duration:1.0];
             correctQuestionAnswer.position = CGPointMake(-800, button4.position.y);
             [correctQuestionAnswer runAction:moveOverlay];
         } else if (correctAnswer == 4) {
-            //correctQuestionAnswer.position = button4.position;
         }
         
         [self addChild:wrongQuestionAnswer];

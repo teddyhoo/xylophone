@@ -8,6 +8,7 @@
 
 #import "MontessoriData.h"
 #import "LowerCaseLetter.h"
+#import <AVFoundation/AVFoundation.h>
 
 static MontessoriData *sharedMyManager = nil;
 
@@ -36,7 +37,7 @@ CGPoint startPoint;
 	if (self = [super init]) {
         letterDrawResults = [[NSMutableArray alloc]init];
         
-        letterA = [self createLetterA];
+        //letterA = [self createLetterA];
         letterB = [self createLetterB];
         letterC = [self createLetterC];
         letterD = [self createLetterD];
