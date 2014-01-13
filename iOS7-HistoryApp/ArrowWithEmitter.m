@@ -19,7 +19,7 @@ NSMutableArray *texturesForAnim;
 SKSpriteNode *firstImageAnimate;
 BOOL fireEmitterFired = FALSE;
 
--(instancetype)init {
+//-(instancetype)init {
     
     //if (self = [super initWithImageNamed:@"arrow-left-yellow.png"]) {
     
@@ -29,19 +29,19 @@ BOOL fireEmitterFired = FALSE;
     
     //[self setupAnimationEffects];
     //}
-    if (self) {
+    //if (self) {
         
-        self = [super initWithImageNamed:@"arrow-left-yellow.png"];
+       // self = [super initWithImageNamed:@"arrow-left-yellow.png"];
         
-    }
+    //}
     
     
-    return self;
+    //return self;
     
-}
+//}
 
 
--(instancetype)init:(NSString *)direction {
+-(instancetype)initWithDirection:(NSString *)direction {
     
 
         
@@ -114,6 +114,56 @@ BOOL fireEmitterFired = FALSE;
     
 }
 
+-(void)fireEmitter {
+    
+ if (!fireEmitterFired) {
+    
+    fireEmitterFired = TRUE;
+     
+    if([directionArrow isEqualToString:@"down"]) {
+        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartUpDown" ofType:@"sks"];
+        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
+        openEffect.position = CGPointMake(46,90);
+        openEffect.name = @"emitter";
+        
+    } else if ([directionArrow isEqualToString:@"up"]) {
+        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartUpDown" ofType:@"sks"];
+        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
+        openEffect.position = CGPointMake(46,0);
+        openEffect.name = @"emitter";
+    } else if ([directionArrow isEqualToString:@"left"]) {
+        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartRightLeft" ofType:@"sks"];
+        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
+        openEffect.position = CGPointMake(90,42);
+        openEffect.name = @"emitter";
+    } else if ([directionArrow isEqualToString:@"right"]) {
+        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartRightLeft" ofType:@"sks"];
+        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
+        openEffect.position = CGPointMake(0,42);
+    } else if ([directionArrow isEqualToString:@"down-left"]) {
+        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartArrow" ofType:@"sks"];
+        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
+        openEffect.position = CGPointMake(90,82);
+    } else if ([directionArrow isEqualToString:@"down-right"]) {
+        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartArrow" ofType:@"sks"];
+        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
+        openEffect.position = CGPointMake(0,82);
+    } else if ([directionArrow isEqualToString:@"up-right"]) {
+        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartArrow" ofType:@"sks"];
+        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
+        openEffect.position = CGPointMake(0,0);
+    } else if ([directionArrow isEqualToString:@"up-left"]) {
+        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartArrow" ofType:@"sks"];
+        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
+        openEffect.position = CGPointMake(90,0);
+    }
+     
+    [self addChild:openEffect];
+     
+  }
+    
+    
+}
 
 -(void)setupAnimationEffectsForArrowLeft {  // LEFT
     NSMutableArray *animFrames = [NSMutableArray array];
@@ -319,61 +369,7 @@ BOOL fireEmitterFired = FALSE;
 }
 
 
--(void)fireEmitter {
 
-    
-    
-    //if (fireEmitterFired) {
-        
-    //} else {
-    /*
-    if([directionArrow isEqualToString:@"down"]) {
-        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartUpDown" ofType:@"sks"];
-        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
-        openEffect.position = CGPointMake(46,90);
-        openEffect.name = @"emitter";
-        
-    } else if ([directionArrow isEqualToString:@"up"]) {
-        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartUpDown" ofType:@"sks"];
-        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
-        openEffect.position = CGPointMake(46,0);
-        openEffect.name = @"emitter";
-    } else if ([directionArrow isEqualToString:@"left"]) {
-        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartRightLeft" ofType:@"sks"];
-        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
-        openEffect.position = CGPointMake(90,42);
-        openEffect.name = @"emitter";
-    } else if ([directionArrow isEqualToString:@"right"]) {
-        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartRightLeft" ofType:@"sks"];
-        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
-        openEffect.position = CGPointMake(0,42);
-    } else if ([directionArrow isEqualToString:@"down-left"]) {
-        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartArrow" ofType:@"sks"];
-        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
-        openEffect.position = CGPointMake(90,82);
-    } else if ([directionArrow isEqualToString:@"down-right"]) {
-        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartArrow" ofType:@"sks"];
-        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
-        openEffect.position = CGPointMake(0,82);
-    } else if ([directionArrow isEqualToString:@"up-right"]) {
-        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartArrow" ofType:@"sks"];
-        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
-        openEffect.position = CGPointMake(0,0);
-    } else if ([directionArrow isEqualToString:@"up-left"]) {
-        openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPartArrow" ofType:@"sks"];
-        openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
-        openEffect.position = CGPointMake(90,0);
-    }
-    
-    if (!openEffect) {
-        [self addChild:openEffect];
-    }
-        */
-    //    fireEmitterFired = TRUE;
-    //}
-    //[self addChild:openEffectMore];
-    
-}
 
 -(void)setDirection:(NSString *)direction {
     

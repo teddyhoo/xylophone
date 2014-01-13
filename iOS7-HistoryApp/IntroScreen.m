@@ -163,10 +163,10 @@ CGFloat fontSizeForPlatform = 20;
         
         [self addChild:worm];
         
-        NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"16_30" withExtension:@"mp3"];
+        /*NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"16_30" withExtension:@"mp3"];
         
         avSound = [[AVAudioPlayer alloc]initWithContentsOfURL:soundURL error:nil];
-        [avSound play];
+        [avSound play];*/
         
         tracingScene = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
         tracingScene.fontSize = fontSizeForPlatform;

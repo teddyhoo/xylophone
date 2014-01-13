@@ -327,11 +327,17 @@ CGFloat height;
 
 -(void)getDataHistory {
     
+    float firstPoint;
+    float secondPoint;
+    
     for (NSDictionary *results in sharedData.letterDrawResults) {
         for (NSString *key in results) {
             
             if ([key isEqualToString:@"shape"]) {
                 NSString *letterVal = [results objectForKey:@"letter"];
+                
+                NSLog(@"found results for letter: %@",letterVal);
+                
                 NSDate *dateOf = [results objectForKey:@"dateDone"];
                 NSDateFormatter *dateFormatted = [[NSDateFormatter alloc]init];
                 [dateFormatted setTimeStyle:NSDateFormatterShortStyle];

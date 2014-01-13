@@ -14,7 +14,7 @@
 
 @property (nonatomic,retain) NSString* directionArrow;
 
--(instancetype)init:(NSString*)direction;
+-(instancetype)initWithDirection:(NSString*)direction;
 -(void)fireEmitter;
 -(void)setDirection:(NSString*)direction;
 

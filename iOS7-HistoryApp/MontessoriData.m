@@ -37,7 +37,7 @@ CGPoint startPoint;
 	if (self = [super init]) {
         letterDrawResults = [[NSMutableArray alloc]init];
         
-        //letterA = [self createLetterA];
+        letterA = [self createLetterA];
         letterB = [self createLetterB];
         letterC = [self createLetterC];
         letterD = [self createLetterD];

@@ -47,7 +47,7 @@ AVAudioPlayer *soundF;
 AVAudioPlayer *soundG;
 
 
-AVAudioPlayer *avSound; // girl voice correct
+AVAudioPlayer *correctMessage; // girl voice correct
 AVAudioPlayer *awesomeMessage;
 AVAudioPlayer *whoopsMessage;
 AVAudioPlayer *magicalSweep;
@@ -100,7 +100,6 @@ int groupNumber;
     
     self = [super initWithSize:size];
     if (self) {
-        
         questionCount = 0;
         objectSelected = FALSE;
         
@@ -108,7 +107,9 @@ int groupNumber;
 
         gridPaper = [SKSpriteNode spriteNodeWithImageNamed:@"forest-bg.png"];
         gridPaper.position = CGPointMake(size.width/2, size.height/2);
+        gridPaper.alpha = 0.0;
         [self addChild:gridPaper];
+        [gridPaper runAction:[SKAction fadeAlphaTo:1.0 duration:30.0]];
         
         NSString *pListData = [[NSBundle mainBundle]pathForResource:@"Letters" ofType:@"plist"];
         allPicsForQuestions = [[NSMutableArray alloc]initWithContentsOfFile:pListData];
@@ -158,19 +159,19 @@ int groupNumber;
             letterS = [self createLetterS];
             letterT = [self createLetterT];
             
-            letterA.scale = 0.2;
+            letterA.scale = 0.0;
             letterB.scale = 0.2;
             letterC.scale = 0.2;
             letterM.scale = 0.2;
             letterS.scale = 0.2;
             letterT.scale = 0.2;
             
-            letterA.position = CGPointMake(1300, 500);
-            letterB.position = CGPointMake(1400, 600);
-            letterC.position = CGPointMake(1500, 600);
-            letterM.position = CGPointMake(1600, 500);
-            letterS.position = CGPointMake(1500, 400);
-            letterT.position = CGPointMake(1400, 400);
+            letterA.position = CGPointMake(1200, 1500);
+            letterB.position = CGPointMake(1400, 1700);
+            letterC.position = CGPointMake(1900, 1600);
+            letterM.position = CGPointMake(1600, 1500);
+            letterS.position = CGPointMake(1500, 1400);
+            letterT.position = CGPointMake(1400, 1400);
             
             letterA.name = @"A";
             letterB.name = @"B";
@@ -198,11 +199,11 @@ int groupNumber;
             [self setupSounds];
             
             SKAction *delayed = [SKAction waitForDuration:3.0];
-            SKAction *moveToPositionWithSound = [SKAction moveByX:-1100 y:0 duration:0.1];
+            SKAction *moveToPositionWithSound = [SKAction moveByX:-1100 y:-1000 duration:0.1];
             
             SKAction *firstLetter = [SKAction runBlock:^{
-                float newX = letterA.position.x - 1100;
-                float newY = letterA.position.y;
+                float newX = 100;
+                float newY = 400;
                 
                 SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterA
                                                                  duration:1.2
@@ -212,39 +213,114 @@ int groupNumber;
                 moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
                 SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
                 [letterA runAction:actionWithEffectForLetter];
+                SKAction *scaleUpLetter = [SKAction scaleTo:0.6 duration:0.9];
+                SKAction *scaleDownLetter = [SKAction scaleTo:0.2 duration:0.3];
+                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter]];
+                [letterA runAction:sequenceUpDown];
                 //[letterA playTheSound];
                 [letterA fireEmitter];
             }];
             
             SKAction *chainNextLetter = [SKAction runBlock:^{
-                [letterB runAction:moveToPositionWithSound];
+                float newX = 250;
+                float newY = 600;
+                
+                SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterB
+                                                                 duration:1.2
+                                                            startPosition:letterB.position
+                                                              endPosition:CGPointMake(newX,newY)];
+                
+                moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
+                SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
+                [letterB runAction:actionWithEffectForLetter];
+                SKAction *scaleUpLetter = [SKAction scaleTo:0.6 duration:0.9];
+                SKAction *scaleDownLetter = [SKAction scaleTo:0.2 duration:0.3];
+                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter]];
+                [letterB runAction:sequenceUpDown];
                 //[letterB playTheSound];
                 [letterB fireEmitter];
             }];
             
             SKAction *chainThirdLetter = [SKAction runBlock:^{
-                [letterC runAction:moveToPositionWithSound];
+                float newX = 400;
+                float newY = 600;
+                
+                SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterC
+                                                                 duration:1.2
+                                                            startPosition:letterC.position
+                                                              endPosition:CGPointMake(newX,newY)];
+                
+                moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
+                SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
+                [letterC runAction:actionWithEffectForLetter];
                 //[letterC playTheSound];
                 [letterC fireEmitter];
+                SKAction *scaleUpLetter = [SKAction scaleTo:0.6 duration:0.9];
+                SKAction *scaleDownLetter = [SKAction scaleTo:0.2 duration:0.3];
+                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter]];
+                [letterC runAction:sequenceUpDown];
             }];
             
             SKAction *chainFourthLetter = [SKAction runBlock:^{
-                [letterM runAction:moveToPositionWithSound];
+                float newX = 500;
+                float newY = 300;
+                
+                SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterM
+                                                                 duration:1.2
+                                                            startPosition:letterM.position
+                                                              endPosition:CGPointMake(newX,newY)];
+                
+                moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
+                SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
+                [letterM runAction:actionWithEffectForLetter];
                 //[letterM playTheSound];
                 [letterM fireEmitter];
+                SKAction *scaleUpLetter = [SKAction scaleTo:0.6 duration:0.9];
+                SKAction *scaleDownLetter = [SKAction scaleTo:0.2 duration:0.3];
+                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter]];
+                [letterM runAction:sequenceUpDown];
             }];
             
             SKAction *chainFifthLetter = [SKAction runBlock:^{
-                [letterS runAction:moveToPositionWithSound];
-                //[letterS playTheSound];
+                float newX = 350;
+                float newY = 300;
+                
+                SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterS
+                                                                 duration:1.2
+                                                            startPosition:letterS.position
+                                                              endPosition:CGPointMake(newX,newY)];
+                
+                moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
+                SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
+                [letterS runAction:actionWithEffectForLetter];
                 [letterS fireEmitter];
+                SKAction *scaleUpLetter = [SKAction scaleTo:0.6 duration:0.9];
+                SKAction *scaleDownLetter = [SKAction scaleTo:0.2 duration:0.3];
+                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter]];
+                [letterS runAction:sequenceUpDown];
+                //[letterS playTheSound];
                 
             }];
             
             SKAction *chainSixthLetter = [SKAction runBlock:^{
-                [letterT runAction:moveToPositionWithSound];
-                //[letterT playTheSound];
+                float newX = 200;
+                float newY = 200;
+                
+                SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterT
+                                                                 duration:1.2
+                                                            startPosition:letterT.position
+                                                              endPosition:CGPointMake(newX,newY)];
+                
+                moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
+                SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
+                [letterT runAction:actionWithEffectForLetter];
+                //[letterM playTheSound];
                 [letterT fireEmitter];
+                SKAction *scaleUpLetter = [SKAction scaleTo:0.6 duration:0.9];
+                SKAction *scaleDownLetter = [SKAction scaleTo:0.2 duration:0.3];
+                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter]];
+                [letterT runAction:sequenceUpDown];
+                //[letterT playTheSound];
                 
                 [self nextQuestion];
             }];
@@ -630,14 +706,14 @@ int groupNumber;
         
         
         self.userInteractionEnabled = YES;
-        self.backgroundColor = [SKColor colorWithRed:0.4 green:0.6 blue:0.3 alpha:1.0];
+        self.backgroundColor = [SKColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
         
         SKLabelNode *testLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         testLabel.text = @"Match Pictures to Sound";
         testLabel.fontSize = 40;
         testLabel.fontColor = [UIColor blueColor];
         testLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                         CGRectGetMidY(self.frame));
+                                         CGRectGetMidY(self.frame)+200);
         
         [self addChild:testLabel];
         [testLabel runAction:[SKAction fadeAlphaTo:0.0 duration:10.0]];
@@ -652,6 +728,46 @@ int groupNumber;
     }
     
     return self;
+    
+}
+
+-(void)createSpotlight:(LowerCaseLetter *)correctLetter {
+    
+     SKEffectNode* spotlightEffect =[[SKEffectNode alloc]init];
+     SKSpriteNode* light = [SKSpriteNode spriteNodeWithImageNamed:@"Light-Effect-320x244.jpg"];
+     [spotlightEffect addChild:light];
+     
+     spotlightEffect.filter=[self blurFilter];
+     spotlightEffect.blendMode=SKBlendModeMultiply;
+     spotlightEffect.alpha = 0.7;
+     spotlightEffect.zPosition = 3;
+     spotlightEffect.position = correctLetter.position;
+     [self addChild:spotlightEffect];
+     
+     SKAction *fadeLight = [SKAction fadeAlphaTo:0.0 duration:4.0];
+     [spotlightEffect runAction:fadeLight];
+
+    
+}
+
+
+-(CIFilter *)blurFilter
+{
+    CIFilter* boxBlurFilter = [CIFilter filterWithName:@"CIBoxBlur"];
+    [boxBlurFilter setDefaults];
+    [boxBlurFilter setValue:[NSNumber numberWithFloat:100] forKey:@"inputRadius"] ;
+    return boxBlurFilter;
+}
+
+
+-(CIFilter *)brightContrastFilter {
+    CIFilter *brightnesContrastFilter = [CIFilter filterWithName:@"CIColorControls"];
+    [brightnesContrastFilter setDefaults];
+    [brightnesContrastFilter setValue: [NSNumber numberWithFloat:5.5f]
+                               forKey:@"inputBrightness"];
+    [brightnesContrastFilter setValue: [NSNumber numberWithFloat:0.5f]
+                               forKey:@"inputContrast"];
+    return brightnesContrastFilter;
     
 }
 
@@ -818,7 +934,7 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
             
         } else {
             picForQuestion = (SKSpriteNode *)[imagesForLetters objectAtIndex:questionCount];
-            picForQuestion.position = CGPointMake(500, 400);
+            picForQuestion.position = CGPointMake(450, 700);
             picForQuestion.alpha = 1.0;
             [self addChild:picForQuestion];
         }
@@ -936,10 +1052,26 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
         if(CGRectIntersectsRect(letterHit.frame, picForQuestion.frame)) {
 
             [picForQuestion removeAllActions];
+            [letterHit removeAllActions];
+            
             if ([letterHit.whichLetter isEqualToString:picForQuestion.name]) {
-                SKAction *scaleDown = [SKAction scaleTo:0.1 duration:0.1];
-                SKAction *fadeIt = [SKAction fadeAlphaBy:0.5 duration:0.2];
-                if ([letterHit.whichLetter isEqualToString:@"A"] ||
+                [correctMessage play];
+                [self createSpotlight:letterHit];
+                SKAction *moveIt = [SKAction moveTo:CGPointMake(200, 100) duration:0.3];
+                SKAction *delayIt = [SKAction waitForDuration:0.4];
+                SKAction *nextLetterBlock = [SKAction runBlock:^{
+                    
+                    questionCount++;
+                    [self nextQuestion];
+                    
+                }];
+                SKAction *sequenceNextLetter = [SKAction sequence:@[moveIt,delayIt,nextLetterBlock]];
+                [picForQuestion runAction:sequenceNextLetter];
+                
+                
+                //SKAction *scaleDown = [SKAction scaleTo:0.1 duration:0.1];
+                //SKAction *fadeIt = [SKAction fadeAlphaBy:0.5 duration:0.2];
+                /*if ([letterHit.whichLetter isEqualToString:@"A"] ||
                     [letterHit.whichLetter isEqualToString:@"B"] ||
                     [letterHit.whichLetter isEqualToString:@"C"]) {
                     
@@ -976,7 +1108,14 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
                     
                     SKAction *moveLetterUp = [SKAction moveTo:CGPointMake(letterHit.position.x, letterHit.position.y + 70) duration:0.1];
                     [letterHit runAction:moveLetterUp];
-                }
+                }*/
+                
+            } else {
+                [whoopsMessage play];
+                CGPoint amount = CGPointMake(RandomFloat() * 20.0f, RandomFloat() * 20.0f);
+                SKAction *wrongMatch = [SKAction skt_screenShakeWithNode:letterHit amount:amount oscillations:10 duration:2.0];
+                [letterHit runAction:wrongMatch];
+                
                 
             }
         }
@@ -996,7 +1135,7 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
     soundB = [[AVAudioPlayer alloc]initWithContentsOfURL:letterBurl error:nil];
     
     NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"voice_girl_tween_correct" withExtension:@"wav"];
-    avSound = [[AVAudioPlayer alloc]initWithContentsOfURL:soundURL error:nil];
+    correctMessage = [[AVAudioPlayer alloc]initWithContentsOfURL:soundURL error:nil];
     
     NSURL *incorrectSound  = [[NSBundle mainBundle]URLForResource:@"voice_girl_tween_oops_try_again" withExtension:@"wav"];
     whoopsMessage = [[AVAudioPlayer alloc]initWithContentsOfURL:incorrectSound error:nil];

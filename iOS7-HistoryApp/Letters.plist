@@ -120,7 +120,7 @@
 		<key>phrase</key>
 		<string>table</string>
 		<key>scale</key>
-		<string>0.5</string>
+		<string>0.2</string>
 	</dict>
 	<dict>
 		<key>letter</key>
@@ -130,7 +130,7 @@
 		<key>phrase</key>
 		<string>tire</string>
 		<key>scale</key>
-		<string>0.3</string>
+		<string>0.2</string>
 	</dict>
 	<dict>
 		<key>letter</key>
@@ -140,7 +140,7 @@
 		<key>phrase</key>
 		<string>diamond</string>
 		<key>scale</key>
-		<string>0.3</string>
+		<string>0.2</string>
 	</dict>
 	<dict>
 		<key>letter</key>
@@ -150,7 +150,7 @@
 		<key>phrase</key>
 		<string>duck</string>
 		<key>scale</key>
-		<string>0.3</string>
+		<string>0.2</string>
 	</dict>
 	<dict>
 		<key>letter</key>
@@ -160,7 +160,7 @@
 		<key>phrase</key>
 		<string>drum</string>
 		<key>scale</key>
-		<string>0.3</string>
+		<string>0.2</string>
 	</dict>
 	<dict>
 		<key>letter</key>
@@ -170,7 +170,7 @@
 		<key>phrase</key>
 		<string>elephant</string>
 		<key>scale</key>
-		<string>0.3</string>
+		<string>0.2</string>
 	</dict>
 	<dict>
 		<key>letter</key>
@@ -180,7 +180,7 @@
 		<key>phrase</key>
 		<string>flower</string>
 		<key>scale</key>
-		<string>0.3</string>
+		<string>0.2</string>
 	</dict>
 	<dict>
 		<key>letter</key>
@@ -190,7 +190,7 @@
 		<key>phrase</key>
 		<string>feet</string>
 		<key>scale</key>
-		<string>0.3</string>
+		<string>0.2</string>
 	</dict>
 	<dict>
 		<key>letter</key>

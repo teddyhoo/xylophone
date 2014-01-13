@@ -364,11 +364,9 @@ HistoryData *sharedData;
 -(void) nextQuestion {
     if(!alreadyAnswered) return;
     
-    //[self startTimer];
     timerOn = TRUE;
     
     questionCounter++;
-    NSLog(@"question counter: %i",questionCounter);
     alreadyAnswered = FALSE;
     [renderLabel removeFromParent];
     
@@ -458,9 +456,7 @@ HistoryData *sharedData;
         [self finishedWithSection];
         
     } else {
-        NSLog(@"start timer");
         [self startTimer];
-        NSLog(@"update scoreboard");
         [hudScore updateOtherInfo:[difficultyLevel objectAtIndex:questionCounter]
                      topicSection:[questionSection objectAtIndex:questionCounter]];
         
@@ -503,9 +499,7 @@ HistoryData *sharedData;
             
         }
         
-        NSLog(@"question count: %i",questionCounter);
         NSString *currentQuestion = [quizQuestions objectAtIndex:questionCounter];
-        NSLog(@"Q: %@",currentQuestion);
         
         
         UILabel *firstLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 400, 600)];
@@ -635,6 +629,8 @@ HistoryData *sharedData;
 -(void) finishedWithSection {
     
     [totalTimeDisplay removeFromParent];
+    [self.progressTimerNode2 removeFromParent];
+    
     CGFloat percentage = (float)numberCorrectAnswers / (float)questionCounter * 100.0f;
     int percentageConv = round(percentage);
     

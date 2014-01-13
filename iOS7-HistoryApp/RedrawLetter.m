@@ -74,15 +74,14 @@ SKShapeNode *highlightLetter;
             representLetter = @"P";
         } else if (convertKey == 14) {
             letterData = sharedData.letterN;
-            representLetter = @"A";
-            
+            representLetter = @"N";
         } else if (convertKey == 15) {
             letterData = sharedData.letterL;
-            representLetter = @"A";
+            representLetter = @"L";
             
         } else if (convertKey == 16) {
             letterData = sharedData.letterH;
-            representLetter = @"A";
+            representLetter = @"H";
             
         } else if (convertKey == 17) {
             letterData = sharedData.letterA;
