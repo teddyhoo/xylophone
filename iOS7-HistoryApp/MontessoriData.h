@@ -26,6 +26,8 @@
 @property (nonatomic,retain) NSMutableArray *letterDrawResults;
 // Image of a lower case letter
 
+@property (nonatomic,retain) NSMutableDictionary *letterInformation;
+
 @property (nonatomic,retain) LowerCaseLetter *letterA;
 @property (nonatomic,retain) LowerCaseLetter *letterB;
 @property (nonatomic,retain) LowerCaseLetter *letterC;

@@ -89,6 +89,10 @@ CGPoint _explanation_pos;
 CGPoint answerPosition;
 CGSize winSize;
 
+
+int xValTerm = 100;
+int yValTerm = 100;
+
 @synthesize selectedNode, background;
 
 - (id)initWithSize:(CGSize)size
@@ -259,9 +263,15 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
     theLabel.name = type;
     theLabel.fontSize = 16;
     theLabel.fontColor = [UIColor orangeColor];
-    theLabel.position = CGPointMake(winSize.width/2, winSize.height/1.5);
+    theLabel.position = CGPointMake(xValTerm, yValTerm);
     
     [self addChild:theLabel];
+    
+    xValTerm += 200;
+    if(xValTerm > 800) {
+        xValTerm = 100;
+        yValTerm += 50;
+    }
     
     [termsToMatch addObject:theLabel];
     [movableSprites addObject:termDestination];
@@ -304,30 +314,14 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
     
     if ([[currentProblem valueForKey:@"Type"]isEqualToString:@"chainEffect"]) {
         
+        xValTerm = 100;
+        yValTerm = 100;
+        
         for (NSString *key in currentProblem) {
             if ([key isEqualToString:@"Term1"]) {
                 
                 
                 [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
-                /*NSString *typeOfMatchTag = @"Term1";
-                SKSpriteNode *termDestination = [SKSpriteNode spriteNodeWithImageNamed:@"Chevron1.jpg"];
-                termDestination.position = CGPointMake(winSize.width/2, winSize.height/2);
-                termDestination.zPosition = 10;
-                //termDestination.position = CGPointMake(500, 500);
-                termDestination.name = typeOfMatchTag;
-                [self addChild:termDestination];
-                
-                SKLabelNode *theLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-                theLabel.text = [currentProblem valueForKey:key];
-                theLabel.name = typeOfMatchTag;
-                theLabel.fontSize = 16;
-                theLabel.fontColor = [UIColor orangeColor];
-                theLabel.position = CGPointMake(winSize.width/2, winSize.height/1.5);
-
-                [self addChild:theLabel];
-                
-                [termsToMatch addObject:theLabel];
-                [movableSprites addObject:termDestination];*/
                 
                 index++;
                 termsInSection++;
@@ -335,164 +329,40 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
             } else if ([key isEqualToString:@"Term2"]) {
                 
                 [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
-                /*NSString *typeOfMatchTag = @"Term2";
-                SKSpriteNode *termDestination = [SKSpriteNode spriteNodeWithImageNamed:@"Chevron1.jpg"];
-                termDestination.position = CGPointMake(winSize.width/4, winSize.height/2);
-                termDestination.zPosition = 1;
-                termDestination.name = typeOfMatchTag;
-                [self addChild:termDestination];
-                
-                SKLabelNode *theLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-                theLabel.text = [currentProblem valueForKey:key];
-                theLabel.name = typeOfMatchTag;
-                theLabel.fontSize = 16;
-                theLabel.fontColor = [UIColor orangeColor];
-                theLabel.position = CGPointMake(winSize.width/3, winSize.height/1.2);
-                
-                
-                [self addChild:theLabel];
-                
-                [termsToMatch addObject:theLabel];
-                [movableSprites addObject:termDestination];*/
                 
                 index++;
                 termsInSection++;
                 
             } else if ([key isEqualToString:@"Term3"]) {
                 [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
-                /*NSString *typeOfMatchTag = @"Term3";
-                SKSpriteNode *termDestination = [SKSpriteNode spriteNodeWithImageNamed:@"Chevron1.jpg"];
-                termDestination.position = CGPointMake(winSize.width/1.5, winSize.height/2);
-                termDestination.name = typeOfMatchTag;
-                termDestination.zPosition = 1;
-                [self addChild:termDestination];
-                
-                SKLabelNode *theLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-                theLabel.text = [currentProblem valueForKey:key];
-                theLabel.name = typeOfMatchTag;
-                theLabel.fontSize = 16;
-                theLabel.fontColor = [UIColor orangeColor];
-                theLabel.position = CGPointMake(winSize.width/7, winSize.height/1.2);
-                
-                
-                [self addChild:theLabel];
-                
-                [termsToMatch addObject:theLabel];
-                [movableSprites addObject:termDestination];*/
+ 
                 
                 index++;
                 termsInSection++;
                 
             } else if ([key isEqualToString:@"Term2A"]) {
-                NSString *typeOfMatchTag = @"Term2A";
-                SKSpriteNode *termDestination = [SKSpriteNode spriteNodeWithImageNamed:@"Chevron1.jpg"];
-                termDestination.position = CGPointMake(winSize.width/1.5, winSize.height/2);
-                termDestination.name = typeOfMatchTag;
-                termDestination.zPosition = 1;
-                [self addChild:termDestination];
-                
-                SKLabelNode *theLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-                theLabel.text = [currentProblem valueForKey:key];
-                theLabel.name = typeOfMatchTag;
-                theLabel.fontSize = 16;
-                theLabel.fontColor = [UIColor orangeColor];
-                theLabel.position = CGPointMake(winSize.width/7, winSize.height/1.2);
-                
-                
-                [self addChild:theLabel];
-                
-                [termsToMatch addObject:theLabel];
-                [movableSprites addObject:termDestination];
-                
+                [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
+  
                 index++;
                 termsInSection++;
             } else if ([key isEqualToString:@"Term2B"]) {
-                NSString *typeOfMatchTag = @"Term2B";
-                SKSpriteNode *termDestination = [SKSpriteNode spriteNodeWithImageNamed:@"Chevron1.jpg"];
-                termDestination.position = CGPointMake(winSize.width/1.5, winSize.height/2);
-                termDestination.name = typeOfMatchTag;
-                termDestination.zPosition = 1;
-                [self addChild:termDestination];
-                
-                SKLabelNode *theLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-                theLabel.text = [currentProblem valueForKey:key];
-                theLabel.name = typeOfMatchTag;
-                theLabel.fontSize = 16;
-                theLabel.fontColor = [UIColor orangeColor];
-                theLabel.position = CGPointMake(winSize.width/7, winSize.height/1.2);
-                
-                
-                [self addChild:theLabel];
-                
-                [termsToMatch addObject:theLabel];
-                [movableSprites addObject:termDestination];
+                [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
+
                 
                 index++;
                 termsInSection++;
-            }else if ([key isEqualToString:@"Term3A"]) {
-                NSString *typeOfMatchTag = @"Term3A";
-                SKSpriteNode *termDestination = [SKSpriteNode spriteNodeWithImageNamed:@"Chevron1.jpg"];
-                termDestination.position = CGPointMake(winSize.width/1.5, winSize.height/2);
-                termDestination.name = typeOfMatchTag;
-                termDestination.zPosition = 1;
-                [self addChild:termDestination];
-                
-                SKLabelNode *theLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-                theLabel.text = [currentProblem valueForKey:key];
-                theLabel.name = typeOfMatchTag;
-                theLabel.fontSize = 16;
-                theLabel.fontColor = [UIColor orangeColor];
-                theLabel.position = CGPointMake(winSize.width/7, winSize.height/1.2);
-                
-                
-                [self addChild:theLabel];
-                
-                [termsToMatch addObject:theLabel];
-                [movableSprites addObject:termDestination];
+            } else if ([key isEqualToString:@"Term3A"]) {
+                [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
                 
                 index++;
                 termsInSection++;
             }else if ([key isEqualToString:@"Term3B"]) {
-                NSString *typeOfMatchTag = @"Term3B";
-                SKSpriteNode *termDestination = [SKSpriteNode spriteNodeWithImageNamed:@"Chevron1.jpg"];
-                termDestination.position = CGPointMake(winSize.width/1.5, winSize.height/2);
-                termDestination.name = typeOfMatchTag;
-                [self addChild:termDestination];
-                
-                SKLabelNode *theLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-                theLabel.text = [currentProblem valueForKey:key];
-                theLabel.name = typeOfMatchTag;
-                theLabel.fontSize = 16;
-                theLabel.fontColor = [UIColor orangeColor];
-                theLabel.position = CGPointMake(winSize.width/7, winSize.height/1.2);
-                
-                
-                [self addChild:theLabel];
-                
-                [termsToMatch addObject:theLabel];
-                [movableSprites addObject:termDestination];
+                [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
                 
                 index++;
                 termsInSection++;
             }else if ([key isEqualToString:@"Term4"]) {
-                NSString *typeOfMatchTag = @"Term4";
-                SKSpriteNode *termDestination = [SKSpriteNode spriteNodeWithImageNamed:@"Chevron1.jpg"];
-                termDestination.position = CGPointMake(winSize.width/1.5, winSize.height/2);
-                termDestination.name = typeOfMatchTag;
-                [self addChild:termDestination];
-                
-                SKLabelNode *theLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-                theLabel.text = [currentProblem valueForKey:key];
-                theLabel.name = typeOfMatchTag;
-                theLabel.fontSize = 16;
-                theLabel.fontColor = [UIColor orangeColor];
-                theLabel.position = CGPointMake(winSize.width/7, winSize.height/1.2);
-                
-                
-                [self addChild:theLabel];
-                
-                [termsToMatch addObject:theLabel];
-                [movableSprites addObject:termDestination];
+                [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
                 
                 index++;
                 termsInSection++;

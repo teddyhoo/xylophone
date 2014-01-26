@@ -29,7 +29,7 @@ SKShapeNode *highlightLetter;
         self.userInteractionEnabled = YES;
         self.position = position;
         
-        _layerSize = CGSizeMake(400, 400);
+        _layerSize = CGSizeMake(1024, 768);
         
         int convertKey = [keyForLetter intValue];
         

@@ -184,10 +184,10 @@ HistoryData *sharedData;
         totalTimeDisplay.text = @"00";
         [self addChild:totalTimeDisplay];
 
-        button1 = [SKSpriteNode spriteNodeWithImageNamed:@"button-blue-2.png"];
-        button2 = [SKSpriteNode spriteNodeWithImageNamed:@"button-blue-2.png"];
-        button3 = [SKSpriteNode spriteNodeWithImageNamed:@"button-blue-2.png"];
-        button4 = [SKSpriteNode spriteNodeWithImageNamed:@"button-blue-2.png"];
+        button1 = [SKSpriteNode spriteNodeWithImageNamed:@"blue-button-2.png"];
+        button2 = [SKSpriteNode spriteNodeWithImageNamed:@"blue-button-2.png"];
+        button3 = [SKSpriteNode spriteNodeWithImageNamed:@"blue-button-2.png"];
+        button4 = [SKSpriteNode spriteNodeWithImageNamed:@"blue-button-2.png"];
         
         button1.position = CGPointMake(1400, 750);
         button2.position = CGPointMake(1400, 595);
@@ -408,7 +408,7 @@ HistoryData *sharedData;
         
         for (int i = 0; i < circlesPerRow; i++) {
             
-            SKSpriteNode *blankCircle = [SKSpriteNode spriteNodeWithImageNamed:@"circle.png"];
+            SKSpriteNode *blankCircle = [SKSpriteNode spriteNodeWithImageNamed:@"circle-2.png"];
             [self addChild:blankCircle];
             blankCircle.position = CGPointMake(100+offsetCircle, yValue);
             offsetCircle += 45;
@@ -425,7 +425,7 @@ HistoryData *sharedData;
     
     for (int p = 0; p < totalSlots; totalSlots--) {
         
-        SKSpriteNode *blankCircle = [SKSpriteNode spriteNodeWithImageNamed:@"circle.png"];
+        SKSpriteNode *blankCircle = [SKSpriteNode spriteNodeWithImageNamed:@"circle-2.png"];
         [self addChild:blankCircle];
         blankCircle.position = CGPointMake(100+offsetCircle, yValue);
         offsetCircle += 45;

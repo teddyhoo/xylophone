@@ -50,13 +50,13 @@ SKLabelNode *titleForRecording;
         recordingLabel.text = @"Recording...";
         recordingLabel.fontSize = 32;
         recordingLabel.fontColor = [UIColor redColor];
-        recordingLabel.position = CGPointMake(750, 620);
+        recordingLabel.position = CGPointMake(745, 615);
         recordingLabel.name = @"label";
         
         finishedRecordLabel.text = @"Stopped...";
         finishedRecordLabel.fontSize = 32;
         finishedRecordLabel.fontColor = [UIColor redColor];
-        finishedRecordLabel.position = CGPointMake(750, 620);
+        finishedRecordLabel.position = CGPointMake(745, 615);
         finishedRecordLabel.name = @"label";
         
         playbackLabel.text = @"Playing...";
@@ -67,32 +67,21 @@ SKLabelNode *titleForRecording;
         
         //[self addChild:titleForRecording];
         
-        
-        [labelArray addObject:titleForRecording];
-        [labelArray addObject:recordingLabel];
-        [labelArray addObject:finishedRecordLabel];
-        [labelArray addObject:playbackLabel];
-        
 
-        background = [SKSpriteNode spriteNodeWithImageNamed:@"label-title.png"];
+        background = [SKSpriteNode spriteNodeWithImageNamed:@"audioContainer.png"];
         background.position = CGPointMake(800, 600);
         [self addChild:background];
         
-        soundIcon = [SKSpriteNode spriteNodeWithImageNamed:@"audio-button.png"];
-        soundIcon.position = CGPointMake(700, 580);
-        soundIcon.scale = 0.8;
-
-        [self addChild:soundIcon];
-        
-        stopIcon = [SKSpriteNode spriteNodeWithImageNamed:@"pause-button.png"];
-        stopIcon.position = CGPointMake(800, 580);
-        stopIcon.scale = 0.8;
+        stopIcon = [SKSpriteNode spriteNodeWithImageNamed:@"playAudio.png"];
+        stopIcon.position = CGPointMake(700, 600);
+        stopIcon.scale = 0.55;
         [self addChild:stopIcon];
         
-        playIcon = [SKSpriteNode spriteNodeWithImageNamed:@"play-button.png"];
-        playIcon.position = CGPointMake(900, 580);
-        playIcon.scale = 0.8;
-        [self addChild:playIcon];
+        soundIcon = [SKSpriteNode spriteNodeWithImageNamed:@"speaker-button-200x206.png"];
+        soundIcon.position = CGPointMake(700, 600);
+        soundIcon.scale = 0.55;
+
+        [self addChild:soundIcon];
         
     }
     
@@ -274,20 +263,16 @@ SKLabelNode *titleForRecording;
     CGPoint touchLocation  = [touch locationInNode:self];
     
     if(CGRectContainsPoint(soundIcon.frame, touchLocation)) {
-        [self addChild:recordingLabel];
+        //[self addChild:recordingLabel];
         [self startAudioSession];
         [self record];
-        
-    } else if (CGRectContainsPoint(playIcon.frame, touchLocation)) {
+        [soundIcon removeFromParent];
 
-        [self addChild:playbackLabel];
+    } else if (CGRectContainsPoint(stopIcon.frame, touchLocation)) {
+        //[self stopRecording];
         [player prepareToPlay];
         [player play];
-
-        
-    } else if (CGRectContainsPoint(stopIcon.frame, touchLocation)) {
-        [self addChild:finishedRecordLabel];
-        [self stopRecording];
+        [self removeFromParent];
         
     }
 }

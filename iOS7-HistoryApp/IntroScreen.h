@@ -12,6 +12,7 @@
 #import "LetterTrace.h"
 #import "Credits.h"
 #import "TeacherParent.h"
+#import "Spelling.h"
 
 @interface IntroScreen : SKScene
 {
@@ -30,5 +31,7 @@
 @property (nonatomic,retain) LetterTrace *traceScene;
 @property (nonatomic,retain) Credits *credits;
 @property (nonatomic,retain) TeacherParent *teacherReview;
+@property (nonatomic,retain) Spelling *spellingScene;
+
 
 @end

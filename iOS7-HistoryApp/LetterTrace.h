@@ -8,15 +8,16 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "Options.h"
 @import CoreImage;
 
-@interface LetterTrace : SKScene <AVAudioPlayerDelegate,AVAudioRecorderDelegate> {
+@interface LetterTrace : SKScene <AVAudioPlayerDelegate,AVAudioRecorderDelegate,OptionsDelegate> {
 
     int drawStep;
     SKEffectNode *effectNode;
     CIFilter *filter;
     
-    
+    Options *optionsDisplay;
 }
 
 

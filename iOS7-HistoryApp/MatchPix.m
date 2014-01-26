@@ -28,6 +28,7 @@
 
 SKSpriteNode *picForQuestion;
 SKSpriteNode *firstImageAnimate;
+
 SKEmitterNode *openEffect;
 
 NSMutableArray *allPicsForQuestions;
@@ -80,7 +81,15 @@ LowerCaseLetter *letterX;
 LowerCaseLetter *letterY;
 LowerCaseLetter *letterZ;
 
+SKAction *circularFirst;
+SKAction *circularSecond;
+SKAction *circularThird;
+SKAction *circularFourth;
+SKAction *circularFifth;
+SKAction *circularSixth;
+SKAction *continueCircleFirst;
 UIPanGestureRecognizer *gestureRecognizer;
+SKNode *selectedNode;
 
 MontessoriData *sharedData;
 
@@ -89,31 +98,79 @@ SKSpriteNode *backToMainMenuArrow;
 BOOL objectSelected;
 int questionCount;
 int groupNumber;
+int xPosImage = 100;
+int yPosImage = 200;
 
 @synthesize selectedImage, gridPaper;
 
 -(id)initWithSize:(CGSize)size onWhichGroup:(NSNumber *)group {
-    
-    
+
     groupNumber = [group intValue];
     NSString *groupNumberKeyVal = [group stringValue];
     
     self = [super initWithSize:size];
     if (self) {
+
         questionCount = 0;
         objectSelected = FALSE;
         
         sharedData = [MontessoriData sharedManager];
 
-        gridPaper = [SKSpriteNode spriteNodeWithImageNamed:@"forest-bg.png"];
-        gridPaper.position = CGPointMake(size.width/2, size.height/2);
-        gridPaper.alpha = 0.0;
+        
+        SKSpriteNode *clouds1 = [SKSpriteNode spriteNodeWithImageNamed:@"frontImage"];
+        clouds1.position = CGPointMake(300,700);
+        [self addChild:clouds1];
+        
+        
+        gridPaper = [SKSpriteNode spriteNodeWithImageNamed:@"rug-3d.png"];
+        gridPaper.position = CGPointMake(size.width/2, 400);
+        gridPaper.alpha = 1.0;
+        gridPaper.scale = 0.1;
         [self addChild:gridPaper];
-        [gridPaper runAction:[SKAction fadeAlphaTo:1.0 duration:30.0]];
+        [gridPaper runAction:[SKAction scaleTo:1.0 duration:3.0]];
+        
         
         NSString *pListData = [[NSBundle mainBundle]pathForResource:@"Letters" ofType:@"plist"];
         allPicsForQuestions = [[NSMutableArray alloc]initWithContentsOfFile:pListData];
         imagesForLetters = [[NSMutableArray alloc]init];
+        
+        
+        CGMutablePathRef cgpath;
+        cgpath = CGPathCreateMutable();
+        CGPathMoveToPoint(cgpath, NULL, 20, 400);
+        CGPathAddCurveToPoint(cgpath, NULL, 300,800,500,700,780,400);
+        CGPathAddCurveToPoint(cgpath, NULL, 780,400,500,300,400,200);
+        CGPathAddCurveToPoint(cgpath, NULL, 400,200,300,200,20,400);
+        SKAction *circleLetterA = [SKAction followPath:cgpath asOffset:NO orientToPath:NO duration:10.0];
+        continueCircleFirst = [SKAction repeatActionForever:circleLetterA];
+        CGPathRelease(cgpath);
+        
+        SKAction *circleScaleAction = [SKAction scaleTo:0.3 duration:5.0];
+        SKAction *circleScaleAction2 = [SKAction scaleTo:2.7 duration:5.0];
+        SKAction *sequenceScaling = [SKAction sequence:@[circleScaleAction, circleScaleAction2]];
+        SKAction *scaleUpDownCircle = [SKAction repeatActionForever:sequenceScaling];
+        
+        
+        SKAction *circleScaleAction3 = [SKAction scaleTo:0.3 duration:5.0];
+        SKAction *circleScaleAction4 = [SKAction scaleTo:2.7 duration:5.0];
+        
+        SKAction *sequenceScaling2 = [SKAction sequence:@[circleScaleAction3, circleScaleAction4]];
+        SKAction *scaleUpDownCircle2 = [SKAction repeatActionForever:sequenceScaling2];
+        
+        
+        SKAction *circleScaleAction5 = [SKAction scaleTo:0.3 duration:5.0];
+        SKAction *circleScaleAction6 = [SKAction scaleTo:2.7 duration:5.0];
+        
+        SKAction *sequenceScaling5 = [SKAction sequence:@[circleScaleAction5, circleScaleAction6]];
+        SKAction *scaleUpDownCircle5 = [SKAction repeatActionForever:sequenceScaling5];
+        
+        
+        SKAction *circleScaleAction7 = [SKAction scaleTo:0.3 duration:1.0];
+        SKAction *circleScaleAction8 = [SKAction scaleTo:2.7 duration:5.0];
+        SKAction *circleScaleAction9 = [SKAction scaleTo:0.3 duration:4.0];
+        SKAction *sequenceScaling6 = [SKAction sequence:@[circleScaleAction7, circleScaleAction8,circleScaleAction9]];
+        SKAction *scaleUpDownCircle6 = [SKAction repeatActionForever:sequenceScaling6];
+
         
         for (NSDictionary *problem in allPicsForQuestions) {
             
@@ -159,12 +216,12 @@ int groupNumber;
             letterS = [self createLetterS];
             letterT = [self createLetterT];
             
-            letterA.scale = 0.0;
+            /*letterA.scale = 0.0;
             letterB.scale = 0.2;
             letterC.scale = 0.2;
             letterM.scale = 0.2;
             letterS.scale = 0.2;
-            letterT.scale = 0.2;
+            letterT.scale = 0.2;*/
             
             letterA.position = CGPointMake(1200, 1500);
             letterB.position = CGPointMake(1400, 1700);
@@ -198,12 +255,13 @@ int groupNumber;
             
             [self setupSounds];
             
-            SKAction *delayed = [SKAction waitForDuration:3.0];
-            SKAction *moveToPositionWithSound = [SKAction moveByX:-1100 y:-1000 duration:0.1];
+            SKAction *delayed = [SKAction waitForDuration:1.0];
             
+            
+
             SKAction *firstLetter = [SKAction runBlock:^{
-                float newX = 100;
-                float newY = 400;
+                float newX = 200;
+                float newY = 450;
                 
                 SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterA
                                                                  duration:1.2
@@ -215,38 +273,47 @@ int groupNumber;
                 [letterA runAction:actionWithEffectForLetter];
                 SKAction *scaleUpLetter = [SKAction scaleTo:0.6 duration:0.9];
                 SKAction *scaleDownLetter = [SKAction scaleTo:0.2 duration:0.3];
-                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter]];
+                
+                
+                
+                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter,delayed,continueCircleFirst]];
                 [letterA runAction:sequenceUpDown];
-                //[letterA playTheSound];
+                [letterA runAction:scaleUpDownCircle];
                 [letterA fireEmitter];
+
             }];
             
             SKAction *chainNextLetter = [SKAction runBlock:^{
-                float newX = 250;
+                float newX = 350;
                 float newY = 600;
                 
                 SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterB
-                                                                 duration:1.2
+                                                                 duration:1.4
                                                             startPosition:letterB.position
                                                               endPosition:CGPointMake(newX,newY)];
                 
                 moveLetter.timingFunction = SKTTimingFunctionBounceEaseOut;
                 SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
                 [letterB runAction:actionWithEffectForLetter];
-                SKAction *scaleUpLetter = [SKAction scaleTo:0.6 duration:0.9];
-                SKAction *scaleDownLetter = [SKAction scaleTo:0.2 duration:0.3];
-                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter]];
+                SKAction *scaleUpLetter = [SKAction scaleTo:2.0 duration:0.9];
+                SKAction *scaleDownLetter = [SKAction scaleTo:1.0 duration:0.3];
+                
+                SKAction *delayed1 = [SKAction waitForDuration:1.3];
+                
+                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter,delayed1,continueCircleFirst]];
                 [letterB runAction:sequenceUpDown];
+                [letterB runAction:scaleUpDownCircle2];
                 //[letterB playTheSound];
                 [letterB fireEmitter];
+
             }];
             
             SKAction *chainThirdLetter = [SKAction runBlock:^{
-                float newX = 400;
+                float newX = 500;
                 float newY = 600;
                 
                 SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterC
-                                                                 duration:1.2
+                                                                 duration:1.6
                                                             startPosition:letterC.position
                                                               endPosition:CGPointMake(newX,newY)];
                 
@@ -255,18 +322,22 @@ int groupNumber;
                 [letterC runAction:actionWithEffectForLetter];
                 //[letterC playTheSound];
                 [letterC fireEmitter];
-                SKAction *scaleUpLetter = [SKAction scaleTo:0.6 duration:0.9];
-                SKAction *scaleDownLetter = [SKAction scaleTo:0.2 duration:0.3];
-                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter]];
+                SKAction *scaleUpLetter = [SKAction scaleTo:2.0 duration:0.9];
+                SKAction *scaleDownLetter = [SKAction scaleTo:1.0 duration:0.3];
+                
+                SKAction *continueCircleFirst = [SKAction repeatActionForever:circleLetterA];
+                SKAction *delayed2 = [SKAction waitForDuration:1.9];
+                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter,delayed2,continueCircleFirst]];
                 [letterC runAction:sequenceUpDown];
+                [letterC runAction:scaleUpDownCircle5];
             }];
             
             SKAction *chainFourthLetter = [SKAction runBlock:^{
-                float newX = 500;
-                float newY = 300;
+                float newX = 600;
+                float newY = 450;
                 
                 SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterM
-                                                                 duration:1.2
+                                                                 duration:1.8
                                                             startPosition:letterM.position
                                                               endPosition:CGPointMake(newX,newY)];
                 
@@ -275,18 +346,22 @@ int groupNumber;
                 [letterM runAction:actionWithEffectForLetter];
                 //[letterM playTheSound];
                 [letterM fireEmitter];
-                SKAction *scaleUpLetter = [SKAction scaleTo:0.6 duration:0.9];
-                SKAction *scaleDownLetter = [SKAction scaleTo:0.2 duration:0.3];
-                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter]];
+                SKAction *scaleUpLetter = [SKAction scaleTo:2.0 duration:0.9];
+                SKAction *scaleDownLetter = [SKAction scaleTo:1.0 duration:0.3];
+             
+                SKAction *continueCircleFirst = [SKAction repeatActionForever:circleLetterA];
+                SKAction *delayed3 = [SKAction waitForDuration:2.4];
+                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter,delayed3,continueCircleFirst]];
                 [letterM runAction:sequenceUpDown];
+                [letterM runAction:scaleUpDownCircle];
             }];
             
             SKAction *chainFifthLetter = [SKAction runBlock:^{
-                float newX = 350;
+                float newX = 500;
                 float newY = 300;
                 
                 SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterS
-                                                                 duration:1.2
+                                                                 duration:2.0
                                                             startPosition:letterS.position
                                                               endPosition:CGPointMake(newX,newY)];
                 
@@ -294,17 +369,20 @@ int groupNumber;
                 SKAction *actionWithEffectForLetter = [SKAction actionWithEffect:moveLetter];
                 [letterS runAction:actionWithEffectForLetter];
                 [letterS fireEmitter];
-                SKAction *scaleUpLetter = [SKAction scaleTo:0.6 duration:0.9];
-                SKAction *scaleDownLetter = [SKAction scaleTo:0.2 duration:0.3];
-                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter]];
+                SKAction *scaleUpLetter = [SKAction scaleTo:2.0 duration:2.9];
+                SKAction *scaleDownLetter = [SKAction scaleTo:1.0 duration:0.3];
+                SKAction *continueCircleFirst = [SKAction repeatActionForever:circleLetterA];
+                SKAction *delayed4 = [SKAction waitForDuration:1.9];
+                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter,delayed4,continueCircleFirst]];
                 [letterS runAction:sequenceUpDown];
+                [letterS runAction:scaleUpDownCircle6];
                 //[letterS playTheSound];
                 
             }];
             
             SKAction *chainSixthLetter = [SKAction runBlock:^{
-                float newX = 200;
-                float newY = 200;
+                float newX = 350;
+                float newY = 300;
                 
                 SKTMoveEffect *moveLetter = [SKTMoveEffect effectWithNode:letterT
                                                                  duration:1.2
@@ -316,10 +394,13 @@ int groupNumber;
                 [letterT runAction:actionWithEffectForLetter];
                 //[letterM playTheSound];
                 [letterT fireEmitter];
-                SKAction *scaleUpLetter = [SKAction scaleTo:0.6 duration:0.9];
-                SKAction *scaleDownLetter = [SKAction scaleTo:0.2 duration:0.3];
-                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter]];
+                SKAction *scaleUpLetter = [SKAction scaleTo:2.0 duration:3.4];
+                SKAction *scaleDownLetter = [SKAction scaleTo:1.0 duration:0.3];
+                SKAction *continueCircleFirst = [SKAction repeatActionForever:circleLetterA];
+                SKAction *delayed5 = [SKAction waitForDuration:2.2];
+                SKAction *sequenceUpDown = [SKAction sequence:@[scaleUpLetter,scaleDownLetter,delayed5,continueCircleFirst]];
                 [letterT runAction:sequenceUpDown];
+                [letterT runAction:scaleUpDownCircle6];
                 //[letterT playTheSound];
                 
                 [self nextQuestion];
@@ -698,12 +779,13 @@ int groupNumber;
             
             [self runAction:sequenceMove];
             
+            
             [self setupSounds];
             
         } else {
 
         }
-        
+
         
         self.userInteractionEnabled = YES;
         self.backgroundColor = [SKColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
@@ -718,9 +800,9 @@ int groupNumber;
         [self addChild:testLabel];
         [testLabel runAction:[SKAction fadeAlphaTo:0.0 duration:10.0]];
 
-        self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+        
 
-        backToMainMenuArrow = [SKSpriteNode spriteNodeWithImageNamed:@"home-3.png"];
+        backToMainMenuArrow = [SKSpriteNode spriteNodeWithImageNamed:@"home-button-200x206.png"];
         backToMainMenuArrow.scale = 0.5;
         backToMainMenuArrow.position = CGPointMake(50, 50);
         [self addChild:backToMainMenuArrow];
@@ -731,10 +813,136 @@ int groupNumber;
     
 }
 
+
+-(void) checkCollisions {
+    
+    
+    for (LowerCaseLetter *letterHit in allLettersSprites) {
+        if(CGRectIntersectsRect(letterHit.frame, picForQuestion.frame)) {
+            
+            
+            //[letterHit removeAllActions];
+            letterA.speed = 0.0;
+            letterT.speed = 0.0;
+            letterS.speed = 0.0;
+            letterM.speed = 0.0;
+            letterB.speed = 0.0;
+            letterC.speed = 0.0;
+            
+            if ([letterHit.whichLetter isEqualToString:picForQuestion.name]) {
+                [selectedImage removeAllActions];
+                picForQuestion.scale = 0.2;
+                [correctMessage play];
+                [self createSpotlight:letterHit];
+                SKAction *moveIt = [SKAction moveTo:CGPointMake(xPosImage,yPosImage) duration:0.2];
+                SKAction *delayIt = [SKAction waitForDuration:0.4];
+                SKAction *nextLetterBlock = [SKAction runBlock:^{
+                    
+                    questionCount++;
+                    [self nextQuestion];
+                    letterA.speed = 1.0;
+                    letterT.speed = 1.0;
+                    letterS.speed = 1.0;
+                    letterM.speed = 1.0;
+                    letterB.speed = 1.0;
+                    letterC.speed = 1.0;
+                    
+                    
+                }];
+                xPosImage += 50;
+                if (xPosImage > 400) {
+                    xPosImage = 100;
+                    yPosImage += 50;
+                }
+                SKAction *sequenceNextLetter = [SKAction sequence:@[moveIt,delayIt,nextLetterBlock]];
+                [picForQuestion runAction:sequenceNextLetter];
+
+                
+            } else {
+                
+                [whoopsMessage play];
+                CGPoint amount = CGPointMake(RandomFloat() * 20.0f, RandomFloat() * 20.0f);
+                SKAction *wrongMatch = [SKAction skt_screenShakeWithNode:letterHit amount:amount oscillations:10 duration:2.0];
+                [letterHit runAction:wrongMatch];
+                
+                [picForQuestion removeAllActions];
+                [picForQuestion runAction:[SKAction moveTo:CGPointMake(400, 900) duration:0.2]];
+                
+                
+                
+                
+            }
+        }
+        
+    }
+}
+
+
+-(void)nextQuestion {
+    if (questionCount < [imagesForLetters count]) {
+        
+        if([[imagesForLetters objectAtIndex:questionCount]
+            isKindOfClass:[NSMutableArray class]]) {
+            
+            NSMutableArray *animationFrames = [imagesForLetters objectAtIndex:questionCount];
+            SKTexture *temp = animationFrames[0];
+            firstImageAnimate = [SKSpriteNode spriteNodeWithTexture:temp];
+            firstImageAnimate.name = @"A";
+            firstImageAnimate.position = CGPointMake(500, 600);
+            [self addChild:firstImageAnimate];
+            [self setInMotion];
+            
+            
+        } else {
+            picForQuestion = (SKSpriteNode *)[imagesForLetters objectAtIndex:questionCount];
+            picForQuestion.position = CGPointMake(400, 900);
+            picForQuestion.alpha = 1.0;
+            [self addChild:picForQuestion];
+            NSLog(@"adding image with name: %@",picForQuestion.name);
+            
+        }
+        
+        
+        self.userInteractionEnabled = YES;
+    } else {
+        groupNumber++;
+        
+        //[self removeAllChildren];
+        [[self view] removeGestureRecognizer:gestureRecognizer];
+        for (LowerCaseLetter* letter in allLettersSprites ) {
+            [letter removeAllActions];
+            SKAction *moveOffScreen = [SKAction moveTo:CGPointMake(letter.position.x, letter.position.y+1000) duration:2.0];
+            SKAction *scaleLetter = [SKAction scaleTo:4.0 duration:2.0];
+            NSString *openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"SparkPart2" ofType:@"sks"];
+            SKEmitterNode *openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
+            [self addChild:openEffect];
+            openEffect.position = letter.position;
+            [letter runAction:moveOffScreen];
+            [letter runAction:scaleLetter];
+            
+        }
+        
+        SKAction *transtionBlock = [SKAction runBlock:^{
+            [self removeAllChildren];
+            LetterTrace *traceScene = [[LetterTrace alloc]initWithSize:CGSizeMake(1024,768) andGroup:[NSNumber numberWithInt:groupNumber ]];
+            SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionUp duration:0.3];
+            SKView *spriteView = (SKView*)self.view;
+            [spriteView presentScene:traceScene transition:reveal];
+        }];
+        
+        SKAction *delayTransition = [SKAction waitForDuration:2.5];
+        SKAction *sequenceTransition = [SKAction sequence:@[delayTransition,transtionBlock]];
+        [self runAction:sequenceTransition];
+        
+        
+    }
+}
+
+
 -(void)createSpotlight:(LowerCaseLetter *)correctLetter {
     
      SKEffectNode* spotlightEffect =[[SKEffectNode alloc]init];
-     SKSpriteNode* light = [SKSpriteNode spriteNodeWithImageNamed:@"Light-Effect-320x244.jpg"];
+     SKSpriteNode* light = [SKSpriteNode spriteNodeWithImageNamed:@"light_2.png"];
      [spotlightEffect addChild:light];
      
      spotlightEffect.filter=[self blurFilter];
@@ -763,9 +971,9 @@ int groupNumber;
 -(CIFilter *)brightContrastFilter {
     CIFilter *brightnesContrastFilter = [CIFilter filterWithName:@"CIColorControls"];
     [brightnesContrastFilter setDefaults];
-    [brightnesContrastFilter setValue: [NSNumber numberWithFloat:5.5f]
+    [brightnesContrastFilter setValue: [NSNumber numberWithFloat:2.5f]
                                forKey:@"inputBrightness"];
-    [brightnesContrastFilter setValue: [NSNumber numberWithFloat:0.5f]
+    [brightnesContrastFilter setValue: [NSNumber numberWithFloat:1.5f]
                                forKey:@"inputContrast"];
     return brightnesContrastFilter;
     
@@ -793,49 +1001,51 @@ int groupNumber;
         [recognizer setTranslation:CGPointZero inView:recognizer.view];
         
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
-        [self checkCollisions];
+        
+        if (![selectedImage name]) {
+            float scrollDuration = 0.2;
+            CGPoint velocity = [recognizer velocityInView:recognizer.view];
+            CGPoint pos = [selectedImage position];
+            CGPoint p = multTheVeloc(velocity, scrollDuration);
+        
+            CGPoint newPos = CGPointMake(pos.x + p.x, pos.y + p.y);
+            newPos = [self boundLayerPos:newPos];
+            [selectedImage removeAllActions];
+        
+            SKAction *moveTo = [SKAction moveTo:newPos duration:scrollDuration];
+            [moveTo setTimingMode:SKActionTimingEaseOut];
+            [selectedImage runAction:moveTo];
+    
+        } else {
+            [self checkCollisions];
+        }
 
     }
 }
 
-
--(void)moveIt:(UIPanGestureRecognizer *)recognizer {
-    float scrollDuration = 0.2;
-    CGPoint velocity = [recognizer velocityInView:recognizer.view];
-    CGPoint pos = [selectedImage position];
-    CGPoint p = multPix(velocity, scrollDuration);
-    
-    CGPoint newPos = CGPointMake(pos.x + p.x, pos.y + p.y);
-    //newPos = [self boundLayerPos:newPos];
-    [selectedImage removeAllActions];
-    
-    SKAction *moveTo = [SKAction moveTo:newPos duration:scrollDuration];
-    [moveTo setTimingMode:SKActionTimingEaseOut];
-    [selectedImage runAction:moveTo];
+CGPoint multTheVeloc(const CGPoint v, const CGFloat s) {
+	return CGPointMake(v.x*s, v.y*s);
 }
+
 
 CGPoint multPix(const CGPoint v, const CGFloat s) {
 	return CGPointMake(v.x*s, v.y*s);
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    CGPoint positionInScene = [touch locationInNode:self];
-    [self selectNodeForTouch:positionInScene];
-}
 
-
-/*- (CGPoint)boundLayerPos:(CGPoint)newPos {
+- (CGPoint)boundLayerPos:(CGPoint)newPos {
     CGSize winSize = self.size;
     CGPoint retval = newPos;
     retval.x = MIN(retval.x, 0);
     retval.x = MAX(retval.x, -[gridPaper size].width+ winSize.width);
     retval.y = [self position].y;
     return retval;
-}*/
+}
 
 - (void)panForTranslation:(CGPoint)translation {
+    
     CGPoint position = [selectedImage position];
+    
     if([[selectedImage name] isEqualToString:@"A"] ||
        [[selectedImage name] isEqualToString:@"B"] ||
        [[selectedImage name] isEqualToString:@"C"] ||
@@ -861,11 +1071,16 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
        [[selectedImage name] isEqualToString:@"W"] ||
        [[selectedImage name] isEqualToString:@"X"] ||
        [[selectedImage name] isEqualToString:@"Y"] ||
-       [[selectedImage name] isEqualToString:@"Z"]) {
+       [[selectedImage name] isEqualToString:@"Z"])
+    
+    {
         
         [selectedImage setPosition:CGPointMake(position.x + translation.x, position.y + translation.y)];
     }
-    else {
+    
+    else
+    
+    {
         CGPoint newPos = CGPointMake(position.x + translation.x, position.y + translation.y);
     }
 }
@@ -874,131 +1089,20 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
     
     SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
     
-	if(![selectedImage isEqual:touchedNode]) {
-		[selectedImage removeAllActions];
-		[selectedImage runAction:[SKAction rotateToAngle:0.0f duration:0.1]];
-        
-		selectedImage = touchedNode;
-        
-		if([[touchedNode name] isEqualToString:@"A"] ||
-           [[touchedNode name] isEqualToString:@"B"] ||
-           [[touchedNode name] isEqualToString:@"C"] ||
-           [[touchedNode name] isEqualToString:@"D"] ||
-           [[touchedNode name] isEqualToString:@"E"] ||
-           [[touchedNode name] isEqualToString:@"F"] ||
-           [[touchedNode name] isEqualToString:@"G"] ||
-           [[touchedNode name] isEqualToString:@"H"] ||
-           [[touchedNode name] isEqualToString:@"I"] ||
-           [[touchedNode name] isEqualToString:@"J"] ||
-           [[touchedNode name] isEqualToString:@"K"] ||
-           [[touchedNode name] isEqualToString:@"L"] ||
-           [[touchedNode name] isEqualToString:@"M"] ||
-           [[touchedNode name] isEqualToString:@"N"] ||
-           [[touchedNode name] isEqualToString:@"O"] ||
-           [[touchedNode name] isEqualToString:@"P"] ||
-           [[touchedNode name] isEqualToString:@"Q"] ||
-           [[touchedNode name] isEqualToString:@"R"] ||
-           [[touchedNode name] isEqualToString:@"S"] ||
-           [[touchedNode name] isEqualToString:@"T"] ||
-           [[touchedNode name] isEqualToString:@"U"] ||
-           [[touchedNode name] isEqualToString:@"V"] ||
-           [[touchedNode name] isEqualToString:@"W"] ||
-           [[touchedNode name] isEqualToString:@"X"] ||
-           [[touchedNode name] isEqualToString:@"Y"] ||
-           [[touchedNode name] isEqualToString:@"Z"])
-        
-        {
-			SKAction *sequence = [SKAction sequence:@[[SKAction rotateByAngle:20.2 duration:1.6],
-													  [SKAction rotateByAngle:20.5 duration:1.6],
-													  [SKAction rotateByAngle:20.2 duration:1.6]]];
-			[selectedImage runAction:[SKAction repeatActionForever:sequence]];
-		}
-	}
+    NSLog(@"name of node: %@",touchedNode.name);
     
-}
-
--(void)nextQuestion {
-    if (questionCount < [imagesForLetters count]) {
-
-        if([[imagesForLetters objectAtIndex:questionCount]
-            isKindOfClass:[NSMutableArray class]]) {
-            
-            NSMutableArray *animationFrames = [imagesForLetters objectAtIndex:questionCount];
-            SKTexture *temp = animationFrames[0];
-            firstImageAnimate = [SKSpriteNode spriteNodeWithTexture:temp];
-            firstImageAnimate.name = @"A";
-            firstImageAnimate.position = CGPointMake(500, 400);
-            [self addChild:firstImageAnimate];
-            [self setInMotion];
-            
-            
-        } else {
-            picForQuestion = (SKSpriteNode *)[imagesForLetters objectAtIndex:questionCount];
-            picForQuestion.position = CGPointMake(450, 700);
-            picForQuestion.alpha = 1.0;
-            [self addChild:picForQuestion];
-        }
+    if (CGRectContainsPoint(picForQuestion.frame,touchLocation)) {
         
-
-        self.userInteractionEnabled = YES;
-    } else {
-        groupNumber++;
+        selectedImage = picForQuestion;
+        SKAction *sequence = [SKAction sequence:@[[SKAction rotateByAngle:20.2 duration:0.1],
+                                                  [SKAction rotateByAngle:20.5 duration:0.1],
+                                                  [SKAction rotateByAngle:20.2 duration:0.1]]];
+        [selectedImage runAction:[SKAction repeatActionForever:sequence]];
         
-        [self removeAllChildren];
-        [[self view] removeGestureRecognizer:gestureRecognizer];
-        LetterTrace *traceScene = [[LetterTrace alloc]initWithSize:CGSizeMake(1024,768) andGroup:[NSNumber numberWithInt:groupNumber ]];
-        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionLeft duration:1.0];
-        SKView *spriteView = (SKView*)self.view;
-        [spriteView presentScene:traceScene transition:reveal];
         
     }
-}
-
--(void)selectedImageForTouch:(CGPoint)touchLocation {
-    
-    SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
-    if(![selectedImage isEqual:touchedNode]) {
-        [selectedImage removeAllActions];
-        [selectedImage runAction:[SKAction rotateToAngle:0.0f duration:0.1]];
-        selectedImage = touchedNode;
-        if([[touchedNode name] isEqualToString:@"A"] ||
-           [[touchedNode name] isEqualToString:@"B"] ||
-           [[touchedNode name] isEqualToString:@"C"] ||
-           [[touchedNode name] isEqualToString:@"D"] ||
-           [[touchedNode name] isEqualToString:@"F"] ||
-           [[touchedNode name] isEqualToString:@"G"] ||
-           [[touchedNode name] isEqualToString:@"H"] ||
-           [[touchedNode name] isEqualToString:@"I"] ||
-           [[touchedNode name] isEqualToString:@"J"] ||
-           [[touchedNode name] isEqualToString:@"K"] ||
-           [[touchedNode name] isEqualToString:@"L"] ||
-           [[touchedNode name] isEqualToString:@"M"] ||
-           [[touchedNode name] isEqualToString:@"N"] ||
-           [[touchedNode name] isEqualToString:@"O"] ||
-           [[touchedNode name] isEqualToString:@"P"] ||
-           [[touchedNode name] isEqualToString:@"Q"] ||
-           [[touchedNode name] isEqualToString:@"R"] ||
-           [[touchedNode name] isEqualToString:@"S"] ||
-           [[touchedNode name] isEqualToString:@"T"] ||
-           [[touchedNode name] isEqualToString:@"U"] ||
-           [[touchedNode name] isEqualToString:@"V"] ||
-           [[touchedNode name] isEqualToString:@"W"] ||
-           [[touchedNode name] isEqualToString:@"X"] ||
-           [[touchedNode name] isEqualToString:@"Y"] ||
-           [[touchedNode name] isEqualToString:@"Z"])
-        {
-
-            SKAction *sequence = [SKAction sequence:@[[SKAction rotateByAngle:18.5  duration:0.1],
-                                                      [SKAction rotateByAngle:0.0 duration:0.1],
-                                                      [SKAction rotateByAngle:18.7 duration:0]]];
-            
-            [touchedNode runAction:sequence];
-        }
-    }
-    
     
 }
-
 
 -(void)setUpAnimationFrames {
     
@@ -1038,93 +1142,6 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
     
 }
 
--(void)update:(CFTimeInterval)currentTime {
-    
-    
-
-}
-
-
--(void) checkCollisions {
-    
-    
-    for (LowerCaseLetter *letterHit in allLettersSprites) {
-        if(CGRectIntersectsRect(letterHit.frame, picForQuestion.frame)) {
-
-            [picForQuestion removeAllActions];
-            [letterHit removeAllActions];
-            
-            if ([letterHit.whichLetter isEqualToString:picForQuestion.name]) {
-                [correctMessage play];
-                [self createSpotlight:letterHit];
-                SKAction *moveIt = [SKAction moveTo:CGPointMake(200, 100) duration:0.3];
-                SKAction *delayIt = [SKAction waitForDuration:0.4];
-                SKAction *nextLetterBlock = [SKAction runBlock:^{
-                    
-                    questionCount++;
-                    [self nextQuestion];
-                    
-                }];
-                SKAction *sequenceNextLetter = [SKAction sequence:@[moveIt,delayIt,nextLetterBlock]];
-                [picForQuestion runAction:sequenceNextLetter];
-                
-                
-                //SKAction *scaleDown = [SKAction scaleTo:0.1 duration:0.1];
-                //SKAction *fadeIt = [SKAction fadeAlphaBy:0.5 duration:0.2];
-                /*if ([letterHit.whichLetter isEqualToString:@"A"] ||
-                    [letterHit.whichLetter isEqualToString:@"B"] ||
-                    [letterHit.whichLetter isEqualToString:@"C"]) {
-                    
-                    SKAction *moveToLetter = [SKAction moveTo:CGPointMake(letterHit.position.x,letterHit.position.y+150) duration:0.2];
-                    SKAction *delayIt = [SKAction waitForDuration:0.2];
-                    SKAction *nextLetterBlock = [SKAction runBlock:^{
-                        
-                        questionCount++;
-                        [self nextQuestion];
-                        
-                    }];
-                    SKAction *sequenceNextLetter = [SKAction sequence:@[scaleDown,fadeIt,moveToLetter,delayIt,nextLetterBlock]];
-                    
-                    picForQuestion.color = [UIColor colorWithHue:3.5 saturation:2.2 brightness:1.0 alpha:1.0];
-                    picForQuestion.colorBlendFactor = 1.0;
-                    [picForQuestion runAction:sequenceNextLetter];
-                    
-                    SKAction *moveLetterDown = [SKAction moveTo:CGPointMake(letterHit.position.x, letterHit.position.y - 70) duration:0.1];
-                    [letterHit runAction:moveLetterDown];
-                } else {
-                    SKAction *moveToLetter = [SKAction moveTo:CGPointMake(letterHit.position.x,letterHit.position.y-50) duration:0.2];
-                    SKAction *delayIt = [SKAction waitForDuration:0.2];
-                    SKAction *nextLetterBlock = [SKAction runBlock:^{
-                        
-                        questionCount++;
-                        [self nextQuestion];
-                        
-                    }];
-                    SKAction *sequenceNextLetter = [SKAction sequence:@[scaleDown,fadeIt,moveToLetter,delayIt,nextLetterBlock]];
-                    
-                    picForQuestion.color = [UIColor colorWithHue:3.5 saturation:2.2 brightness:1.0 alpha:1.0];
-                    picForQuestion.colorBlendFactor = 1.0;
-                    [picForQuestion runAction:sequenceNextLetter];
-                    
-                    SKAction *moveLetterUp = [SKAction moveTo:CGPointMake(letterHit.position.x, letterHit.position.y + 70) duration:0.1];
-                    [letterHit runAction:moveLetterUp];
-                }*/
-                
-            } else {
-                [whoopsMessage play];
-                CGPoint amount = CGPointMake(RandomFloat() * 20.0f, RandomFloat() * 20.0f);
-                SKAction *wrongMatch = [SKAction skt_screenShakeWithNode:letterHit amount:amount oscillations:10 duration:2.0];
-                [letterHit runAction:wrongMatch];
-                
-                
-            }
-        }
-        
-    }
-}
-
-
-
 -(void) setupSounds {
     
     
@@ -1156,7 +1173,7 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
 
 -(LowerCaseLetter *) createLetterA {
     
-    letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"a_blue_600x600.png"];
+    letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-A"];
     NSURL *letterAurl = [[NSBundle mainBundle]URLForResource:@"a" withExtension:@"aiff"];
     letterA.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterAurl error:nil];
     letterA.name = @"A";
@@ -1166,7 +1183,7 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
 
 -(LowerCaseLetter *) createLetterB {
     
-    letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"b_1.png"];
+    letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-B"];
     NSURL *letterBurl = [[NSBundle mainBundle]URLForResource:@"b" withExtension:@"aiff"];
     letterB.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterBurl error:nil];
     letterB.name = @"B";
@@ -1177,7 +1194,7 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
 
 -(LowerCaseLetter *) createLetterC {
     
-    letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"c_600x600.png"];
+    letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-C"];
     NSURL *letterCurl = [[NSBundle mainBundle]URLForResource:@"c" withExtension:@"aiff"];
     letterC.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterCurl error:nil];
     letterC.name = @"C";
@@ -1277,7 +1294,7 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
 }
 
 -(LowerCaseLetter *)createLetterM {
-    letterM = [LowerCaseLetter spriteNodeWithImageNamed:@"m_600x850.png"];
+    letterM = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-M"];
     NSURL *letterMurl = [[NSBundle mainBundle]URLForResource:@"m" withExtension:@"aiff"];
     letterM.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterMurl error:nil];
     letterM.name = @"M";
@@ -1338,7 +1355,7 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
 }
 
 -(LowerCaseLetter *)createLetterS {
-    letterS = [LowerCaseLetter spriteNodeWithImageNamed:@"s_600x600.png"];
+    letterS = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-S"];
     NSURL *letterSurl = [[NSBundle mainBundle]URLForResource:@"s" withExtension:@"aiff"];
     letterS.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterSurl error:nil];
     letterS.name = @"S";
@@ -1347,7 +1364,7 @@ CGPoint multPix(const CGPoint v, const CGFloat s) {
 }
 
 -(LowerCaseLetter *)createLetterT {
-    letterT = [LowerCaseLetter spriteNodeWithImageNamed:@"t_850x600.png"];
+    letterT = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-T"];
     NSURL *letterTurl = [[NSBundle mainBundle]URLForResource:@"t2" withExtension:@"aiff"];
     letterT.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterTurl error:nil];
     letterT.name = @"T";

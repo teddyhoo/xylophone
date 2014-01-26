@@ -90,6 +90,9 @@ CGPoint startPoint;
     
     [letterDrawResults addObject:studentData];
     
+    NSLog(@"storing trace: %i", [letterDrawResults count]);
+    
+    
 }
 
 

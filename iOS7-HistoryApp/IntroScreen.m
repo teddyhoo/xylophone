@@ -14,6 +14,7 @@
 #import "LetterTrace.h"
 #import "Credits.h"
 #import "TeacherParent.h"
+#import "Spelling.h"
 
 @implementation IntroScreen
 
@@ -24,6 +25,7 @@
 @synthesize traceScene;
 @synthesize credits;
 @synthesize teacherReview;
+@synthesize spellingScene;
 
 AVAudioPlayer *avSound;
 SKLabelNode *optionsMenu;
@@ -32,24 +34,65 @@ SKLabelNode *parentTeacher;
 SKLabelNode *handwritingScene;
 SKLabelNode *tracingScene;
 SKLabelNode *creditsScene;
+SKLabelNode *spellingLabel;
+
+SKLabelNode *optionsMenu;
+SKLabelNode *moveableAlpha;
+
+NSMutableArray *texturesForAnim;
 
 
 CGFloat width;
 CGFloat height;
 BOOL isPhone = TRUE;
-CGFloat fontSizeForPlatform = 20;
+CGFloat fontSizeForPlatform = 24;
 
 
 - (id)initWithSize:(CGSize)size
 {
     self = [super initWithSize:size];
     if (self) {
+        self.backgroundColor = [SKColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
         
-        self.backgroundColor = [SKColor colorWithRed:0.8 green:1.0 blue:1.0 alpha:1.0];
         
+
         width = self.size.width;
         height = self.size.height;
         
+        SKSpriteNode *lightEffectBg = [SKSpriteNode spriteNodeWithImageNamed:@"intro-light-effect"];
+        lightEffectBg.position = CGPointMake(width/2, height/2);
+        lightEffectBg.alpha = 1.0;
+        [self addChild:lightEffectBg];
+        [lightEffectBg runAction:[SKAction fadeAlphaTo:1.0 duration:8.0]];
+        
+        SKSpriteNode *handEffect = [SKSpriteNode spriteNodeWithImageNamed:@"handprint-lightblue"];
+        handEffect.position = CGPointMake(width / 2, height/2.4);
+        handEffect.alpha = 0.1;
+        [self addChild:handEffect];
+
+        SKSpriteNode *lightEffectBg3 = [SKSpriteNode spriteNodeWithImageNamed:@"light_1"];
+        lightEffectBg3.position = CGPointMake(200, height/2);
+        lightEffectBg3.alpha = 0.0;
+        //[self addChild:lightEffectBg3];
+        //[lightEffectBg3 runAction:[SKAction fadeAlphaTo:1.0 duration:6.0]];
+        
+        SKSpriteNode *lightEffectBg4 = [SKSpriteNode spriteNodeWithImageNamed:@"light-effect-2"];
+        lightEffectBg4.position = CGPointMake(800, height/2);
+        lightEffectBg4.alpha = 0.0;
+        //[self addChild:lightEffectBg4];
+        //[lightEffectBg4 runAction:[SKAction fadeAlphaTo:1.0 duration:2.0]];
+        
+        SKSpriteNode *lightEffectBg2 = [SKSpriteNode spriteNodeWithImageNamed:@"spacial_light"];
+        lightEffectBg2.position = CGPointMake(width/2, height/2);
+        lightEffectBg2.alpha = 1.0;
+        //[self addChild:lightEffectBg2];
+        //[lightEffectBg2 runAction:[SKAction fadeAlphaTo:0.4 duration:10.0]];
+        
+        
+        NSString *openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"Intro-effect" ofType:@"sks"];
+        SKEmitterNode *openEffect = [NSKeyedUnarchiver unarchiveObjectWithFile:openEmitterEffect];
+        openEffect.position = CGPointMake(500, 500);
+        //[self addChild:openEffect];
         
         NSMutableArray *header1 = [[NSMutableArray alloc]initWithObjects:
                                   @"S",
@@ -74,9 +117,9 @@ CGFloat fontSizeForPlatform = 20;
         
         for (NSString *letter in header1) {
 
-            SKLabelNode *letterSprite = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+            SKLabelNode *letterSprite = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
             
-            letterSprite.fontSize = 26;
+            letterSprite.fontSize = 42;
             letterSprite.fontColor = [UIColor purpleColor];
 
             letterSprite.text = letter;
@@ -85,7 +128,7 @@ CGFloat fontSizeForPlatform = 20;
             } 
             letterSprite.position = CGPointMake(startX + onLetter*15, height/1.2);
 
-            SKAction *moveAction = [SKAction moveByX:-2100 y:0 duration:1.0];
+            SKAction *moveAction = [SKAction moveByX:-2200 y:0 duration:2.0];
             [letterSprite runAction:moveAction];
             [self addChild:letterSprite];
             
@@ -101,18 +144,18 @@ CGFloat fontSizeForPlatform = 20;
         
         for (NSString *letter in header2) {
             
-            SKLabelNode *letterSprite = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+            SKLabelNode *letterSprite = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
             
-            letterSprite.fontSize = 26;
+            letterSprite.fontSize = 42;
             letterSprite.fontColor = [UIColor purpleColor];
             
             letterSprite.text = letter;
             if (onLetter < 5) {
                 startX += 30;
             }
-            letterSprite.position = CGPointMake(startX + onLetter*25, height/1.3);
+            letterSprite.position = CGPointMake(startX + onLetter*30, height/1.2);
             
-            SKAction *moveAction = [SKAction moveByX:-2200 y:0 duration:1.0];
+            SKAction *moveAction = [SKAction moveByX:-2200 y:0 duration:2.0];
             [letterSprite runAction:moveAction];
             [self addChild:letterSprite];
             
@@ -125,21 +168,41 @@ CGFloat fontSizeForPlatform = 20;
             onLetter++;
         }
         
-        SKLabelNode *presents = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        SKSpriteNode *backgroundHandWheel = [SKSpriteNode spriteNodeWithImageNamed:@"all-hands"];
+        backgroundHandWheel.position = CGPointMake(width / 2, height / 2);
+        [self addChild:backgroundHandWheel];
+        
+        SKAction *rotateHand = [SKAction rotateByAngle:20.0 duration:15];
+        SKAction *shrinkIt = [SKAction scaleTo:0.0 duration:15];
+        SKAction *fadeIt = [SKAction fadeAlphaTo:0.0 duration:15];
+        
+        [backgroundHandWheel runAction:rotateHand];
+        [backgroundHandWheel runAction:shrinkIt];
+        [backgroundHandWheel runAction:fadeIt];
+        
+        SKLabelNode *presents = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         presents.fontSize = 16;
         presents.fontColor = [UIColor purpleColor];
-        presents.position = CGPointMake(width / 2, height/1.5);
+        presents.position = CGPointMake(width / 2, height/1.4);
         presents.text = @"P R E S E N T S . . . ";
         [self addChild:presents];
         
-        
-        SKLabelNode *presents2 = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-        presents2.fontSize = 24;
+       
+        SKLabelNode *presents2 = [SKLabelNode labelNodeWithFontNamed:@"Trickster"];
+        presents2.fontSize = 42;
         presents2.fontColor = [UIColor purpleColor];
-        presents2.position = CGPointMake(width / 2, height/1.8);
-        presents2.text = @"LEARNING MONTESSORI KID STUFF ";
+        presents2.position = CGPointMake(width / 2, height/1.6);
+        presents2.text = @"W R I T I N G  &";
+        presents2.alpha = 0.0;
         [self addChild:presents2];
 
+        SKLabelNode *presents3 = [SKLabelNode labelNodeWithFontNamed:@"Trickster"];
+        presents3.fontSize = 42;
+        presents3.fontColor = [UIColor purpleColor];
+        presents3.position = CGPointMake(width / 2, height/1.75);
+        presents3.text = @"S O U N D S";
+        presents3.alpha = 0.0;
+        [self addChild:presents3];
         
         SKAction *moveTitle = [SKAction moveTo:CGPointMake(width / 1.5, height / 2.2) duration:1.0];
         [introductionLabel runAction:moveTitle];
@@ -161,54 +224,113 @@ CGFloat fontSizeForPlatform = 20;
         [worm runAction:repeatCrawlAnim];
         [worm runAction:moveCrawl];
         
-        [self addChild:worm];
+        //[self addChild:worm];
         
         /*NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"16_30" withExtension:@"mp3"];
         
         avSound = [[AVAudioPlayer alloc]initWithContentsOfURL:soundURL error:nil];
         [avSound play];*/
         
-        tracingScene = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        tracingScene = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         tracingScene.fontSize = fontSizeForPlatform;
         tracingScene.text = @"T R A C E";
-        tracingScene.fontColor = [UIColor orangeColor];
+        tracingScene.fontColor = [UIColor purpleColor];
         tracingScene.position = CGPointMake(width / 2, height / 2.1);
         tracingScene.name = @"trace";
+        tracingScene.alpha = 0.0;
         [self addChild:tracingScene];
         
-        dragNDrop = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        spellingLabel = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
+        spellingLabel.fontSize = fontSizeForPlatform;
+        spellingLabel.text = @"S P E L L";
+        spellingLabel.fontColor = [UIColor purpleColor];
+        spellingLabel.position = CGPointMake(width / 2, height / 2.4);
+        spellingLabel.name = @"trace";
+        spellingLabel.alpha = 0.0;
+        [self addChild:spellingLabel];
+        
+        dragNDrop = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         dragNDrop.fontSize = fontSizeForPlatform;
         dragNDrop.text = @"M A T C H";
-        dragNDrop.fontColor = [UIColor orangeColor];
-        dragNDrop.position = CGPointMake(width / 2, height / 2.4);
+        dragNDrop.fontColor = [UIColor purpleColor];
+        dragNDrop.position = CGPointMake(width / 2, height / 2.8);
         dragNDrop.name = @"drag";
+        dragNDrop.alpha = 0.0;
         [self addChild:dragNDrop];
         
-        parentTeacher = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        parentTeacher = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         parentTeacher.fontSize = fontSizeForPlatform;
         parentTeacher.text = @"R E V I E W";
-        parentTeacher.fontColor = [UIColor orangeColor];
-        parentTeacher.position = CGPointMake(width / 2, height / 2.8);
+        parentTeacher.fontColor = [UIColor purpleColor];
+        parentTeacher.position = CGPointMake(width / 2, height / 3.3);
         parentTeacher.name = @"review";
+        parentTeacher.alpha = 0.0;
         [self addChild:parentTeacher];
         
-        handwritingScene = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        
+        handwritingScene = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         handwritingScene.fontSize = fontSizeForPlatform;
         handwritingScene.text = @"C R E D I T S";
-        handwritingScene.fontColor = [UIColor orangeColor];
-        handwritingScene.position = CGPointMake(width / 2, height / 3.3);
+        handwritingScene.fontColor = [UIColor purpleColor];
+        handwritingScene.position = CGPointMake(width / 2, height / 5.0);
         handwritingScene.name = @"handwriting";
+        handwritingScene.alpha = 0.0;
         [self addChild:handwritingScene];
 
-        optionsMenu = [SKLabelNode labelNodeWithFontNamed:@"StalinistOne-Regular"];
+        optionsMenu = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         optionsMenu.text = @"AP History";
         optionsMenu.fontSize = fontSizeForPlatform;
         optionsMenu.fontColor = [UIColor orangeColor];
-        optionsMenu.position = CGPointMake(width / 2, height / 4.0);
+        optionsMenu.position = CGPointMake(width / 2, height / 9.0);
         optionsMenu.name = @"menu";
-        [self addChild:optionsMenu];
-
+        //[self addChild:optionsMenu];
         
+        
+        SKAction *fadeInMenu = [SKAction fadeAlphaTo:1.0 duration:15.0];
+        SKAction *delayMenu = [SKAction waitForDuration:7.0];
+        SKAction *fadeInMenuSeq = [SKAction sequence:@[delayMenu,fadeInMenu]];
+        
+        SKAction *runFadeIn = [SKAction runBlock:^{
+            [presents2 runAction:fadeInMenuSeq];
+            [presents3 runAction:fadeInMenuSeq];
+            [tracingScene runAction:fadeInMenuSeq];
+            [spellingLabel runAction:fadeInMenuSeq];
+            [dragNDrop runAction:fadeInMenuSeq];
+            [parentTeacher runAction:fadeInMenuSeq];
+            [handwritingScene runAction:fadeInMenuSeq];
+            [self runAction:[SKAction sequence:@[delayMenu,[SKAction colorizeWithColor:[UIColor whiteColor]
+                                                                      colorBlendFactor:1.0
+                                                                              duration:15]]]];
+            
+            
+        }];
+        
+        [self runAction:runFadeIn];
+
+        /*NSMutableArray *animFrames = [NSMutableArray array];
+        SKTextureAtlas *imageAnimationAtlas = [SKTextureAtlas atlasNamed:@"flare"];
+        
+        int numImages = imageAnimationAtlas.textureNames.count;
+        for (int i=1; i < numImages; i++) {
+            NSString *textureName = [NSString stringWithFormat:@"%d",i];
+            SKTexture *temp = [imageAnimationAtlas textureNamed:textureName];
+            [animFrames addObject:temp];
+        }
+        texturesForAnim = animFrames;
+        SKTexture *flareTexture = texturesForAnim[0];
+        SKSpriteNode *flareSprite = [SKSpriteNode spriteNodeWithTexture:flareTexture];
+        
+        flareSprite.position = CGPointMake(200, 700);
+        [self addChild:flareSprite];
+        [flareSprite runAction:[SKAction repeatActionForever:
+                                  [SKAction animateWithTextures:texturesForAnim
+                                                   timePerFrame:0.05
+                                                         resize:NO
+                                                        restore:YES]]];
+        
+        [flareSprite runAction:[SKAction moveTo:CGPointMake(800, 100) duration:5.0]];*/
+        
+        //[imagesForLetters addObject:imageForSound];
     }
     return self;
 }
@@ -247,10 +369,16 @@ CGFloat fontSizeForPlatform = 20;
             SKTransition *creditTransition = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
             spriteView = (SKView *)self.view;
             [spriteView presentScene:credits transition:creditTransition];
-        } else {
+        } else if (CGRectContainsPoint(spellingLabel.frame,theTouch)) {
+            spellingScene = [[Spelling alloc]initWithSize:CGSizeMake(1024,768)];
+            SKTransition *spellingTransition = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.1];
+            spriteView = (SKView *)self.view;
+            [spriteView presentScene:spellingScene transition:spellingTransition];
+            
+        } else  {
             //myMainMenu = [[MainMenu alloc]initWithSize:CGSizeMake(1024, 768)];
             traceScene = [[LetterTrace alloc]initWithSize:CGSizeMake(1024,768) andGroup:[NSNumber numberWithInt:1]];
-            SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionLeft duration:1.0];
+            SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionLeft duration:0.1];
             spriteView = (SKView*)self.view;
             [spriteView presentScene:traceScene transition:reveal];
         }

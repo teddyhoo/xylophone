@@ -30,8 +30,8 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         
         HistoryData *sharedData = [HistoryData sharedManager];
 
-        SKSpriteNode *pickerBackground = [SKSpriteNode spriteNodeWithImageNamed:@"background-quiz-1.png"];
-        pickerBackground.position = CGPointMake(100, -70);
+        SKSpriteNode *pickerBackground = [SKSpriteNode spriteNodeWithImageNamed:@"topicPicker.png"];
+        pickerBackground.position = CGPointMake(80, -10);
         
         [self addChild:pickerBackground];
         NSMutableArray *quizQuestions = [[NSMutableArray alloc]init];
@@ -180,7 +180,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         titleLabel.text = @"Choose Topic";
         titleLabel.fontColor = [UIColor yellowColor];
         titleLabel.fontSize = 40;
-        titleLabel.position = CGPointMake(180, 370);
+        titleLabel.position = CGPointMake(180, 380);
         titleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         titleLabel.name = @"title";
         

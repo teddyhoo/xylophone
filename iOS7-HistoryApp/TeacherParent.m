@@ -16,6 +16,7 @@
 #import "SKAction+SKTExtras.h"
 #import "SKTTimingFunctions.h"
 #import "SKTEffects.h"
+#import "IntroScreen.h"
 
 @implementation TeacherParent
 
@@ -23,11 +24,13 @@ MontessoriData *sharedData;
 NSMutableArray *studentHistory;
 NSMutableArray *studentSprites;
 NSMutableArray *allTheLetters;
+NSMutableArray *redrawOfLetterOnScreen;
 SKLabelNode *groupOne;
 SKLabelNode *groupTwo;
 SKLabelNode *groupThree;
 SKLabelNode *groupFour;
 SKLabelNode *groupFive;
+SKSpriteNode *backToMainMenuArrow;
 
 int onWhichGroup;
 int onWhichQuestion;
@@ -104,7 +107,8 @@ CGFloat height;
         groupFiveLetters = [[NSMutableArray alloc]init];
         allTheLetters = [[NSMutableArray alloc]init];
         shapesForLetters = [[NSMutableArray alloc]init];
-
+        redrawOfLetterOnScreen = [[NSMutableArray alloc]init];
+        
         NSMutableArray *studentSprites = [[NSMutableArray alloc]init];
         NSArray *studentNames = [[NSArray alloc]initWithObjects:
                                  @"Student: Ted Hooban",
@@ -130,84 +134,98 @@ CGFloat height;
             
         }
         
+        backToMainMenuArrow = [SKSpriteNode spriteNodeWithImageNamed:@"home-button-200x206.png"];
+        backToMainMenuArrow.position = CGPointMake(50, 40);
+        backToMainMenuArrow.scale = 0.5;
+        [self addChild:backToMainMenuArrow];
+        
     }
     
-    letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"a_blue_600x600.png"];
+    SKSpriteNode *moveableAlpha = [SKSpriteNode spriteNodeWithImageNamed:@"basicWindow-1144x920"];
+    SKSpriteNode *tileLetterA = [SKSpriteNode spriteNodeWithImageNamed:@"wood-tile-letter-A-100x96"];
+    
+    moveableAlpha.position = CGPointMake(500, 500);
+    tileLetterA.position = CGPointMake(500, 500);
+    
+    //[self addChild:moveableAlpha];
+    //[self addChild:tileLetterA];
+    
+    letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-A.png"];
     letterA.whichLetter = @"A";
     
-    letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"b_red_1000x600.png"];
+    letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-B.png"];
     letterB.whichLetter = @"B";
     
-    letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"c_600x600.png"];
+    letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-C.png"];
     letterC.whichLetter = @"C";
     
-    letterD = [LowerCaseLetter spriteNodeWithImageNamed:@"d_1000x600.png"];
+    letterD = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-D.png"];
     letterD.whichLetter = @"D";
     
-    letterE = [LowerCaseLetter spriteNodeWithImageNamed:@"e_600x600.png"];
+    letterE = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-E.png"];
     letterE.whichLetter = @"E";
     
-    letterF = [LowerCaseLetter spriteNodeWithImageNamed:@"f_850x600.png"];
+    letterF = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-F.png"];
     letterF.whichLetter = @"F";
     
-    letterG = [LowerCaseLetter spriteNodeWithImageNamed:@"g_1000x600.png"];
+    letterG = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-G.png"];
     letterG.whichLetter = @"G";
     
-    letterH = [LowerCaseLetter spriteNodeWithImageNamed:@"h_1000x600.png"];
+    letterH = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-H.png"];
     letterH.whichLetter = @"H";
     
-    letterI = [LowerCaseLetter spriteNodeWithImageNamed:@"i_850x600.png"];
+    letterI = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-I.png"];
     letterI.whichLetter = @"I";
     
-    letterJ = [LowerCaseLetter spriteNodeWithImageNamed:@"j_1000x600.png"];
+    letterJ = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-J.png"];
     letterJ.whichLetter = @"J";
     
-    letterK = [LowerCaseLetter spriteNodeWithImageNamed:@"k_1000x600.png"];
+    letterK = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-K.png"];
     letterK.whichLetter = @"K";
     
-    letterL = [LowerCaseLetter spriteNodeWithImageNamed:@"l_1000x600.png"];
+    letterL = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-L.png"];
     letterL.whichLetter = @"L";
     
-    letterM = [LowerCaseLetter spriteNodeWithImageNamed:@"m_600x850.png"];
+    letterM = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-M.png"];
     letterM.whichLetter = @"M";
     
-    letterN = [LowerCaseLetter spriteNodeWithImageNamed:@"n_600x600.png"];
+    letterN = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-N.png"];
     letterN.whichLetter = @"N";
     
-    letterO = [LowerCaseLetter spriteNodeWithImageNamed:@"o_600x600.png"];
+    letterO = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-O.png"];
     letterO.whichLetter = @"O";
     
-    letterP = [LowerCaseLetter spriteNodeWithImageNamed:@"p_1000x600.png"];
+    letterP = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-P.png"];
     letterP.whichLetter = @"P";
     
-    letterQ = [LowerCaseLetter spriteNodeWithImageNamed:@"q_1000x620.png"];
+    letterQ = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-Q.png"];
     letterQ.whichLetter = @"Q";
     
-    letterR = [LowerCaseLetter spriteNodeWithImageNamed:@"r_600x600.png"];;
+    letterR = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-R.png"];;
     letterR.whichLetter = @"R";
     
-    letterS = [LowerCaseLetter spriteNodeWithImageNamed:@"s_600x600.png"];;
+    letterS = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-S.png"];;
     letterS.whichLetter = @"S";
     
-    letterT = [LowerCaseLetter spriteNodeWithImageNamed:@"t_850x600.png"];;
+    letterT = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-T.png"];;
     letterT.whichLetter = @"T";
     
-    letterU = [LowerCaseLetter spriteNodeWithImageNamed:@"u_600x600.png"];;
+    letterU = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-U.png"];;
     letterU.whichLetter = @"U";
     
-    letterV = [LowerCaseLetter spriteNodeWithImageNamed:@"v_600x600.png"];;
+    letterV = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-V.png"];;
     letterV.whichLetter = @"V";
     
-    letterW = [LowerCaseLetter spriteNodeWithImageNamed:@"w_600x850.png"];;
+    letterW = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-W.png"];;
     letterW.whichLetter = @"W";
     
-    letterX = [LowerCaseLetter spriteNodeWithImageNamed:@"x_600x600.png"];;
+    letterX = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-X.png"];;
     letterX.whichLetter = @"X";
     
-    letterY = [LowerCaseLetter spriteNodeWithImageNamed:@"y_1000x600.png"];;
+    letterY = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-Y.png"];;
     letterY.whichLetter = @"Y";
     
-    letterZ = [LowerCaseLetter spriteNodeWithImageNamed:@"z_600x600.png"];;
+    letterZ = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-Z.png"];;
     letterZ.whichLetter = @"Z";
     
     [allTheLetters addObject:letterA];
@@ -241,7 +259,7 @@ CGFloat height;
         
         letter.position = CGPointMake(0,-1000);
         letter.alpha = 0.0;
-        letter.scale = 0.1;
+        //letter.scale = 0.1;
         letter.centerStage = FALSE;
         [self addChild:letter];
     }
@@ -341,7 +359,7 @@ CGFloat height;
                 NSDate *dateOf = [results objectForKey:@"dateDone"];
                 NSDateFormatter *dateFormatted = [[NSDateFormatter alloc]init];
                 [dateFormatted setTimeStyle:NSDateFormatterShortStyle];
-                [dateFormatted setDateStyle:NSDateFormatterLongStyle];
+                //[dateFormatted setDateStyle:NSDateFormatterLongStyle];
                 NSString *formatDate = [dateFormatted stringFromDate:dateOf];
                 
                 LowerCaseLetter *paramLetter;
@@ -365,8 +383,8 @@ CGFloat height;
                 SKLabelNode *dateLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
                 dateLabel.text = formatDate;
                 dateLabel.fontColor = [UIColor purpleColor];
-                dateLabel.fontSize = 20;
-                dateLabel.position = CGPointMake(600, 600);
+                dateLabel.fontSize = 40;
+                dateLabel.position = CGPointMake(500, 600);
                 SKLabelNode *totalPoints = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
 
                 [redrawLetterNode addChild:dateLabel];
@@ -383,20 +401,42 @@ CGFloat height;
     SKAction *scaleUp = [SKAction scaleTo:0.5 duration:0.4];
     [letterOn runAction:moveAction];
     [letterOn runAction:scaleUp];
-    int xposition = 500;
-    int yposition = 400;
+    int xposition = 100;
+    int yposition = 100;
+    
+    int numberOfTraces = 0;
+    
+    for (RedrawLetter *letterShapes in shapesForLetters) {
+        
+        if ([chosenLetter.whichLetter isEqualToString:letterShapes.representLetter]) {
+            numberOfTraces++;
+        }
+        
+    }
     
     for (RedrawLetter *letterShapes in shapesForLetters) {
         
         if ([chosenLetter.whichLetter isEqualToString:letterShapes.representLetter]) {
             NSMutableArray *spritesToDraw = [letterShapes drawMyself];
+            float delayDraw = 0.0;
+            
             for (SKSpriteNode *drawSprite in spritesToDraw) {
                 SKSpriteNode *newCloud = [SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud3.png"];
                 newCloud.position = drawSprite.position;
+                newCloud.alpha = 0.0;
+                
+                SKAction *drawItDelayed = [SKAction fadeAlphaTo:1.0 duration:0.1];
+                SKAction *delayIt = [SKAction waitForDuration:delayDraw];
+                SKAction *sequenceDraw = [SKAction sequence:@[delayIt,drawItDelayed]];
+                delayDraw += 0.2;
+                [newCloud runAction:sequenceDraw];
                 [letterShapes addChild:newCloud];
             }
             [self addChild:letterShapes];
-            letterShapes.position = CGPointMake(xposition, yposition);
+            [redrawOfLetterOnScreen addObject:letterShapes];
+            
+            letterShapes.position = CGPointMake(xposition*numberOfTraces, yposition);
+            numberOfTraces--;
             letterShapes.scale = 0.4;
             currentRedrawLetter = letterShapes;
         }
@@ -452,6 +492,14 @@ CGFloat height;
     UITouch *touch = [touches anyObject];
     CGPoint theTouch = [touch locationInNode:self];
     
+    for (RedrawLetter *letterShapes in shapesForLetters) {
+        
+        if (CGRectContainsPoint(letterShapes.frame, theTouch)) {
+            SKAction *moveIt = [SKAction moveTo:CGPointMake(500, 500) duration:2.0];
+            [letterShapes runAction:moveIt];
+        }
+    }
+    
     if(CGRectContainsPoint(currentRedrawLetter.frame, theTouch)) {
         NSLog(@"current redraw frame tapped");
         
@@ -465,6 +513,18 @@ CGFloat height;
         //[self addChild:currentRedrawLetter];
         currentRedrawLetter.position = CGPointMake(400, 300);
         currentRedrawLetter.scale = 0.7;
+    }
+    
+    if (CGRectContainsPoint(backToMainMenuArrow.frame, theTouch)) {
+
+        [self removeAllChildren];
+        
+        SKView *spriteView = (SKView *)self.view;
+        IntroScreen *introScreen = [IntroScreen sceneWithSize:spriteView.bounds.size];
+        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.2];
+        introScreen.scaleMode = SKSceneScaleModeAspectFill;
+        [spriteView presentScene:introScreen transition:reveal];
+        
     }
     
     
