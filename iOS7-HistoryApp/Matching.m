@@ -10,7 +10,7 @@
 #import "Matching.h"
 #import "HistoryData.h"
 #import "Scoreboard.h"
-
+#import "MatchTerm.h"
 
 @implementation Matching
 
@@ -41,6 +41,17 @@ int effect_long_y_offset;
 BOOL sectionCompleted;
 BOOL mapFlag = FALSE;
 BOOL docFlag = FALSE;
+
+BOOL levelOne = FALSE;
+BOOL levelTwo = FALSE;
+BOOL levelThree = FALSE;
+
+BOOL levelOneSubOne = FALSE;
+BOOL levelOneSubTwo = FALSE;
+BOOL levelOneSubThree = FALSE;
+
+BOOL levelTwoSub = FALSE;
+
 
 SKNode *topicMenu;
 SKNode *menuWithItems;
@@ -174,14 +185,14 @@ int yValTerm = 100;
         
         backToMainMenuArrow = [SKSpriteNode spriteNodeWithImageNamed:@"home-3.png"];
         backToMainMenuArrow.scale = 0.2;
-        backToMainMenuArrow.position = CGPointMake(250, 20);
+        backToMainMenuArrow.position = CGPointMake(400, 20);
         [self addChild:backToMainMenuArrow];
         
         forward = [SKSpriteNode spriteNodeWithImageNamed:@"next-button.png"];
         forward.name = @"next";
         forward.scale = 0.2;
 
-        forward.position = CGPointMake(300, 20);
+        forward.position = CGPointMake(450, 20);
         [self addChild:forward];
     }
     return self;
@@ -197,11 +208,8 @@ int yValTerm = 100;
 	if (recognizer.state == UIGestureRecognizerStateBegan) {
         
         CGPoint touchLocation = [recognizer locationInView:recognizer.view];
-        
         touchLocation = [self convertPointFromView:touchLocation];
-        
         [self selectNodeForTouch:touchLocation];
-        
         
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
         
@@ -212,20 +220,34 @@ int yValTerm = 100;
         
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
         
-        //if (![[selectedNode name] isEqualToString:@"Term1"]) {
-            /*float scrollDuration = 0.2;
-            CGPoint velocity = [recognizer velocityInView:recognizer.view];
-            CGPoint pos = [selectedNode position];
-            CGPoint p = mult(velocity, scrollDuration);
-            
-            CGPoint newPos = CGPointMake(pos.x + p.x, pos.y + p.y);
-            newPos = [self boundLayerPos:newPos];
-            [selectedNode removeAllActions];
-            
-            SKAction *moveTo = [SKAction moveTo:newPos duration:scrollDuration];
-            [moveTo setTimingMode:SKActionTimingEaseOut];
-            [selectedNode runAction:moveTo];*/
-        //}
+        for(MatchTerm *destination in movableSprites) {
+            if(CGRectIntersectsRect(destination.frame,selectedNode.frame) &&
+               [destination.name isEqualToString:selectedNode.name]) {
+                [selectedNode removeAllActions];
+                destination.matched = TRUE;
+                SKAction *moveToTop = [SKAction moveTo:CGPointMake(destination.position.x,300) duration:1.0];
+                [destination runAction:moveToTop];
+                [selectedNode runAction:moveToTop];
+                selectedNode = nil;
+                
+            }
+        }
+        
+        BOOL allMatched = FALSE;
+        int checkMatches = [movableSprites count];
+        
+        for(MatchTerm *destination in movableSprites) {
+            if (destination.matched) {
+                checkMatches--;
+            }
+            if (checkMatches == 0) {
+                allMatched = TRUE;
+            }
+        }
+        
+        if (allMatched) {
+            NSLog(@"all terms matched");
+        }
         
     }
 }
@@ -251,12 +273,12 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
 
 -(void)addChainEffectTermDestination:(NSString*)type theTerm:(NSString*)term {
     
-    SKSpriteNode *termDestination = [SKSpriteNode spriteNodeWithImageNamed:@"yellow-arrow-right.png"];
+    /*SKSpriteNode *termDestination = [SKSpriteNode spriteNodeWithImageNamed:@"yellow-arrow-right.png"];
     termDestination.position = CGPointMake(winSize.width/2, winSize.height/2);
     termDestination.zPosition = 10;
-    termDestination.name = type;
+    termDestination.name = type;*/
     
-    [self addChild:termDestination];
+    
     
     SKLabelNode *theLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
     theLabel.text = term;
@@ -264,17 +286,18 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
     theLabel.fontSize = 16;
     theLabel.fontColor = [UIColor orangeColor];
     theLabel.position = CGPointMake(xValTerm, yValTerm);
+    theLabel.zPosition = 10;
     
     [self addChild:theLabel];
     
     xValTerm += 200;
-    if(xValTerm > 800) {
+    if(xValTerm > 500) {
         xValTerm = 100;
-        yValTerm += 50;
+        yValTerm -= 50;
     }
     
     [termsToMatch addObject:theLabel];
-    [movableSprites addObject:termDestination];
+    
 }
 
 
@@ -320,7 +343,13 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
         for (NSString *key in currentProblem) {
             if ([key isEqualToString:@"Term1"]) {
                 
-                
+                MatchTerm *termDestination = [MatchTerm spriteNodeWithImageNamed:@"yellow-arrow-right.png"];
+                termDestination.position = CGPointMake(winSize.width/4, winSize.height/1.8);
+                termDestination.zPosition = 10;
+                termDestination.name = key;
+                termDestination.zPosition = 5;
+                [self addChild:termDestination];
+                [movableSprites addObject:termDestination];
                 [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
                 
                 index++;
@@ -328,12 +357,29 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
                 
             } else if ([key isEqualToString:@"Term2"]) {
                 
+                MatchTerm *termDestination = [MatchTerm spriteNodeWithImageNamed:@"blue-arrow-right.png"];
+                termDestination.position = CGPointMake(winSize.width/2, winSize.height/1.8);
+                termDestination.zPosition = 10;
+                termDestination.name = key;
+                [self addChild:termDestination];
+                [movableSprites addObject:termDestination];
+                
+                
                 [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
                 
                 index++;
                 termsInSection++;
                 
             } else if ([key isEqualToString:@"Term3"]) {
+                
+                MatchTerm *termDestination = [MatchTerm spriteNodeWithImageNamed:@"purple-arrow-right.png"];
+                termDestination.position = CGPointMake(winSize.width/1.2, winSize.height/1.8);
+                termDestination.zPosition = 10;
+                termDestination.name = key;
+                [self addChild:termDestination];
+                [movableSprites addObject:termDestination];
+                
+                
                 [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
  
                 
@@ -903,20 +949,14 @@ float degToRad(float degree) {
 		selectedNode = touchedNode;
 
 		if([[touchedNode name] isEqualToString:@"Term1"]) {
-			SKAction *sequence = [SKAction sequence:@[[SKAction rotateByAngle:degToRad(-4.0f) duration:0.1],
-													  [SKAction rotateByAngle:0.0 duration:0.1],
-													  [SKAction rotateByAngle:degToRad(4.0f) duration:0.1]]];
-			[selectedNode runAction:[SKAction repeatActionForever:sequence]];
+			SKAction *scaleUpSelect = [SKAction scaleTo:1.5 duration:0.1];
+			[selectedNode runAction:scaleUpSelect];
 		} else if ([[touchedNode name]isEqualToString:@"Term2"]) {
-            SKAction *sequence = [SKAction sequence:@[[SKAction rotateByAngle:degToRad(-4.0f) duration:0.1],
-													  [SKAction rotateByAngle:0.0 duration:0.1],
-													  [SKAction rotateByAngle:degToRad(4.0f) duration:0.1]]];
-			[selectedNode runAction:[SKAction repeatActionForever:sequence]];
+            SKAction *scaleUpSelect = [SKAction scaleTo:1.5 duration:0.1];
+			[selectedNode runAction:scaleUpSelect];
         } else if ([[touchedNode name]isEqualToString:@"Term3"]) {
-            SKAction *sequence = [SKAction sequence:@[[SKAction rotateByAngle:degToRad(-4.0f) duration:0.1],
-													  [SKAction rotateByAngle:0.0 duration:0.1],
-													  [SKAction rotateByAngle:degToRad(4.0f) duration:0.1]]];
-			[selectedNode runAction:[SKAction repeatActionForever:sequence]];
+            SKAction *scaleUpSelect = [SKAction scaleTo:1.5 duration:0.1];
+			[selectedNode runAction:scaleUpSelect];
         } else if ([[touchedNode name]isEqualToString:@"next"]) {
             NSLog(@"next topic");
             [self nextTopic];

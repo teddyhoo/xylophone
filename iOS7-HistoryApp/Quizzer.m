@@ -159,26 +159,25 @@ HistoryData *sharedData;
         [self addChild:hudScore];
         
         forward = [SKSpriteNode spriteNodeWithImageNamed:@"next-button.png"];
-        forward.scale = 0.5;
+        forward.scale = 0.4;
         forward.position = CGPointMake(700, 50);
         [self addChild:forward];
         
         backToMainMenuArrow = [SKSpriteNode spriteNodeWithImageNamed:@"home-3.png"];
         backToMainMenuArrow.position = CGPointMake(80, 50);
-        backToMainMenuArrow.scale = 0.5;
+        backToMainMenuArrow.scale = 0.4;
         [self addChild:backToMainMenuArrow];
         
         explanationIcon = [SKSpriteNode spriteNodeWithImageNamed:@"information.png"];
-        explanationIcon.position = CGPointMake(270, 50);
-        explanationIcon.scale = 0.5;
+        explanationIcon.position = CGPointMake(180, 50);
+        explanationIcon.scale = 0.4;
         [self addChild:explanationIcon];
         
         helpButton = [SKSpriteNode spriteNodeWithImageNamed:@"question-icon.png"];
-        helpButton.position = CGPointMake(500, 50);
-        helpButton.scale = 0.5;
+        helpButton.position = CGPointMake(900, 50);
+        helpButton.scale = 0.4;
         [self addChild:helpButton];
-        
-        
+
         totalTimeDisplay = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
         totalTimeDisplay.position = CGPointMake(980, 680);
         totalTimeDisplay.text = @"00";
@@ -219,11 +218,11 @@ HistoryData *sharedData;
 }
 
 -(void)startTimer {
-    _progressTimerNode2 = [[TCProgressTimerNode alloc] initWithForegroundImageNamed:@"progress_foreground"
-                                                               backgroundImageNamed:@"progress_background"
+    _progressTimerNode2 = [[TCProgressTimerNode alloc] initWithForegroundImageNamed:@"red-button-timer"
+                                                               backgroundImageNamed:@"blue-button-timer"
                                                                 accessoryImageNamed:nil];
     
-    _progressTimerNode2.position = CGPointMake(670,980);
+    _progressTimerNode2.position = CGPointMake(700,120);
     [self addChild:_progressTimerNode2];
     [_progressTimerNode2 setProgress:0.0f];
     self.startTime = CACurrentMediaTime();
@@ -401,7 +400,7 @@ HistoryData *sharedData;
     int totalRows = (totalQuestionsForRows+1)/circlesPerRow;
     int incompleteRowCount = [quizQuestions count]%circlesPerRow;
     int totalSlots = [quizQuestions count]+incompleteRowCount;
-    int yValue = 120;
+    int yValue = 180;
     
    
     for (int rows = 0; rows < totalRows; rows++) {
@@ -507,7 +506,7 @@ HistoryData *sharedData;
         firstLabel.textColor = [UIColor blackColor];
         firstLabel.font = [UIFont fontWithName:@"Carton-Slab" size:24.0];
         firstLabel.numberOfLines = 4;
-        firstLabel.preferredMaxLayoutWidth = 400;
+        firstLabel.preferredMaxLayoutWidth = 380;
         UIImage *imageToRender = [self makeImageFromLabel:firstLabel];
         SKTexture *labelTexture = [SKTexture textureWithImage:imageToRender];
         renderLabel = [SKSpriteNode spriteNodeWithTexture:labelTexture];
@@ -522,7 +521,7 @@ HistoryData *sharedData;
         firstLabel2.textColor = [UIColor blackColor];
         firstLabel2.font = [UIFont fontWithName:@"Carton-Slab" size:12.0];
         firstLabel2.numberOfLines = 4;
-        firstLabel2.preferredMaxLayoutWidth = 400;
+        firstLabel2.preferredMaxLayoutWidth = 350;
         UIImage *imageToRender2 = [self makeImageFromLabel:firstLabel2];
         SKTexture *labelTexture2 = [SKTexture textureWithImage:imageToRender2];
         renderLabel2 = [SKSpriteNode spriteNodeWithTexture:labelTexture2];
@@ -535,7 +534,7 @@ HistoryData *sharedData;
         firstLabel3.textColor = [UIColor blackColor];
         firstLabel3.font = [UIFont fontWithName:@"Carton-Slab" size:48.0];
         firstLabel3.numberOfLines = 4;
-        firstLabel3.preferredMaxLayoutWidth = 400;
+        firstLabel3.preferredMaxLayoutWidth = 350;
         UIImage *imageToRender3 = [self makeImageFromLabel:firstLabel3];
         SKTexture *labelTexture3 = [SKTexture textureWithImage:imageToRender3];
         renderLabel3 = [SKSpriteNode spriteNodeWithTexture:labelTexture3];
@@ -548,7 +547,7 @@ HistoryData *sharedData;
         firstLabel4.textColor = [UIColor blackColor];
         firstLabel4.font = [UIFont fontWithName:@"Carton-Slab" size:24.0];
         firstLabel4.numberOfLines = 4;
-        firstLabel4.preferredMaxLayoutWidth = 400;
+        firstLabel4.preferredMaxLayoutWidth = 350;
         UIImage *imageToRender4 = [self makeImageFromLabel:firstLabel4];
         SKTexture *labelTexture4 = [SKTexture textureWithImage:imageToRender4];
         renderLabel4 = [SKSpriteNode spriteNodeWithTexture:labelTexture4];
@@ -561,7 +560,7 @@ HistoryData *sharedData;
         firstLabel5.textColor = [UIColor blackColor];
         firstLabel5.font = [UIFont fontWithName:@"Carton-Slab" size:24.0];
         firstLabel5.numberOfLines = 4;
-        firstLabel5.preferredMaxLayoutWidth = 400;
+        firstLabel5.preferredMaxLayoutWidth = 350;
         UIImage *imageToRender5 = [self makeImageFromLabel:firstLabel5];
         SKTexture *labelTexture5 = [SKTexture textureWithImage:imageToRender5];
         renderLabel5 = [SKSpriteNode spriteNodeWithTexture:labelTexture5];
@@ -576,10 +575,10 @@ HistoryData *sharedData;
         [button3 runAction:moveButtonOn];
         [button4 runAction:moveButtonOn];
         
-        renderLabel2.position = CGPointMake(400, 750);
-        renderLabel3.position = CGPointMake(400, 595);
-        renderLabel4.position = CGPointMake(400, 440);
-        renderLabel5.position = CGPointMake(400, 285);
+        renderLabel2.position = CGPointMake(430, 750);
+        renderLabel3.position = CGPointMake(430, 595);
+        renderLabel4.position = CGPointMake(430, 440);
+        renderLabel5.position = CGPointMake(430, 285);
         
         [self addChild:renderLabel2];
         [self addChild:renderLabel3];
@@ -607,6 +606,7 @@ HistoryData *sharedData;
             
             SKAction *moveImage = [SKAction moveToY:600 duration:0.2];
             [imageForQuestion runAction:moveImage];
+            imageForQuestion.userInteractionEnabled = YES;
             removeImage = TRUE;
             
         }
@@ -628,8 +628,9 @@ HistoryData *sharedData;
 
 -(void) finishedWithSection {
     
+    timerOn = NO;
     [totalTimeDisplay removeFromParent];
-    [self.progressTimerNode2 removeFromParent];
+    [_progressTimerNode2 removeFromParent];
     
     CGFloat percentage = (float)numberCorrectAnswers / (float)questionCounter * 100.0f;
     int percentageConv = round(percentage);
@@ -657,7 +658,7 @@ HistoryData *sharedData;
         totalTimeDisplay.fontColor = [UIColor whiteColor];
         totalTimeDisplay.fontSize = 32;
         totalTimeDisplay.text = [NSString stringWithFormat:@"%i",timerTotal];
-        totalTimeDisplay.position = CGPointMake(670, 965);
+        totalTimeDisplay.position = CGPointMake(700, 110);
         [self addChild:totalTimeDisplay];
         
         CGFloat cycle = secondsElapsed * kCyclesPerSecond;
@@ -995,11 +996,9 @@ HistoryData *sharedData;
         renderLabelExplain.position = CGPointMake(350,550);
         renderLabelExplain.scale = 1.4;
         [explainView addChild:renderLabelExplain];
-
-        
-        
         
     } else if (CGRectContainsPoint(explanationIcon.frame, location)) {
+        
         explainView = [[ExplanationViewer alloc]init];
         [explainView setSize:self.size];
         explainView.position = CGPointMake(0,0);
@@ -1010,7 +1009,7 @@ HistoryData *sharedData;
     } else if (CGRectContainsPoint(imageForQuestion.frame, location)) {
         
         [imageForQuestion removeFromParent];
-        
+        self.userInteractionEnabled = YES;
     }
     
     //}

@@ -16,7 +16,11 @@
     
     _layerSize = size;
     
-    SKSpriteNode *scoreWindow = [SKSpriteNode spriteNodeWithImageNamed:@"quote-504x228.png"];
+    SKSpriteNode *backgroundLight = [SKSpriteNode spriteNodeWithImageNamed:@"light_1"];
+    backgroundLight.position = CGPointMake(400, 500);
+    [self addChild:backgroundLight];
+    
+    SKSpriteNode *scoreWindow = [SKSpriteNode spriteNodeWithImageNamed:@"explanation.png"];
     scoreWindow.position = CGPointMake(350, 500);
     [self addChild:scoreWindow];
     

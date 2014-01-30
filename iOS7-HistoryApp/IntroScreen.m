@@ -15,6 +15,7 @@
 #import "Credits.h"
 #import "TeacherParent.h"
 #import "Spelling.h"
+#import "MontessoriData.h"
 
 @implementation IntroScreen
 
@@ -40,7 +41,7 @@ SKLabelNode *optionsMenu;
 SKLabelNode *moveableAlpha;
 
 NSMutableArray *texturesForAnim;
-
+MontessoriData *sharedData;
 
 CGFloat width;
 CGFloat height;
@@ -52,6 +53,9 @@ CGFloat fontSizeForPlatform = 24;
 {
     self = [super initWithSize:size];
     if (self) {
+        
+        
+        sharedData = [MontessoriData sharedManager];
         self.backgroundColor = [SKColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
         
         
@@ -59,8 +63,8 @@ CGFloat fontSizeForPlatform = 24;
         width = self.size.width;
         height = self.size.height;
         
-        SKSpriteNode *lightEffectBg = [SKSpriteNode spriteNodeWithImageNamed:@"intro-light-effect"];
-        lightEffectBg.position = CGPointMake(width/2, height/2);
+        SKSpriteNode *lightEffectBg = [SKSpriteNode spriteNodeWithImageNamed:@"light_2"];
+        lightEffectBg.position = CGPointMake(width/2-100, height/2+240);
         lightEffectBg.alpha = 1.0;
         [self addChild:lightEffectBg];
         [lightEffectBg runAction:[SKAction fadeAlphaTo:1.0 duration:8.0]];
@@ -70,23 +74,23 @@ CGFloat fontSizeForPlatform = 24;
         handEffect.alpha = 0.1;
         [self addChild:handEffect];
 
-        SKSpriteNode *lightEffectBg3 = [SKSpriteNode spriteNodeWithImageNamed:@"light_1"];
-        lightEffectBg3.position = CGPointMake(200, height/2);
+        SKSpriteNode *lightEffectBg3 = [SKSpriteNode spriteNodeWithImageNamed:@"blue-light-effect"];
+        lightEffectBg3.position = CGPointMake(width/2, height/2);
         lightEffectBg3.alpha = 0.0;
-        //[self addChild:lightEffectBg3];
-        //[lightEffectBg3 runAction:[SKAction fadeAlphaTo:1.0 duration:6.0]];
+        [self addChild:lightEffectBg3];
+        [lightEffectBg3 runAction:[SKAction fadeAlphaTo:0.8 duration:6.0]];
         
-        SKSpriteNode *lightEffectBg4 = [SKSpriteNode spriteNodeWithImageNamed:@"light-effect-2"];
-        lightEffectBg4.position = CGPointMake(800, height/2);
+        SKSpriteNode *lightEffectBg4 = [SKSpriteNode spriteNodeWithImageNamed:@"light_2"];
+        lightEffectBg4.position = CGPointMake(width/2, height/2+50);
         lightEffectBg4.alpha = 0.0;
-        //[self addChild:lightEffectBg4];
-        //[lightEffectBg4 runAction:[SKAction fadeAlphaTo:1.0 duration:2.0]];
+        [self addChild:lightEffectBg4];
+        [lightEffectBg4 runAction:[SKAction fadeAlphaTo:1.0 duration:2.0]];
         
-        SKSpriteNode *lightEffectBg2 = [SKSpriteNode spriteNodeWithImageNamed:@"spacial_light"];
-        lightEffectBg2.position = CGPointMake(width/2, height/2);
+        SKSpriteNode *lightEffectBg2 = [SKSpriteNode spriteNodeWithImageNamed:@"light_2"];
+        lightEffectBg2.position = CGPointMake(width/2+150, height/2+240);
         lightEffectBg2.alpha = 1.0;
-        //[self addChild:lightEffectBg2];
-        //[lightEffectBg2 runAction:[SKAction fadeAlphaTo:0.4 duration:10.0]];
+        [self addChild:lightEffectBg2];
+        [lightEffectBg2 runAction:[SKAction fadeAlphaTo:1.0 duration:10.0]];
         
         
         NSString *openEmitterEffect = [[NSBundle mainBundle]pathForResource:@"Intro-effect" ofType:@"sks"];
@@ -189,18 +193,18 @@ CGFloat fontSizeForPlatform = 24;
         
        
         SKLabelNode *presents2 = [SKLabelNode labelNodeWithFontNamed:@"Trickster"];
-        presents2.fontSize = 42;
+        presents2.fontSize = 56;
         presents2.fontColor = [UIColor purpleColor];
-        presents2.position = CGPointMake(width / 2, height/1.6);
-        presents2.text = @"W R I T I N G  &";
+        presents2.position = CGPointMake(width / 2, height/1.7);
+        presents2.text = @"  WRITING &";
         presents2.alpha = 0.0;
         [self addChild:presents2];
 
         SKLabelNode *presents3 = [SKLabelNode labelNodeWithFontNamed:@"Trickster"];
-        presents3.fontSize = 42;
+        presents3.fontSize = 56;
         presents3.fontColor = [UIColor purpleColor];
-        presents3.position = CGPointMake(width / 2, height/1.75);
-        presents3.text = @"S O U N D S";
+        presents3.position = CGPointMake(width / 2, height/1.9);
+        presents3.text = @"SOUNDS";
         presents3.alpha = 0.0;
         [self addChild:presents3];
         
@@ -235,7 +239,7 @@ CGFloat fontSizeForPlatform = 24;
         tracingScene.fontSize = fontSizeForPlatform;
         tracingScene.text = @"T R A C E";
         tracingScene.fontColor = [UIColor purpleColor];
-        tracingScene.position = CGPointMake(width / 2, height / 2.1);
+        tracingScene.position = CGPointMake(width / 2, height / 2.3);
         tracingScene.name = @"trace";
         tracingScene.alpha = 0.0;
         [self addChild:tracingScene];
@@ -244,7 +248,7 @@ CGFloat fontSizeForPlatform = 24;
         spellingLabel.fontSize = fontSizeForPlatform;
         spellingLabel.text = @"S P E L L";
         spellingLabel.fontColor = [UIColor purpleColor];
-        spellingLabel.position = CGPointMake(width / 2, height / 2.4);
+        spellingLabel.position = CGPointMake(width / 2, height / 2.6);
         spellingLabel.name = @"trace";
         spellingLabel.alpha = 0.0;
         [self addChild:spellingLabel];
@@ -253,7 +257,7 @@ CGFloat fontSizeForPlatform = 24;
         dragNDrop.fontSize = fontSizeForPlatform;
         dragNDrop.text = @"M A T C H";
         dragNDrop.fontColor = [UIColor purpleColor];
-        dragNDrop.position = CGPointMake(width / 2, height / 2.8);
+        dragNDrop.position = CGPointMake(width / 2, height / 3.0);
         dragNDrop.name = @"drag";
         dragNDrop.alpha = 0.0;
         [self addChild:dragNDrop];
@@ -262,7 +266,7 @@ CGFloat fontSizeForPlatform = 24;
         parentTeacher.fontSize = fontSizeForPlatform;
         parentTeacher.text = @"R E V I E W";
         parentTeacher.fontColor = [UIColor purpleColor];
-        parentTeacher.position = CGPointMake(width / 2, height / 3.3);
+        parentTeacher.position = CGPointMake(width / 2, height / 3.5);
         parentTeacher.name = @"review";
         parentTeacher.alpha = 0.0;
         [self addChild:parentTeacher];
@@ -280,10 +284,10 @@ CGFloat fontSizeForPlatform = 24;
         optionsMenu = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         optionsMenu.text = @"AP History";
         optionsMenu.fontSize = fontSizeForPlatform;
-        optionsMenu.fontColor = [UIColor orangeColor];
+        optionsMenu.fontColor = [UIColor whiteColor];
         optionsMenu.position = CGPointMake(width / 2, height / 9.0);
         optionsMenu.name = @"menu";
-        //[self addChild:optionsMenu];
+        [self addChild:optionsMenu];
         
         
         SKAction *fadeInMenu = [SKAction fadeAlphaTo:1.0 duration:15.0];
@@ -298,14 +302,18 @@ CGFloat fontSizeForPlatform = 24;
             [dragNDrop runAction:fadeInMenuSeq];
             [parentTeacher runAction:fadeInMenuSeq];
             [handwritingScene runAction:fadeInMenuSeq];
-            [self runAction:[SKAction sequence:@[delayMenu,[SKAction colorizeWithColor:[UIColor whiteColor]
-                                                                      colorBlendFactor:1.0
-                                                                              duration:15]]]];
             
             
         }];
         
-        [self runAction:runFadeIn];
+        SKAction *transitionColor = [SKAction runBlock:^{
+            [self runAction:delayMenu];
+            //self.backgroundColor = [SKColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+        }];
+        
+        SKAction *entireTransition = [SKAction sequence:@[runFadeIn,transitionColor]];
+        
+        [self runAction:entireTransition];
 
         /*NSMutableArray *animFrames = [NSMutableArray array];
         SKTextureAtlas *imageAnimationAtlas = [SKTextureAtlas atlasNamed:@"flare"];

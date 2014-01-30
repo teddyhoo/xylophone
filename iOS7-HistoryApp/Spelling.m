@@ -5,10 +5,12 @@
 //  Created by Ted Hooban on 1/23/14.
 //  Copyright (c) 2014 Melanie Taylor. All rights reserved.
 //
+#import <SpriteKit/SpriteKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 #import "Spelling.h"
 #import "IntroScreen.h"
-
+#import "LowerCaseLetter.h"
 
 @implementation Spelling
 
@@ -18,7 +20,7 @@ NSMutableArray *placedLetters;
 NSMutableArray *dictionaryOfWords;
 NSMutableArray *letterDropBox;
 
-SKSpriteNode *currentSprite;
+LowerCaseLetter *currentSprite;
 UIPanGestureRecognizer *gestureRecognizer;
 
 SKSpriteNode *firstLetter;
@@ -30,6 +32,40 @@ SKSpriteNode *sixthLetter;
 SKSpriteNode *seventhLetter;
 SKSpriteNode *backToMainMenuArrow;
 SKSpriteNode *imageForSpelling;
+
+
+LowerCaseLetter *letterA;
+LowerCaseLetter *letterB;
+LowerCaseLetter *letterC;
+LowerCaseLetter *letterD;
+LowerCaseLetter *letterE;
+LowerCaseLetter *letterF;
+LowerCaseLetter *letterG;
+LowerCaseLetter *letterH;
+LowerCaseLetter *letterI;
+LowerCaseLetter *letterJ;
+LowerCaseLetter *letterK;
+LowerCaseLetter *letterL;
+LowerCaseLetter *letterM;
+LowerCaseLetter *letterN;
+LowerCaseLetter *letterO;
+LowerCaseLetter *letterP;
+LowerCaseLetter *letterQ;
+LowerCaseLetter *letterR;
+LowerCaseLetter *letterS;
+LowerCaseLetter *letterT;
+LowerCaseLetter *letterU;
+LowerCaseLetter *letterV;
+LowerCaseLetter *letterW;
+LowerCaseLetter *letterX;
+LowerCaseLetter *letterY;
+LowerCaseLetter *letterZ;
+
+AVAudioPlayer *correctMessage; // girl voice correct
+AVAudioPlayer *awesomeMessage;
+AVAudioPlayer *whoopsMessage;
+AVAudioPlayer *magicalSweep;
+AVAudioPlayer *gameShowLose;
 
 int questionCount;
 int numberOfLettersToPlace;
@@ -63,57 +99,77 @@ int yForImage=100;
         allTheLetterBlocks = [[NSMutableArray alloc]init];
         
         
-        SKSpriteNode *woodLetterA = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-A"];
+        //SKSpriteNode *woodLetterA = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-A"];
+        LowerCaseLetter *woodLetterA = [self createLetterA];
         woodLetterA.name = @"A";
-        SKSpriteNode *woodLetterB = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-B"];
+        LowerCaseLetter *woodLetterB = [self createLetterB];
         woodLetterB.name = @"B";
-        SKSpriteNode *woodLetterC = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-C"];
+        LowerCaseLetter *woodLetterC = [self createLetterC];
         woodLetterC.name = @"C";
-        SKSpriteNode *woodLetterS = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-S"];
+        LowerCaseLetter *woodLetterS = [self createLetterS];
         woodLetterS.name = @"S";
-        SKSpriteNode *woodLetterM = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-M"];
+        LowerCaseLetter *woodLetterM = [self createLetterM];
         woodLetterM.name = @"M";
-        SKSpriteNode *woodLetterT = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-T"];
+        LowerCaseLetter  *woodLetterT = [self createLetterT];
         woodLetterT.name = @"T";
-        SKSpriteNode *woodLetterG = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-G"];
+        LowerCaseLetter  *woodLetterG = [self createLetterG];
         woodLetterG.name = @"G";
-        SKSpriteNode *woodLetterR = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-R"];
+        
+        LowerCaseLetter  *woodLetterR = [self createLetterR];
         woodLetterR.name = @"R";
-        SKSpriteNode *woodLetterO = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-O"];
+        
+        LowerCaseLetter  *woodLetterO = [self createLetterO];
         woodLetterO.name = @"O";
-        SKSpriteNode *woodLetterF = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-F"];
+        
+        LowerCaseLetter *woodLetterF = [self createLetterF];
         woodLetterF.name = @"F";
-        SKSpriteNode *woodLetterD = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-D"];
+        
+        LowerCaseLetter  *woodLetterD = [self createLetterD];
         woodLetterD.name = @"D";
-        SKSpriteNode *woodLetterH = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-H"];
+        
+        LowerCaseLetter  *woodLetterH = [self createLetterH];
         woodLetterH.name = @"H";
-        SKSpriteNode *woodLetterI = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-I"];
+        
+        LowerCaseLetter  *woodLetterI = [self createLetterI];
         woodLetterI.name = @"I";
-        SKSpriteNode *woodLetterP = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-P"];
+        
+        LowerCaseLetter  *woodLetterP = [self createLetterP];
         woodLetterP.name = @"P";
-        SKSpriteNode *woodLetterN = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-N"];
+        
+        LowerCaseLetter  *woodLetterN = [self createLetterN];
         woodLetterN.name = @"N";
-        SKSpriteNode *woodLetterL = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-L"];
+        
+        LowerCaseLetter  *woodLetterL = [self createLetterL];
         woodLetterL.name = @"L";
-        SKSpriteNode *woodLetterK = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-K"];
+        
+        LowerCaseLetter  *woodLetterK = [self createLetterK];
         woodLetterK.name = @"K";
-        SKSpriteNode *woodLetterE = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-E"];
+        
+        LowerCaseLetter  *woodLetterE = [self createLetterE];
         woodLetterE.name = @"E";
-        SKSpriteNode *woodLetterZ = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-Z"];
+        
+        LowerCaseLetter  *woodLetterZ = [self createLetterZ];
         woodLetterZ.name = @"Z";
-        SKSpriteNode *woodLetterQ = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-Q"];
+        
+        LowerCaseLetter  *woodLetterQ = [self createLetterQ];
         woodLetterQ.name = @"Q";
-        SKSpriteNode *woodLetterX = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-X"];
+        
+        LowerCaseLetter  *woodLetterX = [self createLetterX];
         woodLetterX.name = @"X";
-        SKSpriteNode *woodLetterU = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-U"];
+        
+        LowerCaseLetter  *woodLetterU = [self createLetterU];
         woodLetterU.name = @"U";
-        SKSpriteNode *woodLetterV = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-V"];
+        
+        LowerCaseLetter  *woodLetterV = [self createLetterV];
         woodLetterV.name = @"V";
-        SKSpriteNode *woodLetterW = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-W"];
+        
+        LowerCaseLetter  *woodLetterW = [self createLetterW];
         woodLetterW.name = @"W";
-        SKSpriteNode *woodLetterJ = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-J"];
+        
+        LowerCaseLetter  *woodLetterJ = [self createLetterJ];
         woodLetterJ.name = @"J";
-        SKSpriteNode *woodLetterY = [SKSpriteNode spriteNodeWithImageNamed:@"wood-letter-Y"];
+        
+        LowerCaseLetter  *woodLetterY = [self createLetterY];
         woodLetterY.name = @"Y";
         
         [allTheLetterBlocks addObject:woodLetterA];
@@ -164,6 +220,7 @@ int yForImage=100;
         }
         
         
+        
     }
     
     /*dictionaryOfWords = [[NSMutableArray alloc]init];
@@ -178,7 +235,7 @@ int yForImage=100;
     
     dictionaryOfWords = [[NSMutableArray alloc]init];
     [dictionaryOfWords addObject:firstQuestion];*/
-    
+    [self setupSounds];
     [self nextQuestion];
     return self;
 }
@@ -296,16 +353,17 @@ int yForImage=100;
 
 - (void)selectNodeForTouch:(CGPoint)touchLocation {
     
-    SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:touchLocation];
+    LowerCaseLetter *touchedNode = (LowerCaseLetter *)[self nodeAtPoint:touchLocation];
     NSLog(@"name of node: %@",touchedNode.name);
     
 
     NSString *fileName = [NSString stringWithFormat:@"wood-letter-%@",touchedNode.name];
-    currentSprite = [SKSpriteNode spriteNodeWithImageNamed:fileName];
+    currentSprite = [LowerCaseLetter spriteNodeWithImageNamed:fileName];
     currentSprite.scale = 1.6;
     currentSprite.position = touchLocation;
     currentSprite.zPosition = 100;
     currentSprite.name = touchedNode.name;
+    [currentSprite playTheSound];
     
     [self addChild:currentSprite];
 
@@ -368,17 +426,14 @@ int yForImage=100;
         
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
         
-        for (SKSpriteNode *boxDrop in letterDropBox) {
+        for (LowerCaseLetter *boxDrop in letterDropBox) {
             BOOL incorrectLetterBox = FALSE;
-            
-            NSLog(@"chosen letter: %@, boxDrop: %@", currentSprite.name, boxDrop.name);
             if (CGRectIntersectsRect(boxDrop.frame, currentSprite.frame) &&
                 [boxDrop.name isEqualToString:currentSprite.name]) {
                 
-                NSLog(@"matched");
+                [correctMessage play];
                 numberOfLettersToPlace--;
                 incorrectLetterBox = FALSE;
-                
                 
                 NSString *fileName = [NSString stringWithFormat:@"wood-letter-%@",currentSprite.name];
                 [currentSprite removeFromParent];
@@ -392,9 +447,7 @@ int yForImage=100;
                 
                 
                 if (numberOfLettersToPlace == 0) {
-                    
-                    
-                    
+
                     SKAction *transitionNext = [SKAction runBlock:^{
                         for (SKSpriteNode *letterPlaced in placedLetters) {
                             SKAction *scaleUp = [SKAction scaleTo:0.5 duration:0.5];
@@ -412,7 +465,7 @@ int yForImage=100;
                         }
                         
                         [imageForSpelling runAction:[SKAction scaleTo:0.1 duration:0.5]];
-                        [imageForSpelling runAction:[SKAction moveTo:CGPointMake(100, 100) duration:0.5]];
+                        [imageForSpelling runAction:[SKAction moveTo:CGPointMake(xForImage, yForImage) duration:0.5]];
                         [self nextQuestion];
                         
                     }];
@@ -420,10 +473,12 @@ int yForImage=100;
                     [self runAction:transitionNext];
                     
                 }
-                
+                break;
                                                   
                     
-            } else {
+            } else if (CGRectIntersectsRect(boxDrop.frame, currentSprite.frame)) {
+                [whoopsMessage play];
+                
                 incorrectLetterBox = TRUE;
                 if (incorrectLetterBox) {
                     incorrectLetterBox = FALSE;
@@ -440,12 +495,277 @@ int yForImage=100;
                 SKAction *moveTo = [SKAction moveTo:CGPointMake(currentSprite.position.x, currentSprite.position.y-100) duration:0.1];
                 SKAction *removeFromView = [SKAction removeFromParent];
                 SKAction *sequenceAction = [SKAction sequence:@[moveTo,shrink,removeFromView]];
+
                 [currentSprite runAction:sequenceAction];
             }
-            
-           
         }
     }
+}
+
+
+-(void) setupSounds {
+    
+    
+    NSURL *soundURL = [[NSBundle mainBundle]URLForResource:@"voice_girl_tween_correct" withExtension:@"wav"];
+    correctMessage = [[AVAudioPlayer alloc]initWithContentsOfURL:soundURL error:nil];
+    
+    NSURL *incorrectSound  = [[NSBundle mainBundle]URLForResource:@"voice_girl_tween_oops_try_again" withExtension:@"wav"];
+    whoopsMessage = [[AVAudioPlayer alloc]initWithContentsOfURL:incorrectSound error:nil];
+    
+    NSURL *hitPoint  = [[NSBundle mainBundle]URLForResource:@"voice_girl_tween_awesome" withExtension:@"wav"];
+    awesomeMessage = [[AVAudioPlayer alloc]initWithContentsOfURL:hitPoint error:nil];
+    
+    NSURL *magicalSweepURL  = [[NSBundle mainBundle]URLForResource:@"magical_sweep_01" withExtension:@"wav"];
+    magicalSweep = [[AVAudioPlayer alloc]initWithContentsOfURL:magicalSweepURL error:nil];
+    
+    NSURL *gameShowLoseURL  = [[NSBundle mainBundle]URLForResource:@"game_show_lose_04" withExtension:@"wav"];
+    gameShowLose = [[AVAudioPlayer alloc]initWithContentsOfURL:gameShowLoseURL error:nil];
+    
+    
+}
+
+
+
+-(LowerCaseLetter *) createLetterA {
+    
+    letterA = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-A"];
+    NSURL *letterAurl = [[NSBundle mainBundle]URLForResource:@"a" withExtension:@"aiff"];
+    letterA.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterAurl error:nil];
+    letterA.name = @"A";
+    letterA.whichLetter = @"A";
+    return letterA;
+}
+
+-(LowerCaseLetter *) createLetterB {
+    
+    letterB = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-B"];
+    NSURL *letterBurl = [[NSBundle mainBundle]URLForResource:@"b" withExtension:@"aiff"];
+    letterB.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterBurl error:nil];
+    letterB.name = @"B";
+    letterB.whichLetter = @"B";
+    letterB.centerStage = FALSE;
+    return letterB;
+}
+
+-(LowerCaseLetter *) createLetterC {
+    
+    letterC = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-C"];
+    NSURL *letterCurl = [[NSBundle mainBundle]URLForResource:@"c" withExtension:@"aiff"];
+    letterC.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterCurl error:nil];
+    letterC.name = @"C";
+    letterC.whichLetter = @"C";
+    return letterC;
+}
+
+-(LowerCaseLetter *) createLetterD {
+    letterD = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-D"];
+    NSURL *letterDurl = [[NSBundle mainBundle]URLForResource:@"d" withExtension:@"aiff"];
+    letterD.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterDurl error:nil];
+    letterD.name = @"D";
+    letterD.whichLetter = @"D";
+    return letterD;
+}
+
+-(LowerCaseLetter *) createLetterE {
+    letterE = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-E"];
+    NSURL *letterEurl = [[NSBundle mainBundle]URLForResource:@"e" withExtension:@"aiff"];
+    letterE.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterEurl error:nil];
+    letterE.name = @"E";
+    letterE.whichLetter = @"E";
+    return letterE;
+}
+
+-(LowerCaseLetter *) createLetterF {
+    letterF = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-F"];
+    NSURL *letterFurl = [[NSBundle mainBundle]URLForResource:@"f2" withExtension:@"aiff"];
+    letterF.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterFurl error:nil];
+    letterF.name = @"F";
+    letterF.whichLetter = @"F";
+    return letterF;
+    
+}
+
+-(LowerCaseLetter *) createLetterG {
+    letterG = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-G"];
+    NSURL *letterGurl = [[NSBundle mainBundle]URLForResource:@"g" withExtension:@"aiff"];
+    letterG.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterGurl error:nil];
+    letterG.name = @"G";
+    letterG.whichLetter = @"G";
+    return letterG;
+    
+}
+
+-(LowerCaseLetter *) createLetterH {
+    letterH = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-H"];
+    NSURL *letterHurl = [[NSBundle mainBundle]URLForResource:@"h2" withExtension:@"aiff"];
+    letterH.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterHurl error:nil];
+    letterH.name = @"H";
+    letterH.whichLetter = @"H";
+    return letterH;
+}
+
+-(LowerCaseLetter *) createLetterI {
+    letterI = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-I"];
+    NSURL *letterIurl = [[NSBundle mainBundle]URLForResource:@"i2" withExtension:@"aiff"];
+    letterI.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterIurl error:nil];
+    letterI.name = @"I";
+    letterI.whichLetter = @"I";
+    return letterI;
+}
+
+-(LowerCaseLetter *) createLetterJ {
+    letterJ = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-J"];
+    NSURL *letterJurl = [[NSBundle mainBundle]URLForResource:@"j2" withExtension:@"aiff"];
+    letterJ.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterJurl error:nil];
+    letterJ.name = @"J";
+    letterJ.whichLetter = @"J";
+    return letterJ;
+}
+
+-(LowerCaseLetter *) createLetterK {
+    letterK = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-K"];
+    NSURL *letterKurl = [[NSBundle mainBundle]URLForResource:@"k" withExtension:@"aiff"];
+    letterK.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterKurl error:nil];
+    letterK.name = @"K";
+    letterK.whichLetter = @"K";
+    return letterK;
+}
+
+-(LowerCaseLetter *)createLetterL {
+    letterL = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-L"];
+    NSURL *letterLurl = [[NSBundle mainBundle]URLForResource:@"l" withExtension:@"aiff"];
+    letterL.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterLurl error:nil];
+    letterL.name = @"L";
+    letterL.whichLetter = @"L";
+    return letterL;
+}
+
+-(LowerCaseLetter *)createLetterM {
+    letterM = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-M"];
+    NSURL *letterMurl = [[NSBundle mainBundle]URLForResource:@"m" withExtension:@"aiff"];
+    letterM.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterMurl error:nil];
+    letterM.name = @"M";
+    letterM.whichLetter = @"M";
+    return letterM;
+}
+
+-(LowerCaseLetter *)createLetterN {
+    letterN = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-N"];
+    NSURL *letterNurl = [[NSBundle mainBundle]URLForResource:@"n" withExtension:@"aiff"];
+    letterN.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterNurl error:nil];
+    letterN.name = @"N";
+    letterN.whichLetter = @"N";
+    return letterN;
+}
+
+-(LowerCaseLetter *)createLetterO {
+    letterO = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-O"];
+    NSURL *letterOurl = [[NSBundle mainBundle]URLForResource:@"o" withExtension:@"aiff"];
+    letterO.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterOurl error:nil];
+    letterO.name = @"O";
+    letterO.whichLetter = @"O";
+    return letterO;
+}
+
+-(LowerCaseLetter *)createLetterP {
+    letterP = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-P"];
+    
+    NSURL *letterPurl = [[NSBundle mainBundle]URLForResource:@"p" withExtension:@"aiff"];
+    letterP.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterPurl error:nil];
+    letterP.name = @"P";
+    letterP.whichLetter = @"P";
+    return letterP;
+}
+
+-(LowerCaseLetter *)createLetterQ {
+    letterQ = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-Q"];
+    NSURL *letterQurl = [[NSBundle mainBundle]URLForResource:@"q" withExtension:@"aiff"];
+    letterQ.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterQurl error:nil];
+    letterQ.name = @"Q";
+    letterQ.whichLetter = @"Q";
+    return letterQ;
+}
+
+-(LowerCaseLetter *)createLetterR {
+    letterR = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-R"];
+    
+    NSURL *letterRurl = [[NSBundle mainBundle]URLForResource:@"r" withExtension:@"aiff"];
+    letterR.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterRurl error:nil];
+    letterR.name = @"R";
+    letterR.whichLetter = @"R";
+    return letterR;
+}
+
+-(LowerCaseLetter *)createLetterS {
+    letterS = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-S"];
+    NSURL *letterSurl = [[NSBundle mainBundle]URLForResource:@"s" withExtension:@"aiff"];
+    letterS.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterSurl error:nil];
+    letterS.name = @"S";
+    letterS.whichLetter = @"S";
+    return letterS;
+}
+
+-(LowerCaseLetter *)createLetterT {
+    letterT = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-T"];
+    NSURL *letterTurl = [[NSBundle mainBundle]URLForResource:@"t2" withExtension:@"aiff"];
+    letterT.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterTurl error:nil];
+    letterT.name = @"T";
+    letterT.whichLetter = @"T";
+    return letterT;
+}
+
+-(LowerCaseLetter *)createLetterU {
+    letterU = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-U"];
+    NSURL *letterUurl = [[NSBundle mainBundle]URLForResource:@"u" withExtension:@"aiff"];
+    letterU.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterUurl error:nil];
+    letterU.name = @"U";
+    letterU.whichLetter = @"U";
+    return letterU;
+}
+
+-(LowerCaseLetter *)createLetterV {
+    letterV = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-V"];
+    NSURL *letterVurl = [[NSBundle mainBundle]URLForResource:@"v" withExtension:@"aiff"];
+    letterV.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterVurl error:nil];
+    letterV.name = @"V";
+    letterV.whichLetter = @"V";
+    return letterV;
+}
+
+-(LowerCaseLetter *)createLetterW {
+    letterW = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-W"];
+    NSURL *letterWurl = [[NSBundle mainBundle]URLForResource:@"w" withExtension:@"aiff"];
+    letterW.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterWurl error:nil];
+    letterW.name = @"W";
+    letterW.whichLetter = @"W";
+    return letterW;
+}
+
+-(LowerCaseLetter *)createLetterX {
+    letterX = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-X"];
+    NSURL *letterXurl = [[NSBundle mainBundle]URLForResource:@"x" withExtension:@"aiff"];
+    letterX.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterXurl error:nil];
+    letterX.name = @"X";
+    letterX.whichLetter = @"X";
+    return letterX;
+}
+
+-(LowerCaseLetter *) createLetterY {
+    letterY = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-Y"];
+    NSURL *letterYurl = [[NSBundle mainBundle]URLForResource:@"y" withExtension:@"aiff"];
+    letterY.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterYurl error:nil];
+    letterY.name = @"Y";
+    letterY.whichLetter = @"Y";
+    return letterY;
+}
+
+-(LowerCaseLetter *)createLetterZ {
+    letterZ = [LowerCaseLetter spriteNodeWithImageNamed:@"wood-letter-Z"];
+    NSURL *letterZurl = [[NSBundle mainBundle]URLForResource:@"z" withExtension:@"aiff"];
+    letterZ.baseSound = [[AVAudioPlayer alloc]initWithContentsOfURL:letterZurl error:nil];
+    letterZ.name = @"Z";
+    letterZ.whichLetter = @"Z";
+    return letterZ;
 }
 
 @end

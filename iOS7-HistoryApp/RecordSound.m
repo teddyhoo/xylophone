@@ -118,9 +118,6 @@ SKLabelNode *titleForRecording;
     
     recorder.delegate = self;
 	recorder.meteringEnabled = YES;
-	//meter1.progress = 0.0f;
-	//meter2.progress = 0.0f;
-	//self.title = @"0:00";
 	
 	if (![recorder prepareToRecord])
 	{
@@ -136,13 +133,6 @@ SKLabelNode *titleForRecording;
 		return NO;
 	}
     
-	// Set a timer to monitor levels, current time
-	//timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(updateMeters) userInfo:nil repeats:YES];
-	
-	// Update the navigation bar
-	//self.navigationItem.rightBarButtonItem = BARBUTTON(@"Done", @selector(stopRecording));
-	//self.navigationItem.leftBarButtonItem = SYSBARBUTTON(UIBarButtonSystemItemPause, @selector(pauseRecording));
-    
 	return YES;
 }
 
@@ -152,7 +142,7 @@ SKLabelNode *titleForRecording;
 	//self.title = nil;
 	//meter1.hidden = NO;
 	//meter2.hidden = NO;
-	{
+	//{
 		// Return to play and record session
 		NSError *error;
 		if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&error])
@@ -161,19 +151,18 @@ SKLabelNode *titleForRecording;
 			return;
 		}
 		//self.navigationItem.rightBarButtonItem = BARBUTTON(@"Record", @selector(record));
-	}
+	//}
     
-    self.userInteractionEnabled = NO;
 }
 
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)aRecorder successfully:(BOOL)flag
 {
 	
     
-    [self enumerateChildNodesWithName:@"label" usingBlock:^(SKNode *node, BOOL *stop) {
+    /*[self enumerateChildNodesWithName:@"label" usingBlock:^(SKNode *node, BOOL *stop) {
         SKLabelNode *label = (SKLabelNode*)node;
         [label removeFromParent];
-    }];
+    }];*/
     // Stop monitoring levels, time
 	[timer invalidate];
 	//meter1.progress = 0.0f;
@@ -270,11 +259,14 @@ SKLabelNode *titleForRecording;
 
     } else if (CGRectContainsPoint(stopIcon.frame, touchLocation)) {
         //[self stopRecording];
+        NSLog(@"prepare to play");
         [player prepareToPlay];
+        NSLog(@" play");
         [player play];
-        [self removeFromParent];
+        //[self removeFromParent];
         
     }
+    
 }
 
 @end

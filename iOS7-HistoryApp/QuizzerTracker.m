@@ -18,54 +18,24 @@ SKLabelNode *scoreLabel;
 SKLabelNode *actualDifficulty;
 SKLabelNode *actualSection;
 
+NSMutableArray *scorePartsLabel;
+NSMutableArray *scorePartsSprite;
+NSMutableArray *difficultyButtons;
+
 @implementation QuizzerTracker
 
 -(void)setSize:(CGSize)size {
     
     _layerSize = size;
 
-    scoreWindow = [SKSpriteNode spriteNodeWithImageNamed:@"score-window.png"];
-    scoreWindow.position = CGPointMake(100, 980);
-    [self addChild:scoreWindow];
-    
-    scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    scoreLabel.position = CGPointMake(80,995);
-    scoreLabel.text = @"Score";
-    scoreLabel.name = @"scoreLabel";
-    scoreLabel.fontColor = [UIColor blackColor];
-    scoreLabel.fontSize = 20;
-    [self addChild:scoreLabel];
-    
-    difficultyWindow = [SKSpriteNode spriteNodeWithImageNamed:@"score-window.png"];
-    difficultyWindow.position = CGPointMake(260, 980);
-    [self addChild:difficultyWindow];
-    
-    difficultyLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    difficultyLabel.position = CGPointMake(240, 995);
-    difficultyLabel.text = @"Difficulty";
-    difficultyLabel.name = @"difficultyLabel";
-    difficultyLabel.fontColor = [UIColor blackColor];
-    difficultyLabel.fontSize = 20;
-    [self addChild:difficultyLabel];
-    
-    categoryWindow = [SKSpriteNode spriteNodeWithImageNamed:@"score-window.png"];
-    categoryWindow.position = CGPointMake(420, 980);
+    scorePartsLabel = [[NSMutableArray alloc]init];
+    scorePartsSprite = [[NSMutableArray alloc]init];
+    difficultyButtons = [[NSMutableArray alloc]init];
+
+    categoryWindow = [SKSpriteNode spriteNodeWithImageNamed:@"category-banner.png"];
+    categoryWindow.position = CGPointMake(420, 120);
     [self addChild:categoryWindow];
-    
-    categoryLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    categoryLabel.position = CGPointMake(400, 995);
-    categoryLabel.text = @"Category";
-    categoryLabel.name = @"categoryLabel";
-    categoryLabel.fontColor = [UIColor blackColor];
-    categoryLabel.fontSize = 20;
-    [self addChild:categoryLabel];
-    
-    actualDifficulty = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    actualDifficulty.text = @"   ";
-    actualDifficulty.fontSize = 20;
-    actualDifficulty.fontColor = [UIColor redColor];
-    actualDifficulty.position = CGPointMake(240, 965);
-    [self addChild:actualDifficulty];
+
     
     actualSection = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
     actualSection.text = @"   ";
@@ -80,14 +50,36 @@ SKLabelNode *actualSection;
 
 -(void)updateScore:(NSNumber *)numericalCalculatedScore {
     
-    [scoreActual removeFromParent];
     int score = [numericalCalculatedScore intValue];
     NSString *scoreWithFactor = [NSString stringWithFormat:@"%i", score];
-    scoreActual = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    scoreActual.text = scoreWithFactor;
-    scoreActual.fontColor = [UIColor redColor];
-    scoreActual.position = CGPointMake(90, 960);
-    [self addChild:scoreActual];
+    
+    NSMutableArray *characters = [[NSMutableArray alloc]initWithCapacity:[scoreWithFactor length]];
+    for(int i = 0; i < [scoreWithFactor length]; i++) {
+        NSString *ichar = [NSString stringWithFormat:@"%c", [scoreWithFactor characterAtIndex:i]];
+        [characters addObject:ichar];
+        
+    }
+    
+    int xPos = 0;
+    
+    for (NSString *scorePart in characters) {
+        
+        SKSpriteNode *scoreComponent = [SKSpriteNode spriteNodeWithImageNamed:@"score-box-blue"];
+        SKLabelNode *scoreCompLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+        scoreCompLabel.text = scorePart;
+        scoreCompLabel.fontSize = 48;
+        scoreCompLabel.fontColor = [UIColor redColor];
+        scoreCompLabel.position = CGPointMake(300+xPos,35);
+        
+        scoreComponent.position = CGPointMake(300+xPos,50);
+        [self addChild:scoreComponent];
+        [self addChild:scoreCompLabel];
+        xPos += 70;
+        
+        [scorePartsSprite addObject:scoreComponent];
+        [scorePartsLabel addObject:scorePartsLabel];
+        
+    }
 }
 
 -(void)updateOtherInfo:(NSString*)difficulty topicSection:(NSString *)section {
@@ -95,18 +87,26 @@ SKLabelNode *actualSection;
     [actualDifficulty removeFromParent];
     [actualSection removeFromParent];
     
-    actualDifficulty = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    actualDifficulty.text = difficulty;
-    actualDifficulty.fontSize = 20;
-    actualDifficulty.fontColor = [UIColor redColor];
-    actualDifficulty.position = CGPointMake(240, 965);
-    [self addChild:actualDifficulty];
+    for (SKSpriteNode *difficultyButtonRemove in difficultyButtons) {
+        [difficultyButtonRemove removeFromParent];
+    }
+    
+    int difficultyNumber = [difficulty intValue];
+    int xPosDiff = 50;
+    for (int i = 0; i < difficultyNumber; i++) {
+        SKSpriteNode *difficultyButton = [SKSpriteNode spriteNodeWithImageNamed:@"difficulty-level-circle"];
+        difficultyButton.scale = 0.6;
+        difficultyButton.position = CGPointMake(xPosDiff, 120);
+        [self addChild:difficultyButton];
+        xPosDiff += 30;
+        [difficultyButtons addObject:difficultyButton];
+    }
     
     actualSection = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
     actualSection.text = section;
-    actualSection.fontSize = 20;
-    actualSection.fontColor = [UIColor redColor];
-    actualSection.position = CGPointMake(420, 965);
+    actualSection.fontSize = 32;
+    actualSection.fontColor = [UIColor blueColor];
+    actualSection.position = CGPointMake(420, 100);
     [self addChild:actualSection];
     
 }

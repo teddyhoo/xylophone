@@ -36,31 +36,31 @@
     totalCorrectLabel.text = @"Correct";
     totalCorrectLabel.fontColor = [UIColor blueColor];
     totalCorrectLabel.fontSize = 16;
-    [self addChild:totalCorrectLabel];
+    //[self addChild:totalCorrectLabel];
     
-    totalIncorrectLabel.position = CGPointMake(_layerSize.width /2, _layerSize.height / 2);
+    totalIncorrectLabel.position = CGPointMake(250, 50);
     totalIncorrectLabel.text = @"Incorrect";
     totalIncorrectLabel.fontColor = [UIColor blueColor];
     totalIncorrectLabel.fontSize = 16;
-    [self addChild:totalIncorrectLabel];
+    //[self addChild:totalIncorrectLabel];
     
-    totalScoreLabel.position = CGPointMake(_layerSize.width /2, _layerSize.height / 2);
+    totalScoreLabel.position = CGPointMake(50,35);
     totalScoreLabel.text = @"Total Score";
     totalScoreLabel.fontColor = [UIColor blueColor];
     totalScoreLabel.fontSize = 16;
     [self addChild:totalScoreLabel];
     
-    topicCategoryLabel.position = CGPointMake(_layerSize.width /2, _layerSize.height /2);
+    topicCategoryLabel.position = CGPointMake(50,20);
     topicCategoryLabel.text = @"Category";
     topicCategoryLabel.fontColor = [UIColor blueColor];
     topicCategoryLabel.fontSize = 16;
     [self addChild:topicCategoryLabel];
     
-    degreeOfDifficulty.position = CGPointMake(_layerSize.width /2, _layerSize.height /2);
+    degreeOfDifficulty.position = CGPointMake(550,50);
     degreeOfDifficulty.text = @"Difficulty";
     degreeOfDifficulty.fontColor = [UIColor blueColor];
     degreeOfDifficulty.fontSize = 16;
-    [self addChild:degreeOfDifficulty];
+    //[self addChild:degreeOfDifficulty];
     
     }
     return self;

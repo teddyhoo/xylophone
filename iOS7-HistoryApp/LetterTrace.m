@@ -325,7 +325,7 @@ float secondArrowShow = 0.0;
         for (int i = 0; i < 1500; i++) {
 
             SKSpriteNode *trailSprite =[SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud3.png"];
-            trailSprite.scale = 0.2;
+            //trailSprite.scale = 0.2;
             trailSprite.alpha = 0.0;
             trailSprite.position = CGPointMake(500, 500);
             [self addChild:trailSprite];
@@ -500,7 +500,7 @@ float secondArrowShow = 0.0;
         SKSpriteNode *trailSprite = [SKSpriteNode spriteNodeWithImageNamed:brushName];
         trailSprite.alpha = 0.0;
         trailSprite.position = CGPointMake(500, 500);
-        trailSprite.scale = 0.5;
+        //trailSprite.scale = 0.5;
         [self addChild:trailSprite];
         [listOfTrailSprites addObject:trailSprite];
     }
@@ -810,7 +810,7 @@ float secondArrowShow = 0.0;
     for (SKSpriteNode *shapeSprite in shapeNodeObjects) {
             SKSpriteNode *newCloud = [SKSpriteNode spriteNodeWithImageNamed:@"cartoon-cloud3.png"];
             newCloud.position = shapeSprite.position;
-            newCloud.scale = 0.4;
+            //newCloud.scale = 0.4;
             [redrawLetterNode addPointToNode:newCloud];
     }
         
@@ -1138,7 +1138,9 @@ float secondArrowShow = 0.0;
         [self createActionForCenterStage:letterG centerPoint:CGPointMake(600, 460) letterOff:CGPointMake(500,-300) offStageLetter:letterMoveOff];
         NSValue *theArrowPoint = [pointsForSprite objectAtIndex:0];
         [self arrowPointerToDraw:@"left" location:[theArrowPoint CGPointValue]];
-        //[self traceTutorial];
+        if (traceHandTutorial) {
+            [self traceTutorial];
+        }
     
     } else if ([letterOn.name isEqual: @"H"]) {
         
@@ -3364,30 +3366,30 @@ static inline CGFloat RandomRange(CGFloat min,
     
     
     
-    /*cgpath = CGPathCreateMutable();
+    cgpath = CGPathCreateMutable();
     
     CGPathMoveToPoint(cgpath, NULL, beginx, beginy);
     
     CGPathAddCurveToPoint(cgpath, NULL,
                           letterAvalue1.x,letterAvalue1.y-40,
-                          letterAvalue4.x,letterAvalue4.y-40,
-                          letterAvalue7.x, letterAvalue7.y-40);
+                          letterAvalue3.x,letterAvalue3.y-40,
+                          letterAvalue5.x, letterAvalue5.y-40);
     
     CGPathAddCurveToPoint(cgpath, NULL,
-                          letterAvalue7.x, letterAvalue7.y,
-                          letterAvalue9.x, letterAvalue9.y-30,
-                          letterAvalue10.x, letterAvalue10.y-80);
+                          letterAvalue5.x, letterAvalue5.y,
+                          letterAvalue7.x, letterAvalue7.y-30,
+                          letterAvalue9.x, letterAvalue9.y-80);
     
     CGPathAddCurveToPoint(cgpath, NULL,
-                          letterAvalue10.x, letterAvalue10.y-80,
-                          letterAvalue12.x, letterAvalue12.y-80,
-                          letterAvalue14.x, letterAvalue14.y-80);
+                          letterAvalue9.x, letterAvalue9.y-80,
+                          letterAvalue11.x, letterAvalue11.y-80,
+                          letterAvalue13.x, letterAvalue13.y-80);
     
     CGPathAddCurveToPoint(cgpath, NULL,
-                          letterAvalue14.x, letterAvalue14.y-80,
-                          letterAvalue16.x, letterAvalue16.y-80,
-                          letterAvalue19.x, letterAvalue19.y-80);
-    */
+                          letterAvalue13.x, letterAvalue13.y-80,
+                          letterAvalue17.x, letterAvalue17.y-80,
+                          letterAvalue21.x, letterAvalue21.y-80);
+    
     
     
     
@@ -4269,22 +4271,21 @@ static inline CGFloat RandomRange(CGFloat min,
     
     cgpath = CGPathCreateMutable();
     
-    CGPathMoveToPoint(cgpath, NULL, beginx, beginy);
+    CGPathMoveToPoint(cgpath, NULL, beginx-170, beginy+25);
     
     CGPathAddCurveToPoint(cgpath, NULL,
-                          letterAvalue1.x+40,letterAvalue1.y-40,
-                          letterAvalue4.x+40,letterAvalue4.y-40,
-                          letterAvalue6.x+40, letterAvalue6.y-40);
+                          letterAvalue1.x,letterAvalue1.y-40,
+                          letterAvalue4.x,letterAvalue4.y-40,
+                          letterAvalue6.x, letterAvalue6.y-40);
     
     CGPathAddCurveToPoint(cgpath, NULL,
-                          letterAvalue6.x+40, letterAvalue6.y,
+                          letterAvalue6.x, letterAvalue6.y,
                           letterAvalue9.x, letterAvalue9.y-30,
                           letterAvalue12.x, letterAvalue12.y-80);
     
-    /*CGPathAddCurveToPoint(cgpath, NULL,
-     letterAvalue18.x+80, letterAvalue18.y-10,
-     letterAvalue19.x+80, letterAvalue19.y-10,
-     letterAvalue20.x+70, letterAvalue20.y);*/
+    CGPathAddCurveToPoint(cgpath, NULL,letterAvalue12.x+80, letterAvalue12.y-10,
+     letterAvalue13.x+80, letterAvalue13.y-10,
+     letterAvalue14.x+70, letterAvalue14.y);
     
     [pointsForSprite addObject:[NSValue valueWithCGPoint:letterAvalue1]];
     [arrowObjects setObject:@"down" forKey:@"0"];

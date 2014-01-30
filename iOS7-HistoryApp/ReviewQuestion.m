@@ -28,7 +28,7 @@
         scoreLabel.fontSize = 60;
         [self addChild:scoreLabel];
         
-        SKSpriteNode *difficultyWindow = [SKSpriteNode spriteNodeWithImageNamed:@"label-title-550x180.png"];
+        SKSpriteNode *difficultyWindow = [SKSpriteNode spriteNodeWithImageNamed:@"explanation.png"];
         difficultyWindow.position = CGPointMake(350,800);
         //[self addChild:difficultyWindow];
         
