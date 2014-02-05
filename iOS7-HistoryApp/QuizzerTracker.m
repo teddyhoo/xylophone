@@ -17,6 +17,7 @@ SKSpriteNode *scoreWindow;
 SKLabelNode *scoreLabel;
 SKLabelNode *actualDifficulty;
 SKLabelNode *actualSection;
+SKLabelNode *theLetterQForQuestion;
 
 NSMutableArray *scorePartsLabel;
 NSMutableArray *scorePartsSprite;
@@ -33,15 +34,23 @@ NSMutableArray *difficultyButtons;
     difficultyButtons = [[NSMutableArray alloc]init];
 
     categoryWindow = [SKSpriteNode spriteNodeWithImageNamed:@"category-banner.png"];
-    categoryWindow.position = CGPointMake(420, 120);
+    categoryWindow.position = CGPointMake(size.width/2-10, 930);
     [self addChild:categoryWindow];
+    
+    theLetterQForQuestion = [SKLabelNode labelNodeWithFontNamed:@"Trickster"];
+    theLetterQForQuestion.position = CGPointMake(50,955);
+    theLetterQForQuestion.text = @"Q:";
+    theLetterQForQuestion.fontColor = [UIColor blueColor];
+    theLetterQForQuestion.fontSize = 72;
+    [self addChild:theLetterQForQuestion];
+    
 
     
     actualSection = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
     actualSection.text = @"   ";
     actualSection.fontSize = 20;
     actualSection.fontColor = [UIColor redColor];
-    actualSection.position = CGPointMake(420, 965);
+    actualSection.position = CGPointMake(400, 790);
     [self addChild:actualSection];
     
     
@@ -60,24 +69,66 @@ NSMutableArray *difficultyButtons;
         
     }
     
-    int xPos = 0;
+    if (score > 99 && score < 999) {
+        NSString *appendDigit = [NSString stringWithFormat:@"0"];
+        NSString *appendDigit2 = [NSString stringWithFormat:@"0"];
+        [characters insertObject:appendDigit atIndex:0];
+        [characters insertObject:appendDigit2 atIndex:0];
+        
+    } else if (score > 999 && score < 10000) {
+        NSString *appendDigit = [NSString stringWithFormat:@"0"];
+        [characters insertObject:appendDigit atIndex:0];
+    }
     
+    int xPos = 0;
+
     for (NSString *scorePart in characters) {
         
-        SKSpriteNode *scoreComponent = [SKSpriteNode spriteNodeWithImageNamed:@"score-box-blue"];
-        SKLabelNode *scoreCompLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-        scoreCompLabel.text = scorePart;
-        scoreCompLabel.fontSize = 48;
-        scoreCompLabel.fontColor = [UIColor redColor];
-        scoreCompLabel.position = CGPointMake(300+xPos,35);
+        SKSpriteNode *scoreComponent;
         
-        scoreComponent.position = CGPointMake(300+xPos,50);
+        if ([scorePart isEqualToString:@"0"]) {
+            
+            scoreComponent = [SKSpriteNode spriteNodeWithImageNamed:@"Number-0-icon"];
+
+        } else if ([scorePart isEqualToString:@"1"]) {
+            
+            scoreComponent = [SKSpriteNode spriteNodeWithImageNamed:@"Number-1-icon"];
+
+        } else if ([scorePart isEqualToString:@"2"]) {
+            
+            scoreComponent = [SKSpriteNode spriteNodeWithImageNamed:@"Number-2-icon"];
+
+        } else if ([scorePart isEqualToString:@"3"]) {
+            
+            scoreComponent = [SKSpriteNode spriteNodeWithImageNamed:@"Number-3-icon"];
+
+        } else if ([scorePart isEqualToString:@"4"]) {
+            scoreComponent = [SKSpriteNode spriteNodeWithImageNamed:@"Number-4-icon"];
+
+        } else if ([scorePart isEqualToString:@"5"]) {
+            scoreComponent = [SKSpriteNode spriteNodeWithImageNamed:@"Number-5-icon"];
+
+        } else if ([scorePart isEqualToString:@"6"]) {
+            scoreComponent = [SKSpriteNode spriteNodeWithImageNamed:@"Number-6-icon"];
+
+        } else if ([scorePart isEqualToString:@"7"]) {
+            scoreComponent = [SKSpriteNode spriteNodeWithImageNamed:@"Number-7-icon"];
+
+        } else if ([scorePart isEqualToString:@"8"]) {
+            scoreComponent = [SKSpriteNode spriteNodeWithImageNamed:@"Number-8-icon"];
+
+        } else if ([scorePart isEqualToString:@"9"]) {
+            scoreComponent = [SKSpriteNode spriteNodeWithImageNamed:@"Number-9-icon"];
+
+        }
+        
+        scoreComponent.position = CGPointMake(180+xPos,50);
+        scoreComponent.scale = 0.5;
         [self addChild:scoreComponent];
-        [self addChild:scoreCompLabel];
+
         xPos += 70;
         
         [scorePartsSprite addObject:scoreComponent];
-        [scorePartsLabel addObject:scorePartsLabel];
         
     }
 }
@@ -92,21 +143,30 @@ NSMutableArray *difficultyButtons;
     }
     
     int difficultyNumber = [difficulty intValue];
-    int xPosDiff = 50;
+    int xPosDiff = 600;
+    
+    SKLabelNode *difficultyBack = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+    difficultyBack.position = CGPointMake(630, 970);
+    difficultyBack.fontColor = [UIColor blueColor];
+    difficultyBack.fontSize = 24;
+    difficultyBack.text = @"Difficulty: ";
+    [self addChild:difficultyBack];
+    
     for (int i = 0; i < difficultyNumber; i++) {
         SKSpriteNode *difficultyButton = [SKSpriteNode spriteNodeWithImageNamed:@"difficulty-level-circle"];
-        difficultyButton.scale = 0.6;
-        difficultyButton.position = CGPointMake(xPosDiff, 120);
+        difficultyButton.scale = 0.3;
+        difficultyButton.position = CGPointMake(xPosDiff, 980);
         [self addChild:difficultyButton];
-        xPosDiff += 30;
+        xPosDiff += 15;
         [difficultyButtons addObject:difficultyButton];
     }
     
     actualSection = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
     actualSection.text = section;
-    actualSection.fontSize = 32;
+    actualSection.fontSize = 24;
     actualSection.fontColor = [UIColor blueColor];
-    actualSection.position = CGPointMake(420, 100);
+    actualSection.position = CGPointMake(200, 970);
+    //actualSection.position = CGPointMake(_layerSize.width/2, 140);
     [self addChild:actualSection];
     
 }

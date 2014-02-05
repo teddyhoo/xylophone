@@ -28,12 +28,13 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
     self = [super init];
     if (self) {
         
-        HistoryData *sharedData = [HistoryData sharedManager];
+        //HistoryData *sharedData = [HistoryData sharedManager];
 
         SKSpriteNode *pickerBackground = [SKSpriteNode spriteNodeWithImageNamed:@"topicPicker.png"];
         pickerBackground.position = CGPointMake(80, -10);
-        
         [self addChild:pickerBackground];
+        
+        /*
         NSMutableArray *quizQuestions = [[NSMutableArray alloc]init];
         NSMutableArray *quizAnswers = [[NSMutableArray alloc]init];
         NSMutableArray *quizWrongOne = [[NSMutableArray alloc]init];
@@ -104,9 +105,9 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         num60sAnd70s = 0;
         numReagan = 0;
         numModern = 0;
+        */
         
-        
-        for (NSString *key in sortedQuestions) {
+        /*for (NSString *key in sortedQuestions) {
             
             if ([[sortedQuestions valueForKey:key] isEqualToString:@"Colonial"]) {
                 numColonial++;
@@ -151,7 +152,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
             } else if ([[sortedQuestions valueForKey:key] isEqualToString:@"Sixties"]) {
                 num60sAnd70s++;
             }
-        }
+        }*/
 
        /* NSLog(@"number of colonial: %i", numColonial);
         NSLog(@"number of revolution: %i", numRevolution);
@@ -272,7 +273,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic12.text = @"Progressive";
         topic12.fontColor = [UIColor blackColor];
         topic12.fontSize = 40;
-        topic12.position = CGPointMake(360, 325);
+        topic12.position = CGPointMake(50, -450);
         topic12.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         topic12.name = @"Progressive";
 // ----------------------------------------------------------------------------------------------
@@ -439,10 +440,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     
-    //CGPoint buttonLocation = topic2.position;
-    SKAction *selectAnimate = [SKAction colorizeWithColor:[UIColor orangeColor] colorBlendFactor:0.9 duration:0.1];
     SKAction *zoomSelected = [SKAction scaleTo:1.5 duration:0.1];
-    //SKAction *sequenceActions = [SKAction sequence:@[selectAnimate,zoomSelected]];
     
     if (CGRectContainsPoint(startArrow.frame, location)) {
         NSString *topicSelected = startArrow.name;
@@ -574,7 +572,7 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         if([spriteName isEqualToString:otherTopics.name]) {
             
             [startArrow removeFromParent];
-            startArrow = [SKSpriteNode spriteNodeWithImageNamed:@"next-button.png"];
+            startArrow = [SKSpriteNode spriteNodeWithImageNamed:@"next-button-200x206.png"];
             startArrow.scale = 0.7;
             
             if(otherTopics.position.x > 200) {

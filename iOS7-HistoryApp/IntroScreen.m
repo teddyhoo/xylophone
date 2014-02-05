@@ -55,6 +55,16 @@ CGFloat fontSizeForPlatform = 24;
     if (self) {
         
         
+        for (NSString* family in [UIFont familyNames])
+        {
+            NSLog(@"%@", family);
+            
+            for (NSString* name in [UIFont fontNamesForFamilyName: family])
+            {
+                NSLog(@"  %@", name);
+            }
+        }
+        
         sharedData = [MontessoriData sharedManager];
         self.backgroundColor = [SKColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
         
@@ -212,7 +222,7 @@ CGFloat fontSizeForPlatform = 24;
         [introductionLabel runAction:moveTitle];
         
         
-        NSMutableArray *wormTextures = [[NSMutableArray alloc]init];
+        /*NSMutableArray *wormTextures = [[NSMutableArray alloc]init];
         SKTextureAtlas *wormAtlas = [SKTextureAtlas atlasNamed:@"earthworm"];
         for (int i=0; i < 6; i++) {
             SKTexture *wormTexture =[wormAtlas textureNamed:[NSString stringWithFormat:@"%i.png",i]];
@@ -226,7 +236,7 @@ CGFloat fontSizeForPlatform = 24;
         SKAction *repeatCrawlAnim = [SKAction repeatAction:crawlAnimation count:6];
         SKAction *moveCrawl = [SKAction moveByX:+380 y:0 duration:4.0];
         [worm runAction:repeatCrawlAnim];
-        [worm runAction:moveCrawl];
+        [worm runAction:moveCrawl];*/
         
         //[self addChild:worm];
         
@@ -355,7 +365,7 @@ CGFloat fontSizeForPlatform = 24;
         
         WorldHistoryMainMenu *worldHistory = [[WorldHistoryMainMenu alloc]initWithSize:CGSizeMake(768, 1024)];
         spriteView = (SKView *)self.view;
-        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:2.0];
+        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.1];
         [spriteView presentScene:worldHistory transition:reveal];
         return;
         

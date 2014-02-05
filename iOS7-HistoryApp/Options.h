@@ -15,6 +15,9 @@
 
 @optional
 -(void)selectedBrush:(NSString*)theBrush;
+-(void)soundOnOff:(NSString*)soundOption;
+-(void)arrowOnOff:(NSString*)arrowOption;
+-(void)handTraceOnOff:(NSString*)traceOption;
 
 
 @end

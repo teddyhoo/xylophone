@@ -18,7 +18,7 @@
     if(self) {
         SKSpriteNode *scoreWindow = [SKSpriteNode spriteNodeWithImageNamed:@"review-bg.png"];
         scoreWindow.position = CGPointMake(400, 510);
-        //[self addChild:scoreWindow];
+        [self addChild:scoreWindow];
         
         SKLabelNode *scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         scoreLabel.position = CGPointMake(200,830);

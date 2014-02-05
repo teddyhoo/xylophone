@@ -197,7 +197,7 @@ CGSize *introScreenSize;
 
 -(void)gotoSectionMatching {
     
-    SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.9];
+    SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.1];
     Matching *matchScene = [Matching sceneWithSize:self.view.bounds.size];
     matchScene.scaleMode = SKSceneScaleModeResizeFill;
     [self.view presentScene:matchScene transition:transitionToMatch];
@@ -206,7 +206,7 @@ CGSize *introScreenSize;
 
 -(void)gotoSectionQuiz {
     
-    SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.9];
+    SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.1];
     Quizzer *matchScene = [[Quizzer alloc]initWithSize:CGSizeMake(768, 1024)];
     [self.view presentScene:matchScene transition:transitionToMatch];
     
@@ -214,7 +214,7 @@ CGSize *introScreenSize;
 
 -(void)gotoSectionEssay {
     
-    SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.9];
+    SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.1];
     Matching *matchScene = [[Matching alloc]initWithSize:CGSizeMake(768, 1024)];
     matchScene.scaleMode = SKSceneScaleModeResizeFill;
     
@@ -226,7 +226,7 @@ CGSize *introScreenSize;
 
 -(void)gotoSectionTable {
     
-    SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.9];
+    SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.1];
     Matching *matchScene = [[Matching alloc]initWithSize:CGSizeMake(768, 1024)];
     [self.view presentScene:matchScene transition:transitionToMatch];
     
@@ -235,7 +235,7 @@ CGSize *introScreenSize;
 
 -(void)gotoSectionTimeline {
     
-    SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.9];
+    SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.1];
     Matching *matchScene = [[Matching alloc]initWithSize:CGSizeMake(768, 1024)];
     [self.view presentScene:matchScene transition:transitionToMatch];
     
@@ -244,7 +244,7 @@ CGSize *introScreenSize;
 
 -(void)gotoSectionMoreQuestions {
     
-    SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.9];
+    SKTransition *transitionToMatch = [SKTransition doorsOpenVerticalWithDuration:0.1];
     ContentInAppPurchase *inAppPurchase = [[ContentInAppPurchase alloc]initWithSize:CGSizeMake(768, 1024)];
     [self.view presentScene:inAppPurchase transition:transitionToMatch];
     

@@ -151,9 +151,11 @@ SKAction *sequenceBrushUpdate;
         brushTwo.position = CGPointMake(340, 280);
         brushThree.position = CGPointMake(400, 280);
         brushFour.position = CGPointMake(460, 280);
+        brushFour.scale = 0.5;
         
         brushSelect = [SKSpriteNode spriteNodeWithImageNamed:@"button-frame"];
         brushSelect.position = brushThree.position;
+        brushSelect.scale = 0.5;
         [self addChild:brushSelect];
 
         [self addChild:brushOne];
@@ -229,20 +231,29 @@ SKAction *sequenceBrushUpdate;
     } else if (CGRectContainsPoint(brushTwo.frame, touchLocation)) {
         
         
-        [brushSelect runAction:moveSelect2];
-        [self.delegate selectedBrush:@"light-blue"];
+        SKAction *delayDelegate = [SKAction waitForDuration:0.5];
+        SKAction *callDelegate = [SKAction runBlock:^{
+            [self.delegate selectedBrush:@"light-blue"];
+        }];
+        
+        [brushSelect runAction:[SKAction sequence:@[moveSelect2,delayDelegate,callDelegate]]];
+
 
     } else if (CGRectContainsPoint(brushThree.frame, touchLocation)) {
         
-        
-        [brushSelect runAction:moveSelect3];
-        [self.delegate selectedBrush:@"cartoon-cloud3"];
+        SKAction *delayDelegate = [SKAction waitForDuration:0.5];
+        SKAction *callDelegate = [SKAction runBlock:^{
+            [self.delegate selectedBrush:@"cartoon-cloud3"];
+        }];
+        [brushSelect runAction:[SKAction sequence:@[moveSelect3,delayDelegate,callDelegate]]];
         
     } else if (CGRectContainsPoint(brushFour.frame, touchLocation)) {
         
-        
-        [brushSelect runAction:moveSelect4];
-        [self.delegate selectedBrush:@"sunburst"];
+        SKAction *delayDelegate = [SKAction waitForDuration:0.5];
+        SKAction *callDelegate = [SKAction runBlock:^{
+            [self.delegate selectedBrush:@"sunburst"];
+        }];
+        [brushSelect runAction:[SKAction sequence:@[moveSelect4,delayDelegate,callDelegate]]];
         
     } else if (CGRectContainsPoint(toggleOnAudio.frame, touchLocation)) {
         
@@ -254,13 +265,30 @@ SKAction *sequenceBrushUpdate;
         
     } else if (CGRectContainsPoint(toggleOnHand.frame, touchLocation)) {
         
-        toggleOnHand.alpha = 0.0;
-        toggleOffHand.alpha = 1.0;
+        if (toggleOnHand.alpha == 1.0) {
+            
+            toggleOnHand.alpha = 0.0;
+            toggleOffHand.alpha = 1.0;
+            [self.delegate handTraceOnOff:@"off"];
+            
+        } else {
+            toggleOnHand.alpha = 1.0;
+            toggleOffHand.alpha = 0.0;
+            [self.delegate handTraceOnOff:@"on"];
+            
+        }
         
     } else if (CGRectContainsPoint(toggleOnArrows.frame, touchLocation)) {
         
-        toggleOnArrows.alpha = 0.0;
-        toggleOffArrows.alpha = 1.0;
+        if(toggleOnArrows.alpha == 1.0) {
+            toggleOnArrows.alpha = 0.0;
+            toggleOffArrows.alpha = 1.0;
+            [self.delegate arrowOnOff:@"off"];
+        } else {
+            toggleOnArrows.alpha = 1.0;
+            toggleOffArrows.alpha = 0.0;
+            [self.delegate arrowOnOff:@"on"];
+        }
         
         
     }
