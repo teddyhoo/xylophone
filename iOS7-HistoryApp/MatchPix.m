@@ -21,9 +21,6 @@
 #import "SKTTimingFunctions.h"
 
 
-#import "MatchImage.h"
-
-
 @implementation MatchPix
 
 SKSpriteNode *picForQuestion;
@@ -101,12 +98,15 @@ int groupNumber;
 int xPosImage = 100;
 int yPosImage = 200;
 
+NSString *thePlayMode;
+
 @synthesize selectedImage, gridPaper;
 
--(id)initWithSize:(CGSize)size onWhichGroup:(NSNumber *)group {
+-(id)initWithSize:(CGSize)size onWhichGroup:(NSNumber *)group mode:(NSString*)playMode {
 
     groupNumber = [group intValue];
     NSString *groupNumberKeyVal = [group stringValue];
+    thePlayMode = playMode;
     
     self = [super initWithSize:size];
     if (self) {
@@ -207,6 +207,7 @@ int yPosImage = 200;
             }
             i++;
         }
+        
         
         if (groupNumber == 1) {
             letterA = [self createLetterA];

@@ -122,5 +122,125 @@
 		<key>Explanation</key>
 		<string></string>
 	</dict>
+	<dict>
+		<key>Question</key>
+		<string>Which of the following was not a reason that the South supported slavery?</string>
+		<key>Correct</key>
+		<string>Almost all white families already owned slaves</string>
+		<key>Answer1</key>
+		<string>Bible teachings allowed for slave ownership</string>
+		<key>Answer2</key>
+		<string>The Southern economy would be devastated</string>
+		<key>Answer3</key>
+		<string>Slaves were of inferior intellect</string>
+		<key>helperTips</key>
+		<string>Slavery was a status symbol.</string>
+		<key>difficulty</key>
+		<string>3</string>
+		<key>Image</key>
+		<string>0</string>
+		<key>Time</key>
+		<string>Antebellum</string>
+		<key>Tag1</key>
+		<string>Social</string>
+		<key>Tag2</key>
+		<string>Slavery</string>
+		<key>Tag3</key>
+		<string>Economic</string>
+		<key>Crossref</key>
+		<string>0</string>
+		<key>Explanation</key>
+		<string>Most southerners did not own slaves. </string>
+	</dict>
+	<dict>
+		<key>Question</key>
+		<string>Which action best embodied the spirit of Manifest Destiny</string>
+		<key>Correct</key>
+		<string>Mexican-American War</string>
+		<key>Answer1</key>
+		<string>Spanish-American War</string>
+		<key>Answer2</key>
+		<string>War of 1812</string>
+		<key>Answer3</key>
+		<string>Wilmot Proviso</string>
+		<key>helperTips</key>
+		<string>Manifest Destiny embodied notion that Americans were destined by God to expand westward.</string>
+		<key>difficulty</key>
+		<string>3</string>
+		<key>Image</key>
+		<string>0</string>
+		<key>Time</key>
+		<string>Manifest Destiny</string>
+		<key>Tag1</key>
+		<string>Social</string>
+		<key>Tag2</key>
+		<string>Expansion</string>
+		<key>Tag3</key>
+		<string>Migration</string>
+		<key>Crossref</key>
+		<string>0</string>
+		<key>Explanation</key>
+		<string>Texas had declared independence from Mexico and the Polk Administration annexed Texas, but the Mexicans still lay claim to it, leading to war. </string>
+	</dict>
+	<dict>
+		<key>Question</key>
+		<string>What was the single biggest hindrance to fulfillment of Manifest Destiny?</string>
+		<key>Correct</key>
+		<string>Issue of slavery</string>
+		<key>Answer1</key>
+		<string>European strongholds in western territories</string>
+		<key>Answer2</key>
+		<string>Resistance of Native Americans</string>
+		<key>Answer3</key>
+		<string>Anti-imperialist sentiment in New England</string>
+		<key>helperTips</key>
+		<string>Texas was not immediately annexed after securing independence from Mexico. </string>
+		<key>difficulty</key>
+		<string>4</string>
+		<key>Image</key>
+		<string>0</string>
+		<key>Time</key>
+		<string>Manifest Destiny</string>
+		<key>Tag1</key>
+		<string>Social</string>
+		<key>Tag2</key>
+		<string>Political</string>
+		<key>Tag3</key>
+		<string>Migration</string>
+		<key>Crossref</key>
+		<string>0</string>
+		<key>Explanation</key>
+		<string>Both presidents Jackson and Van Buren did not support annexation of Texas because of the unresolved slavery issue.</string>
+	</dict>
+	<dict>
+		<key>Question</key>
+		<string>The slogan &quot;Fifty-Four Forty or Fight!&quot; refers to what:</string>
+		<key>Correct</key>
+		<string>Conflict with British over Northwest Territory</string>
+		<key>Answer1</key>
+		<string>Conflict with French over Canadian Territory</string>
+		<key>Answer2</key>
+		<string>Missouri Compromise line of demarcation indicating where slavery would be outlawed</string>
+		<key>Answer3</key>
+		<string>Native American conflicts in Wyoming</string>
+		<key>helperTips</key>
+		<string>Manifest Destiny embodied notion that Americans were destined by God to expand westward.</string>
+		<key>difficulty</key>
+		<string>4</string>
+		<key>Image</key>
+		<string>0</string>
+		<key>Time</key>
+		<string>Manifest Destiny</string>
+		<key>Tag1</key>
+		<string>Social</string>
+		<key>Tag2</key>
+		<string>Expansion</string>
+		<key>Tag3</key>
+		<string>Migration</string>
+		<key>Crossref</key>
+		<string>0</string>
+		<key>Explanation</key>
+		<string>Texas had declared independence from Mexico and the Polk Administration annexed Texas, but the Mexicans still lay claim to it, leading to war. </string>
+	</dict>
 </array>
 </plist>

@@ -34,14 +34,14 @@ NSMutableArray *difficultyButtons;
     difficultyButtons = [[NSMutableArray alloc]init];
 
     categoryWindow = [SKSpriteNode spriteNodeWithImageNamed:@"category-banner.png"];
-    categoryWindow.position = CGPointMake(size.width/2-10, 930);
+    categoryWindow.position = CGPointMake(size.width/2-20, 930);
     [self addChild:categoryWindow];
     
     theLetterQForQuestion = [SKLabelNode labelNodeWithFontNamed:@"Trickster"];
     theLetterQForQuestion.position = CGPointMake(50,955);
     theLetterQForQuestion.text = @"Q:";
     theLetterQForQuestion.fontColor = [UIColor blueColor];
-    theLetterQForQuestion.fontSize = 72;
+    theLetterQForQuestion.fontSize = 56;
     [self addChild:theLetterQForQuestion];
     
 
@@ -146,7 +146,7 @@ NSMutableArray *difficultyButtons;
     int xPosDiff = 600;
     
     SKLabelNode *difficultyBack = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
-    difficultyBack.position = CGPointMake(630, 970);
+    difficultyBack.position = CGPointMake(530, 970);
     difficultyBack.fontColor = [UIColor blueColor];
     difficultyBack.fontSize = 24;
     difficultyBack.text = @"Difficulty: ";

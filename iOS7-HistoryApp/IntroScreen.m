@@ -16,6 +16,8 @@
 #import "TeacherParent.h"
 #import "Spelling.h"
 #import "MontessoriData.h"
+#import "FreeWrite.h"
+#import "GestureView.h"
 
 @implementation IntroScreen
 
@@ -27,6 +29,7 @@
 @synthesize credits;
 @synthesize teacherReview;
 @synthesize spellingScene;
+@synthesize freeWriteScene;
 
 AVAudioPlayer *avSound;
 SKLabelNode *optionsMenu;
@@ -36,12 +39,12 @@ SKLabelNode *handwritingScene;
 SKLabelNode *tracingScene;
 SKLabelNode *creditsScene;
 SKLabelNode *spellingLabel;
+SKLabelNode *freeTrace;
 
 SKLabelNode *optionsMenu;
 SKLabelNode *moveableAlpha;
 
 NSMutableArray *texturesForAnim;
-MontessoriData *sharedData;
 
 CGFloat width;
 CGFloat height;
@@ -55,7 +58,7 @@ CGFloat fontSizeForPlatform = 24;
     if (self) {
         
         
-        for (NSString* family in [UIFont familyNames])
+       /* for (NSString* family in [UIFont familyNames])
         {
             NSLog(@"%@", family);
             
@@ -63,12 +66,9 @@ CGFloat fontSizeForPlatform = 24;
             {
                 NSLog(@"  %@", name);
             }
-        }
+        }*/
         
-        sharedData = [MontessoriData sharedManager];
         self.backgroundColor = [SKColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
-        
-        
 
         width = self.size.width;
         height = self.size.height;
@@ -272,11 +272,21 @@ CGFloat fontSizeForPlatform = 24;
         dragNDrop.alpha = 0.0;
         [self addChild:dragNDrop];
         
+        freeTrace = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
+        freeTrace.fontSize = fontSizeForPlatform;
+        freeTrace.text = @"F R E E  T R A C E";
+        freeTrace.fontColor = [UIColor purpleColor];
+        freeTrace.position = CGPointMake(width / 2, height / 3.5);
+        freeTrace.name = @"review";
+        freeTrace.alpha = 0.0;
+        [self addChild:freeTrace];
+        
+        
         parentTeacher = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
         parentTeacher.fontSize = fontSizeForPlatform;
         parentTeacher.text = @"R E V I E W";
         parentTeacher.fontColor = [UIColor purpleColor];
-        parentTeacher.position = CGPointMake(width / 2, height / 3.5);
+        parentTeacher.position = CGPointMake(width / 2, height / 4.3);
         parentTeacher.name = @"review";
         parentTeacher.alpha = 0.0;
         [self addChild:parentTeacher];
@@ -312,6 +322,7 @@ CGFloat fontSizeForPlatform = 24;
             [dragNDrop runAction:fadeInMenuSeq];
             [parentTeacher runAction:fadeInMenuSeq];
             [handwritingScene runAction:fadeInMenuSeq];
+            [freeTrace runAction:fadeInMenuSeq];
             
             
         }];
@@ -353,7 +364,6 @@ CGFloat fontSizeForPlatform = 24;
     return self;
 }
 
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
@@ -364,6 +374,7 @@ CGFloat fontSizeForPlatform = 24;
     if (CGRectContainsPoint(optionsMenu.frame, theTouch)) {
         
         WorldHistoryMainMenu *worldHistory = [[WorldHistoryMainMenu alloc]initWithSize:CGSizeMake(768, 1024)];
+        SKView *spriteView;
         spriteView = (SKView *)self.view;
         SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.1];
         [spriteView presentScene:worldHistory transition:reveal];
@@ -372,33 +383,55 @@ CGFloat fontSizeForPlatform = 24;
     } else {
     
         if (CGRectContainsPoint(dragNDrop.frame, theTouch)){
-            matchingScene = [[MatchPix alloc]initWithSize:CGSizeMake(1024, 768)];
+            int i = 1;
+            matchingScene = [[MatchPix alloc]initWithSize:CGSizeMake(768, 1024) onWhichGroup:[NSNumber numberWithInt:i] mode:@"free"];
             SKTransition *overDrag = [SKTransition revealWithDirection:SKTransitionDirectionLeft duration:1.0];
+            SKView *spriteView;
             spriteView = (SKView*)self.view;
             [spriteView presentScene:matchingScene transition:overDrag];
             
         } else if (CGRectContainsPoint(parentTeacher.frame, theTouch)) {
-            teacherReview = [[TeacherParent alloc]initWithSize:CGSizeMake(1024, 768)];
+            teacherReview = [[TeacherParent alloc]initWithSize:CGSizeMake(768, 1024)];
             SKTransition *overDrag = [SKTransition revealWithDirection:SKTransitionDirectionLeft duration:1.0];
+            SKView *spriteView;
+
             spriteView = (SKView *)self.view;
             [spriteView presentScene:teacherReview transition:overDrag];
         } else if (CGRectContainsPoint(handwritingScene.frame, theTouch)) {
-            credits = [[Credits alloc]initWithSize:CGSizeMake(1024, 768)];
+            credits = [[Credits alloc]initWithSize:CGSizeMake(768, 1024)];
             SKTransition *creditTransition = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
+            SKView *spriteView;
+
             spriteView = (SKView *)self.view;
             [spriteView presentScene:credits transition:creditTransition];
         } else if (CGRectContainsPoint(spellingLabel.frame,theTouch)) {
             spellingScene = [[Spelling alloc]initWithSize:CGSizeMake(1024,768)];
             SKTransition *spellingTransition = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.1];
+            SKView *spriteView;
+
             spriteView = (SKView *)self.view;
             [spriteView presentScene:spellingScene transition:spellingTransition];
             
+        } else if (CGRectContainsPoint(freeTrace.frame,theTouch)) {
+            freeWriteScene = [[FreeWrite alloc]initWithSize:CGSizeMake(1024, 768)];
+            SKTransition *freeWriteTransition = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.1];
+            SKView *spriteView;
+
+            spriteView = (SKView *)self.view;
+            [spriteView presentScene:freeWriteScene transition:freeWriteTransition];
+            
         } else  {
             //myMainMenu = [[MainMenu alloc]initWithSize:CGSizeMake(1024, 768)];
-            traceScene = [[LetterTrace alloc]initWithSize:CGSizeMake(1024,768) andGroup:[NSNumber numberWithInt:1]];
+            /*traceScene = [[LetterTrace alloc]initWithSize:CGSizeMake(1024,768) andGroup:[NSNumber numberWithInt:1]];
             SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionLeft duration:0.1];
+            SKView *spriteView;
+
             spriteView = (SKView*)self.view;
-            [spriteView presentScene:traceScene transition:reveal];
+            [spriteView presentScene:traceScene transition:reveal];*/
+            
+            self.changeSceneBlock(@"traceScene");
+            
+            
         }
         
     }

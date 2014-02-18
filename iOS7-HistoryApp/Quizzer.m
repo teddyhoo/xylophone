@@ -20,8 +20,7 @@
 @implementation Quizzer
 
 @synthesize answerButton1, answerButton2, answerButton3, answerButton4;
-@synthesize quizQuestions, quizAnswers, quizWrongOne, quizWrongTwo, quizWrongThree, quizWrongFour,
-questionClue, questionSection, tagFirst, tagSecond, difficultyLevel, imageList, forward, goForward;
+@synthesize quizQuestions, quizAnswers, quizWrongOne, quizWrongTwo, quizWrongThree, quizWrongFour, quizWrongFive, quizWrongSix,questionClue, questionSection, tagFirst, tagSecond, difficultyLevel, imageList, forward, goForward;
 @synthesize currentlySelectedTerm;
 
 HistoryData *sharedData;
@@ -255,6 +254,9 @@ HistoryData *sharedData;
     quizWrongTwo = [[NSMutableArray alloc]init];
     quizWrongThree = [[NSMutableArray alloc]init];
     quizWrongFour = [[NSMutableArray alloc]init];
+    quizWrongFive = [[NSMutableArray alloc]init];
+    quizWrongSix = [[NSMutableArray alloc]init];
+    
     questionClue = [[NSMutableArray alloc]init];
     tagFirst = [[NSMutableArray alloc]init];
     tagSecond = [[NSMutableArray alloc]init];
@@ -330,6 +332,18 @@ HistoryData *sharedData;
                 
                     [quizWrongThree addObject:[dic valueForKey:information]];
                 
+                } else if ([information isEqualToString:@"Answer4"]) {
+                    
+                    [quizWrongFour addObject:[dic valueForKey:information]];
+                    
+                } else if ([information isEqualToString:@"Answer5"]) {
+                    [quizWrongFive addObject:[dic valueForKey:information]];
+
+                    
+                } else if ([information isEqualToString:@"Answer6"]) {
+                    
+                    [quizWrongSix addObject:[dic valueForKey:information]];
+
                 } else if ([information isEqualToString:@"helperTips"]) {
                 
                     [questionClue addObject:[dic valueForKey:information]];
@@ -472,28 +486,45 @@ HistoryData *sharedData;
         NSString *thirdAnswerPrint;
         NSString *fourthAnswerPrint;
         
+        int incorrectAnswer1 = arc4random() % 5;
+        int incorrectAnswer2 = arc4random() % 5;
+        
+        if (incorrectAnswer1 == incorrectAnswer2) {
+            incorrectAnswer2 = arc4random() % 5;
+        } else {
+            
+        }
+        
         if (correctAnswer == 0) {
             firstAnswerPrint = [quizAnswers objectAtIndex:questionCounter];
+            
+            
             secondAnswerPrint = [quizWrongOne objectAtIndex:questionCounter];
             thirdAnswerPrint = [quizWrongTwo objectAtIndex:questionCounter];
             fourthAnswerPrint = [quizWrongThree objectAtIndex:questionCounter];
             
         } else if (correctAnswer == 1) {
-            firstAnswerPrint = [quizWrongOne objectAtIndex:questionCounter];
+            
             secondAnswerPrint = [quizAnswers objectAtIndex:questionCounter];
+            
+            
+            firstAnswerPrint = [quizWrongOne objectAtIndex:questionCounter];
             thirdAnswerPrint = [quizWrongTwo objectAtIndex:questionCounter];
             fourthAnswerPrint = [quizWrongThree objectAtIndex:questionCounter];
             
         } else if (correctAnswer == 2) {
+            thirdAnswerPrint = [quizAnswers objectAtIndex:questionCounter];
+            
             firstAnswerPrint = [quizWrongOne objectAtIndex:questionCounter];
             secondAnswerPrint = [quizWrongTwo objectAtIndex:questionCounter];
-            thirdAnswerPrint = [quizAnswers objectAtIndex:questionCounter];
             fourthAnswerPrint = [quizWrongThree objectAtIndex:questionCounter];
             
         } else if (correctAnswer == 3) {
             firstAnswerPrint = [quizWrongOne objectAtIndex:questionCounter];
             secondAnswerPrint = [quizWrongTwo objectAtIndex:questionCounter];
             thirdAnswerPrint = [quizWrongThree objectAtIndex:questionCounter];
+            
+            
             fourthAnswerPrint = [quizAnswers objectAtIndex:questionCounter];
             
         }
@@ -509,7 +540,7 @@ HistoryData *sharedData;
         UIImage *imageToRender = [self makeImageFromLabel:firstLabel];
         SKTexture *labelTexture = [SKTexture textureWithImage:imageToRender];
         renderLabel = [SKSpriteNode spriteNodeWithTexture:labelTexture];
-        renderLabel.position = CGPointMake(400,960);
+        renderLabel.position = CGPointMake(400,930);
         renderLabel.scale = 1.8;
         [self addChild:renderLabel];
         

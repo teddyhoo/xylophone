@@ -11,45 +11,29 @@
 #import "MainMenu.h"
 #import "IntroScreen.h"
 #import "WorldHistoryMainMenu.h"
+#import "DollarPGestureRecognizer.h"
+#import "DollarDefaultGestures.h"
+#import "LetterTrace.h"
 
+@implementation ViewController {
 
-@implementation ViewController
-
-@synthesize myScrollView;
-@synthesize introScreen;
-MainMenu *theMainMenu;
-BOOL isIphone = FALSE;
-
-/*
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
- 
-    // Configure the view.
-    //SKView * skView = (SKView *)self.view;
-    //skView.showsFPS = YES;
-    //skView.showsNodeCount = YES;
-    self.view.backgroundColor = [UIColor whiteColor];
-    UIImage *imageToLoad = [UIImage imageNamed:@"Arrow-blue-longest.png"];
-    UIImageView *myImageView = [[UIImageView alloc]initWithImage:imageToLoad];
-    myScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 500, 1000, 1000)];
-    myScrollView.contentSize = CGSizeMake(1000,10000);
-    [myScrollView setAlpha:1.0];
-    myScrollView.showsHorizontalScrollIndicator = YES;
-    [myScrollView addSubview:myImageView];
-    //[self.view addSubview:myScrollView ];
+    SKView *spriteView;
+    GestureView *dollarPView;
+    IntroScreen *theMainMenu;
+    LetterTrace *traceScene;
     
-    for (int p=0; p < 10; p++) {
-        UIImage *loadImage = [UIImage imageNamed:@"Arrow-blue-longest.png"];
-        UIImageView *theImageView = [[UIImageView alloc]initWithImage:loadImage];
-        theImageView.center = CGPointMake(10+1000*.5*p,100*p);
-        [myScrollView addSubview:theImageView];
-        
-    }
+
+    DollarPGestureRecognizer *dollarPGestureRecognizer;
+
+    UIButton *buttonEval;
+    UIButton *scoreEval;
     
+    NSString *recognized;
+    
+
 }
-*/
 
+float theScore;
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
@@ -60,108 +44,115 @@ BOOL isIphone = FALSE;
     
     [super viewWillLayoutSubviews];
     
-    
-    SKView *spriteView = (SKView *)self.view;
-    //spriteView.showsFPS = YES;
-    //spriteView.showsNodeCount = YES;
-    
-    
-    NSString *deviceType = [UIDevice currentDevice].model;
-    deviceType = @"iPad";
-    if([deviceType isEqualToString:@"iPhone"]) {
+    if (!spriteView) {
+        spriteView = [[SKView alloc] initWithFrame:self.view.bounds];
+        theMainMenu = [[IntroScreen alloc]initWithSize:spriteView.bounds.size];
+        theMainMenu.scaleMode = SKSceneScaleModeAspectFill;
+        [spriteView presentScene:theMainMenu];
+        [self.view addSubview:spriteView];
         
-        isIphone = TRUE;
-       
-    } else {
+        NSLog(@"added sprite view");
         
-        isIphone = FALSE;
     }
     
-    NSLog(@"device type: @%",deviceType);
+    dollarPView = [[GestureView alloc]initWithFrame:CGRectMake(0, 190, 300, 300)];
+    dollarPView.backgroundColor = [UIColor whiteColor];
+    dollarPView.alpha = 0.4;
+    //[self.view addSubview:dollarPView];
     
-    if(!spriteView.scene) {
-        //NEW
-        //
-        if (!isIphone) {
-            NSLog(@"not for iPhone");
-            //spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
-            spriteView.showsFPS = YES;
-            //spriteView.showsNodeCount = YES;
-            
-        } else if (isIphone){
-            
-            NSLog(@"sizing for iPhone");
-            //spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 350, 550)];
-            spriteView.showsFPS = YES;
-            //spriteView.showsNodeCount = YES;
-            
-        } else {
-            NSLog(@"other");
-            //spriteView = [[SKView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
-            spriteView.showsFPS = YES;
-            //spriteView.showsNodeCount = YES;
-            
-        }
-        //
-        //END
+
+    dollarPGestureRecognizer = [[DollarPGestureRecognizer alloc] initWithTarget:self
+                                                                         action:@selector(gestureRecognized:)];
+    [dollarPGestureRecognizer setPointClouds:[DollarDefaultGestures defaultPointClouds]];
+    [dollarPGestureRecognizer setDelaysTouchesEnded:NO];
+    [dollarPView addGestureRecognizer:dollarPGestureRecognizer];
+
+    __weak ViewController *weakSelf = self;
+    theMainMenu.gameOverBlock = ^(BOOL didWin) {
+        [weakSelf gameOverWithWin:didWin];
+    };
+    
+    __weak ViewController *weakSelf2 = self;
+    theMainMenu.changeSceneBlock = ^(NSString *sceneName) {
+        [weakSelf2 changeScene:sceneName];
+    };
+}
+
+-(void)evaluate:(NSString*)string {
+    [dollarPGestureRecognizer recognize];
+    [self gestureRecognized:dollarPGestureRecognizer];
+    
+    
+}
+
+-(void)doItAgain:(NSString*)string {
+    
+    [dollarPView clearAll];
+    [scoreEval setTitle:@"" forState:UIControlStateNormal];
+    
+}
+
+-(void)changeScene:(NSString *)sceneName {
+    
+    /*GestureView *copyOfDollarP = dollarPView;
+    copyOfDollarP.center = CGPointMake(600, 500);
+    
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         dollarPView.center = copyOfDollarP.center;
+                     }
+                     completion:^(BOOL finished){
+                         [dollarPView removeFromSuperview];
+                     }];*/
+    
+    
+    
+    if ([sceneName isEqualToString:@"traceScene"]) {
+        traceScene = [[LetterTrace alloc]initWithSize:CGSizeMake(1024,768) andGroup:[NSNumber numberWithInt:1]];
+        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionLeft duration:0.1];
+        [spriteView presentScene:traceScene transition:reveal];
         
-        
-        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.1];
-        introScreen = [IntroScreen sceneWithSize:spriteView.bounds.size];
-        introScreen.scaleMode = SKSceneScaleModeFill;
-        [spriteView presentScene:introScreen transition:reveal];
-        
-        //NEW
-        //[self.view addSubview:spriteView];
-        //
+        [dollarPView addObserver:traceScene
+                      forKeyPath:@"pointCopy"
+                         options:NSKeyValueObservingOptionNew
+                         context:nil];
     }
-
     
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        // iOS 7
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    } else {
-        // iOS 6
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    }
+    buttonEval = [UIButton buttonWithType:UIButtonTypeCustom];
+    //[buttonEval setBackgroundImage:[UIImage imageNamed:@"checkmark"] forState:UIControlStateNormal];
+    buttonEval = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonEval.frame = CGRectMake(5, 5, 150, 150);
+    [buttonEval setTitle:@"CHECK" forState:UIControlStateNormal];
+    //buttonEval.titleLabel.font = [UIFont systemFontOfSize:30.0];
+    [buttonEval setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    buttonEval.titleLabel.font = [UIFont fontWithName:@"Trickster" size:32];
+    [buttonEval addTarget:self action:@selector(evaluate:) forControlEvents:UIControlEventTouchUpInside];
+    //[self.view addSubview:buttonEval];
+    
+    scoreEval = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    scoreEval.frame = CGRectMake(5, 100, 350, 150);
+    [scoreEval setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [scoreEval addTarget:self action:@selector(doItAgain:) forControlEvents:UIControlEventTouchUpInside];
+    //[self.view addSubview:scoreEval];
+
 }
 
-
-//-(void)viewWillAppear:(BOOL)animated {
+-(void)gameOverWithWin:(BOOL)didWin {
     
-    //introScreen = [[IntroScreen alloc]initWithSize:CGSizeMake(768,1024)];
-    //introScreen = [[WorldHistoryMainMenu alloc]initWithSize:CGSizeMake(768,1024)];
-    
-    //theMainMenu = [[IntroScreen alloc]initWithSize:CGSizeMake(768, 1024)];
-    
-    //WorldHistoryMainMenu *worldHistoryIntro = [[WorldHistoryMainMenu alloc]initWithSize:CGSizeMake(768,1024)];
-    //spriteView = (SKView *)self.view;
-    //SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
-
-    //[spriteView presentScene:introScreen transition:reveal];
-    //[spriteView presentScene:worldHistoryIntro transition:reveal];
-    //worldHistoryIntro.scaleMode = SKSceneScaleModeResizeFill;
-    
-//}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-    myScrollView.alpha = 0.50;
-    
+    NSLog(@"game Over With Win called");
+ 
 }
 
--(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    
-    myScrollView.alpha = 1.0;
-    
+-(void)gestureRecognized:(DollarPGestureRecognizer *)sender {
+    [sender recognize];
+    DollarResult *result = [sender result];
+    theScore = [result score];
+    [scoreEval setTitle:[NSString stringWithFormat:@"LETTER: %@",[result name]] forState:UIControlStateNormal];
+    scoreEval.titleLabel.font = [UIFont fontWithName:@"Trickster" size:24];
+
+    NSLog(@"score: %.2f",[result score]);
 }
 
-
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    
-    myScrollView.alpha = 1.0;
-    
-}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
@@ -169,15 +160,14 @@ BOOL isIphone = FALSE;
     
     UITouch *touch = [touches anyObject];
     CGPoint theTouch = [touch locationInView:self.view];
+    //[traceScene touchesBegan:touches withEvent:event];
     
     
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    
-    
-    
+
+    //[traceScene touchesMoved:touches withEvent:event];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -185,29 +175,13 @@ BOOL isIphone = FALSE;
     
     UITouch *touch = [touches anyObject];
     CGPoint theTouch = [touch locationInView:self.view];
+   //[traceScene touchesEnded:touches withEvent:event];
+
+    //[dollarPGestureRecognizer recognize];
     
     
+    
 }
-
--(void) setUndoButtonEnable:(NSNumber*)isEnable
-{
-}
--(void) setRedoButtonEnable:(NSNumber*)isEnable
-{
-}
--(void) setClearButtonEnable:(NSNumber*)isEnable
-{
-}
--(void) setEraserButtonEnable:(NSNumber*)isEnable
-{
-}
--(void) setSave2FileButtonEnable:(NSNumber*)isEnable
-{
-}
--(void) setSave2AlbumButtonEnable:(NSNumber*)isEnable
-{
-}
-
 
 - (BOOL)shouldAutorotate
 {
@@ -226,7 +200,7 @@ BOOL isIphone = FALSE;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
 }
+
 
 @end

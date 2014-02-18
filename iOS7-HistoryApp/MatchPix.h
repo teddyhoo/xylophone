@@ -13,6 +13,6 @@
 @property (nonatomic,retain) SKSpriteNode* gridPaper;
 @property (nonatomic,retain) SKSpriteNode* selectedImage;
 
--(id)initWithSize:(CGSize)size onWhichGroup:(NSNumber *)group;
+-(id)initWithSize:(CGSize)size onWhichGroup:(NSNumber *)group mode:(NSString*)playMode;
 
 @end

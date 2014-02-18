@@ -227,12 +227,12 @@ int numColonial, numRevolution, numEarlyRep, numEraGood, numJacksonian, numWestw
         topic6.name = @"Jacksonian";
 // ----------------------------------------------------------------------------------------------
         topic7 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];
-        topic7.text = @"The West";
+        topic7.text = @"Manifest Destiny";
         topic7.fontColor = [UIColor blackColor];
         topic7.fontSize = 40;
         topic7.position = CGPointMake(50, -75);
         topic7.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
-        topic7.name = @"Westward Expansion";
+        topic7.name = @"Manifest Destiny";
         
 // ----------------------------------------------------------------------------------------------
         topic8 = [SKLabelNode labelNodeWithFontNamed:@"Oranienbaum"];

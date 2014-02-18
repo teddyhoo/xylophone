@@ -81,16 +81,11 @@ NSMutableArray *instructionsText;
 
 HistoryData *sharedData;
 
-CGPoint _score_pos;
 CGPoint _scoreActual_pos;
-CGPoint _totalTime_pos;
-CGPoint _totalScore_pos; // Label: Tot Quest:
+
 CGPoint _birdie_pos;
 CGPoint _questionCategory_pos;
-CGPoint _totalQuestionsComplete_pos;
-CGPoint _totalScoreNow_pos;
-CGPoint _totalTime_pos;
-CGPoint _total_Actual_Time;
+
 CGPoint _setOfAnswers;
 CGPoint _totalScoreCounter;
 CGPoint answerRelativeToButton;
@@ -113,24 +108,10 @@ int yValTerm = 100;
         
         background = [SKSpriteNode spriteNodeWithImageNamed:@"old-notebook-10.png"];
         background.name = @"background";
-        //[background setAnchorPoint:CGPointZero];
-        //[self addChild:background];
-        //background.position = CGPointMake(size.width / 2, size.height / 2);
-        
         self.backgroundColor = [SKColor colorWithRed:0.8 green:1.0 blue:1.0 alpha:1.0];
        
         winSize = CGSizeMake(size.width, size.height);
-        
-        
-        answerPosition = CGPointMake(450, 700);
-        _score_pos = CGPointMake(200, 100); // POINTS label
-        _totalScoreCounter = CGPointMake(300, 100); // Aggregated score number
-        _totalTime_pos = CGPointMake(300, 200); // Total Time Count Label
-        _total_Actual_Time = CGPointMake(400, 200); // Total Time Counter
-        _totalScore_pos = CGPointMake(300, 300); // % Label
-        _totalScoreNow_pos = CGPointMake(400, 300); // % value
-        _timerCounterPos = CGPointMake(300, 400);
-        _explanation_pos = CGPointMake(400, 400);
+    
         
         
         sharedData = [HistoryData sharedManager];
@@ -198,6 +179,20 @@ int yValTerm = 100;
     return self;
 }
 
+
+- (UIImage *)makeImageFromLabel: (UILabel *)labelToConvert {
+    
+    CGRect labelBound = [labelToConvert bounds];
+    UIGraphicsBeginImageContext(labelBound.size);
+    [[labelToConvert layer]renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *convertedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return convertedImage;
+    
+}
+
+
 - (void)didMoveToView:(SKView *)view {
     UIPanGestureRecognizer *gestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanFrom:)];
     [[self view] addGestureRecognizer:gestureRecognizer];
@@ -223,11 +218,16 @@ int yValTerm = 100;
         for(MatchTerm *destination in movableSprites) {
             if(CGRectIntersectsRect(destination.frame,selectedNode.frame) &&
                [destination.name isEqualToString:selectedNode.name]) {
+                
+                NSLog(@"destination: %@, selected: %@", destination.name, selectedNode.name);
+                
                 [selectedNode removeAllActions];
                 destination.matched = TRUE;
-                SKAction *moveToTop = [SKAction moveTo:CGPointMake(destination.position.x,300) duration:1.0];
+                SKAction *moveToTop = [SKAction moveTo:CGPointMake(destination.position.x,destination.position.y + 100) duration:1.0];
                 [destination runAction:moveToTop];
                 [selectedNode runAction:moveToTop];
+                selectedNode.scale = 0.2;
+                //destination.scale = 0.5;
                 selectedNode = nil;
                 
             }
@@ -277,18 +277,31 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
     termDestination.position = CGPointMake(winSize.width/2, winSize.height/2);
     termDestination.zPosition = 10;
     termDestination.name = type;*/
+    UILabel *firstLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 40, 240)];
+    firstLabel.text = term;
+    firstLabel.textColor = [UIColor blackColor];
+    firstLabel.font = [UIFont fontWithName:@"Carton-Slab" size:12.0];
+    firstLabel.numberOfLines = 4;
+    firstLabel.preferredMaxLayoutWidth = 350;
     
+    UIImage *imageToRender4 = [self makeImageFromLabel:firstLabel];
+    SKTexture *labelTexture4 = [SKTexture textureWithImage:imageToRender4];
+    SKSpriteNode *renderLabel4 = [SKSpriteNode spriteNodeWithTexture:labelTexture4];
+    renderLabel4.position = CGPointMake(xValTerm,yValTerm);
+    renderLabel4.scale = 1.0;
+    [self addChild:renderLabel4];
     
-    
-    SKLabelNode *theLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
+    /*SKLabelNode *theLabel = [SKLabelNode labelNodeWithFontNamed:@"Carton-Slab"];
     theLabel.text = term;
     theLabel.name = type;
     theLabel.fontSize = 16;
     theLabel.fontColor = [UIColor orangeColor];
     theLabel.position = CGPointMake(xValTerm, yValTerm);
-    theLabel.zPosition = 10;
+    theLabel.zPosition = 100;
     
-    [self addChild:theLabel];
+    [self addChild:theLabel];*/
+    
+    
     
     xValTerm += 200;
     if(xValTerm > 500) {
@@ -296,8 +309,8 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
         yValTerm -= 50;
     }
     
-    [termsToMatch addObject:theLabel];
-    
+    //[termsToMatch addObject:theLabel];
+    [termsToMatch addObject:renderLabel4];
 }
 
 
@@ -387,31 +400,31 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
                 termsInSection++;
                 
             } else if ([key isEqualToString:@"Term2A"]) {
-                [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
+                //[self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
   
-                index++;
-                termsInSection++;
+                //index++;
+                //termsInSection++;
             } else if ([key isEqualToString:@"Term2B"]) {
-                [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
+                //[self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
 
                 
-                index++;
-                termsInSection++;
+                //index++;
+                //termsInSection++;
             } else if ([key isEqualToString:@"Term3A"]) {
-                [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
+                //[self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
                 
-                index++;
-                termsInSection++;
+                //index++;
+                //termsInSection++;
             }else if ([key isEqualToString:@"Term3B"]) {
-                [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
+                //[self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
                 
-                index++;
-                termsInSection++;
+                //index++;
+                //termsInSection++;
             }else if ([key isEqualToString:@"Term4"]) {
-                [self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
+                //[self addChainEffectTermDestination:key theTerm:[currentProblem valueForKey:key]];
                 
-                index++;
-                termsInSection++;
+                //index++;
+                //termsInSection++;
             }
         }
         
@@ -901,9 +914,13 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
 }
 
 - (void)panForTranslation:(CGPoint)translation {
+    
     CGPoint position = [selectedNode position];
+    
     if([[selectedNode name] isEqualToString:@"Term1"]) {
+        
         [selectedNode setPosition:CGPointMake(position.x + translation.x, position.y + translation.y)];
+        
     } else if ([[selectedNode name]isEqualToString:@"Term2"]) {
         [selectedNode setPosition:CGPointMake(position.x + translation.x, position.y + translation.y)];
 
@@ -926,9 +943,11 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
         [selectedNode setPosition:CGPointMake(position.x + translation.x, position.y + translation.y)];
         
     } else if ([[selectedNode name]isEqualToString:@"next"]) {
+        
         [self nextTopic];
-    }
-        else {
+        
+    } else {
+        
         CGPoint newPos = CGPointMake(position.x + translation.x, position.y + translation.y);
         [background setPosition:[self boundLayerPos:newPos]];
     }

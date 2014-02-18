@@ -55,6 +55,9 @@
 @property (nonatomic,retain) NSMutableArray *quizWrongTwo;
 @property (nonatomic,retain) NSMutableArray *quizWrongThree;
 @property (nonatomic,retain) NSMutableArray *quizWrongFour;
+@property (nonatomic,retain) NSMutableArray *quizWrongFive;
+@property (nonatomic,retain) NSMutableArray *quizWrongSix;
+
 @property (nonatomic,retain) NSMutableArray *questionClue;
 @property (nonatomic,retain) NSMutableArray *questionSection;
 @property (nonatomic,retain) NSMutableArray *tagFirst;

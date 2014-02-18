@@ -13,10 +13,10 @@
 #import "Credits.h"
 #import "TeacherParent.h"
 #import "Spelling.h"
+#import "FreeWrite.h"
 
 @interface IntroScreen : SKScene
 {
-    SKView *spriteView;
     
     CGRect screenRect;
     CGFloat screenHeight;
@@ -32,6 +32,9 @@
 @property (nonatomic,retain) Credits *credits;
 @property (nonatomic,retain) TeacherParent *teacherReview;
 @property (nonatomic,retain) Spelling *spellingScene;
+@property (nonatomic,retain) FreeWrite *freeWriteScene;
 
+@property (nonatomic, copy) void (^gameOverBlock)(BOOL didWin);
+@property (nonatomic, copy) void (^changeSceneBlock)(NSString* sceneName);
 
 @end
